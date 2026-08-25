@@ -76,13 +76,18 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
     }
 
     if (items.length === 0) {
-      items.push(new ProjectTreeItem(
+      const item = new ProjectTreeItem(
         'No projects connected',
         'empty',
         vscode.TreeItemCollapsibleState.None,
         {},
-        'Click "Connect Project" to get started'
-      ));
+        'Click to connect'
+      );
+      item.command = {
+        command: 'vistiq.connectProject',
+        title: 'Connect Project',
+      };
+      items.push(item);
     }
 
     return items;

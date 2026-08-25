@@ -85,9 +85,30 @@
     },
     "views": {
       "vistiq": [
-        { "id": "vistiq.projects", "name": "Projects" },
+        { "id": "vistiq.projects", "name": "Projects", "contextualTitle": "Projects" },
         { "id": "vistiq.tools", "name": "Tools" },
         { "id": "vistiq.settings", "name": "Settings" }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "vistiq.connectProject",
+          "when": "view == vistiq.projects",
+          "group": "navigation"
+        },
+        {
+          "command": "vistiq.refresh",
+          "when": "view == vistiq.projects",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "vistiq.connectProject",
+          "when": "view == vistiq.projects && viewItem == empty",
+          "group": "inline"
+        }
       ]
     },
     "configuration": {

@@ -56,7 +56,12 @@ export class ProjectTreeProvider {
             items.push(item);
         }
         if (items.length === 0) {
-            items.push(new ProjectTreeItem('No projects connected', 'empty', vscode.TreeItemCollapsibleState.None, {}, 'Click "Connect Project" to get started'));
+            const item = new ProjectTreeItem('No projects connected', 'empty', vscode.TreeItemCollapsibleState.None, {}, 'Click to connect');
+            item.command = {
+                command: 'vistiq.connectProject',
+                title: 'Connect Project',
+            };
+            items.push(item);
         }
         return items;
     }
