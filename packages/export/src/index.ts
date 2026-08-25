@@ -137,7 +137,7 @@ export class ExportService {
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return value;
     if (Array.isArray(value)) return value.map(v => this.serializeValue(v));
     if (typeof value === 'object' && value !== null) {
-      const obj = value as Record<string, unknown>;
+      const obj = value as unknown as Record<string, unknown>;
       if ('__type__' in obj) {
         switch (obj.__type__) {
           case 'timestamp':
@@ -151,7 +151,7 @@ export class ExportService {
           case 'bytes':
             return `base64:${obj.value}`;
           case 'array':
-            return obj.value.map(v => this.serializeValue(v));
+            return (obj.value as FirestoreValue[]).map(v => this.serializeValue(v));
           case 'map': {
             const mapResult: Record<string, unknown> = {};
             for (const [k, v] of Object.entries(obj.value as Record<string, FirestoreValue>)) {
@@ -172,7 +172,7 @@ export class ExportService {
 
   private isNested(value: FirestoreValue): boolean {
     if (typeof value === 'object' && value !== null) {
-      const obj = value as Record<string, unknown>;
+      const obj = value as unknown as Record<string, unknown>;
       if ('__type__' in obj) {
         return obj.__type__ === 'map' || obj.__type__ === 'array';
       }

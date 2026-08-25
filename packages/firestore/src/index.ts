@@ -261,7 +261,7 @@ export class FirestoreService implements FirestoreConnection {
       return value.map(v => this.convertValue(v));
     }
     if (typeof value === 'object' && value !== null) {
-      const obj = value as Record<string, unknown>;
+      const obj = value as unknown as Record<string, unknown>;
       if ('__type__' in obj) {
         const type = obj.__type__;
         if (type === 'timestamp') {

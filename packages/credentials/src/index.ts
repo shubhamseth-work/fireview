@@ -1,6 +1,6 @@
 import { SecretStorage, Disposable } from 'vscode';
 import { logger } from '@vistiq/shared';
-import { EmulatorConfig, AuthMethod } from '@vistiq/core';
+import { EmulatorConfig, AuthMethod, StoredConnection, StoredServiceAccount } from '@vistiq/core';
 
 const SECRET_KEYS = {
   SERVICE_ACCOUNT: 'serviceAccount',
@@ -10,36 +10,11 @@ const SECRET_KEYS = {
   ACTIVE_CONNECTION: 'activeConnection',
 } as const;
 
-export interface StoredServiceAccount {
-  type: string;
-  project_id: string;
-  private_key_id: string;
-  private_key: string;
-  client_email: string;
-  client_id: string;
-  auth_uri: string;
-  token_uri: string;
-  auth_provider_x509_cert_url: string;
-  client_x509_cert_url: string;
-  universe_domain?: string;
-}
-
 export interface StoredOAuthToken {
   accessToken: string;
   refreshToken: string;
   expiresAt: number;
   scope: string;
-}
-
-export interface StoredConnection {
-  projectId: string;
-  displayName: string;
-  environment: string;
-  authMethod: AuthMethod;
-  emulatorConfig?: EmulatorConfig;
-  region?: string;
-  connectedAt: string;
-  lastUsedAt: string;
 }
 
 export class CredentialService {
@@ -165,7 +140,7 @@ export class CredentialService {
   }
 
   async getActiveConnection(): Promise<string | null> {
-    const value = this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION);
+    const value = await this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION);
     return (value as string | null) ?? null;
   }
 

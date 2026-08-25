@@ -6,6 +6,8 @@ const SECRET_KEYS = {
     CONNECTIONS: 'connections',
     ACTIVE_CONNECTION: 'activeConnection',
 };
+connectedAt: string;
+lastUsedAt: string;
 export class CredentialService {
     secretStorage;
     disposal = [];
@@ -122,7 +124,7 @@ export class CredentialService {
         await this.secretStorage.store(SECRET_KEYS.ACTIVE_CONNECTION, projectId);
     }
     async getActiveConnection() {
-        const value = this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION);
+        const value = await this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION);
         return value ?? null;
     }
     async clearAll() {

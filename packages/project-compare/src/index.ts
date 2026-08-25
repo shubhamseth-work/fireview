@@ -61,7 +61,7 @@ export class ProjectCompareService {
           sourceCount: sourceCol.documentCount,
           destinationCount: destCol.documentCount,
           sourceStructure,
-          destinationStructure,
+          destinationStructure: destStructure,
           status: structureMatch ? 'match' : 'structure-diff',
         });
       } else if (sourceCol) {

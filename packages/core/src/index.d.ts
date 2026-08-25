@@ -126,6 +126,29 @@ export interface EmulatorConfig {
     storagePort?: number;
     uiPort?: number;
 }
+export interface StoredConnection {
+    projectId: string;
+    displayName: string;
+    environment: string;
+    authMethod: AuthMethod;
+    emulatorConfig?: EmulatorConfig;
+    region?: string;
+    connectedAt: string;
+    lastUsedAt: string;
+}
+export interface StoredServiceAccount {
+    type: string;
+    project_id: string;
+    private_key_id: string;
+    private_key: string;
+    client_email: string;
+    client_id: string;
+    auth_uri: string;
+    token_uri: string;
+    auth_provider_x509_cert_url: string;
+    client_x509_cert_url: string;
+    universe_domain?: string;
+}
 export interface ExportOptions {
     format: 'json' | 'csv';
     includeDocumentId: boolean;

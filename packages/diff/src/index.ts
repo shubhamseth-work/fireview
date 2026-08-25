@@ -12,7 +12,7 @@ export class DiffService {
       return {
         left: null,
         right,
-        changes: this.collectAdded('', right.data),
+        changes: this.collectAdded('', right!.data),
       };
     }
 
@@ -142,7 +142,7 @@ export class DiffService {
 
   private isObject(value: FirestoreValue): boolean {
     if (typeof value === 'object' && value !== null) {
-      const obj = value as Record<string, unknown>;
+      const obj = value as unknown as Record<string, unknown>;
       if ('__type__' in obj) {
         return obj.__type__ === 'map';
       }
@@ -153,7 +153,7 @@ export class DiffService {
 
   private getObjectValue(value: FirestoreValue): Record<string, FirestoreValue> {
     if (typeof value === 'object' && value !== null) {
-      const obj = value as Record<string, unknown>;
+      const obj = value as unknown as Record<string, unknown>;
       if ('__type__' in obj && obj.__type__ === 'map') {
         return obj.value as Record<string, FirestoreValue>;
       }
@@ -169,7 +169,7 @@ export class DiffService {
   private normalizeForCompare(value: FirestoreValue): unknown {
     if (value === null || typeof value !== 'object') return value;
     if (Array.isArray(value)) return value.map(v => this.normalizeForCompare(v));
-    const obj = value as Record<string, unknown>;
+    const obj = value as unknown as Record<string, unknown>;
     if ('__type__' in obj) {
       switch (obj.__type__) {
         case 'array':

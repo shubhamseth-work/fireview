@@ -123,7 +123,7 @@ export class ImportService {
       }
     }
 
-    logger.info('Import completed', progress);
+    logger.info('Import completed', progress as unknown as Record<string, unknown>);
     return progress;
   }
 
@@ -166,7 +166,7 @@ export class ImportService {
       if (values.length !== headers.length) continue;
 
       const data: Record<string, FirestoreValue> = {};
-      let docId = crypto.randomUUID();
+      let docId: string = crypto.randomUUID();
 
       for (let j = 0; j < headers.length; j++) {
         const key = headers[j];

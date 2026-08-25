@@ -1,33 +1,10 @@
 import { SecretStorage } from 'vscode';
-import { EmulatorConfig, AuthMethod } from '@vistiq/core';
-export interface StoredServiceAccount {
-    type: string;
-    project_id: string;
-    private_key_id: string;
-    private_key: string;
-    client_email: string;
-    client_id: string;
-    auth_uri: string;
-    token_uri: string;
-    auth_provider_x509_cert_url: string;
-    client_x509_cert_url: string;
-    universe_domain?: string;
-}
+import { EmulatorConfig, StoredConnection, StoredServiceAccount } from '@vistiq/core';
 export interface StoredOAuthToken {
     accessToken: string;
     refreshToken: string;
     expiresAt: number;
     scope: string;
-}
-export interface StoredConnection {
-    projectId: string;
-    displayName: string;
-    environment: string;
-    authMethod: AuthMethod;
-    emulatorConfig?: EmulatorConfig;
-    region?: string;
-    connectedAt: string;
-    lastUsedAt: string;
 }
 export declare class CredentialService {
     private secretStorage;
