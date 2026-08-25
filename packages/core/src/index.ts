@@ -180,6 +180,10 @@ export function serializeFirestoreValue(value: FirestoreValue): unknown {
   return undefined;
 }
 
+function isSpecialFirestoreValue(value: unknown): value is TimestampValue | ReferenceValue | GeoPointValue | BytesValue | ArrayValue | MapValue {
+  return typeof value === 'object' && value !== null && '__type__' in (value as Record<string, unknown>);
+}
+
 export function deserializeFirestoreValue(value: unknown): FirestoreValue {
   if (value === null) return null;
   if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return value;
