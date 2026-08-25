@@ -136,27 +136,45 @@ export interface MapValue {
   value: Record<string, FirestoreValue>;
 }
 
+function isTimestampValue(value: unknown): value is TimestampValue {
+  return typeof value === 'object' && value !== null && '__type__' in (value as Record<string, unknown>) && (value as Record<string, unknown>).__type__ === 'timestamp';
+}
+
+function isReferenceValue(value: unknown): value is ReferenceValue {
+  return typeof value === 'object' && value !== null && '__type__' in (value as Record<string, unknown>) && (value as Record<string, unknown>).__type__ === 'reference';
+}
+
+function isGeoPointValue(value: unknown): value is GeoPointValue {
+  return typeof value === 'object' && value !== null && '__type__' in (value as Record<string, unknown>) && (value as Record<string, unknown>).__type__ === 'geopoint';
+}
+
+function isBytesValue(value: unknown): value is BytesValue {
+  return typeof value === 'object' && value !== null && '__type__' in (value as Record<string, unknown>) && (value as Record<string, unknown>).__type__ === 'bytes';
+}
+
+function isArrayValue(value: unknown): value is ArrayValue {
+  return typeof value === 'object' && value !== null && '__type__' in (value as Record<string, unknown>) && (value as Record<string, unknown>).__type__ === 'array' && Array.isArray((value as Record<string, unknown>).value);
+}
+
+function isMapValue(value: unknown): value is MapValue {
+  return typeof value === 'object' && value !== null && '__type__' in (value as Record<string, unknown>) && (value as Record<string, unknown>).__type__ === 'map' && typeof (value as Record<string, unknown>).value === 'object';
+}
+
 export function isFirestoreValue(value: unknown): value is FirestoreValue {
   if (value === null) return true;
   if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return true;
   if (Array.isArray(value)) return value.every(isFirestoreValue);
   if (typeof value === 'object' && value !== null) {
-    const obj = value as Record<string, unknown>;
-    if ('__type__' in obj) {
-      switch (obj.__type__) {
-        case 'timestamp':
-        case 'reference':
-        case 'geopoint':
-        case 'bytes':
-          return true;
-        case 'array':
-          return Array.isArray(obj.value) && obj.value.every(isFirestoreValue);
-        case 'map':
-          return Object.values(obj.value).every(isFirestoreValue);
-        default:
-          return false;
-      }
+    if (isTimestampValue(value) || isReferenceValue(value) || isGeoPointValue(value) || isBytesValue(value)) {
+      return true;
     }
+    if (isArrayValue(value)) {
+      return value.value.every(isFirestoreValue);
+    }
+    if (isMapValue(value)) {
+      return Object.values(value.value).every(isFirestoreValue);
+    }
+    const obj = value as Record<string, unknown>;
     return Object.values(obj).every(isFirestoreValue);
   }
   return false;
@@ -167,10 +185,20 @@ export function serializeFirestoreValue(value: FirestoreValue): unknown {
   if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return value;
   if (Array.isArray(value)) return value.map(serializeFirestoreValue);
   if (typeof value === 'object' && value !== null) {
-    const obj = value as Record<string, unknown>;
-    if ('__type__' in obj) {
-      return obj;
+    if (isTimestampValue(value) || isReferenceValue(value) || isGeoPointValue(value) || isBytesValue(value)) {
+      return value;
     }
+    if (isArrayValue(value)) {
+      return { __type__: 'array', value: value.value.map(serializeFirestoreValue) };
+    }
+    if (isMapValue(value)) {
+      const result: Record<string, unknown> = {};
+      for (const [k, v] of Object.entries(value.value)) {
+        result[k] = serializeFirestoreValue(v);
+      }
+      return { __type__: 'map', value: result };
+    }
+    const obj = value as Record<string, unknown>;
     const result: Record<string, unknown> = {};
     for (const [k, v] of Object.entries(obj)) {
       result[k] = serializeFirestoreValue(v as FirestoreValue);
@@ -180,10 +208,6 @@ export function serializeFirestoreValue(value: FirestoreValue): unknown {
   return undefined;
 }
 
-function isSpecialFirestoreValue(value: unknown): value is TimestampValue | ReferenceValue | GeoPointValue | BytesValue | ArrayValue | MapValue {
-  return typeof value === 'object' && value !== null && '__type__' in (value as Record<string, unknown>);
-}
-
 export function deserializeFirestoreValue(value: unknown): FirestoreValue {
   if (value === null) return null;
   if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return value;
@@ -191,7 +215,18 @@ export function deserializeFirestoreValue(value: unknown): FirestoreValue {
   if (typeof value === 'object' && value !== null) {
     const obj = value as Record<string, unknown>;
     if ('__type__' in obj) {
-      return obj as FirestoreValue;
+      const type = obj.__type__;
+      if (type === 'timestamp' || type === 'reference' || type === 'geopoint' || type === 'bytes' || type === 'array' || type === 'map') {
+        return obj as unknown as FirestoreValue;
+      }
+      // Unknown __type__, treat as map
+      const result: Record<string, FirestoreValue> = {};
+      for (const [k, v] of Object.entries(obj)) {
+        if (k !== '__type__') {
+          result[k] = deserializeFirestoreValue(v);
+        }
+      }
+      return { __type__: 'map', value: result } as MapValue;
     }
     const result: Record<string, FirestoreValue> = {};
     for (const [k, v] of Object.entries(obj)) {

@@ -1,7 +1,7 @@
-import { AuthProvider, Connection, AuthStatus, AuthMethod, EmulatorConfig, StoredServiceAccount } from '@vistiq/core';
+import { AuthProvider, Connection, AuthStatus, EmulatorConfig } from '@vistiq/core';
 import { logger, VistiqError, ERROR_CODES } from '@vistiq/shared';
 import { CredentialService } from '@vistiq/credentials';
-import { GoogleAuth } from 'google-auth-library';
+import { OAuth2Client } from 'google-auth-library';
 import { initializeApp, cert, getApps, App } from 'firebase-admin/app';
 import { getFirestore, Firestore } from 'firebase-admin/firestore';
 
@@ -15,7 +15,7 @@ export class ServiceAccountProvider implements AuthProvider {
     this.credentialService = credentialService;
   }
 
-  async connect(config?: EmulatorConfig): Promise<Connection> {
+  async connect(_config?: EmulatorConfig): Promise<Connection> {
     const stored = await this.credentialService.getServiceAccount(this.projectId || '');
     if (!stored) {
       throw new VistiqError('No service account found', ERROR_CODES.INVALID_CREDENTIALS);
@@ -60,7 +60,7 @@ export class ServiceAccountProvider implements AuthProvider {
 
   async disconnect(): Promise<void> {
     if (this.app) {
-      await this.app.delete();
+      await (this.app as any).delete();
       this.app = null;
       this.firestore = null;
     }
@@ -133,7 +133,7 @@ export class EmulatorProvider implements AuthProvider {
   async disconnect(): Promise<void> {
     delete process.env.FIRESTORE_EMULATOR_HOST;
     if (this.app) {
-      await this.app.delete();
+      await (this.app as any).delete();
       this.app = null;
       this.firestore = null;
     }
@@ -165,26 +165,25 @@ export class EmulatorProvider implements AuthProvider {
 export class GoogleOAuthProvider implements AuthProvider {
   private credentialService: CredentialService;
   private projectId: string | null = null;
-  private authClient: GoogleAuth | null = null;
+  private oauthClient: OAuth2Client | null = null;
 
   constructor(credentialService: CredentialService) {
     this.credentialService = credentialService;
   }
 
-  async connect(config?: EmulatorConfig): Promise<Connection> {
+  async connect(_config?: EmulatorConfig): Promise<Connection> {
     const token = await this.credentialService.getOAuthToken(this.projectId || '');
     if (!token) {
       throw new VistiqError('No OAuth token found', ERROR_CODES.INVALID_CREDENTIALS);
     }
 
-    this.authClient = new GoogleAuth({
-      credentials: {
-        access_token: token.accessToken,
-        refresh_token: token.refreshToken,
-        scope: token.scope,
-        token_type: 'Bearer',
-        expiry_date: token.expiresAt,
-      },
+    this.oauthClient = new OAuth2Client();
+    this.oauthClient.setCredentials({
+      access_token: token.accessToken,
+      refresh_token: token.refreshToken,
+      scope: token.scope,
+      token_type: 'Bearer',
+      expiry_date: token.expiresAt,
     });
 
     const connection: Connection = {
@@ -201,17 +200,17 @@ export class GoogleOAuthProvider implements AuthProvider {
   }
 
   async disconnect(): Promise<void> {
-    this.authClient = null;
+    this.oauthClient = null;
     this.projectId = null;
     logger.info('OAuth disconnected');
   }
 
   async getStatus(): Promise<AuthStatus> {
-    if (!this.authClient || !this.projectId) {
+    if (!this.oauthClient || !this.projectId) {
       return { connected: false };
     }
     try {
-      await this.authClient.getAccessToken();
+      await this.oauthClient.getAccessToken();
       return { connected: true, projectId: this.projectId };
     } catch {
       return { connected: false, projectId: this.projectId, error: 'Token expired or invalid' };

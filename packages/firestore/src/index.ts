@@ -352,3 +352,5 @@ export class FirestoreService implements FirestoreConnection {
 export function createFirestoreService(firestore: Firestore, projectId: string): FirestoreService {
   return new FirestoreService(firestore, projectId);
 }
+
+export type { FirestoreConnection } from '@vistiq/core';

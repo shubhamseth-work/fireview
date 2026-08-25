@@ -1,4 +1,4 @@
-import { LogLevel } from './constants';
+import { LogLevel } from './constants.js';
 
 const SECRET_PATTERNS = [
   /private_key/gi,

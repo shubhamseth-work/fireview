@@ -1,0 +1,50 @@
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+export declare const ENVIRONMENT_LABELS: readonly ["development", "staging", "production", "custom"];
+export type EnvironmentLabel = (typeof ENVIRONMENT_LABELS)[number];
+export declare const AUTH_METHODS: readonly ["service-account", "oauth", "emulator"];
+export type AuthMethod = (typeof AUTH_METHODS)[number];
+export declare const QUERY_OPERATORS: readonly ["==", "!=", "<", "<=", ">", ">=", "array-contains", "array-contains-any", "in", "not-in"];
+export type QueryOperator = (typeof QUERY_OPERATORS)[number];
+export declare const BATCH_STATUSES: readonly ["pending", "running", "completed", "failed", "cancelled"];
+export type BatchStatus = (typeof BATCH_STATUSES)[number];
+export declare const MIGRATION_STEPS: readonly ["select-source", "select-destination", "select-data", "preview", "review-changes", "confirm", "execute", "results"];
+export type MigrationStep = (typeof MIGRATION_STEPS)[number];
+export declare const MIGRATION_STATUSES: readonly ["draft", "in-progress", "completed", "failed", "cancelled"];
+export type MigrationStatus = (typeof MIGRATION_STATUSES)[number];
+export declare const AUDIT_OPERATIONS: readonly ["connect", "disconnect", "create-document", "update-document", "delete-document", "batch-delete", "batch-update", "batch-create", "export-collection", "import-collection", "run-query", "copy-documents", "migrate", "compare-projects", "diff-documents", "emulator-connect", "emulator-disconnect"];
+export type AuditOperation = (typeof AUDIT_OPERATIONS)[number];
+export declare const EXPORT_FORMATS: readonly ["json", "csv"];
+export type ExportFormat = (typeof EXPORT_FORMATS)[number];
+export declare const IMPORT_MODES: readonly ["create", "update", "upsert"];
+export type ImportMode = (typeof IMPORT_MODES)[number];
+export declare const QUERY_CODE_LANGUAGES: readonly ["typescript", "javascript", "python"];
+export type QueryCodeLanguage = (typeof QUERY_CODE_LANGUAGES)[number];
+export declare const FIRESTORE_VALUE_TYPES: readonly ["string", "number", "boolean", "null", "timestamp", "reference", "geopoint", "bytes", "array", "map"];
+export type FirestoreValueType = (typeof FIRESTORE_VALUE_TYPES)[number];
+export declare const DEFAULT_PAGE_SIZE = 50;
+export declare const MAX_BATCH_SIZE = 500;
+export declare const MAX_QUERY_LIMIT = 1000;
+export declare const DEFAULT_QUERY_TIMEOUT = 30000;
+export declare const SECRET_STORAGE_KEY_PREFIX = "vistiq.";
+export declare const ERROR_CODES: {
+    readonly AUTH_FAILED: "AUTH_FAILED";
+    readonly PERMISSION_DENIED: "PERMISSION_DENIED";
+    readonly PROJECT_NOT_FOUND: "PROJECT_NOT_FOUND";
+    readonly COLLECTION_NOT_FOUND: "COLLECTION_NOT_FOUND";
+    readonly DOCUMENT_NOT_FOUND: "DOCUMENT_NOT_FOUND";
+    readonly INVALID_QUERY: "INVALID_QUERY";
+    readonly QUOTA_EXCEEDED: "QUOTA_EXCEEDED";
+    readonly NETWORK_ERROR: "NETWORK_ERROR";
+    readonly TIMEOUT: "TIMEOUT";
+    readonly VALIDATION_ERROR: "VALIDATION_ERROR";
+    readonly EMULATOR_UNAVAILABLE: "EMULATOR_UNAVAILABLE";
+    readonly INVALID_CREDENTIALS: "INVALID_CREDENTIALS";
+};
+export type ErrorCode = (typeof ERROR_CODES)[keyof typeof ERROR_CODES];
+export declare class VistiqError extends Error {
+    readonly code: ErrorCode;
+    readonly details?: Record<string, unknown> | undefined;
+    constructor(message: string, code: ErrorCode, details?: Record<string, unknown> | undefined);
+}
+export declare function isVistiqError(error: unknown): error is VistiqError;
+//# sourceMappingURL=constants.d.ts.map

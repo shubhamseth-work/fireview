@@ -1,6 +1,6 @@
 import { SecretStorage, Disposable } from 'vscode';
 import { logger } from '@vistiq/shared';
-import { Connection, AuthMethod, EmulatorConfig } from '@vistiq/core';
+import { EmulatorConfig, AuthMethod } from '@vistiq/core';
 
 const SECRET_KEYS = {
   SERVICE_ACCOUNT: 'serviceAccount',
@@ -165,7 +165,8 @@ export class CredentialService {
   }
 
   async getActiveConnection(): Promise<string | null> {
-    return this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION) || null;
+    const value = this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION);
+    return value === undefined ? null : value;
   }
 
   async clearAll(): Promise<void> {

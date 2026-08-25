@@ -7,7 +7,7 @@ export declare class ServiceAccountProvider implements AuthProvider {
     private firestore;
     private projectId;
     constructor(credentialService: CredentialService);
-    connect(): Promise<Connection>;
+    connect(_config?: EmulatorConfig): Promise<Connection>;
     disconnect(): Promise<void>;
     getStatus(): Promise<AuthStatus>;
     testConnection(): Promise<void>;
@@ -19,7 +19,7 @@ export declare class EmulatorProvider implements AuthProvider {
     private emulatorConfig;
     private firestore;
     private app;
-    connect(config: EmulatorConfig): Promise<Connection>;
+    connect(config?: EmulatorConfig): Promise<Connection>;
     disconnect(): Promise<void>;
     getStatus(): Promise<AuthStatus>;
     getFirestore(): Firestore | null;
@@ -28,9 +28,9 @@ export declare class EmulatorProvider implements AuthProvider {
 export declare class GoogleOAuthProvider implements AuthProvider {
     private credentialService;
     private projectId;
-    private authClient;
+    private oauthClient;
     constructor(credentialService: CredentialService);
-    connect(): Promise<Connection>;
+    connect(_config?: EmulatorConfig): Promise<Connection>;
     disconnect(): Promise<void>;
     getStatus(): Promise<AuthStatus>;
     setProjectId(projectId: string): void;

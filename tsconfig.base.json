@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022"],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+    "baseUrl": ".",
+    "paths": {
+      "@vistiq/core": ["../core/src"],
+      "@vistiq/shared": ["../shared/src"],
+      "@vistiq/credentials": ["../credentials/src"],
+      "@vistiq/auth": ["../auth/src"],
+      "@vistiq/firestore": ["../firestore/src"],
+      "@vistiq/query-engine": ["../query-engine/src"],
+      "@vistiq/query-builder": ["../query-builder/src"],
+      "@vistiq/export": ["../export/src"],
+      "@vistiq/import": ["../import/src"],
+      "@vistiq/batch": ["../batch/src"],
+      "@vistiq/diff": ["../diff/src"],
+      "@vistiq/project-compare": ["../project-compare/src"],
+      "@vistiq/migration": ["../migration/src"],
+      "@vistiq/emulator": ["../emulator/src"],
+      "@vistiq/audit": ["../audit/src"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "**/node_modules/**", "**/dist/**"]
+}

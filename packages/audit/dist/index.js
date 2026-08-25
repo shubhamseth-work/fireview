@@ -1,10 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuditService = void 0;
-exports.createAuditService = createAuditService;
-const shared_1 = require("@vistiq/shared");
+import { logger } from '@vistiq/shared';
 const MAX_ENTRIES = 10000;
-class AuditService {
+export class AuditService {
     entries = [];
     persistencePath = null;
     constructor(persistencePath) {
@@ -83,10 +79,10 @@ class AuditService {
         try {
             const content = require('fs').readFileSync(this.persistencePath, 'utf8');
             this.entries = JSON.parse(content);
-            shared_1.logger.info('Audit history loaded', { count: this.entries.length });
+            logger.info('Audit history loaded', { count: this.entries.length });
         }
         catch (error) {
-            shared_1.logger.error('Failed to load audit history', { error: error.message });
+            logger.error('Failed to load audit history', { error: error.message });
         }
     }
     persist() {
@@ -96,12 +92,11 @@ class AuditService {
             require('fs').writeFileSync(this.persistencePath, JSON.stringify(this.entries));
         }
         catch (error) {
-            shared_1.logger.error('Failed to persist audit history', { error: error.message });
+            logger.error('Failed to persist audit history', { error: error.message });
         }
     }
 }
-exports.AuditService = AuditService;
-function createAuditService(persistencePath) {
+export function createAuditService(persistencePath) {
     return new AuditService(persistencePath);
 }
 //# sourceMappingURL=index.js.map

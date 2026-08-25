@@ -3,10 +3,8 @@ import {
   QueryFilter,
   QueryOperator,
   OrderByClause,
-  VistiqError,
-  ERROR_CODES,
 } from '@vistiq/core';
-import { logger } from '@vistiq/shared';
+import { logger, VistiqError, ERROR_CODES } from '@vistiq/shared';
 
 const INCOMPATIBLE_OPERATORS: Record<QueryOperator, QueryOperator[]> = {
   '==': ['!=', 'in', 'not-in', 'array-contains', 'array-contains-any'],
@@ -191,13 +189,13 @@ export class QueryEngine {
 
       case 'python':
         const pyFilters = query.filters.map(f =>
-          f'.where("{f.field}", "{f.operator}", {self.serializeValue(f.value, "python")})'
+          '.where("' + f.field + '", "' + f.operator + '", ' + this.serializeValue(f.value, 'python') + ')'
         ).join('\n        ');
         const pyOrderBy = query.orderBy.map(ob =>
-          f'.order_by("{ob.field}", direction=firestore.Query.{ob.direction.upper()})'
+          '.order_by("' + ob.field + '", direction=firestore.Query.' + ob.direction.toUpperCase() + ')'
         ).join('\n        ');
-        const pyLimit = query.limit ? f'.limit({query.limit})' : '';
-        return `query = ${collectionRef.replace('db.', 'db.')}\n        ${pyFilters}\n        ${pyOrderBy}\n        ${pyLimit}\nsnapshot = await query.get()`;
+        const pyLimit = query.limit ? '.limit(' + query.limit + ')' : '';
+        return 'query = ' + collectionRef.replace('db.', 'db.') + '\n        ' + pyFilters + '\n        ' + pyOrderBy + '\n        ' + pyLimit + '\nsnapshot = await query.get()';
 
       default:
         throw new VistiqError(`Unsupported language: ${language}`, ERROR_CODES.VALIDATION_ERROR);
