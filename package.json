@@ -38,7 +38,7 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "npm@10.2.0",
+  "packageManager": "npm@11.16.0",
   "author": "Vistiq Contributors",
   "license": "Apache-2.0",
   "repository": {

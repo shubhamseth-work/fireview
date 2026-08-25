@@ -33,9 +33,9 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@vistiq/core": "workspace:*",
-    "@vistiq/shared": "workspace:*",
-    "@vistiq/firestore": "workspace:*"
+    "@vistiq/core": "*",
+    "@vistiq/shared": "*",
+    "@vistiq/firestore": "*"
   },
   "publishConfig": {
     "access": "public",

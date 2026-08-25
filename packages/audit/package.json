@@ -33,8 +33,8 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@vistiq/core": "workspace:*",
-    "@vistiq/shared": "workspace:*"
+    "@vistiq/core": "*",
+    "@vistiq/shared": "*"
   },
   "publishConfig": {
     "access": "public",

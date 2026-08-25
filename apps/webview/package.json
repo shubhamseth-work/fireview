@@ -32,8 +32,8 @@
     "vitest": "^1.0.0"
   },
   "dependencies": {
-    "@vistiq/core": "workspace:*",
-    "@vistiq/shared": "workspace:*",
+    "@vistiq/core": "*",
+    "@vistiq/shared": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

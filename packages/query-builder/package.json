@@ -33,9 +33,9 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@vistiq/core": "workspace:*",
-    "@vistiq/shared": "workspace:*",
-    "@vistiq/query-engine": "workspace:*"
+    "@vistiq/core": "*",
+    "@vistiq/shared": "*",
+    "@vistiq/query-engine": "*"
   },
   "publishConfig": {
     "access": "public",

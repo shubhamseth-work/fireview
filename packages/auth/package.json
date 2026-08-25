@@ -33,9 +33,9 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@vistiq/core": "workspace:*",
-    "@vistiq/shared": "workspace:*",
-    "@vistiq/credentials": "workspace:*",
+    "@vistiq/core": "*",
+    "@vistiq/shared": "*",
+    "@vistiq/credentials": "*",
     "firebase-admin": "^11.11.0",
     "google-auth-library": "^9.4.0"
   },
