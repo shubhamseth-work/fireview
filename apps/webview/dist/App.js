@@ -132,9 +132,11 @@ export const App = () => {
             setLoading(true);
             await sendMessage('exportCollection', { collectionPath, format, outputPath });
             setError(null);
+            return { success: true };
         }
         catch (err) {
             setError(err.message);
+            return { success: false, error: err.message };
         }
         finally {
             setLoading(false);

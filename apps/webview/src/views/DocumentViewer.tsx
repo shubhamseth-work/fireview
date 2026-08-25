@@ -91,10 +91,11 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         </div>
       );
     }
-    if (typeof value === 'object') {
+    if (typeof value === 'object' && value !== null) {
       const obj = value as Record<string, unknown>;
       if ('__type__' in obj) {
-        switch (obj.__type__) {
+        const type = obj.__type__ as string;
+        switch (type) {
           case 'timestamp':
             return <span className="json-string">{spaces}"{obj.value}"</span>;
           case 'reference':
@@ -105,6 +106,32 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           }
           case 'bytes':
             return <span className="json-string">{spaces}"base64:{obj.value}"</span>;
+          case 'array':
+            return (
+              <div>
+                {spaces}[
+                {(obj.value as FirestoreValue[]).map((v, i) => (
+                  <div key={i}>{formatValue(v, indent + 1)}{i < (obj.value as FirestoreValue[]).length - 1 ? ',' : ''}</div>
+                ))}
+                {spaces}]
+              </div>
+            );
+          case 'map': {
+            const entries = Object.entries(obj.value as Record<string, FirestoreValue>);
+            return (
+              <div>
+                {spaces}{'{'}{' '}
+                {entries.map(([k, v], i) => (
+                  <div key={k}>
+                    <span className="json-key">{spaces}  "{k}":</span>
+                    {formatValue(v, indent + 1)}
+                    {i < entries.length - 1 ? ',' : ''}
+                  </div>
+                ))}
+                {spaces}{'}'}{' '}
+              </div>
+            );
+          }
         }
       }
       const entries = Object.entries(obj);
@@ -151,7 +178,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
               <td style={{ fontWeight: 600 }}>{key}</td>
               <td>{formatValue(value)}</td>
               <td style={{ color: 'var(--vscode-descriptionForeground)', fontSize: 11 }}>
-                {value === null ? 'null' : value.__type__ || typeof value}
+                {value === null ? 'null' : (typeof value === 'object' && value !== null && '__type__' in value) ? (value as Record<string, unknown>).__type__ : typeof value}
               </td>
             </tr>
           ))}

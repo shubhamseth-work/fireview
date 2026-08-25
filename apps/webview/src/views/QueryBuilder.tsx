@@ -36,9 +36,13 @@ export const QueryBuilder: React.FC<QueryBuilderProps> = ({ collections, onRunQu
 
   const updateFilter = (index: number, field: string, value: any) => {
     const newFilters = [...filters];
-    const filter = { ...newFilters[index] };
-    (filter as any)[field] = value;
-    newFilters[index] = filter;
+    const currentFilter = newFilters[index];
+    if (!currentFilter) return;
+    newFilters[index] = {
+      field: field === 'field' ? value : currentFilter.field,
+      operator: field === 'operator' ? value : currentFilter.operator,
+      value: field === 'value' ? value : currentFilter.value,
+    };
     setFilters(newFilters);
   };
 
@@ -126,7 +130,7 @@ export const QueryBuilder: React.FC<QueryBuilderProps> = ({ collections, onRunQu
             <input
               type="text"
               placeholder="Value"
-              value={filter.value}
+              value={String(filter.value ?? '')}
               onChange={e => updateFilter(index, 'value', e.target.value)}
               className="value-input"
             />

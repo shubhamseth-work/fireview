@@ -4,8 +4,9 @@ import { CompareView } from './views/CompareView';
 import { ProjectCompareView } from './views/ProjectCompareView';
 import { MigrationView } from './views/MigrationView';
 import { AuditView } from './views/AuditView';
-import { Connection, FirestoreDocument, FirestoreQuery, QueryFilter, QueryOperator, OrderByClause } from '@vistiq/core';
-import { logger } from '@vistiq/shared';
+import { Connection, FirestoreDocument, FirestoreQuery } from '@vistiq/core';
+
+declare const acquireVsCodeApi: () => { postMessage: (msg: unknown) => void; getState: () => unknown; setState: (state: unknown) => void };
 
 interface Message {
   type: string;
@@ -152,8 +153,10 @@ export const App: React.FC = () => {
       setLoading(true);
       await sendMessage('exportCollection', { collectionPath, format, outputPath });
       setError(null);
+      return { success: true };
     } catch (err) {
       setError((err as Error).message);
+      return { success: false, error: (err as Error).message };
     } finally {
       setLoading(false);
     }
@@ -167,6 +170,7 @@ export const App: React.FC = () => {
       return result;
     } catch (err) {
       setError((err as Error).message);
+      return { success: false, error: (err as Error).message };
     } finally {
       setLoading(false);
     }
