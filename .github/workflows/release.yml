@@ -1,0 +1,121 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version bump (patch, minor, major, or exact version)'
+        required: true
+        default: 'patch'
+        type: choice
+        options: ['patch', 'minor', 'major', 'custom']
+      custom_version:
+        description: 'Custom version (if "custom" selected above)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Dry run (build and package only, no publish)'
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Determine version
+        id: version
+        run: |
+          if [ "${{ github.event.inputs.version }}" = "custom" ]; then
+            NEW_VERSION="${{ github.event.inputs.custom_version }}"
+          else
+            NEW_VERSION=$(npm version ${{ github.event.inputs.version }} --no-git-tag-version)
+          fi
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update package.json version
+        run: |
+          npm version ${{ steps.version.outputs.new_version }} --no-git-tag-version
+          git add package.json
+          git commit -m "chore: release ${{ steps.version.outputs.new_version }}"
+
+      - name: Update CHANGELOG
+        run: |
+          # TODO: Auto-generate changelog from commits
+          echo "Update CHANGELOG.md manually for now"
+
+      - name: Create git tag
+        run: |
+          git tag -a "v${{ steps.version.outputs.new_version }}" -m "Release v${{ steps.version.outputs.new_version }}"
+          git push origin "v${{ steps.version.outputs.new_version }}"
+
+      - name: Package VSIX
+        run: npm run package
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vistiq-vsix-${{ steps.version.outputs.new_version }}
+          path: apps/vscode-extension/*.vsix
+          retention-days: 30
+
+      - name: Publish to VS Code Marketplace
+        if: ${{ !github.event.inputs.dry_run }}
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: |
+          cd apps/vscode-extension
+          npx vsce publish -p $VSCE_PAT
+
+      - name: Publish to Open VSX
+        if: ${{ !github.event.inputs.dry_run }}
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: |
+          cd apps/vscode-extension
+          npx ovsx publish *.vsix -p $OVSX_PAT
+
+      - name: Create GitHub Release
+        if: ${{ !github.event.inputs.dry_run }}
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.version.outputs.new_version }}
+          name: Vistiq v${{ steps.version.outputs.new_version }}
+          draft: false
+          prerelease: false
+          files: apps/vscode-extension/*.vsix
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

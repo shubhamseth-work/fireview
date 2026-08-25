@@ -1,0 +1,31 @@
+---
+name: Feature Request
+about: Suggest a new feature for Vistiq
+title: '[FEATURE] '
+labels: ['feature', 'triage']
+assignees: ''
+---
+
+## Problem Statement
+What problem does this feature solve? What use case does it address?
+
+## Proposed Solution
+Describe your ideal solution. Include UI/UX considerations if applicable.
+
+## Alternatives Considered
+What other solutions did you consider? Why is this the best approach?
+
+## Implementation Ideas
+If you have technical ideas for implementation, share them here.
+
+## Priority
+- [ ] Critical (blocks core workflow)
+- [ ] High (significantly improves workflow)
+- [ ] Medium (nice to have)
+- [ ] Low (minor improvement)
+
+## Related Spec Section
+Reference the spec section(s) this relates to (e.g., "§15 Advanced Query Builder", "§25 Project-to-Project Copy").
+
+## Additional Context
+Mockups, diagrams, links to similar tools, or any other relevant information.

@@ -1,0 +1,52 @@
+{
+  "name": "vistiq-viewer",
+  "version": "0.1.0",
+  "description": "Vistiq - Explore. Query. Manage. Firebase Firestore developer workspace for VS Code.",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:extension": "npm run build --workspace=apps/vscode-extension",
+    "build:webview": "npm run build --workspace=apps/webview",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:fix": "npm run lint:fix --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:unit": "npm run test:unit --workspaces --if-present",
+    "test:integration": "npm run test:integration --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "format": "npm run format --workspaces --if-present",
+    "format:check": "npm run format:check --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present && rm -rf node_modules .turbo dist",
+    "package": "npm run package --workspace=apps/vscode-extension",
+    "dev": "npm run dev --workspace=apps/webview",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "npm@10.2.0",
+  "author": "Vistiq Contributors",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vistiq/vistiq-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vistiq/vistiq-viewer/issues"
+  },
+  "homepage": "https://github.com/vistiq/vistiq-viewer#readme"
+}

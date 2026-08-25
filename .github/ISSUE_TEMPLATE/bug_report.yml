@@ -1,0 +1,45 @@
+---
+name: Bug Report
+about: Report a bug in Vistiq
+title: '[BUG] '
+labels: ['bug', 'triage']
+assignees: ''
+---
+
+## Description
+A clear and concise description of the bug.
+
+## Steps to Reproduce
+1. Go to '...'
+2. Click on '...'
+3. Scroll down to '...'
+4. See error
+
+## Expected Behavior
+What you expected to happen.
+
+## Actual Behavior
+What actually happened.
+
+## Environment
+- **OS**: [e.g., macOS 14.0, Windows 11, Ubuntu 22.04]
+- **IDE**: [VS Code 1.85 / Cursor 0.40]
+- **Vistiq Version**: [e.g., 0.1.0]
+- **Node.js**: [e.g., 20.10.0]
+
+## Connection Details
+- **Auth Method**: [Service Account / Emulator]
+- **Project Type**: [Production / Staging / Development / Emulator]
+- **Firestore Region**: [if known]
+
+## Logs / Screenshots
+```
+Paste relevant logs here (with secrets redacted)
+```
+
+## Additional Context
+Any other information, configuration, or data that might help resolve the issue.
+
+---
+
+**Security Note**: Never include service account keys, OAuth tokens, or real Firestore data in issues.
