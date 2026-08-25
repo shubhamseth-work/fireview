@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import { ConnectionManager } from './connectionManager';
-import { WebviewManager } from './webviewManager';
+import { ConnectionManager } from './connectionManager.js';
+import { WebviewManager } from './webviewManager.js';
 export declare class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeItem> {
     private connectionManager;
     private webviewManager;
@@ -19,6 +19,5 @@ export declare class ProjectTreeItem extends vscode.TreeItem {
     readonly type: string;
     readonly context: Record<string, unknown>;
     constructor(label: string, type: string, collapsibleState: vscode.TreeItemCollapsibleState, context: Record<string, unknown>, description?: string);
-    context: Record<string, unknown>;
 }
 //# sourceMappingURL=treeProvider.d.ts.map

@@ -241,7 +241,7 @@ export class ConnectionManager {
   }
 
   async showConnectDialog(): Promise<void> {
-    const authMethod = await vscode.window.showQuickPick([
+    const authMethod = await vscode.window.showQuickPick<vscode.QuickPickItem & { value: 'service-account' | 'emulator' }>([
       { label: 'Service Account', value: 'service-account', description: 'Connect using Google Cloud Service Account JSON' },
       { label: 'Firebase Emulator', value: 'emulator', description: 'Connect to local Firebase Emulator' },
     ], { placeHolder: 'Select authentication method' });
@@ -270,7 +270,7 @@ export class ConnectionManager {
     });
     if (!displayName) return;
 
-    const environment = await vscode.window.showQuickPick<EnvironmentLabel>([
+    const environment = await vscode.window.showQuickPick<vscode.QuickPickItem & { value: EnvironmentLabel }>([
       { label: 'Development', value: 'development' },
       { label: 'Staging', value: 'staging' },
       { label: 'Production', value: 'production' },
@@ -278,7 +278,7 @@ export class ConnectionManager {
     ], { placeHolder: 'Select environment' });
     if (!environment) return;
 
-    const isProduction = environment === 'production';
+    const isProduction = environment.value === 'production';
     if (isProduction) {
       const confirm = await vscode.window.showWarningMessage(
         'This is a PRODUCTION project. Are you sure?',

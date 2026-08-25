@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import { ConnectionManager } from './connectionManager';
-import { WebviewManager } from './webviewManager';
+import { ConnectionManager } from './connectionManager.js';
+import { WebviewManager } from './webviewManager.js';
 import { Connection, StoredConnection } from '@vistiq/core';
 import { logger, createChildLogger } from '@vistiq/shared';
 
@@ -89,12 +89,12 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
   }
 
   private async getProjectChildren(element: ProjectTreeItem): Promise<ProjectTreeItem[]> {
-    const projectId = element.context.projectId;
+    const projectId = element.context.projectId as string;
     if (!projectId) return [];
 
     const connection = this.connectionManager.getConnection(projectId);
     if (!connection || !connection.firestore) {
-      return [new ProjectTreeItem('Not connected', 'error', vscode.TreeItemCollapsibleState.None, {})];
+      return [new ProjectTreeItem('Not connected', 'error', vscode.TreeItemCollapsibleState.None, {} as Record<string, unknown>)];
     }
 
     try {
@@ -122,12 +122,12 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
       return items;
     } catch (error) {
       treeLogger.error('Failed to load project children', { projectId, error: (error as Error).message });
-      return [new ProjectTreeItem('Failed to load', 'error', vscode.TreeItemCollapsibleState.None, {})];
+      return [new ProjectTreeItem('Failed to load', 'error', vscode.TreeItemCollapsibleState.None, {} as Record<string, unknown>)];
     }
   }
 
   private async getFirestoreChildren(element: ProjectTreeItem): Promise<ProjectTreeItem[]> {
-    const projectId = element.context.projectId;
+    const projectId = element.context.projectId as string;
     if (!projectId) return [];
 
     const connection = this.connectionManager.getConnection(projectId);
@@ -135,7 +135,7 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
 
     try {
       const collections = await connection.firestore.listCollections();
-      return collections.map(col => {
+      return collections.map((col: { id: string; path: string; documentCount?: number }) => {
         const item = new ProjectTreeItem(
           col.id,
           'collection',
@@ -149,12 +149,12 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
       });
     } catch (error) {
       treeLogger.error('Failed to load collections', { projectId, error: (error as Error).message });
-      return [new ProjectTreeItem('Failed to load collections', 'error', vscode.TreeItemCollapsibleState.None, {})];
+      return [new ProjectTreeItem('Failed to load collections', 'error', vscode.TreeItemCollapsibleState.None, {} as Record<string, unknown>)];
     }
   }
 
   private async getCollectionChildren(element: ProjectTreeItem): Promise<ProjectTreeItem[]> {
-    const { projectId, collectionPath } = element.context;
+    const { projectId, collectionPath } = element.context as { projectId: string; collectionPath: string };
     if (!projectId || !collectionPath) return [];
 
     const connection = this.connectionManager.getConnection(projectId);
@@ -162,7 +162,7 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
 
     try {
       const page = await connection.firestore.listDocuments(collectionPath, { limit: 20 });
-      return page.documents.map(doc => {
+      return page.documents.map((doc: { id: string; path: string }) => {
         const item = new ProjectTreeItem(
           doc.id,
           'document',
@@ -196,8 +196,5 @@ export class ProjectTreeItem extends vscode.TreeItem {
   ) {
     super(label, collapsibleState);
     this.description = description;
-    this.context = context;
   }
-
-  context: Record<string, unknown>;
 }

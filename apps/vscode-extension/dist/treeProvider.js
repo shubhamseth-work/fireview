@@ -91,7 +91,7 @@ export class ProjectTreeProvider {
             return [];
         try {
             const collections = await connection.firestore.listCollections();
-            return collections.map(col => {
+            return collections.map((col) => {
                 const item = new ProjectTreeItem(col.id, 'collection', vscode.TreeItemCollapsibleState.Collapsed, { projectId, collectionPath: col.path }, col.documentCount !== undefined ? `${col.documentCount} docs` : '');
                 item.iconPath = new vscode.ThemeIcon('folder');
                 item.contextValue = 'collection';
@@ -112,7 +112,7 @@ export class ProjectTreeProvider {
             return [];
         try {
             const page = await connection.firestore.listDocuments(collectionPath, { limit: 20 });
-            return page.documents.map(doc => {
+            return page.documents.map((doc) => {
                 const item = new ProjectTreeItem(doc.id, 'document', vscode.TreeItemCollapsibleState.None, { projectId, documentPath: doc.path, collectionPath }, 'Document');
                 item.iconPath = new vscode.ThemeIcon('file');
                 item.contextValue = 'document';
@@ -138,8 +138,6 @@ export class ProjectTreeItem extends vscode.TreeItem {
         this.type = type;
         this.context = context;
         this.description = description;
-        this.context = context;
     }
-    context;
 }
 //# sourceMappingURL=treeProvider.js.map

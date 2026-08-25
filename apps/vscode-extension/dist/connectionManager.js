@@ -210,7 +210,7 @@ export class ConnectionManager {
         ], { placeHolder: 'Select environment' });
         if (!environment)
             return;
-        const isProduction = environment === 'production';
+        const isProduction = environment.value === 'production';
         if (isProduction) {
             const confirm = await vscode.window.showWarningMessage('This is a PRODUCTION project. Are you sure?', { modal: true }, 'Yes, I understand', 'Cancel');
             if (confirm !== 'Yes, I understand')

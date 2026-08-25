@@ -82,7 +82,7 @@ export const DocumentViewer = ({ document, connection, onClose, onUpdate, onDele
                 }
             }
             const entries = Object.entries(obj);
-            return (_jsxs("div", { children: [spaces, {}, entries.map(([k, v], i) => (_jsxs("div", { children: [_jsxs("span", { className: "json-key", children: [spaces, "  \"", k, "\":"] }), formatValue(v, indent + 1), i < entries.length - 1 ? ',' : ''] }, k))), spaces, "}}"] }));
+            return (_jsxs("div", { children: [spaces, '{', ' ', entries.map(([k, v], i) => (_jsxs("div", { children: [_jsxs("span", { className: "json-key", children: [spaces, "  \"", k, "\":"] }), formatValue(v, indent + 1), i < entries.length - 1 ? ',' : ''] }, k))), spaces, '}', ' '] }));
         }
         return _jsxs("span", { children: [spaces, String(value)] });
     };

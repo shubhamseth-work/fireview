@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ConnectionManager } from './connectionManager';
+import { ConnectionManager } from './connectionManager.js';
 import { AuditService } from '@vistiq/audit';
 export declare class WebviewManager {
     private context;

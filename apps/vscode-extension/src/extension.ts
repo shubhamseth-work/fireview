@@ -11,9 +11,9 @@ import { MigrationService, createMigrationService } from '@vistiq/migration';
 import { EmulatorService, createEmulatorService } from '@vistiq/emulator';
 import { AuditService, createAuditService } from '@vistiq/audit';
 import { logger, setLogLevel, createChildLogger } from '@vistiq/shared';
-import { ProjectTreeProvider } from './treeProvider';
-import { WebviewManager } from './webviewManager';
-import { ConnectionManager } from './connectionManager';
+import { ProjectTreeProvider } from './treeProvider.js';
+import { WebviewManager } from './webviewManager.js';
+import { ConnectionManager } from './connectionManager.js';
 
 let credentialService: CredentialService;
 let authProviders: AuthProviders;

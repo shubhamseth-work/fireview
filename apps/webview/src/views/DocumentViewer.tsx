@@ -110,7 +110,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
       const entries = Object.entries(obj);
       return (
         <div>
-          {spaces}{{
+          {spaces}{'{'}{' '}
           {entries.map(([k, v], i) => (
             <div key={k}>
               <span className="json-key">{spaces}  "{k}":</span>
@@ -118,7 +118,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
               {i < entries.length - 1 ? ',' : ''}
             </div>
           ))}
-          {spaces}}}
+          {spaces}{'}'}{' '}
         </div>
       );
     }

@@ -228,7 +228,7 @@ export const App: React.FC = () => {
           <button onClick={() => setView('migration')} className={view === 'migration' ? 'active' : ''}>Migration</button>
           <button onClick={() => setView('audit')} className={view === 'audit' ? 'active' : ''}>Audit</button>
         </div>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 8px, alignItems: 'center' }}>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }}>
           <span className={`badge ${connection.environment}`}>{connection.environment}</span>
           {connection.authMethod === 'emulator' && <span className="badge emulator">Emulator</span>}
           {connection.environment === 'production' && <span className="badge production">Production</span>}

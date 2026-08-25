@@ -19,10 +19,7 @@ export class WebviewManager {
             vscode.window.showErrorMessage('No active connection. Connect to a project first.');
             return;
         }
-        this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {
-            enableScripts: true,
-            retainContextWhenHidden: true,
-        });
+        this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
     }
     newDocument() {
         const active = this.connectionManager.getActiveConnection();
@@ -30,55 +27,44 @@ export class WebviewManager {
             vscode.window.showErrorMessage('No active connection');
             return;
         }
-        this.sendToPanel('firestore', { type: 'newDocument' });
+        this.sendToPanel('firestore', { type: 'newDocument', payload: {} });
     }
     runQuery() {
-        this.sendToPanel('firestore', { type: 'openQueryBuilder' });
+        this.sendToPanel('firestore', { type: 'openQueryBuilder', payload: {} });
     }
     saveQuery() {
-        this.sendToPanel('firestore', { type: 'saveQuery' });
+        this.sendToPanel('firestore', { type: 'saveQuery', payload: {} });
     }
     exportCollection() {
-        this.sendToPanel('firestore', { type: 'exportCollection' });
+        this.sendToPanel('firestore', { type: 'exportCollection', payload: {} });
     }
     importCollection() {
-        this.sendToPanel('firestore', { type: 'importCollection' });
+        this.sendToPanel('firestore', { type: 'importCollection', payload: {} });
     }
     compareDocuments() {
-        this.createOrShowPanel('compare', 'Compare Documents', vscode.ViewColumn.One, {
-            enableScripts: true,
-            retainContextWhenHidden: true,
-        });
+        this.createOrShowPanel('compare', 'Compare Documents', vscode.ViewColumn.One, {});
     }
     compareProjects() {
-        this.createOrShowPanel('project-compare', 'Compare Projects', vscode.ViewColumn.One, {
-            enableScripts: true,
-            retainContextWhenHidden: true,
-        });
+        this.createOrShowPanel('project-compare', 'Compare Projects', vscode.ViewColumn.One, {});
     }
     copyToProject() {
-        this.createOrShowPanel('migration', 'Copy to Project', vscode.ViewColumn.One, {
-            enableScripts: true,
-            retainContextWhenHidden: true,
-        });
+        this.createOrShowPanel('migration', 'Copy to Project', vscode.ViewColumn.One, {});
     }
     openAuditHistory() {
-        this.createOrShowPanel('audit', 'Audit History', vscode.ViewColumn.One, {
-            enableScripts: true,
-            retainContextWhenHidden: true,
-        });
+        this.createOrShowPanel('audit', 'Audit History', vscode.ViewColumn.One, {});
     }
     openDocument(documentPath) {
         this.sendToPanel('firestore', { type: 'openDocument', payload: { documentPath } });
     }
-    createOrShowPanel(viewType, title, column, options) {
+    createOrShowPanel(viewType, title, column, _options) {
         const existing = this.panels.get(viewType);
         if (existing) {
             existing.reveal(column);
             return;
         }
         const panel = vscode.window.createWebviewPanel(viewType, title, column, {
-            ...options,
+            enableScripts: true,
+            retainContextWhenHidden: true,
             localResourceRoots: [
                 vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview'),
             ],
