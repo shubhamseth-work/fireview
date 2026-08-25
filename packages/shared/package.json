@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@vistiq/shared",
   "version": "0.1.0",
   "description": "Shared utilities for Vistiq",

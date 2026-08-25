@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@vistiq/migration",
   "version": "0.1.0",
   "description": "Migration workflow service",

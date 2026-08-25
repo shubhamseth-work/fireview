@@ -177,7 +177,7 @@ export function serializeFirestoreValue(value: FirestoreValue): unknown {
     }
     return result;
   }
-  return value;
+  return undefined;
 }
 
 export function deserializeFirestoreValue(value: unknown): FirestoreValue {
@@ -195,11 +195,11 @@ export function deserializeFirestoreValue(value: unknown): FirestoreValue {
     }
     return { __type__: 'map', value: result } as MapValue;
   }
-  return value;
+  return null;
 }
 
 export interface AuthProvider {
-  connect(): Promise<Connection>;
+  connect(config?: EmulatorConfig): Promise<Connection>;
   disconnect(): Promise<void>;
   getStatus(): Promise<AuthStatus>;
 }
@@ -474,4 +474,18 @@ export interface ProjectFileDetectionResult {
   firestoreIndexes: boolean;
   packageJson: boolean;
   emulatorConfig: boolean;
+}
+
+export interface StoredServiceAccount {
+  type: string;
+  project_id: string;
+  private_key_id: string;
+  private_key: string;
+  client_email: string;
+  client_id: string;
+  auth_uri: string;
+  token_uri: string;
+  auth_provider_x509_cert_url: string;
+  client_x509_cert_url: string;
+  universe_domain?: string;
 }

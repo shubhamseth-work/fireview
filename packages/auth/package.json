@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@vistiq/auth",
   "version": "0.1.0",
   "description": "Authentication providers for Vistiq",

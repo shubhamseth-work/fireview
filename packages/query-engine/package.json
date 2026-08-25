@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@vistiq/query-engine",
   "version": "0.1.0",
   "description": "Query AST and validation for Firestore",

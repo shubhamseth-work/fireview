@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@vistiq/emulator",
   "version": "0.1.0",
   "description": "Firebase Emulator detection and management",

@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@vistiq/export",
   "version": "0.1.0",
   "description": "Export service for Firestore collections",

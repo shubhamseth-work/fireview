@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@vistiq/project-compare",
   "version": "0.1.0",
   "description": "Project comparison service",

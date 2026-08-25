@@ -15,7 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false,
+    "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -41,24 +41,5 @@
       "@vistiq/audit": ["packages/audit/src"]
     }
   },
-  "exclude": ["node_modules", "dist", "**/node_modules/**", "**/dist/**"],
-  "references": [
-    { "path": "./packages/core" },
-    { "path": "./packages/shared" },
-    { "path": "./packages/credentials" },
-    { "path": "./packages/auth" },
-    { "path": "./packages/firestore" },
-    { "path": "./packages/query-engine" },
-    { "path": "./packages/query-builder" },
-    { "path": "./packages/export" },
-    { "path": "./packages/import" },
-    { "path": "./packages/batch" },
-    { "path": "./packages/diff" },
-    { "path": "./packages/project-compare" },
-    { "path": "./packages/migration" },
-    { "path": "./packages/emulator" },
-    { "path": "./packages/audit" },
-    { "path": "./apps/vscode-extension" },
-    { "path": "./apps/webview" }
-  ]
+  "exclude": ["node_modules", "dist", "**/node_modules/**", "**/dist/**"]
 }

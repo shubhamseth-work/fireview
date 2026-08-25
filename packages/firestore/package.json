@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@vistiq/firestore",
   "version": "0.1.0",
   "description": "Firestore service for Vistiq",

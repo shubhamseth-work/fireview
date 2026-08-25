@@ -1,7 +1,7 @@
 import { AuthProvider, Connection, AuthStatus, AuthMethod, EmulatorConfig, StoredServiceAccount } from '@vistiq/core';
 import { logger, VistiqError, ERROR_CODES } from '@vistiq/shared';
-import { CredentialService, StoredServiceAccount as CredStoredServiceAccount } from '@vistiq/credentials';
-import { GoogleAuth, JWT } from 'google-auth-library';
+import { CredentialService } from '@vistiq/credentials';
+import { GoogleAuth } from 'google-auth-library';
 import { initializeApp, cert, getApps, App } from 'firebase-admin/app';
 import { getFirestore, Firestore } from 'firebase-admin/firestore';
 
@@ -15,7 +15,7 @@ export class ServiceAccountProvider implements AuthProvider {
     this.credentialService = credentialService;
   }
 
-  async connect(): Promise<Connection> {
+  async connect(config?: EmulatorConfig): Promise<Connection> {
     const stored = await this.credentialService.getServiceAccount(this.projectId || '');
     if (!stored) {
       throw new VistiqError('No service account found', ERROR_CODES.INVALID_CREDENTIALS);
@@ -103,7 +103,10 @@ export class EmulatorProvider implements AuthProvider {
   private firestore: Firestore | null = null;
   private app: App | null = null;
 
-  async connect(config: EmulatorConfig): Promise<Connection> {
+  async connect(config?: EmulatorConfig): Promise<Connection> {
+    if (!config) {
+      throw new VistiqError('Emulator config required', ERROR_CODES.INVALID_CREDENTIALS);
+    }
     this.emulatorConfig = config;
 
     process.env.FIRESTORE_EMULATOR_HOST = `${config.host}:${config.firestorePort || 8080}`;
@@ -168,7 +171,7 @@ export class GoogleOAuthProvider implements AuthProvider {
     this.credentialService = credentialService;
   }
 
-  async connect(): Promise<Connection> {
+  async connect(config?: EmulatorConfig): Promise<Connection> {
     const token = await this.credentialService.getOAuthToken(this.projectId || '');
     if (!token) {
       throw new VistiqError('No OAuth token found', ERROR_CODES.INVALID_CREDENTIALS);

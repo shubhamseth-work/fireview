@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@vistiq/core",
   "version": "0.1.0",
   "description": "Core interfaces and types for Vistiq",
