@@ -1,0 +1,122 @@
+{
+  "name": "vistiq-vscode-extension",
+  "version": "0.1.0",
+  "description": "Vistiq VS Code Extension",
+  "main": "dist/extension.js",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write src",
+    "format:check": "prettier --check src",
+    "package": "vsce package",
+    "watch": "tsc -w"
+  },
+  "keywords": ["vistiq", "vscode", "extension", "firestore"],
+  "author": "Vistiq Contributors",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0",
+    "vsce": "^2.15.0"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "dependencies": {
+    "@vistiq/core": "workspace:*",
+    "@vistiq/shared": "workspace:*",
+    "@vistiq/credentials": "workspace:*",
+    "@vistiq/auth": "workspace:*",
+    "@vistiq/firestore": "workspace:*",
+    "@vistiq/query-engine": "workspace:*",
+    "@vistiq/query-builder": "workspace:*",
+    "@vistiq/export": "workspace:*",
+    "@vistiq/import": "workspace:*",
+    "@vistiq/batch": "workspace:*",
+    "@vistiq/diff": "workspace:*",
+    "@vistiq/project-compare": "workspace:*",
+    "@vistiq/migration": "workspace:*",
+    "@vistiq/emulator": "workspace:*",
+    "@vistiq/audit": "workspace:*",
+    "firebase-admin": "^11.11.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      { "command": "vistiq.connectProject", "title": "Vistiq: Connect Project" },
+      { "command": "vistiq.disconnectProject", "title": "Vistiq: Disconnect Project" },
+      { "command": "vistiq.refresh", "title": "Vistiq: Refresh" },
+      { "command": "vistiq.openFirestore", "title": "Vistiq: Open Firestore" },
+      { "command": "vistiq.newDocument", "title": "Vistiq: New Document" },
+      { "command": "vistiq.runQuery", "title": "Vistiq: Run Query" },
+      { "command": "vistiq.saveQuery", "title": "Vistiq: Save Query" },
+      { "command": "vistiq.exportCollection", "title": "Vistiq: Export Collection" },
+      { "command": "vistiq.importCollection", "title": "Vistiq: Import Collection" },
+      { "command": "vistiq.compareDocuments", "title": "Vistiq: Compare Documents" },
+      { "command": "vistiq.compareProjects", "title": "Vistiq: Compare Projects" },
+      { "command": "vistiq.copyToProject", "title": "Vistiq: Copy to Project" },
+      { "command": "vistiq.openAuditHistory", "title": "Vistiq: Open Audit History" },
+      { "command": "vistiq.settings", "title": "Vistiq: Settings" }
+    ],
+    "keybindings": [
+      { "command": "vistiq.refresh", "key": "ctrl+r", "mac": "cmd+r", "when": "viewContainer == vistiq" },
+      { "command": "vistiq.newDocument", "key": "ctrl+n", "mac": "cmd+n", "when": "viewContainer == vistiq" },
+      { "command": "vistiq.runQuery", "key": "ctrl+enter", "mac": "cmd+enter", "when": "viewContainer == vistiq" },
+      { "command": "vistiq.openFirestore", "key": "ctrl+k ctrl+f", "mac": "cmd+k cmd+f" }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vistiq",
+          "title": "Vistiq",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "vistiq": [
+        { "id": "vistiq.projects", "name": "Projects" },
+        { "id": "vistiq.tools", "name": "Tools" },
+        { "id": "vistiq.settings", "name": "Settings" }
+      ]
+    },
+    "configuration": {
+      "title": "Vistiq",
+      "properties": {
+        "vistiq.defaultPageSize": {
+          "type": "number",
+          "default": 50,
+          "description": "Default number of documents per page"
+        },
+        "vistiq.productionSafetyMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable production safety confirmations"
+        },
+        "vistiq.enableDebugLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug logging"
+        }
+      }
+    }
+  },
+  "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vistiq/vistiq-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vistiq/vistiq-viewer/issues"
+  },
+  "homepage": "https://github.com/vistiq/vistiq-viewer#readme"
+}
