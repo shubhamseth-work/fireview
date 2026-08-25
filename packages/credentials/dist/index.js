@@ -6,8 +6,6 @@ const SECRET_KEYS = {
     CONNECTIONS: 'connections',
     ACTIVE_CONNECTION: 'activeConnection',
 };
-connectedAt: string;
-lastUsedAt: string;
 export class CredentialService {
     secretStorage;
     disposal = [];
