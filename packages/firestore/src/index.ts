@@ -24,7 +24,7 @@ export class FirestoreService implements FirestoreConnection {
   }
 
   async connect(): Promise<void> {
-    await this.firestore.collection('__vistiq_test__').limit(1).get();
+    await this.firestore.collection('_vistiq_test').limit(1).get();
     logger.info('Firestore service connected', { projectId: this.projectId });
   }
 

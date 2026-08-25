@@ -82,7 +82,7 @@ export class ServiceAccountProvider implements AuthProvider {
 
   async testConnection(): Promise<void> {
     if (!this.firestore) throw new VistiqError('Not initialized', ERROR_CODES.AUTH_FAILED);
-    await this.firestore.collection('__vistiq_test__').limit(1).get();
+    await this.firestore.collection('_vistiq_test').limit(1).get();
   }
 
   getFirestore(): Firestore | null {
@@ -146,7 +146,7 @@ export class EmulatorProvider implements AuthProvider {
       return { connected: false };
     }
     try {
-      await this.firestore.collection('__vistiq_test__').limit(1).get();
+      await this.firestore.collection('_vistiq_test').limit(1).get();
       return { connected: true, projectId: 'demo-project' };
     } catch {
       return { connected: false, error: 'Emulator connection test failed' };

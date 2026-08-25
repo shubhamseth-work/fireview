@@ -6,8 +6,8 @@
     "composite": true,
     "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
     "target": "ES2022",
-    "module": "CommonJS",
-    "moduleResolution": "node"
+    "module": "ESNext",
+    "moduleResolution": "bundler"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "**/*.test.ts"]

@@ -1,11 +1,11 @@
 {
-  "type": "module",
   "name": "vistiq-vscode-extension",
+  "publisher": "vistiq",
   "version": "0.1.0",
   "description": "Vistiq VS Code Extension",
   "main": "dist/extension.js",
   "scripts": {
-    "build": "tsc",
+    "build": "node esbuild.config.mjs",
     "clean": "rm -rf dist",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
@@ -15,14 +15,20 @@
     "format": "prettier --write src",
     "format:check": "prettier --check src",
     "package": "vsce package",
-    "watch": "tsc -w"
+    "watch": "node esbuild.config.mjs --watch"
   },
-  "keywords": ["vistiq", "vscode", "extension", "firestore"],
+  "keywords": [
+    "vistiq",
+    "vscode",
+    "extension",
+    "firestore"
+  ],
   "author": "Vistiq Contributors",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/node": "^20.10.0",
     "@types/vscode": "^1.85.0",
+    "esbuild": "^0.21.5",
     "typescript": "^5.3.0",
     "vitest": "^1.0.0",
     "vsce": "^2.15.0"
@@ -31,21 +37,21 @@
     "vscode": "^1.85.0"
   },
   "dependencies": {
-    "@vistiq/core": "*",
-    "@vistiq/shared": "*",
-    "@vistiq/credentials": "*",
-    "@vistiq/auth": "*",
-    "@vistiq/firestore": "*",
-    "@vistiq/query-engine": "*",
-    "@vistiq/query-builder": "*",
-    "@vistiq/export": "*",
-    "@vistiq/import": "*",
-    "@vistiq/batch": "*",
-    "@vistiq/diff": "*",
-    "@vistiq/project-compare": "*",
-    "@vistiq/migration": "*",
-    "@vistiq/emulator": "*",
     "@vistiq/audit": "*",
+    "@vistiq/auth": "*",
+    "@vistiq/batch": "*",
+    "@vistiq/core": "*",
+    "@vistiq/credentials": "*",
+    "@vistiq/diff": "*",
+    "@vistiq/emulator": "*",
+    "@vistiq/export": "*",
+    "@vistiq/firestore": "*",
+    "@vistiq/import": "*",
+    "@vistiq/migration": "*",
+    "@vistiq/project-compare": "*",
+    "@vistiq/query-builder": "*",
+    "@vistiq/query-engine": "*",
+    "@vistiq/shared": "*",
     "firebase-admin": "^11.11.0"
   },
   "activationEvents": [
@@ -53,26 +59,87 @@
   ],
   "contributes": {
     "commands": [
-      { "command": "vistiq.connectProject", "title": "Vistiq: Connect Project" },
-      { "command": "vistiq.disconnectProject", "title": "Vistiq: Disconnect Project" },
-      { "command": "vistiq.refresh", "title": "Vistiq: Refresh" },
-      { "command": "vistiq.openFirestore", "title": "Vistiq: Open Firestore" },
-      { "command": "vistiq.newDocument", "title": "Vistiq: New Document" },
-      { "command": "vistiq.runQuery", "title": "Vistiq: Run Query" },
-      { "command": "vistiq.saveQuery", "title": "Vistiq: Save Query" },
-      { "command": "vistiq.exportCollection", "title": "Vistiq: Export Collection" },
-      { "command": "vistiq.importCollection", "title": "Vistiq: Import Collection" },
-      { "command": "vistiq.compareDocuments", "title": "Vistiq: Compare Documents" },
-      { "command": "vistiq.compareProjects", "title": "Vistiq: Compare Projects" },
-      { "command": "vistiq.copyToProject", "title": "Vistiq: Copy to Project" },
-      { "command": "vistiq.openAuditHistory", "title": "Vistiq: Open Audit History" },
-      { "command": "vistiq.settings", "title": "Vistiq: Settings" }
+      {
+        "command": "vistiq.connectProject",
+        "title": "Vistiq: Connect Project"
+      },
+      {
+        "command": "vistiq.disconnectProject",
+        "title": "Vistiq: Disconnect Project"
+      },
+      {
+        "command": "vistiq.refresh",
+        "title": "Vistiq: Refresh"
+      },
+      {
+        "command": "vistiq.openFirestore",
+        "title": "Vistiq: Open Firestore"
+      },
+      {
+        "command": "vistiq.newDocument",
+        "title": "Vistiq: New Document"
+      },
+      {
+        "command": "vistiq.runQuery",
+        "title": "Vistiq: Run Query"
+      },
+      {
+        "command": "vistiq.saveQuery",
+        "title": "Vistiq: Save Query"
+      },
+      {
+        "command": "vistiq.exportCollection",
+        "title": "Vistiq: Export Collection"
+      },
+      {
+        "command": "vistiq.importCollection",
+        "title": "Vistiq: Import Collection"
+      },
+      {
+        "command": "vistiq.compareDocuments",
+        "title": "Vistiq: Compare Documents"
+      },
+      {
+        "command": "vistiq.compareProjects",
+        "title": "Vistiq: Compare Projects"
+      },
+      {
+        "command": "vistiq.copyToProject",
+        "title": "Vistiq: Copy to Project"
+      },
+      {
+        "command": "vistiq.openAuditHistory",
+        "title": "Vistiq: Open Audit History"
+      },
+      {
+        "command": "vistiq.settings",
+        "title": "Vistiq: Settings"
+      }
     ],
     "keybindings": [
-      { "command": "vistiq.refresh", "key": "ctrl+r", "mac": "cmd+r", "when": "viewContainer == vistiq" },
-      { "command": "vistiq.newDocument", "key": "ctrl+n", "mac": "cmd+n", "when": "viewContainer == vistiq" },
-      { "command": "vistiq.runQuery", "key": "ctrl+enter", "mac": "cmd+enter", "when": "viewContainer == vistiq" },
-      { "command": "vistiq.openFirestore", "key": "ctrl+k ctrl+f", "mac": "cmd+k cmd+f" }
+      {
+        "command": "vistiq.refresh",
+        "key": "ctrl+r",
+        "mac": "cmd+r",
+        "when": "viewContainer == vistiq"
+      },
+      {
+        "command": "vistiq.newDocument",
+        "key": "ctrl+n",
+        "mac": "cmd+n",
+        "when": "viewContainer == vistiq"
+      },
+      {
+        "command": "vistiq.runQuery",
+        "key": "ctrl+enter",
+        "mac": "cmd+enter",
+        "when": "viewContainer == vistiq"
+      },
+      {
+        "command": "vistiq.openFirestore",
+        "key": "ctrl+k ctrl+f",
+        "mac": "cmd+k cmd+f"
+      }
     ],
     "viewsContainers": {
       "activitybar": [
@@ -85,9 +152,19 @@
     },
     "views": {
       "vistiq": [
-        { "id": "vistiq.projects", "name": "Projects", "contextualTitle": "Projects" },
-        { "id": "vistiq.tools", "name": "Tools" },
-        { "id": "vistiq.settings", "name": "Settings" }
+        {
+          "id": "vistiq.projects",
+          "name": "Projects",
+          "contextualTitle": "Projects"
+        },
+        {
+          "id": "vistiq.tools",
+          "name": "Tools"
+        },
+        {
+          "id": "vistiq.settings",
+          "name": "Settings"
+        }
       ]
     },
     "menus": {
