@@ -123,7 +123,7 @@ export class CredentialService {
     }
     async getActiveConnection() {
         const value = this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION);
-        return value === undefined ? null : value;
+        return value ?? null;
     }
     async clearAll() {
         const connections = await this.getConnections();

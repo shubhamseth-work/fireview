@@ -166,7 +166,7 @@ export class CredentialService {
 
   async getActiveConnection(): Promise<string | null> {
     const value = this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION);
-    return value === undefined ? null : value;
+    return (value as string | null) ?? null;
   }
 
   async clearAll(): Promise<void> {

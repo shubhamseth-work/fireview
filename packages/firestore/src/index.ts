@@ -81,8 +81,9 @@ export class FirestoreService implements FirestoreConnection {
       const documents = snapshot.docs.map(doc => this.convertDocument(doc));
 
       let nextPageToken: string | undefined;
-      if (snapshot.docs.length > 0 && options?.limit && snapshot.docs.length === options.limit) {
-        const lastDoc = snapshot.docs[snapshot.docs.length - 1];
+      const docCount = snapshot.docs.length;
+      if (docCount > 0 && options?.limit && docCount === options.limit) {
+        const lastDoc = snapshot.docs[docCount - 1];
         nextPageToken = lastDoc.id;
       }
 
@@ -179,8 +180,9 @@ export class FirestoreService implements FirestoreConnection {
       const documents = snapshot.docs.map(doc => this.convertDocument(doc));
 
       let nextPageToken: string | undefined;
-      if (snapshot.docs.length > 0 && query.limit && snapshot.docs.length === query.limit) {
-        const lastDoc = snapshot.docs[snapshot.docs.length - 1];
+      const docCount = snapshot.docs.length;
+      if (docCount > 0 && query.limit && docCount === query.limit) {
+        const lastDoc = snapshot.docs[docCount - 1];
         nextPageToken = lastDoc.id;
       }
 
@@ -215,8 +217,9 @@ export class FirestoreService implements FirestoreConnection {
       const documents = snapshot.docs.map(doc => this.convertDocument(doc));
 
       let nextPageToken: string | undefined;
-      if (snapshot.docs.length > 0 && query.limit && snapshot.docs.length === query.limit) {
-        const lastDoc = snapshot.docs[snapshot.docs.length - 1];
+      const docCount = snapshot.docs.length;
+      if (docCount > 0 && query.limit && docCount === query.limit) {
+        const lastDoc = snapshot.docs[docCount - 1];
         nextPageToken = lastDoc.id;
       }
 
@@ -260,26 +263,29 @@ export class FirestoreService implements FirestoreConnection {
     if (typeof value === 'object' && value !== null) {
       const obj = value as Record<string, unknown>;
       if ('__type__' in obj) {
-        switch (obj.__type__) {
-          case 'timestamp':
-            return new Date(obj.value as string);
-          case 'reference':
-            return this.firestore.doc(obj.value as string);
-          case 'geopoint': {
-            const gp = obj.value as { latitude: number; longitude: number };
-            return new (require('firebase-admin/firestore').GeoPoint)(gp.latitude, gp.longitude);
+        const type = obj.__type__;
+        if (type === 'timestamp') {
+          return new Date(obj.value as string);
+        }
+        if (type === 'reference') {
+          return this.firestore.doc(obj.value as string);
+        }
+        if (type === 'geopoint') {
+          const gp = obj.value as { latitude: number; longitude: number };
+          return new (require('firebase-admin/firestore').GeoPoint)(gp.latitude, gp.longitude);
+        }
+        if (type === 'bytes') {
+          return Buffer.from(obj.value as string, 'base64');
+        }
+        if (type === 'array') {
+          return { __type__: 'array', value: (obj.value as FirestoreValue[]).map(v => this.convertValue(v)) };
+        }
+        if (type === 'map') {
+          const mapResult: Record<string, unknown> = {};
+          for (const [k, v] of Object.entries(obj.value as Record<string, FirestoreValue>)) {
+            mapResult[k] = this.convertValue(v);
           }
-          case 'bytes':
-            return Buffer.from(obj.value as string, 'base64');
-          case 'array':
-            return { __type__: 'array', value: (obj.value as FirestoreValue[]).map(v => this.convertValue(v)) };
-          case 'map': {
-            const mapResult: Record<string, unknown> = {};
-            for (const [k, v] of Object.entries(obj.value as Record<string, FirestoreValue>)) {
-              mapResult[k] = this.convertValue(v);
-            }
-            return { __type__: 'map', value: mapResult };
-          }
+          return { __type__: 'map', value: mapResult };
         }
       }
       const mapResult: Record<string, unknown> = {};
