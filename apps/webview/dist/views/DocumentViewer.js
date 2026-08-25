@@ -69,21 +69,22 @@ export const DocumentViewer = ({ document, connection, onClose, onUpdate, onDele
             const obj = value;
             if ('__type__' in obj) {
                 const type = obj.__type__;
+                const val = obj.value;
                 switch (type) {
                     case 'timestamp':
-                        return _jsxs("span", { className: "json-string", children: [spaces, "\"", obj.value, "\""] });
+                        return _jsxs("span", { className: "json-string", children: [spaces, "\"", String(val), "\""] });
                     case 'reference':
-                        return _jsxs("span", { className: "json-string", children: [spaces, "\"", obj.value, "\""] });
+                        return _jsxs("span", { className: "json-string", children: [spaces, "\"", String(val), "\""] });
                     case 'geopoint': {
-                        const gp = obj.value;
-                        return _jsxs("span", { children: [spaces, { latitude: gp.latitude, longitude: gp.longitude }] });
+                        const gp = val;
+                        return _jsxs("span", { children: [spaces, "geopoint(latitude: ", gp.latitude, ", longitude: ", gp.longitude, ")"] });
                     }
                     case 'bytes':
-                        return _jsxs("span", { className: "json-string", children: [spaces, "\"base64:", obj.value, "\""] });
+                        return _jsxs("span", { className: "json-string", children: [spaces, "\"base64:", String(val), "\""] });
                     case 'array':
-                        return (_jsxs("div", { children: [spaces, "[", obj.value.map((v, i) => (_jsxs("div", { children: [formatValue(v, indent + 1), i < obj.value.length - 1 ? ',' : ''] }, i))), spaces, "]"] }));
+                        return (_jsxs("div", { children: [spaces, "[", val.map((v, i) => (_jsxs("div", { children: [formatValue(v, indent + 1), i < val.length - 1 ? ',' : ''] }, i))), spaces, "]"] }));
                     case 'map': {
-                        const entries = Object.entries(obj.value);
+                        const entries = Object.entries(val);
                         return (_jsxs("div", { children: [spaces, '{', ' ', entries.map(([k, v], i) => (_jsxs("div", { children: [_jsxs("span", { className: "json-key", children: [spaces, "  \"", k, "\":"] }), formatValue(v, indent + 1), i < entries.length - 1 ? ',' : ''] }, k))), spaces, '}', ' '] }));
                     }
                 }

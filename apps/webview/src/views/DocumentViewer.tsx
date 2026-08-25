@@ -92,32 +92,33 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
       );
     }
     if (typeof value === 'object' && value !== null) {
-      const obj = value as Record<string, unknown>;
+      const obj = value as unknown as Record<string, unknown>;
       if ('__type__' in obj) {
         const type = obj.__type__ as string;
+        const val = obj.value as unknown;
         switch (type) {
           case 'timestamp':
-            return <span className="json-string">{spaces}"{obj.value}"</span>;
+            return <span className="json-string">{spaces}"{String(val)}"</span>;
           case 'reference':
-            return <span className="json-string">{spaces}"{obj.value}"</span>;
+            return <span className="json-string">{spaces}"{String(val)}"</span>;
           case 'geopoint': {
-            const gp = obj.value as { latitude: number; longitude: number };
-            return <span>{spaces}{{ latitude: gp.latitude, longitude: gp.longitude }}</span>;
+            const gp = val as { latitude: number; longitude: number };
+            return <span>{spaces}geopoint(latitude: {gp.latitude}, longitude: {gp.longitude})</span>;
           }
           case 'bytes':
-            return <span className="json-string">{spaces}"base64:{obj.value}"</span>;
+            return <span className="json-string">{spaces}"base64:{String(val)}"</span>;
           case 'array':
             return (
               <div>
                 {spaces}[
-                {(obj.value as FirestoreValue[]).map((v, i) => (
-                  <div key={i}>{formatValue(v, indent + 1)}{i < (obj.value as FirestoreValue[]).length - 1 ? ',' : ''}</div>
+                {(val as FirestoreValue[]).map((v, i) => (
+                  <div key={i}>{formatValue(v, indent + 1)}{i < (val as FirestoreValue[]).length - 1 ? ',' : ''}</div>
                 ))}
                 {spaces}]
               </div>
             );
           case 'map': {
-            const entries = Object.entries(obj.value as Record<string, FirestoreValue>);
+            const entries = Object.entries(val as Record<string, FirestoreValue>);
             return (
               <div>
                 {spaces}{'{'}{' '}
@@ -176,9 +177,9 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           {Object.entries(document.data).map(([key, value]) => (
             <tr key={key}>
               <td style={{ fontWeight: 600 }}>{key}</td>
-              <td>{formatValue(value)}</td>
+              <td>{formatValue(value) as React.ReactNode}</td>
               <td style={{ color: 'var(--vscode-descriptionForeground)', fontSize: 11 }}>
-                {value === null ? 'null' : (typeof value === 'object' && value !== null && '__type__' in value) ? (value as Record<string, unknown>).__type__ : typeof value}
+                {value === null ? 'null' : (typeof value === 'object' && value !== null && '__type__' in (value as object)) ? (value as unknown as Record<string, unknown>).__type__ as string : typeof value}
               </td>
             </tr>
           ))}

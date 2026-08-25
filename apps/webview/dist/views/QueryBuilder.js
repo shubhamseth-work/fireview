@@ -17,6 +17,8 @@ export const QueryBuilder = ({ collections, onRunQuery, onClose }) => {
     const updateFilter = (index, field, value) => {
         const newFilters = [...filters];
         const currentFilter = newFilters[index];
+        if (!currentFilter)
+            return;
         newFilters[index] = {
             field: field === 'field' ? value : currentFilter.field,
             operator: field === 'operator' ? value : currentFilter.operator,

@@ -151,6 +151,7 @@ export const App = () => {
         }
         catch (err) {
             setError(err.message);
+            return { success: false, error: err.message };
         }
         finally {
             setLoading(false);

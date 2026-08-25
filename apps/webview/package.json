@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "vistiq-webview",
   "version": "0.1.0",
   "description": "Vistiq Webview UI (React + Vite)",
