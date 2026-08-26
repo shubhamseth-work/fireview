@@ -2,11 +2,13 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
+const outDir = path.resolve(__dirname, '../../apps/vscode-extension/dist/webview');
+
 export default defineConfig({
   plugins: [react()],
   root: 'src',
   build: {
-    outDir: '../../apps/vscode-extension/dist/webview',
+    outDir,
     emptyOutDir: true,
     rollupOptions: {
       input: {

@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { FirestoreDocument, FirestoreValue } from '@vistiq/core';
 import { Connection } from '@vistiq/core';
 
+// Logger for DocumentViewer
+const log = {
+  debug: (msg: string, meta?: Record<string, unknown>) => console.debug(`[DocumentViewer] ${msg}`, meta || ''),
+  info: (msg: string, meta?: Record<string, unknown>) => console.info(`[DocumentViewer] ${msg}`, meta || ''),
+  warn: (msg: string, meta?: Record<string, unknown>) => console.warn(`[DocumentViewer] ${msg}`, meta || ''),
+  error: (msg: string, meta?: Record<string, unknown>) => console.error(`[DocumentViewer] ${msg}`, meta || ''),
+};
+
 interface DocumentViewerProps {
   document: FirestoreDocument;
   connection: Connection;
@@ -17,6 +25,13 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   onUpdate,
   onDelete,
 }) => {
+  log.info('DocumentViewer rendered', { 
+    docId: document.id, 
+    docPath: document.path,
+    hasData: !!document.data,
+    dataKeys: document.data ? Object.keys(document.data) : []
+  });
+  
   const [viewMode, setViewMode] = useState<'table' | 'json' | 'raw'>('table');
   const [editing, setEditing] = useState(false);
   const [editData, setEditData] = useState<string>('');
@@ -27,6 +42,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const isNewDoc = !document.id;
 
   React.useEffect(() => {
+    log.debug('DocumentViewer: Effect triggered', { docId: document.id, editing });
     setIsProduction(isProd);
     if (editing) {
       setEditData(JSON.stringify(document.data, null, 2));
@@ -75,6 +91,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   };
 
   const formatValue = (value: FirestoreValue, indent = 0): React.ReactNode => {
+    log.debug('formatValue called', { type: typeof value, isArray: Array.isArray(value), isNull: value === null });
     const spaces = '  '.repeat(indent);
     if (value === null) return <span className="json-null">{spaces}null</span>;
     if (typeof value === 'string') return <span className="json-string">{spaces}"{value}"</span>;

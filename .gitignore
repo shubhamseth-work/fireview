@@ -83,3 +83,5 @@ packages/*/src/
 apps/*/package.json
 apps/*/tsconfig.json
 apps/*/src/
+
+instruct.txt

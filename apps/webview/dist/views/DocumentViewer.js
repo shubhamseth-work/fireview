@@ -1,6 +1,19 @@
 import { jsxs as _jsxs, jsx as _jsx, Fragment as _Fragment } from "react/jsx-runtime";
 import React, { useState } from 'react';
+// Logger for DocumentViewer
+const log = {
+    debug: (msg, meta) => console.debug(`[DocumentViewer] ${msg}`, meta || ''),
+    info: (msg, meta) => console.info(`[DocumentViewer] ${msg}`, meta || ''),
+    warn: (msg, meta) => console.warn(`[DocumentViewer] ${msg}`, meta || ''),
+    error: (msg, meta) => console.error(`[DocumentViewer] ${msg}`, meta || ''),
+};
 export const DocumentViewer = ({ document, connection, onClose, onUpdate, onDelete, }) => {
+    log.info('DocumentViewer rendered', {
+        docId: document.id,
+        docPath: document.path,
+        hasData: !!document.data,
+        dataKeys: document.data ? Object.keys(document.data) : []
+    });
     const [viewMode, setViewMode] = useState('table');
     const [editing, setEditing] = useState(false);
     const [editData, setEditData] = useState('');
@@ -9,6 +22,7 @@ export const DocumentViewer = ({ document, connection, onClose, onUpdate, onDele
     const isProd = connection.environment === 'production';
     const isNewDoc = !document.id;
     React.useEffect(() => {
+        log.debug('DocumentViewer: Effect triggered', { docId: document.id, editing });
         setIsProduction(isProd);
         if (editing) {
             setEditData(JSON.stringify(document.data, null, 2));
@@ -53,6 +67,7 @@ export const DocumentViewer = ({ document, connection, onClose, onUpdate, onDele
         }
     };
     const formatValue = (value, indent = 0) => {
+        log.debug('formatValue called', { type: typeof value, isArray: Array.isArray(value), isNull: value === null });
         const spaces = '  '.repeat(indent);
         if (value === null)
             return _jsxs("span", { className: "json-null", children: [spaces, "null"] });
