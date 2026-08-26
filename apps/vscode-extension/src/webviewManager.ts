@@ -2,6 +2,7 @@ import type { AuditService } from '@vistiq/audit';
 import type { FirestoreDocument, FirestoreQuery } from '@vistiq/core';
 import { createChildLogger } from '@vistiq/shared';
 import * as vscode from 'vscode';
+import * as fs from 'fs';
 
 const webviewLogger = createChildLogger('webviewManager');
 
@@ -84,8 +85,10 @@ export class WebviewManager {
   }
 
   openDocument(documentPath: string): void {
+    webviewLogger.info('openDocument called', { documentPath });
     const active = this.connectionManager.getActiveConnection();
     if (!active) {
+      webviewLogger.error('openDocument: No active connection');
       void vscode.window.showErrorMessage('No active connection');
       return;
     }
@@ -96,6 +99,7 @@ export class WebviewManager {
     });
 
     // Wait for panel to be ready, then send openDocument message
+    webviewLogger.debug('openDocument: Sending openDocument message when ready', { documentPath });
     this.sendWhenReady(panel, { type: 'openDocument', payload: { documentPath } });
   }
 
@@ -137,14 +141,18 @@ export class WebviewManager {
   }
 
   private sendWhenReady(panel: vscode.WebviewPanel, message: WebviewMessage): void {
+    webviewLogger.debug('sendWhenReady called', { messageType: message.type, panelVisible: panel.visible });
     if (panel.visible) {
+      webviewLogger.debug('sendWhenReady: Panel visible, sending immediately', { messageType: message.type });
       void panel.webview.postMessage(message);
       return;
     }
 
+    webviewLogger.debug('sendWhenReady: Panel not visible, waiting for visibility change', { messageType: message.type });
     const disposable = panel.onDidChangeViewState(
       e => {
         if (e.webviewPanel.visible) {
+          webviewLogger.debug('sendWhenReady: Panel became visible, sending message', { messageType: message.type });
           disposable.dispose();
           setTimeout(() => {
             void panel.webview.postMessage(message);
@@ -157,6 +165,7 @@ export class WebviewManager {
 
     // Fallback timeout
     setTimeout(() => {
+      webviewLogger.debug('sendWhenReady: Fallback timeout, sending message anyway', { messageType: message.type });
       disposable.dispose();
       void panel.webview.postMessage(message);
     }, 1000);
@@ -170,9 +179,15 @@ export class WebviewManager {
   }
 
   private async handleMessage(message: WebviewMessage, panelViewType: string): Promise<void> {
-    webviewLogger.debug('Received message', { type: message.type, panel: panelViewType });
+    webviewLogger.debug('handleMessage: Received message', { 
+      type: message.type, 
+      panel: panelViewType,
+      hasRequestId: !!message.requestId,
+      requestId: message.requestId
+    });
 
     if (message.type === 'response') {
+      webviewLogger.debug('handleMessage: Received response', { requestId: message.requestId });
       const callback = this.pendingRequests.get((message as WebviewResponse).requestId);
       if (callback) {
         callback(message as WebviewResponse);
@@ -184,6 +199,7 @@ export class WebviewManager {
     // Track which panel this request came from
     if (message.requestId) {
       this.requestPanelMap.set(message.requestId, panelViewType);
+      webviewLogger.debug('handleMessage: Mapped requestId to panel', { requestId: message.requestId, panelViewType });
     }
 
     try {
@@ -246,6 +262,7 @@ export class WebviewManager {
   }
 
   private sendResponse(requestId: string, success: boolean, data?: unknown, error?: string): void {
+    webviewLogger.debug('sendResponse', { requestId, success, hasError: !!error, errorMessage: error });
     const panelViewType = this.requestPanelMap.get(requestId);
     const panel = panelViewType
       ? this.panels.get(panelViewType)
@@ -259,6 +276,9 @@ export class WebviewManager {
         data,
         error,
       } as WebviewResponse);
+      webviewLogger.debug('sendResponse: Sent response to panel', { requestId, panelViewType });
+    } else {
+      webviewLogger.warn('sendResponse: No panel found for requestId', { requestId });
     }
     this.requestPanelMap.delete(requestId);
   }
@@ -286,9 +306,42 @@ export class WebviewManager {
 
   private handleGetDocument(payload: unknown): Promise<unknown> {
     const { documentPath } = payload as { documentPath: string };
+    webviewLogger.debug('handleGetDocument called', { documentPath });
     const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error('No active Firestore connection');
-    return active.firestore.getDocument(documentPath);
+    if (!active) {
+      webviewLogger.error('handleGetDocument: No active connection');
+      throw new Error('No active connection');
+    }
+    if (!active.firestore) {
+      webviewLogger.error('handleGetDocument: No active Firestore connection', { 
+        projectId: active.projectId,
+        authMethod: active.authMethod 
+      });
+      throw new Error('No active Firestore connection');
+    }
+    webviewLogger.debug('handleGetDocument: Calling firestore.getDocument', { 
+      documentPath,
+      projectId: active.projectId 
+    });
+    return active.firestore.getDocument(documentPath)
+      .then(doc => {
+        webviewLogger.debug('handleGetDocument: Success', { 
+          documentPath,
+          found: doc !== null,
+          docId: doc?.id,
+          docPath: doc?.path,
+          dataKeys: doc?.data ? Object.keys(doc.data) : []
+        });
+        return doc;
+      })
+      .catch(err => {
+        webviewLogger.error('handleGetDocument: Error', { 
+          documentPath,
+          error: (err as Error).message,
+          stack: (err as Error).stack
+        });
+        throw err;
+      });
   }
 
   private async handleCreateDocument(payload: unknown): Promise<unknown> {
@@ -447,8 +500,15 @@ export class WebviewManager {
       if (/^https?:\/\//.test(relPath) || relPath.startsWith('data:')) {
         return match; // leave absolute/data URIs alone
       }
-      const cleanRelPath = relPath.replace(/^\.?\//, ''); // strip leading ./ or /
-      const onDisk = vscode.Uri.joinPath(baseDiskDir, cleanRelPath);
+      let onDisk: vscode.Uri;
+      if (relPath.startsWith('/assets/')) {
+        // Assets are at dist/webview/assets/, not dist/webview/<viewType>/assets/
+        const cleanRelPath = relPath.replace(/^\/assets\//, '');
+        onDisk = vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', 'assets', cleanRelPath);
+      } else {
+        const cleanRelPath = relPath.replace(/^\.?\//, ''); // strip leading ./ or /
+        onDisk = vscode.Uri.joinPath(baseDiskDir, cleanRelPath);
+      }
       const webviewUri = webview.asWebviewUri(onDisk);
       return `${attr}="${webviewUri}"`;
     });

@@ -113257,12 +113257,12 @@ __export(dist_exports, {
 function createExportService(firestore) {
   return new ExportService(firestore);
 }
-var fs3, path2, ExportService;
+var fs2, path2, ExportService;
 var init_dist2 = __esm({
   "../../packages/export/dist/index.js"() {
     "use strict";
     init_dist();
-    fs3 = __toESM(require("fs"), 1);
+    fs2 = __toESM(require("fs"), 1);
     path2 = __toESM(require("path"), 1);
     ExportService = class {
       firestore;
@@ -113283,10 +113283,10 @@ var init_dist2 = __esm({
         let failed = 0;
         const filePath = options.outputPath;
         const dir = path2.dirname(filePath);
-        if (!fs3.existsSync(dir)) {
-          fs3.mkdirSync(dir, { recursive: true });
+        if (!fs2.existsSync(dir)) {
+          fs2.mkdirSync(dir, { recursive: true });
         }
-        const writeStream = fs3.createWriteStream(filePath, { encoding: "utf8" });
+        const writeStream = fs2.createWriteStream(filePath, { encoding: "utf8" });
         const isJson = options.format === "json";
         if (isJson) {
           writeStream.write("[\n");
@@ -113442,12 +113442,12 @@ __export(dist_exports2, {
 function createImportService(firestore) {
   return new ImportService(firestore);
 }
-var fs4, path3, ImportService;
+var fs3, path3, ImportService;
 var init_dist3 = __esm({
   "../../packages/import/dist/index.js"() {
     "use strict";
     init_dist();
-    fs4 = __toESM(require("fs"), 1);
+    fs3 = __toESM(require("fs"), 1);
     path3 = __toESM(require("path"), 1);
     ImportService = class {
       firestore;
@@ -113550,7 +113550,7 @@ var init_dist3 = __esm({
         this.abortController?.abort();
       }
       async readDocuments(options) {
-        const content = fs4.readFileSync(options.inputPath, "utf8");
+        const content = fs3.readFileSync(options.inputPath, "utf8");
         const ext = path3.extname(options.inputPath).toLowerCase();
         if (ext === ".json") {
           return this.parseJson(content, options.idField);
@@ -114128,7 +114128,7 @@ function createCredentialService(secretStorage) {
 
 // ../../packages/emulator/dist/index.js
 init_dist();
-var fs2 = __toESM(require("fs"), 1);
+var fs = __toESM(require("fs"), 1);
 var path = __toESM(require("path"), 1);
 var EmulatorService = class {
   workspaceRoot;
@@ -114137,10 +114137,10 @@ var EmulatorService = class {
   }
   detectEmulatorConfig() {
     const firebaseJsonPath = path.join(this.workspaceRoot, "firebase.json");
-    if (!fs2.existsSync(firebaseJsonPath))
+    if (!fs.existsSync(firebaseJsonPath))
       return null;
     try {
-      const content = fs2.readFileSync(firebaseJsonPath, "utf8");
+      const content = fs.readFileSync(firebaseJsonPath, "utf8");
       const config = JSON.parse(content);
       if (!config.emulators)
         return null;
@@ -114178,18 +114178,18 @@ var EmulatorService = class {
     });
   }
   async detectProjectFiles() {
-    const firebaseJson = fs2.existsSync(path.join(this.workspaceRoot, "firebase.json"));
-    const firebaserc = fs2.existsSync(path.join(this.workspaceRoot, ".firebaserc"));
-    const firestoreRules = fs2.existsSync(path.join(this.workspaceRoot, "firestore.rules"));
-    const firestoreIndexes = fs2.existsSync(path.join(this.workspaceRoot, "firestore.indexes.json"));
-    const packageJson = fs2.existsSync(path.join(this.workspaceRoot, "package.json"));
+    const firebaseJson = fs.existsSync(path.join(this.workspaceRoot, "firebase.json"));
+    const firebaserc = fs.existsSync(path.join(this.workspaceRoot, ".firebaserc"));
+    const firestoreRules = fs.existsSync(path.join(this.workspaceRoot, "firestore.rules"));
+    const firestoreIndexes = fs.existsSync(path.join(this.workspaceRoot, "firestore.indexes.json"));
+    const packageJson = fs.existsSync(path.join(this.workspaceRoot, "package.json"));
     if (!firebaseJson && !firebaserc && !firestoreRules && !firestoreIndexes) {
       return null;
     }
     let projectId = "unknown";
     if (firebaserc) {
       try {
-        const content = fs2.readFileSync(path.join(this.workspaceRoot, ".firebaserc"), "utf8");
+        const content = fs.readFileSync(path.join(this.workspaceRoot, ".firebaserc"), "utf8");
         const config = JSON.parse(content);
         projectId = config.projects?.default || "unknown";
       } catch {
@@ -115059,6 +115059,7 @@ var ProjectTreeItem = class extends vscode2.TreeItem {
 // src/webviewManager.ts
 init_dist();
 var vscode3 = __toESM(require("vscode"));
+var fs4 = __toESM(require("fs"));
 var webviewLogger = createChildLogger("webviewManager");
 var WebviewManager = class {
   constructor(context, connectionManager2, auditService2) {
@@ -115112,8 +115113,10 @@ var WebviewManager = class {
     void this.createOrShowPanel("audit", "Audit History", vscode3.ViewColumn.One, {});
   }
   openDocument(documentPath) {
+    webviewLogger.info("openDocument called", { documentPath });
     const active = this.connectionManager.getActiveConnection();
     if (!active) {
+      webviewLogger.error("openDocument: No active connection");
       void vscode3.window.showErrorMessage("No active connection");
       return;
     }
@@ -115121,6 +115124,7 @@ var WebviewManager = class {
       enableScripts: true,
       retainContextWhenHidden: true
     });
+    webviewLogger.debug("openDocument: Sending openDocument message when ready", { documentPath });
     this.sendWhenReady(panel, { type: "openDocument", payload: { documentPath } });
   }
   createOrShowPanel(viewType, title, column, _options) {
@@ -115151,13 +115155,17 @@ var WebviewManager = class {
     return panel;
   }
   sendWhenReady(panel, message) {
+    webviewLogger.debug("sendWhenReady called", { messageType: message.type, panelVisible: panel.visible });
     if (panel.visible) {
+      webviewLogger.debug("sendWhenReady: Panel visible, sending immediately", { messageType: message.type });
       void panel.webview.postMessage(message);
       return;
     }
+    webviewLogger.debug("sendWhenReady: Panel not visible, waiting for visibility change", { messageType: message.type });
     const disposable = panel.onDidChangeViewState(
       (e) => {
         if (e.webviewPanel.visible) {
+          webviewLogger.debug("sendWhenReady: Panel became visible, sending message", { messageType: message.type });
           disposable.dispose();
           setTimeout(() => {
             void panel.webview.postMessage(message);
@@ -115168,6 +115176,7 @@ var WebviewManager = class {
       this.context.subscriptions
     );
     setTimeout(() => {
+      webviewLogger.debug("sendWhenReady: Fallback timeout, sending message anyway", { messageType: message.type });
       disposable.dispose();
       void panel.webview.postMessage(message);
     }, 1e3);
@@ -115179,8 +115188,14 @@ var WebviewManager = class {
     }
   }
   async handleMessage(message, panelViewType) {
-    webviewLogger.debug("Received message", { type: message.type, panel: panelViewType });
+    webviewLogger.debug("handleMessage: Received message", {
+      type: message.type,
+      panel: panelViewType,
+      hasRequestId: !!message.requestId,
+      requestId: message.requestId
+    });
     if (message.type === "response") {
+      webviewLogger.debug("handleMessage: Received response", { requestId: message.requestId });
       const callback = this.pendingRequests.get(message.requestId);
       if (callback) {
         callback(message);
@@ -115190,6 +115205,7 @@ var WebviewManager = class {
     }
     if (message.requestId) {
       this.requestPanelMap.set(message.requestId, panelViewType);
+      webviewLogger.debug("handleMessage: Mapped requestId to panel", { requestId: message.requestId, panelViewType });
     }
     try {
       let result;
@@ -115248,6 +115264,7 @@ var WebviewManager = class {
     }
   }
   sendResponse(requestId, success, data, error) {
+    webviewLogger.debug("sendResponse", { requestId, success, hasError: !!error, errorMessage: error });
     const panelViewType = this.requestPanelMap.get(requestId);
     const panel = panelViewType ? this.panels.get(panelViewType) : Array.from(this.panels.values())[0];
     if (panel) {
@@ -115258,6 +115275,9 @@ var WebviewManager = class {
         data,
         error
       });
+      webviewLogger.debug("sendResponse: Sent response to panel", { requestId, panelViewType });
+    } else {
+      webviewLogger.warn("sendResponse: No panel found for requestId", { requestId });
     }
     this.requestPanelMap.delete(requestId);
   }
@@ -115277,9 +115297,40 @@ var WebviewManager = class {
   }
   handleGetDocument(payload) {
     const { documentPath } = payload;
+    webviewLogger.debug("handleGetDocument called", { documentPath });
     const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    return active.firestore.getDocument(documentPath);
+    if (!active) {
+      webviewLogger.error("handleGetDocument: No active connection");
+      throw new Error("No active connection");
+    }
+    if (!active.firestore) {
+      webviewLogger.error("handleGetDocument: No active Firestore connection", {
+        projectId: active.projectId,
+        authMethod: active.authMethod
+      });
+      throw new Error("No active Firestore connection");
+    }
+    webviewLogger.debug("handleGetDocument: Calling firestore.getDocument", {
+      documentPath,
+      projectId: active.projectId
+    });
+    return active.firestore.getDocument(documentPath).then((doc) => {
+      webviewLogger.debug("handleGetDocument: Success", {
+        documentPath,
+        found: doc !== null,
+        docId: doc?.id,
+        docPath: doc?.path,
+        dataKeys: doc?.data ? Object.keys(doc.data) : []
+      });
+      return doc;
+    }).catch((err) => {
+      webviewLogger.error("handleGetDocument: Error", {
+        documentPath,
+        error: err.message,
+        stack: err.stack
+      });
+      throw err;
+    });
   }
   async handleCreateDocument(payload) {
     const { collectionPath, data, documentId } = payload;
@@ -115391,7 +115442,7 @@ var WebviewManager = class {
     );
     let html;
     try {
-      html = fs.readFileSync(htmlDiskPath.fsPath, "utf8");
+      html = fs4.readFileSync(htmlDiskPath.fsPath, "utf8");
     } catch (err) {
       webviewLogger.error("Failed to read webview index.html", {
         viewType,
@@ -115405,8 +115456,14 @@ var WebviewManager = class {
       if (/^https?:\/\//.test(relPath) || relPath.startsWith("data:")) {
         return match;
       }
-      const cleanRelPath = relPath.replace(/^\.?\//, "");
-      const onDisk = vscode3.Uri.joinPath(baseDiskDir, cleanRelPath);
+      let onDisk;
+      if (relPath.startsWith("/assets/")) {
+        const cleanRelPath = relPath.replace(/^\/assets\//, "");
+        onDisk = vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", "assets", cleanRelPath);
+      } else {
+        const cleanRelPath = relPath.replace(/^\.?\//, "");
+        onDisk = vscode3.Uri.joinPath(baseDiskDir, cleanRelPath);
+      }
       const webviewUri = webview.asWebviewUri(onDisk);
       return `${attr}="${webviewUri}"`;
     });
