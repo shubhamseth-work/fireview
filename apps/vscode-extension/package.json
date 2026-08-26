@@ -1,5 +1,5 @@
 {
-  "name": "vistiq-vscode-extension",
+  "name": "vistiq-viewer",
   "publisher": "vistiq",
   "version": "0.1.0",
   "description": "Vistiq VS Code Extension",
@@ -68,7 +68,8 @@
       },
       {
         "command": "vistiq.disconnectProject",
-        "title": "Vistiq: Disconnect Project"
+        "title": "Vistiq: Disconnect Project",
+        "icon": "$(plug)"
       },
       {
         "command": "vistiq.refresh",
@@ -179,6 +180,11 @@
       "view/title": [
         {
           "command": "vistiq.connectProject",
+          "when": "view == vistiq.projects",
+          "group": "navigation"
+        },
+        {
+          "command": "vistiq.disconnectProject",
           "when": "view == vistiq.projects",
           "group": "navigation"
         },
