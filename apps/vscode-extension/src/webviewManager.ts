@@ -1,8 +1,7 @@
+import type { AuditService } from '@vistiq/audit';
+import type { FirestoreDocument, FirestoreQuery } from '@vistiq/core';
+import { createChildLogger } from '@vistiq/shared';
 import * as vscode from 'vscode';
-import { ConnectionManager } from './connectionManager.js';
-import { AuditService } from '@vistiq/audit';
-import { logger, createChildLogger } from '@vistiq/shared';
-import { Connection, FirestoreDocument, FirestoreQuery, QueryFilter, QueryOperator, OrderByClause } from '@vistiq/core';
 
 const webviewLogger = createChildLogger('webviewManager');
 
@@ -35,90 +34,69 @@ export class WebviewManager {
   openFirestore(): void {
     const active = this.connectionManager.getActiveConnection();
     if (!active) {
-      vscode.window.showErrorMessage('No active connection. Connect to a project first.');
+      void vscode.window.showErrorMessage('No active connection');
       return;
     }
 
-    this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
+    void this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
   }
 
   newDocument(): void {
     const active = this.connectionManager.getActiveConnection();
     if (!active) {
-      vscode.window.showErrorMessage('No active connection');
+      void vscode.window.showErrorMessage('No active connection');
       return;
     }
 
-    this.sendToPanel('firestore', { type: 'newDocument', payload: {} });
+    void this.sendToPanel('firestore', { type: 'newDocument', payload: {} });
   }
 
   runQuery(): void {
-    this.sendToPanel('firestore', { type: 'openQueryBuilder', payload: {} });
+    void this.sendToPanel('firestore', { type: 'openQueryBuilder', payload: {} });
   }
 
   saveQuery(): void {
-    this.sendToPanel('firestore', { type: 'saveQuery', payload: {} });
+    void this.sendToPanel('firestore', { type: 'saveQuery', payload: {} });
   }
 
   exportCollection(): void {
-    this.sendToPanel('firestore', { type: 'exportCollection', payload: {} });
+    void this.sendToPanel('firestore', { type: 'exportCollection', payload: {} });
   }
 
   importCollection(): void {
-    this.sendToPanel('firestore', { type: 'importCollection', payload: {} });
+    void this.sendToPanel('firestore', { type: 'importCollection', payload: {} });
   }
 
   compareDocuments(): void {
-    this.createOrShowPanel('compare', 'Compare Documents', vscode.ViewColumn.One, {});
+    void this.createOrShowPanel('compare', 'Compare Documents', vscode.ViewColumn.One, {});
   }
 
   compareProjects(): void {
-    this.createOrShowPanel('project-compare', 'Compare Projects', vscode.ViewColumn.One, {});
+    void this.createOrShowPanel('project-compare', 'Compare Projects', vscode.ViewColumn.One, {});
   }
 
   copyToProject(): void {
-    this.createOrShowPanel('migration', 'Copy to Project', vscode.ViewColumn.One, {});
+    void this.createOrShowPanel('migration', 'Copy to Project', vscode.ViewColumn.One, {});
   }
 
   openAuditHistory(): void {
-    this.createOrShowPanel('audit', 'Audit History', vscode.ViewColumn.One, {});
+    void this.createOrShowPanel('audit', 'Audit History', vscode.ViewColumn.One, {});
   }
 
   openDocument(documentPath: string): void {
     const active = this.connectionManager.getActiveConnection();
     if (!active) {
-      vscode.window.showErrorMessage('No active connection');
+      void vscode.window.showErrorMessage('No active connection');
       return;
     }
 
-    // Create a unique panel for each document (like editor tabs)
-    const viewType = `document-${documentPath.replace(/\//g, '-')}`;
-    const title = documentPath.split('/').pop() || 'Document';
-
-    this.createOrShowPanel(viewType, title, vscode.ViewColumn.One, {
+    const panel = this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {
       enableScripts: true,
       retainContextWhenHidden: true,
     });
 
-    // Wait for panel to be ready, then send document path
-    const panel = this.panels.get(viewType);
-    if (panel) {
-      // Wait for webview to be ready by listening for viewState change
-      const disposable = panel.onDidChangeViewState((e) => {
-        if (e.webviewPanel.visible) {
-          disposable.dispose();
-          // Small delay to ensure webview is fully loaded
-          setTimeout(() => {
-            this.sendToPanel(viewType, { type: 'openDocument', payload: { documentPath } });
-          }, 200);
-        }
-      }, null, this.context.subscriptions);
-      
-      // Fallback timeout in case viewState doesn't fire
-      setTimeout(() => {
-        this.sendToPanel(viewType, { type: 'openDocument', payload: { documentPath } });
-      }, 500);
-    }
+    // Wait for panel to be ready, then send openDocument message
+    this.sendWhenReady(panel, { type: 'openDocument', payload: { documentPath } });
   }
 
   private createOrShowPanel(
@@ -126,40 +104,68 @@ export class WebviewManager {
     title: string,
     column: vscode.ViewColumn,
     _options: vscode.WebviewPanelOptions
-  ): void {
+  ): vscode.WebviewPanel {
     const existing = this.panels.get(viewType);
     if (existing) {
       existing.reveal(column);
+      return existing;
+    }
+
+    const panel = vscode.window.createWebviewPanel(viewType, title, column, {
+      enableScripts: true,
+      retainContextWhenHidden: true,
+      localResourceRoots: [vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview')],
+    });
+
+    panel.webview.html = this.getWebviewHtml(viewType, panel.webview);
+    panel.webview.onDidReceiveMessage(
+      message => this.handleMessage(message, viewType),
+      null,
+      this.context.subscriptions
+    );
+
+    panel.onDidDispose(
+      () => {
+        this.panels.delete(viewType);
+      },
+      null,
+      this.context.subscriptions
+    );
+
+    this.panels.set(viewType, panel);
+    return panel;
+  }
+
+  private sendWhenReady(panel: vscode.WebviewPanel, message: WebviewMessage): void {
+    if (panel.visible) {
+      void panel.webview.postMessage(message);
       return;
     }
 
-    const panel = vscode.window.createWebviewPanel(
-      viewType,
-      title,
-      column,
-      {
-        enableScripts: true,
-        retainContextWhenHidden: true,
-        localResourceRoots: [
-          vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview'),
-        ],
-      }
+    const disposable = panel.onDidChangeViewState(
+      e => {
+        if (e.webviewPanel.visible) {
+          disposable.dispose();
+          setTimeout(() => {
+            void panel.webview.postMessage(message);
+          }, 100);
+        }
+      },
+      null,
+      this.context.subscriptions
     );
 
-    panel.webview.html = this.getWebviewHtml(viewType);
-    panel.webview.onDidReceiveMessage((message) => this.handleMessage(message, viewType), null, this.context.subscriptions);
-
-    panel.onDidDispose(() => {
-      this.panels.delete(viewType);
-    }, null, this.context.subscriptions);
-
-    this.panels.set(viewType, panel);
+    // Fallback timeout
+    setTimeout(() => {
+      disposable.dispose();
+      void panel.webview.postMessage(message);
+    }, 1000);
   }
 
   private sendToPanel(viewType: string, message: WebviewMessage): void {
     const panel = this.panels.get(viewType);
     if (panel) {
-      panel.webview.postMessage(message);
+      void panel.webview.postMessage(message);
     }
   }
 
@@ -231,17 +237,22 @@ export class WebviewManager {
 
       this.sendResponse(message.requestId!, true, result);
     } catch (error) {
-      webviewLogger.error('Message handler error', { type: message.type, error: (error as Error).message });
+      webviewLogger.error('Message handler error', {
+        type: message.type,
+        error: (error as Error).message,
+      });
       this.sendResponse(message.requestId!, false, undefined, (error as Error).message);
     }
   }
 
   private sendResponse(requestId: string, success: boolean, data?: unknown, error?: string): void {
     const panelViewType = this.requestPanelMap.get(requestId);
-    const panel = panelViewType ? this.panels.get(panelViewType) : Array.from(this.panels.values())[0];
-    
+    const panel = panelViewType
+      ? this.panels.get(panelViewType)
+      : Array.from(this.panels.values())[0];
+
     if (panel) {
-      panel.webview.postMessage({
+      void panel.webview.postMessage({
         type: 'response',
         requestId,
         success,
@@ -252,7 +263,7 @@ export class WebviewManager {
     this.requestPanelMap.delete(requestId);
   }
 
-  private getPanelViewTypeForMessage(message: WebviewMessage): string | undefined {
+  private getPanelViewTypeForMessage(_message: WebviewMessage): string | undefined {
     // Find which panel this message came from by checking the webview that sent it
     // Since we can't directly get the sender panel, we'll use the message type to infer
     // For messages that are responses to commands, we track the panel in openDocument
@@ -260,20 +271,20 @@ export class WebviewManager {
     return undefined; // Will be set in specific handlers
   }
 
-  private async handleGetCollections(payload: unknown): Promise<unknown> {
+  private handleGetCollections(_payload: unknown): Promise<unknown> {
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error('No active Firestore connection');
     return active.firestore.listCollections();
   }
 
-  private async handleListDocuments(payload: unknown): Promise<unknown> {
+  private handleListDocuments(payload: unknown): Promise<unknown> {
     const { collectionPath, options } = payload as { collectionPath: string; options?: unknown };
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error('No active Firestore connection');
     return active.firestore.listDocuments(collectionPath, options as any);
   }
 
-  private async handleGetDocument(payload: unknown): Promise<unknown> {
+  private handleGetDocument(payload: unknown): Promise<unknown> {
     const { documentPath } = payload as { documentPath: string };
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error('No active Firestore connection');
@@ -300,7 +311,10 @@ export class WebviewManager {
   }
 
   private async handleUpdateDocument(payload: unknown): Promise<unknown> {
-    const { documentPath, data } = payload as { documentPath: string; data: Partial<FirestoreDocument> };
+    const { documentPath, data } = payload as {
+      documentPath: string;
+      data: Partial<FirestoreDocument>;
+    };
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error('No active Firestore connection');
     await active.firestore.updateDocument(documentPath, data);
@@ -401,41 +415,69 @@ export class WebviewManager {
     return result;
   }
 
-  private async handleGetAuditHistory(payload: unknown): Promise<unknown> {
+  private handleGetAuditHistory(payload: unknown): Promise<unknown> {
     const options = payload as any;
     return this.auditService.getEntries(options);
   }
 
-  private getWebviewHtml(viewType: string): string {
+  private getWebviewHtml(viewType: string, webview: vscode.Webview): string {
+    const baseType = viewType.startsWith('document-') ? 'firestore' : viewType;
     const nonce = this.generateNonce();
-    const scriptUri = this.getScriptUri(viewType);
-    const styleUri = this.getStyleUri(viewType);
 
-    return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}'; style-src 'nonce-${nonce}' https:; img-src https: data:; font-src https: data:; connect-src https:;">
-  <link nonce="${nonce}" rel="stylesheet" href="${styleUri}">
-  <title>Vistiq - ${viewType}</title>
-</head>
-<body>
-  <div id="root"></div>
-  <script nonce="${nonce}" src="${scriptUri}"></script>
-</body>
-</html>`;
+    const htmlDiskPath = vscode.Uri.joinPath(
+      this.context.extensionUri, 'dist', 'webview', baseType, 'index.html'
+    );
+
+    let html: string;
+    try {
+      html = fs.readFileSync(htmlDiskPath.fsPath, 'utf8');
+    } catch (err) {
+      webviewLogger.error('Failed to read webview index.html', {
+        viewType,
+        path: htmlDiskPath.fsPath,
+        error: (err as Error).message,
+      });
+      return `<!DOCTYPE html><html><body>Failed to load webview: ${baseType}/index.html not found</body></html>`;
+    }
+
+    const baseDiskDir = vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', baseType);
+
+    // Rewrite src="..." and href="..." pointing at relative assets to webview URIs
+    html = html.replace(/(src|href)="([^"]+)"/g, (match, attr, relPath) => {
+      if (/^https?:\/\//.test(relPath) || relPath.startsWith('data:')) {
+        return match; // leave absolute/data URIs alone
+      }
+      const cleanRelPath = relPath.replace(/^\.?\//, ''); // strip leading ./ or /
+      const onDisk = vscode.Uri.joinPath(baseDiskDir, cleanRelPath);
+      const webviewUri = webview.asWebviewUri(onDisk);
+      return `${attr}="${webviewUri}"`;
+    });
+
+    // Add nonce to script tags for CSP, and inject our CSP meta tag
+    html = html.replace(/<script /g, `<script nonce="${nonce}" `);
+
+    const csp = `default-src 'none'; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline'; img-src ${webview.cspSource} https: data:; font-src ${webview.cspSource} https: data:; connect-src https:;`;
+
+    if (html.includes('<head>')) {
+      html = html.replace(
+        '<head>',
+        `<head>\n  <meta http-equiv="Content-Security-Policy" content="${csp}">`
+      );
+    }
+
+    return html;
   }
 
-  private getScriptUri(viewType: string): vscode.Uri {
-    // For document panels, use the firestore bundle
+  private getScriptUri(viewType: string, webview: vscode.Webview): vscode.Uri {
     const baseType = viewType.startsWith('document-') ? 'firestore' : viewType;
-    return vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${baseType}.js`);
+    const onDiskPath = vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${baseType}.js`);
+    return webview.asWebviewUri(onDiskPath);
   }
 
-  private getStyleUri(viewType: string): vscode.Uri {
+  private getStyleUri(viewType: string, webview: vscode.Webview): vscode.Uri {
     const baseType = viewType.startsWith('document-') ? 'firestore' : viewType;
-    return vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${baseType}.css`);
+    const onDiskPath = vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${baseType}.css`);
+    return webview.asWebviewUri(onDiskPath);
   }
 
   private generateNonce(): string {

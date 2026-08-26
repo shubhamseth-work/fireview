@@ -2,6 +2,7 @@ import * as esbuild from 'esbuild';
 import { copyFileSync, mkdirSync, existsSync, rmSync, cpSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outDir = join(__dirname, 'dist');
@@ -14,8 +15,35 @@ async function build() {
   }
   mkdirSync(outDir, { recursive: true });
 
-  // Copy package.json
-  copyFileSync(join(__dirname, 'package.json'), join(outDir, 'package.json'));
+  // Copy package.json with corrected main entry point
+  const pkgJson = JSON.parse(
+    await import('fs').then((fs) => fs.promises.readFile(join(__dirname, 'package.json'), 'utf-8'))
+  );
+  pkgJson.main = 'extension.js';
+  await import('fs').then((fs) => fs.promises.writeFile(join(outDir, 'package.json'), JSON.stringify(pkgJson, null, 2)));
+
+  // Build webview first
+  console.log('Building webview...');
+  try {
+    execSync('npm run build', {
+      cwd: join(__dirname, '..', 'webview'),
+      stdio: 'inherit',
+    });
+  } catch (error) {
+    console.error('Webview build failed:', error);
+    process.exit(1);
+  }
+
+  // Copy webview output to extension dist (vite outputs to wrong path due to root: 'src')
+  const webviewSrc = join(__dirname, '..', '..', 'apps', 'apps', 'vscode-extension', 'dist', 'webview');
+  const webviewDest = join(outDir, 'webview');
+  if (existsSync(webviewSrc)) {
+    cpSync(webviewSrc, webviewDest, { recursive: true });
+    console.log('Copied webview to dist/webview');
+  } else {
+    console.error('Webview source not found at:', webviewSrc);
+    process.exit(1);
+  }
 
   // Bundle extension
   const ctx = await esbuild.context({

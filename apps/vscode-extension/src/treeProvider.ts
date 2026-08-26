@@ -1,14 +1,17 @@
-import * as vscode from 'vscode';
-import { ConnectionManager } from './connectionManager.js';
-import { WebviewManager } from './webviewManager.js';
 import { Connection, StoredConnection } from '@vistiq/core';
-import { logger, createChildLogger } from '@vistiq/shared';
+import type { logger } from '@vistiq/shared';
+import { createChildLogger } from '@vistiq/shared';
+import * as vscode from 'vscode';
+import type { ConnectionManager } from './connectionManager.js';
+import type { WebviewManager } from './webviewManager.js';
 
 const treeLogger = createChildLogger('treeProvider');
 
 export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeItem> {
-  private _onDidChangeTreeData: vscode.EventEmitter<ProjectTreeItem | undefined | null | void> = new vscode.EventEmitter<ProjectTreeItem | undefined | null | void>();
-  readonly onDidChangeTreeData: vscode.Event<ProjectTreeItem | undefined | null | void> = this._onDidChangeTreeData.event;
+  private _onDidChangeTreeData: vscode.EventEmitter<ProjectTreeItem | undefined | null | void> =
+    new vscode.EventEmitter<ProjectTreeItem | undefined | null | void>();
+  readonly onDidChangeTreeData: vscode.Event<ProjectTreeItem | undefined | null | void> =
+    this._onDidChangeTreeData.event;
 
   constructor(
     private connectionManager: ConnectionManager,
@@ -67,10 +70,14 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
       item.iconPath = isEmulator
         ? new vscode.ThemeIcon('debug-alt')
         : isProduction
-        ? new vscode.ThemeIcon('warning', new vscode.ThemeColor('errorForeground'))
-        : new vscode.ThemeIcon('cloud');
+          ? new vscode.ThemeIcon('warning', new vscode.ThemeColor('errorForeground'))
+          : new vscode.ThemeIcon('cloud');
 
-      item.contextValue = isEmulator ? 'emulatorProject' : isProduction ? 'productionProject' : 'project';
+      item.contextValue = isEmulator
+        ? 'emulatorProject'
+        : isProduction
+          ? 'productionProject'
+          : 'project';
       item.tooltip = `${conn.displayName}\n${conn.projectId}\n${conn.environment}`;
       items.push(item);
     }
@@ -99,35 +106,56 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
 
     const connection = this.connectionManager.getConnection(projectId);
     if (!connection || !connection.firestore) {
-      return [new ProjectTreeItem('Not connected', 'error', vscode.TreeItemCollapsibleState.None, {} as Record<string, unknown>)];
+      return [
+        new ProjectTreeItem(
+          'Not connected',
+          'error',
+          vscode.TreeItemCollapsibleState.None,
+          {} as Record<string, unknown>
+        ),
+      ];
     }
 
     try {
       const collections = await connection.firestore.listCollections();
       const items: ProjectTreeItem[] = [];
 
-      items.push(new ProjectTreeItem(
-        'Firestore',
-        'firestore',
-        vscode.TreeItemCollapsibleState.Collapsed,
-        { projectId },
-        `${collections.length} collections`
-      ));
-
-      if (connection.emulatorConfig) {
-        items.push(new ProjectTreeItem(
-          'Emulator',
-          'emulator',
+      items.push(
+        new ProjectTreeItem(
+          'Firestore',
+          'firestore',
           vscode.TreeItemCollapsibleState.Collapsed,
           { projectId },
-          `Firestore: ${connection.emulatorConfig.firestorePort}`
-        ));
+          `${collections.length} collections`
+        )
+      );
+
+      if (connection.emulatorConfig) {
+        items.push(
+          new ProjectTreeItem(
+            'Emulator',
+            'emulator',
+            vscode.TreeItemCollapsibleState.Collapsed,
+            { projectId },
+            `Firestore: ${connection.emulatorConfig.firestorePort}`
+          )
+        );
       }
 
       return items;
     } catch (error) {
-      treeLogger.error('Failed to load project children', { projectId, error: (error as Error).message });
-      return [new ProjectTreeItem('Failed to load', 'error', vscode.TreeItemCollapsibleState.None, {} as Record<string, unknown>)];
+      treeLogger.error('Failed to load project children', {
+        projectId,
+        error: (error as Error).message,
+      });
+      return [
+        new ProjectTreeItem(
+          'Failed to load',
+          'error',
+          vscode.TreeItemCollapsibleState.None,
+          {} as Record<string, unknown>
+        ),
+      ];
     }
   }
 
@@ -153,13 +181,26 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
         return item;
       });
     } catch (error) {
-      treeLogger.error('Failed to load collections', { projectId, error: (error as Error).message });
-      return [new ProjectTreeItem('Failed to load collections', 'error', vscode.TreeItemCollapsibleState.None, {} as Record<string, unknown>)];
+      treeLogger.error('Failed to load collections', {
+        projectId,
+        error: (error as Error).message,
+      });
+      return [
+        new ProjectTreeItem(
+          'Failed to load collections',
+          'error',
+          vscode.TreeItemCollapsibleState.None,
+          {} as Record<string, unknown>
+        ),
+      ];
     }
   }
 
   private async getCollectionChildren(element: ProjectTreeItem): Promise<ProjectTreeItem[]> {
-    const { projectId, collectionPath } = element.context as { projectId: string; collectionPath: string };
+    const { projectId, collectionPath } = element.context as {
+      projectId: string;
+      collectionPath: string;
+    };
     if (!projectId || !collectionPath) return [];
 
     const connection = this.connectionManager.getConnection(projectId);
@@ -185,8 +226,19 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
         return item;
       });
     } catch (error) {
-      treeLogger.error('Failed to load documents', { projectId, collectionPath, error: (error as Error).message });
-      return [new ProjectTreeItem('Failed to load documents', 'error', vscode.TreeItemCollapsibleState.None, {})];
+      treeLogger.error('Failed to load documents', {
+        projectId,
+        collectionPath,
+        error: (error as Error).message,
+      });
+      return [
+        new ProjectTreeItem(
+          'Failed to load documents',
+          'error',
+          vscode.TreeItemCollapsibleState.None,
+          {}
+        ),
+      ];
     }
   }
 }

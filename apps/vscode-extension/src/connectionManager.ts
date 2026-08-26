@@ -1,13 +1,15 @@
-import * as vscode from 'vscode';
+import type { AuditService } from '@vistiq/audit';
+import type { AuthProviders } from '@vistiq/auth';
+import { EmulatorProvider, ServiceAccountProvider } from '@vistiq/auth';
 import { CredentialService } from '@vistiq/credentials';
-import { AuthProviders, ServiceAccountProvider, EmulatorProvider } from '@vistiq/auth';
-import { FirestoreService, createFirestoreService } from '@vistiq/firestore';
-import { initializeApp, cert, getApps } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-import { AuditService } from '@vistiq/audit';
 import { EmulatorService } from '@vistiq/emulator';
-import { Connection, StoredConnection, StoredServiceAccount, EmulatorConfig, EnvironmentLabel } from '@vistiq/core';
-import { logger, createChildLogger, VistiqError, ERROR_CODES } from '@vistiq/shared';
+import type { createFirestoreService, FirestoreService } from '@vistiq/firestore';
+import { createFirestoreService } from '@vistiq/firestore';
+import { createChildLogger, ERROR_CODES, VistiqError } from '@vistiq/shared';
+import type { logger } from '@vistiq/shared';
+import type { cert, getApps, initializeApp } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
+import * as vscode from 'vscode';
 
 const connLogger = createChildLogger('connectionManager');
 
@@ -79,7 +81,10 @@ export class ConnectionManager {
         } as ActiveConnection);
       }
     } catch (error) {
-      connLogger.warn('Failed to restore connection', { projectId: stored.projectId, error: (error as Error).message });
+      connLogger.warn('Failed to restore connection', {
+        projectId: stored.projectId,
+        error: (error as Error).message,
+      });
     }
   }
 
@@ -241,10 +246,23 @@ export class ConnectionManager {
   }
 
   async showConnectDialog(): Promise<void> {
-    const authMethod = await vscode.window.showQuickPick<vscode.QuickPickItem & { value: 'service-account' | 'emulator' }>([
-      { label: 'Service Account', value: 'service-account', description: 'Connect using Google Cloud Service Account JSON' },
-      { label: 'Firebase Emulator', value: 'emulator', description: 'Connect to local Firebase Emulator' },
-    ], { placeHolder: 'Select authentication method' });
+    const authMethod = await vscode.window.showQuickPick<
+      vscode.QuickPickItem & { value: 'service-account' | 'emulator' }
+    >(
+      [
+        {
+          label: 'Service Account',
+          value: 'service-account',
+          description: 'Connect using Google Cloud Service Account JSON',
+        },
+        {
+          label: 'Firebase Emulator',
+          value: 'emulator',
+          description: 'Connect to local Firebase Emulator',
+        },
+      ],
+      { placeHolder: 'Select authentication method' }
+    );
 
     if (!authMethod) return;
 
@@ -259,7 +277,7 @@ export class ConnectionManager {
     const projectId = await vscode.window.showInputBox({
       prompt: 'Enter Firebase Project ID',
       placeHolder: 'my-project-123',
-      validateInput: v => v ? null : 'Project ID is required',
+      validateInput: v => (v ? null : 'Project ID is required'),
     });
     if (!projectId) return;
 
@@ -270,12 +288,17 @@ export class ConnectionManager {
     });
     if (!displayName) return;
 
-    const environment = await vscode.window.showQuickPick<vscode.QuickPickItem & { value: EnvironmentLabel }>([
-      { label: 'Development', value: 'development' },
-      { label: 'Staging', value: 'staging' },
-      { label: 'Production', value: 'production' },
-      { label: 'Custom', value: 'custom' },
-    ], { placeHolder: 'Select environment' });
+    const environment = await vscode.window.showQuickPick<
+      vscode.QuickPickItem & { value: EnvironmentLabel }
+    >(
+      [
+        { label: 'Development', value: 'development' },
+        { label: 'Staging', value: 'staging' },
+        { label: 'Production', value: 'production' },
+        { label: 'Custom', value: 'custom' },
+      ],
+      { placeHolder: 'Select environment' }
+    );
     if (!environment) return;
 
     const isProduction = environment.value === 'production';
@@ -316,7 +339,12 @@ export class ConnectionManager {
       await vscode.window.withProgress(
         { location: vscode.ProgressLocation.Notification, title: 'Connecting to Firestore...' },
         async () => {
-          await this.connectServiceAccount(projectId, displayName, environment.value, serviceAccount);
+          await this.connectServiceAccount(
+            projectId,
+            displayName,
+            environment.value,
+            serviceAccount
+          );
         }
       );
       vscode.window.showInformationMessage(`Connected to ${displayName}`);
@@ -337,7 +365,7 @@ export class ConnectionManager {
     const firestorePort = await vscode.window.showInputBox({
       prompt: 'Firestore emulator port',
       value: String(config?.firestorePort || 8080),
-      validateInput: v => /^\d+$/.test(v) ? null : 'Must be a number',
+      validateInput: v => (/^\d+$/.test(v) ? null : 'Must be a number'),
     });
     if (!firestorePort) return;
 
@@ -354,7 +382,8 @@ export class ConnectionManager {
     if (!running) {
       const proceed = await vscode.window.showWarningMessage(
         'Emulator does not appear to be running. Connect anyway?',
-        'Yes', 'No'
+        'Yes',
+        'No'
       );
       if (proceed !== 'Yes') return;
     }

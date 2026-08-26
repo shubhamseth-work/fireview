@@ -7691,12 +7691,12 @@ var require_logging_utils = __commonJS({
             this.setFilters();
             this.filtersSet = true;
           }
-          let logger6 = this.cached.get(namespace);
-          if (!logger6) {
-            logger6 = this.makeLogger(namespace);
-            this.cached.set(namespace, logger6);
+          let logger3 = this.cached.get(namespace);
+          if (!logger3) {
+            logger3 = this.makeLogger(namespace);
+            this.cached.set(namespace, logger3);
           }
-          logger6(fields, ...args);
+          logger3(fields, ...args);
         } catch (e) {
           console.error(e);
         }
@@ -7833,7 +7833,7 @@ var require_logging_utils = __commonJS({
       } else if (cachedBackend === void 0) {
         cachedBackend = getNodeBackend();
       }
-      const logger6 = (() => {
+      const logger3 = (() => {
         let previousBackend = void 0;
         const newLogger = new AdhocDebugLogger(namespace, (fields, ...args) => {
           if (previousBackend !== cachedBackend) {
@@ -7848,8 +7848,8 @@ var require_logging_utils = __commonJS({
         });
         return newLogger;
       })();
-      loggerCache.set(namespace, logger6);
-      return logger6.func;
+      loggerCache.set(namespace, logger3);
+      return logger3.func;
     }
   }
 });
@@ -7913,14 +7913,14 @@ var require_src4 = __commonJS({
     var gaxios_1 = require_src2();
     var jsonBigint = require_json_bigint();
     var gcp_residency_1 = require_gcp_residency();
-    var logger6 = require_src3();
+    var logger3 = require_src3();
     exports2.BASE_PATH = "/computeMetadata/v1";
     exports2.HOST_ADDRESS = "http://169.254.169.254";
     exports2.SECONDARY_HOST_ADDRESS = "http://metadata.google.internal.";
     exports2.HEADER_NAME = "Metadata-Flavor";
     exports2.HEADER_VALUE = "Google";
     exports2.HEADERS = Object.freeze({ [exports2.HEADER_NAME]: exports2.HEADER_VALUE });
-    var log = logger6.log("gcp metadata");
+    var log = logger3.log("gcp metadata");
     exports2.METADATA_SERVER_DETECTION = Object.freeze({
       "assume-present": "don't try to ping the metadata server, but assume it's present",
       none: "don't try to ping the metadata server, but don't try to use it either",
@@ -13134,12 +13134,12 @@ var require_src7 = __commonJS({
     var _GoogleToken_requestToken;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleToken = void 0;
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var gaxios_1 = require_src6();
     var jws = require_jws();
     var path4 = require("path");
     var util_1 = require("util");
-    var readFile = fs4.readFile ? (0, util_1.promisify)(fs4.readFile) : async () => {
+    var readFile = fs5.readFile ? (0, util_1.promisify)(fs5.readFile) : async () => {
       throw new ErrorWithCode("use key rather than keyFile.", "MISSING_CREDENTIALS");
     };
     var GOOGLE_TOKEN_URL = "https://www.googleapis.com/oauth2/v4/token";
@@ -14696,12 +14696,12 @@ var require_filesubjecttokensupplier = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.FileSubjectTokenSupplier = void 0;
     var util_1 = require("util");
-    var fs4 = require("fs");
-    var readFile = (0, util_1.promisify)((_a = fs4.readFile) !== null && _a !== void 0 ? _a : () => {
+    var fs5 = require("fs");
+    var readFile = (0, util_1.promisify)((_a = fs5.readFile) !== null && _a !== void 0 ? _a : () => {
     });
-    var realpath = (0, util_1.promisify)((_b = fs4.realpath) !== null && _b !== void 0 ? _b : () => {
+    var realpath = (0, util_1.promisify)((_b = fs5.realpath) !== null && _b !== void 0 ? _b : () => {
     });
-    var lstat = (0, util_1.promisify)((_c = fs4.lstat) !== null && _c !== void 0 ? _c : () => {
+    var lstat = (0, util_1.promisify)((_c = fs5.lstat) !== null && _c !== void 0 ? _c : () => {
     });
     var FileSubjectTokenSupplier = class {
       /**
@@ -15419,7 +15419,7 @@ var require_pluggable_auth_handler = __commonJS({
     var pluggable_auth_client_1 = require_pluggable_auth_client();
     var executable_response_1 = require_executable_response();
     var childProcess = require("child_process");
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var PluggableAuthHandler = class _PluggableAuthHandler {
       /**
        * Instantiates a PluggableAuthHandler instance using the provided
@@ -15489,14 +15489,14 @@ var require_pluggable_auth_handler = __commonJS({
         }
         let filePath;
         try {
-          filePath = await fs4.promises.realpath(this.outputFile);
+          filePath = await fs5.promises.realpath(this.outputFile);
         } catch (_a) {
           return void 0;
         }
-        if (!(await fs4.promises.lstat(filePath)).isFile()) {
+        if (!(await fs5.promises.lstat(filePath)).isFile()) {
           return void 0;
         }
-        const responseString = await fs4.promises.readFile(filePath, {
+        const responseString = await fs5.promises.readFile(filePath, {
           encoding: "utf8"
         });
         if (responseString === "") {
@@ -15917,7 +15917,7 @@ var require_googleauth = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleAuth = exports2.GoogleAuthExceptionMessages = exports2.CLOUD_SDK_CLIENT_ID = void 0;
     var child_process_1 = require("child_process");
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var gcpMetadata = require_src4();
     var os = require("os");
     var path4 = require("path");
@@ -16186,7 +16186,7 @@ var require_googleauth = __commonJS({
         }
         if (location) {
           location = path4.join(location, "gcloud", "application_default_credentials.json");
-          if (!fs4.existsSync(location)) {
+          if (!fs5.existsSync(location)) {
             location = null;
           }
         }
@@ -16207,8 +16207,8 @@ var require_googleauth = __commonJS({
           throw new Error("The file path is invalid.");
         }
         try {
-          filePath = fs4.realpathSync(filePath);
-          if (!fs4.lstatSync(filePath).isFile()) {
+          filePath = fs5.realpathSync(filePath);
+          if (!fs5.lstatSync(filePath).isFile()) {
             throw new Error();
           }
         } catch (err) {
@@ -16217,7 +16217,7 @@ var require_googleauth = __commonJS({
           }
           throw err;
         }
-        const readStream = fs4.createReadStream(filePath);
+        const readStream = fs5.createReadStream(filePath);
         return this.fromStream(readStream, options);
       }
       /**
@@ -16604,7 +16604,7 @@ var require_googleauth = __commonJS({
         return this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
       } else if (this.keyFilename) {
         const filePath = path4.resolve(this.keyFilename);
-        const stream = fs4.createReadStream(filePath);
+        const stream = fs5.createReadStream(filePath);
         return await this.fromStreamAsync(stream, this.clientOptions);
       } else if (this.apiKey) {
         const client = await this.fromAPIKey(this.apiKey, this.clientOptions);
@@ -41814,13 +41814,13 @@ var require_log = __commonJS({
     forge.log.logMessage = function(message) {
       var messageLevelIndex = sLevelInfo[message.level].index;
       for (var i2 = 0; i2 < sLoggers.length; ++i2) {
-        var logger7 = sLoggers[i2];
-        if (logger7.flags & forge.log.NO_LEVEL_CHECK) {
-          logger7.f(message);
+        var logger4 = sLoggers[i2];
+        if (logger4.flags & forge.log.NO_LEVEL_CHECK) {
+          logger4.f(message);
         } else {
-          var loggerLevelIndex = sLevelInfo[logger7.level].index;
+          var loggerLevelIndex = sLevelInfo[logger4.level].index;
           if (messageLevelIndex <= loggerLevelIndex) {
-            logger7.f(logger7, message);
+            logger4.f(logger4, message);
           }
         }
       }
@@ -41868,20 +41868,20 @@ var require_log = __commonJS({
     var levels;
     var i;
     forge.log.makeLogger = function(logFunction) {
-      var logger7 = {
+      var logger4 = {
         flags: 0,
         f: logFunction
       };
-      forge.log.setLevel(logger7, "none");
-      return logger7;
+      forge.log.setLevel(logger4, "none");
+      return logger4;
     };
-    forge.log.setLevel = function(logger7, level2) {
+    forge.log.setLevel = function(logger4, level2) {
       var rval = false;
-      if (logger7 && !(logger7.flags & forge.log.LEVEL_LOCKED)) {
+      if (logger4 && !(logger4.flags & forge.log.LEVEL_LOCKED)) {
         for (var i2 = 0; i2 < forge.log.levels.length; ++i2) {
           var aValidLevel = forge.log.levels[i2];
           if (level2 == aValidLevel) {
-            logger7.level = level2;
+            logger4.level = level2;
             rval = true;
             break;
           }
@@ -41889,15 +41889,15 @@ var require_log = __commonJS({
       }
       return rval;
     };
-    forge.log.lock = function(logger7, lock2) {
+    forge.log.lock = function(logger4, lock2) {
       if (typeof lock2 === "undefined" || lock2) {
-        logger7.flags |= forge.log.LEVEL_LOCKED;
+        logger4.flags |= forge.log.LEVEL_LOCKED;
       } else {
-        logger7.flags &= ~forge.log.LEVEL_LOCKED;
+        logger4.flags &= ~forge.log.LEVEL_LOCKED;
       }
     };
-    forge.log.addLogger = function(logger7) {
-      sLoggers.push(logger7);
+    forge.log.addLogger = function(logger4) {
+      sLoggers.push(logger4);
     };
     if (typeof console !== "undefined" && "log" in console) {
       if (console.error && console.warn && console.info && console.debug) {
@@ -41908,31 +41908,31 @@ var require_log = __commonJS({
           debug: console.debug,
           verbose: console.debug
         };
-        f = function(logger7, message) {
+        f = function(logger4, message) {
           forge.log.prepareStandard(message);
           var handler = levelHandlers[message.level];
           var args = [message.standard];
           args = args.concat(message["arguments"].slice());
           handler.apply(console, args);
         };
-        logger6 = forge.log.makeLogger(f);
+        logger3 = forge.log.makeLogger(f);
       } else {
-        f = function(logger7, message) {
+        f = function(logger4, message) {
           forge.log.prepareStandardFull(message);
           console.log(message.standardFull);
         };
-        logger6 = forge.log.makeLogger(f);
+        logger3 = forge.log.makeLogger(f);
       }
-      forge.log.setLevel(logger6, "debug");
-      forge.log.addLogger(logger6);
-      sConsoleLogger = logger6;
+      forge.log.setLevel(logger3, "debug");
+      forge.log.addLogger(logger3);
+      sConsoleLogger = logger3;
     } else {
       console = {
         log: function() {
         }
       };
     }
-    var logger6;
+    var logger3;
     var levelHandlers;
     var f;
     if (sConsoleLogger !== null && typeof window !== "undefined" && window.location) {
@@ -43130,7 +43130,7 @@ var require_credential_internal = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getApplicationDefault = exports2.isApplicationDefault = exports2.ImpersonatedServiceAccountCredential = exports2.RefreshTokenCredential = exports2.ComputeEngineCredential = exports2.ServiceAccountCredential = void 0;
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var os = require("os");
     var path4 = require("path");
     var error_1 = require_error();
@@ -43215,7 +43215,7 @@ var require_credential_internal = __commonJS({
     var ServiceAccount = class _ServiceAccount {
       static fromPath(filePath) {
         try {
-          return new _ServiceAccount(JSON.parse(fs4.readFileSync(filePath, "utf8")));
+          return new _ServiceAccount(JSON.parse(fs5.readFileSync(filePath, "utf8")));
         } catch (error) {
           throw new error_1.FirebaseAppError(error_1.AppErrorCodes.INVALID_CREDENTIAL, "Failed to parse service account json file: " + error);
         }
@@ -43342,7 +43342,7 @@ var require_credential_internal = __commonJS({
        */
       static fromPath(filePath) {
         try {
-          return new _RefreshToken(JSON.parse(fs4.readFileSync(filePath, "utf8")));
+          return new _RefreshToken(JSON.parse(fs5.readFileSync(filePath, "utf8")));
         } catch (error) {
           throw new error_1.FirebaseAppError(error_1.AppErrorCodes.INVALID_CREDENTIAL, "Failed to parse refresh token file: " + error);
         }
@@ -43407,7 +43407,7 @@ var require_credential_internal = __commonJS({
        */
       static fromPath(filePath) {
         try {
-          return new _ImpersonatedServiceAccount(JSON.parse(fs4.readFileSync(filePath, "utf8")));
+          return new _ImpersonatedServiceAccount(JSON.parse(fs5.readFileSync(filePath, "utf8")));
         } catch (error) {
           throw new error_1.FirebaseAppError(error_1.AppErrorCodes.INVALID_CREDENTIAL, "Failed to parse impersonated service account file: " + error);
         }
@@ -43515,7 +43515,7 @@ var require_credential_internal = __commonJS({
     function readCredentialFile(filePath, ignoreMissing) {
       let fileText;
       try {
-        fileText = fs4.readFileSync(filePath, "utf8");
+        fileText = fs5.readFileSync(filePath, "utf8");
       } catch (error) {
         if (ignoreMissing) {
           return null;
@@ -44130,7 +44130,7 @@ var require_lifecycle = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.FIREBASE_CONFIG_VAR = exports2.deleteApp = exports2.getApps = exports2.getApp = exports2.initializeApp = exports2.defaultAppStore = exports2.AppStore = void 0;
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var validator = require_validator();
     var error_1 = require_error();
     var credential_internal_1 = require_credential_internal();
@@ -44219,7 +44219,7 @@ var require_lifecycle = __commonJS({
         return {};
       }
       try {
-        const contents = config.startsWith("{") ? config : fs4.readFileSync(config, "utf8");
+        const contents = config.startsWith("{") ? config : fs5.readFileSync(config, "utf8");
         return JSON.parse(contents);
       } catch (error) {
         throw new error_1.FirebaseAppError(error_1.AppErrorCodes.INVALID_APP_OPTIONS, "Failed to parse app options file: " + error);
@@ -46268,17 +46268,17 @@ var require_codegen = __commonJS({
 var require_fs = __commonJS({
   "../../node_modules/@protobufjs/fetch/util/fs.js"(exports2, module2) {
     "use strict";
-    var fs4 = null;
+    var fs5 = null;
     try {
-      fs4 = require(
+      fs5 = require(
         /* webpackIgnore: true */
         "fs"
       );
-      if (!fs4 || !fs4.readFile || !fs4.readFileSync)
-        fs4 = null;
+      if (!fs5 || !fs5.readFile || !fs5.readFileSync)
+        fs5 = null;
     } catch (e) {
     }
-    module2.exports = fs4;
+    module2.exports = fs5;
   }
 });
 
@@ -46288,7 +46288,7 @@ var require_fetch = __commonJS({
     "use strict";
     module2.exports = fetch;
     var asPromise = require_aspromise();
-    var fs4 = require_fs();
+    var fs5 = require_fs();
     function fetch(filename, options, callback) {
       if (typeof options === "function") {
         callback = options;
@@ -46297,8 +46297,8 @@ var require_fetch = __commonJS({
         options = {};
       if (!callback)
         return asPromise(fetch, this, filename, options);
-      if (!options.xhr && fs4 && fs4.readFile)
-        return fs4.readFile(filename, function fetchReadFileCallback(err, contents) {
+      if (!options.xhr && fs5 && fs5.readFile)
+        return fs5.readFile(filename, function fetchReadFileCallback(err, contents) {
           return err && typeof XMLHttpRequest !== "undefined" ? fetch.xhr(filename, options, callback) : err ? callback(err) : callback(null, options.binary ? contents : contents.toString("utf8"));
         });
       return fetch.xhr(filename, options, callback);
@@ -53003,10 +53003,10 @@ var require_src13 = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getPem = void 0;
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var forge = require_lib4();
     var util_1 = require("util");
-    var readFile = (0, util_1.promisify)(fs4.readFile);
+    var readFile = (0, util_1.promisify)(fs5.readFile);
     function getPem(filename, callback) {
       if (callback) {
         getPemAsync(filename).then((pem) => callback(null, pem)).catch((err) => callback(err, null));
@@ -53042,12 +53042,12 @@ var require_src14 = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleToken = void 0;
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var gaxios_1 = require_src11();
     var jws = require_jws();
     var path4 = require("path");
     var util_1 = require("util");
-    var readFile = fs4.readFile ? (0, util_1.promisify)(fs4.readFile) : async () => {
+    var readFile = fs5.readFile ? (0, util_1.promisify)(fs5.readFile) : async () => {
       throw new ErrorWithCode("use key rather than keyFile.", "MISSING_CREDENTIALS");
     };
     var GOOGLE_TOKEN_URL = "https://www.googleapis.com/oauth2/v4/token";
@@ -55120,14 +55120,14 @@ var require_identitypoolclient2 = __commonJS({
     var _c;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.IdentityPoolClient = void 0;
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var util_1 = require("util");
     var baseexternalclient_1 = require_baseexternalclient2();
-    var readFile = (0, util_1.promisify)((_a = fs4.readFile) !== null && _a !== void 0 ? _a : () => {
+    var readFile = (0, util_1.promisify)((_a = fs5.readFile) !== null && _a !== void 0 ? _a : () => {
     });
-    var realpath = (0, util_1.promisify)((_b = fs4.realpath) !== null && _b !== void 0 ? _b : () => {
+    var realpath = (0, util_1.promisify)((_b = fs5.realpath) !== null && _b !== void 0 ? _b : () => {
     });
-    var lstat = (0, util_1.promisify)((_c = fs4.lstat) !== null && _c !== void 0 ? _c : () => {
+    var lstat = (0, util_1.promisify)((_c = fs5.lstat) !== null && _c !== void 0 ? _c : () => {
     });
     var IdentityPoolClient = class extends baseexternalclient_1.BaseExternalAccountClient {
       /**
@@ -55700,7 +55700,7 @@ var require_pluggable_auth_handler2 = __commonJS({
     var pluggable_auth_client_1 = require_pluggable_auth_client2();
     var executable_response_1 = require_executable_response2();
     var childProcess = require("child_process");
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var PluggableAuthHandler = class _PluggableAuthHandler {
       /**
        * Instantiates a PluggableAuthHandler instance using the provided
@@ -55770,14 +55770,14 @@ var require_pluggable_auth_handler2 = __commonJS({
         }
         let filePath;
         try {
-          filePath = await fs4.promises.realpath(this.outputFile);
+          filePath = await fs5.promises.realpath(this.outputFile);
         } catch (_a) {
           return void 0;
         }
-        if (!(await fs4.promises.lstat(filePath)).isFile()) {
+        if (!(await fs5.promises.lstat(filePath)).isFile()) {
           return void 0;
         }
-        const responseString = await fs4.promises.readFile(filePath, {
+        const responseString = await fs5.promises.readFile(filePath, {
           encoding: "utf8"
         });
         if (responseString === "") {
@@ -56173,7 +56173,7 @@ var require_googleauth2 = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleAuth = exports2.CLOUD_SDK_CLIENT_ID = void 0;
     var child_process_1 = require("child_process");
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var gcpMetadata = require_src12();
     var os = require("os");
     var path4 = require("path");
@@ -56395,7 +56395,7 @@ var require_googleauth2 = __commonJS({
         }
         if (location) {
           location = path4.join(location, "gcloud", "application_default_credentials.json");
-          if (!fs4.existsSync(location)) {
+          if (!fs5.existsSync(location)) {
             location = null;
           }
         }
@@ -56416,8 +56416,8 @@ var require_googleauth2 = __commonJS({
           throw new Error("The file path is invalid.");
         }
         try {
-          filePath = fs4.realpathSync(filePath);
-          if (!fs4.lstatSync(filePath).isFile()) {
+          filePath = fs5.realpathSync(filePath);
+          if (!fs5.lstatSync(filePath).isFile()) {
             throw new Error();
           }
         } catch (err) {
@@ -56426,7 +56426,7 @@ var require_googleauth2 = __commonJS({
           }
           throw err;
         }
-        const readStream = fs4.createReadStream(filePath);
+        const readStream = fs5.createReadStream(filePath);
         return this.fromStream(readStream, options);
       }
       /**
@@ -56681,7 +56681,7 @@ var require_googleauth2 = __commonJS({
             this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
           } else if (this.keyFilename) {
             const filePath = path4.resolve(this.keyFilename);
-            const stream = fs4.createReadStream(filePath);
+            const stream = fs5.createReadStream(filePath);
             await this.fromStreamAsync(stream, this.clientOptions);
           } else {
             await this.getApplicationDefaultAsync(this.clientOptions);
@@ -75291,7 +75291,7 @@ var require_logger = __commonJS({
     var validate_1 = require_validate();
     var libVersion;
     var logFunction = null;
-    function logger6(methodName, requestTag, logMessage, ...additionalArgs) {
+    function logger3(methodName, requestTag, logMessage, ...additionalArgs) {
       requestTag = requestTag || "#####";
       if (logFunction) {
         const formattedMessage = util.format(logMessage, ...additionalArgs);
@@ -75299,11 +75299,11 @@ var require_logger = __commonJS({
         logFunction(`Firestore (${libVersion}) ${time} ${requestTag} [${methodName}]: ` + formattedMessage);
       }
     }
-    exports2.logger = logger6;
-    function setLogFunction2(logger7) {
-      if (logger7 !== null)
-        (0, validate_1.validateFunction)("logger", logger7);
-      logFunction = logger7;
+    exports2.logger = logger3;
+    function setLogFunction2(logger4) {
+      if (logger4 !== null)
+        (0, validate_1.validateFunction)("logger", logger4);
+      logFunction = logger4;
     }
     exports2.setLogFunction = setLogFunction2;
     function setLibVersion(version2) {
@@ -78488,8 +78488,8 @@ var require_logging = __commonJS({
       return _logger;
     };
     exports2.getLogger = getLogger;
-    var setLogger = (logger6) => {
-      _logger = logger6;
+    var setLogger = (logger3) => {
+      _logger = logger3;
     };
     exports2.setLogger = setLogger;
     var setLoggerVerbosity = (verbosity) => {
@@ -78928,14 +78928,14 @@ var require_tls_helpers = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getDefaultRootsData = exports2.CIPHER_SUITES = void 0;
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     exports2.CIPHER_SUITES = process.env.GRPC_SSL_CIPHER_SUITES;
     var DEFAULT_ROOTS_FILE_PATH = process.env.GRPC_DEFAULT_SSL_ROOTS_FILE_PATH;
     var defaultRootsData = null;
     function getDefaultRootsData() {
       if (DEFAULT_ROOTS_FILE_PATH) {
         if (defaultRootsData === null) {
-          defaultRootsData = fs4.readFileSync(DEFAULT_ROOTS_FILE_PATH);
+          defaultRootsData = fs5.readFileSync(DEFAULT_ROOTS_FILE_PATH);
         }
         return defaultRootsData;
       }
@@ -83561,17 +83561,17 @@ var require_patterns = __commonJS({
 var require_fs2 = __commonJS({
   "../../node_modules/protobufjs/src/util/fs.js"(exports2, module2) {
     "use strict";
-    var fs4 = null;
+    var fs5 = null;
     try {
-      fs4 = require(
+      fs5 = require(
         /* webpackIgnore: true */
         "fs"
       );
-      if (!fs4 || !fs4.readFile || !fs4.readFileSync)
-        fs4 = null;
+      if (!fs5 || !fs5.readFile || !fs5.readFileSync)
+        fs5 = null;
     } catch (e) {
     }
-    module2.exports = fs4;
+    module2.exports = fs5;
   }
 });
 
@@ -89844,7 +89844,7 @@ var require_util11 = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.addCommonProtos = exports2.loadProtosWithOptionsSync = exports2.loadProtosWithOptions = void 0;
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var path4 = require("path");
     var Protobuf = require_protobufjs2();
     function addIncludePathResolver(root, includePaths) {
@@ -89856,7 +89856,7 @@ var require_util11 = __commonJS({
         for (const directory of includePaths) {
           const fullPath = path4.join(directory, target);
           try {
-            fs4.accessSync(fullPath, fs4.constants.R_OK);
+            fs5.accessSync(fullPath, fs5.constants.R_OK);
             return fullPath;
           } catch (err) {
             continue;
@@ -97270,8 +97270,8 @@ var require_src19 = __commonJS({
       throw new Error("Not available in this library. Use @grpc/proto-loader and loadPackageDefinition instead");
     };
     exports2.load = load;
-    var setLogger = (logger6) => {
-      logging.setLogger(logger6);
+    var setLogger = (logger3) => {
+      logging.setLogger(logger3);
     };
     exports2.setLogger = setLogger;
     var setLogVerbosity = (verbosity) => {
@@ -97467,7 +97467,7 @@ var require_grpc = __commonJS({
     exports2.GoogleProtoFilesRoot = exports2.GrpcClient = exports2.ClientStub = void 0;
     var grpcProtoLoader = require_src18();
     var child_process_1 = require("child_process");
-    var fs4 = require("fs");
+    var fs5 = require("fs");
     var google_auth_library_1 = require_src15();
     var grpc = require_src19();
     var os = require("os");
@@ -97483,7 +97483,7 @@ var require_grpc = __commonJS({
     var COMMON_PROTO_FILES = commonProtoFiles.map((file) => file.replace(/[/\\]/g, path4.sep));
     async function readFileAsync(path5) {
       return new Promise((resolve, reject) => {
-        fs4.readFile(path5, "utf8", (err, content) => {
+        fs5.readFile(path5, "utf8", (err, content) => {
           if (err)
             return reject(err);
           else
@@ -97636,7 +97636,7 @@ var require_grpc = __commonJS({
         return this.loadFromProto(filename, options, ignoreCache);
       }
       static _resolveFile(protoPath, filename) {
-        if (fs4.existsSync(path4.join(protoPath, filename))) {
+        if (fs5.existsSync(path4.join(protoPath, filename))) {
           return path4.join(protoPath, filename);
         } else if (COMMON_PROTO_FILES.indexOf(filename) > -1) {
           return path4.join(googleProtoFilesDir, filename);
@@ -97825,7 +97825,7 @@ var require_grpc = __commonJS({
         originPath = path4.normalize(originPath);
         includePath = path4.normalize(includePath);
         if (path4.isAbsolute(includePath)) {
-          if (!fs4.existsSync(includePath)) {
+          if (!fs5.existsSync(includePath)) {
             throw new Error("The include `" + includePath + "` was not found.");
           }
           return includePath;
@@ -97839,10 +97839,10 @@ var require_grpc = __commonJS({
         originPath = path4.normalize(originPath);
         includePath = path4.normalize(includePath);
         let current = originPath;
-        let found = fs4.existsSync(path4.join(current, includePath));
+        let found = fs5.existsSync(path4.join(current, includePath));
         while (!found && current.length > 0) {
           current = current.substring(0, current.lastIndexOf(path4.sep));
-          found = fs4.existsSync(path4.join(current, includePath));
+          found = fs5.existsSync(path4.join(current, includePath));
         }
         if (!found) {
           throw new Error("The include `" + includePath + "` was not found.");
@@ -113057,7 +113057,7 @@ var require_firestore_internal = __commonJS({
     var credential_internal_1 = require_credential_internal();
     var validator = require_validator();
     var utils = require_utils3();
-    var FirestoreService3 = class {
+    var FirestoreService2 = class {
       constructor(app) {
         this.databases = /* @__PURE__ */ new Map();
         this.firestoreSettings = /* @__PURE__ */ new Map();
@@ -113103,7 +113103,7 @@ var require_firestore_internal = __commonJS({
         return this.appInternal;
       }
     };
-    exports2.FirestoreService = FirestoreService3;
+    exports2.FirestoreService = FirestoreService2;
     function getFirestoreOptions(app, firestoreSettings) {
       if (!validator.isNonNullObject(app) || !("options" in app)) {
         throw new error_1.FirebaseFirestoreError({
@@ -113257,12 +113257,12 @@ __export(dist_exports, {
 function createExportService(firestore) {
   return new ExportService(firestore);
 }
-var fs2, path2, ExportService;
+var fs3, path2, ExportService;
 var init_dist2 = __esm({
   "../../packages/export/dist/index.js"() {
     "use strict";
     init_dist();
-    fs2 = __toESM(require("fs"), 1);
+    fs3 = __toESM(require("fs"), 1);
     path2 = __toESM(require("path"), 1);
     ExportService = class {
       firestore;
@@ -113283,10 +113283,10 @@ var init_dist2 = __esm({
         let failed = 0;
         const filePath = options.outputPath;
         const dir = path2.dirname(filePath);
-        if (!fs2.existsSync(dir)) {
-          fs2.mkdirSync(dir, { recursive: true });
+        if (!fs3.existsSync(dir)) {
+          fs3.mkdirSync(dir, { recursive: true });
         }
-        const writeStream = fs2.createWriteStream(filePath, { encoding: "utf8" });
+        const writeStream = fs3.createWriteStream(filePath, { encoding: "utf8" });
         const isJson = options.format === "json";
         if (isJson) {
           writeStream.write("[\n");
@@ -113442,12 +113442,12 @@ __export(dist_exports2, {
 function createImportService(firestore) {
   return new ImportService(firestore);
 }
-var fs3, path3, ImportService;
+var fs4, path3, ImportService;
 var init_dist3 = __esm({
   "../../packages/import/dist/index.js"() {
     "use strict";
     init_dist();
-    fs3 = __toESM(require("fs"), 1);
+    fs4 = __toESM(require("fs"), 1);
     path3 = __toESM(require("path"), 1);
     ImportService = class {
       firestore;
@@ -113550,7 +113550,7 @@ var init_dist3 = __esm({
         this.abortController?.abort();
       }
       async readDocuments(options) {
-        const content = fs3.readFileSync(options.inputPath, "utf8");
+        const content = fs4.readFileSync(options.inputPath, "utf8");
         const ext = path3.extname(options.inputPath).toLowerCase();
         if (ext === ".json") {
           return this.parseJson(content, options.idField);
@@ -113650,154 +113650,101 @@ __export(extension_exports, {
   deactivate: () => deactivate
 });
 module.exports = __toCommonJS(extension_exports);
-var vscode4 = __toESM(require("vscode"));
 
-// ../../packages/credentials/dist/index.js
+// ../../packages/audit/dist/index.js
 init_dist();
-var SECRET_KEYS = {
-  SERVICE_ACCOUNT: "serviceAccount",
-  OAUTH_TOKEN: "oauthToken",
-  EMULATOR_CONFIG: "emulatorConfig",
-  CONNECTIONS: "connections",
-  ACTIVE_CONNECTION: "activeConnection"
-};
-var CredentialService = class {
-  secretStorage;
-  disposal = [];
-  constructor(secretStorage) {
-    this.secretStorage = secretStorage;
+var MAX_ENTRIES = 1e4;
+var AuditService = class {
+  entries = [];
+  persistencePath = null;
+  constructor(persistencePath) {
+    this.persistencePath = persistencePath || null;
+    this.load();
   }
-  async storeServiceAccount(projectId, serviceAccount) {
-    const key = this.getKey(SECRET_KEYS.SERVICE_ACCOUNT, projectId);
-    await this.secretStorage.store(key, JSON.stringify(serviceAccount));
-    logger.info("Service account stored", { projectId });
-  }
-  async getServiceAccount(projectId) {
-    const key = this.getKey(SECRET_KEYS.SERVICE_ACCOUNT, projectId);
-    const value = await this.secretStorage.get(key);
-    if (!value)
-      return null;
-    try {
-      return JSON.parse(value);
-    } catch {
-      logger.error("Failed to parse service account", { projectId });
-      return null;
+  record(entry) {
+    const auditEntry = {
+      id: crypto.randomUUID(),
+      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+      ...entry
+    };
+    this.entries.unshift(auditEntry);
+    if (this.entries.length > MAX_ENTRIES) {
+      this.entries = this.entries.slice(0, MAX_ENTRIES);
     }
+    this.persist();
+    return auditEntry;
   }
-  async deleteServiceAccount(projectId) {
-    const key = this.getKey(SECRET_KEYS.SERVICE_ACCOUNT, projectId);
-    await this.secretStorage.delete(key);
-    logger.info("Service account deleted", { projectId });
-  }
-  async storeOAuthToken(projectId, token) {
-    const key = this.getKey(SECRET_KEYS.OAUTH_TOKEN, projectId);
-    await this.secretStorage.store(key, JSON.stringify(token));
-    logger.info("OAuth token stored", { projectId });
-  }
-  async getOAuthToken(projectId) {
-    const key = this.getKey(SECRET_KEYS.OAUTH_TOKEN, projectId);
-    const value = await this.secretStorage.get(key);
-    if (!value)
-      return null;
-    try {
-      return JSON.parse(value);
-    } catch {
-      logger.error("Failed to parse OAuth token", { projectId });
-      return null;
+  getEntries(options) {
+    let filtered = [...this.entries];
+    if (options?.projectId) {
+      filtered = filtered.filter((e) => e.projectId === options.projectId);
     }
-  }
-  async deleteOAuthToken(projectId) {
-    const key = this.getKey(SECRET_KEYS.OAUTH_TOKEN, projectId);
-    await this.secretStorage.delete(key);
-    logger.info("OAuth token deleted", { projectId });
-  }
-  async storeEmulatorConfig(projectId, config) {
-    const key = this.getKey(SECRET_KEYS.EMULATOR_CONFIG, projectId);
-    await this.secretStorage.store(key, JSON.stringify(config));
-    logger.info("Emulator config stored", { projectId });
-  }
-  async getEmulatorConfig(projectId) {
-    const key = this.getKey(SECRET_KEYS.EMULATOR_CONFIG, projectId);
-    const value = await this.secretStorage.get(key);
-    if (!value)
-      return null;
-    try {
-      return JSON.parse(value);
-    } catch {
-      logger.error("Failed to parse emulator config", { projectId });
-      return null;
+    if (options?.operation) {
+      filtered = filtered.filter((e) => e.operation === options.operation);
     }
+    if (options?.startDate) {
+      filtered = filtered.filter((e) => e.timestamp >= options.startDate);
+    }
+    if (options?.endDate) {
+      filtered = filtered.filter((e) => e.timestamp <= options.endDate);
+    }
+    const offset = options?.offset || 0;
+    const limit = options?.limit || 100;
+    return filtered.slice(offset, offset + limit);
   }
-  async deleteEmulatorConfig(projectId) {
-    const key = this.getKey(SECRET_KEYS.EMULATOR_CONFIG, projectId);
-    await this.secretStorage.delete(key);
-    logger.info("Emulator config deleted", { projectId });
+  search(query) {
+    const lowerQuery = query.toLowerCase();
+    return this.entries.filter((e) => e.projectId.toLowerCase().includes(lowerQuery) || e.collectionPath?.toLowerCase().includes(lowerQuery) || e.documentPath?.toLowerCase().includes(lowerQuery) || e.operation.toLowerCase().includes(lowerQuery) || e.error?.toLowerCase().includes(lowerQuery));
   }
-  async storeConnection(connection) {
-    const connections = await this.getConnections();
-    const existingIndex = connections.findIndex((c) => c.projectId === connection.projectId);
-    if (existingIndex >= 0) {
-      connections[existingIndex] = connection;
+  clear(projectId) {
+    const before = this.entries.length;
+    if (projectId) {
+      this.entries = this.entries.filter((e) => e.projectId !== projectId);
     } else {
-      connections.push(connection);
+      this.entries = [];
     }
-    await this.secretStorage.store(SECRET_KEYS.CONNECTIONS, JSON.stringify(connections));
-    logger.info("Connection stored", { projectId: connection.projectId });
+    this.persist();
+    return before - this.entries.length;
   }
-  async getConnections() {
-    const value = await this.secretStorage.get(SECRET_KEYS.CONNECTIONS);
-    if (!value)
-      return [];
+  export() {
+    return JSON.stringify(this.entries, null, 2);
+  }
+  getStats() {
+    const byOperation = {};
+    const byProject = {};
+    for (const entry of this.entries) {
+      byOperation[entry.operation] = (byOperation[entry.operation] || 0) + 1;
+      byProject[entry.projectId] = (byProject[entry.projectId] || 0) + 1;
+    }
+    return {
+      total: this.entries.length,
+      byOperation,
+      byProject
+    };
+  }
+  load() {
+    if (!this.persistencePath || !require("fs").existsSync(this.persistencePath))
+      return;
     try {
-      return JSON.parse(value);
-    } catch {
-      logger.error("Failed to parse connections");
-      return [];
+      const content = require("fs").readFileSync(this.persistencePath, "utf8");
+      this.entries = JSON.parse(content);
+      logger.info("Audit history loaded", { count: this.entries.length });
+    } catch (error) {
+      logger.error("Failed to load audit history", { error: error.message });
     }
   }
-  async getConnection(projectId) {
-    const connections = await this.getConnections();
-    return connections.find((c) => c.projectId === projectId) || null;
-  }
-  async deleteConnection(projectId) {
-    const connections = await this.getConnections();
-    const filtered = connections.filter((c) => c.projectId !== projectId);
-    await this.secretStorage.store(SECRET_KEYS.CONNECTIONS, JSON.stringify(filtered));
-    await this.deleteServiceAccount(projectId);
-    await this.deleteOAuthToken(projectId);
-    await this.deleteEmulatorConfig(projectId);
-    logger.info("Connection deleted", { projectId });
-  }
-  async setActiveConnection(projectId) {
-    await this.secretStorage.store(SECRET_KEYS.ACTIVE_CONNECTION, projectId);
-  }
-  async getActiveConnection() {
-    const value = await this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION);
-    return value ?? null;
-  }
-  async clearAll() {
-    const connections = await this.getConnections();
-    for (const conn of connections) {
-      await this.deleteServiceAccount(conn.projectId);
-      await this.deleteOAuthToken(conn.projectId);
-      await this.deleteEmulatorConfig(conn.projectId);
+  persist() {
+    if (!this.persistencePath)
+      return;
+    try {
+      require("fs").writeFileSync(this.persistencePath, JSON.stringify(this.entries));
+    } catch (error) {
+      logger.error("Failed to persist audit history", { error: error.message });
     }
-    await this.secretStorage.delete(SECRET_KEYS.CONNECTIONS);
-    await this.secretStorage.delete(SECRET_KEYS.ACTIVE_CONNECTION);
-    logger.info("All credentials cleared");
-  }
-  getKey(prefix, projectId) {
-    return `${prefix}.${projectId}`;
-  }
-  dispose() {
-    for (const d of this.disposal) {
-      d.dispose();
-    }
-    this.disposal = [];
   }
 };
-function createCredentialService(secretStorage) {
-  return new CredentialService(secretStorage);
+function createAuditService(persistencePath) {
+  return new AuditService(persistencePath);
 }
 
 // ../../packages/auth/dist/index.js
@@ -114031,9 +113978,157 @@ function createAuthProviders(credentialService2) {
   };
 }
 
+// ../../packages/credentials/dist/index.js
+init_dist();
+var SECRET_KEYS = {
+  SERVICE_ACCOUNT: "serviceAccount",
+  OAUTH_TOKEN: "oauthToken",
+  EMULATOR_CONFIG: "emulatorConfig",
+  CONNECTIONS: "connections",
+  ACTIVE_CONNECTION: "activeConnection"
+};
+var CredentialService = class {
+  secretStorage;
+  disposal = [];
+  constructor(secretStorage) {
+    this.secretStorage = secretStorage;
+  }
+  async storeServiceAccount(projectId, serviceAccount) {
+    const key = this.getKey(SECRET_KEYS.SERVICE_ACCOUNT, projectId);
+    await this.secretStorage.store(key, JSON.stringify(serviceAccount));
+    logger.info("Service account stored", { projectId });
+  }
+  async getServiceAccount(projectId) {
+    const key = this.getKey(SECRET_KEYS.SERVICE_ACCOUNT, projectId);
+    const value = await this.secretStorage.get(key);
+    if (!value)
+      return null;
+    try {
+      return JSON.parse(value);
+    } catch {
+      logger.error("Failed to parse service account", { projectId });
+      return null;
+    }
+  }
+  async deleteServiceAccount(projectId) {
+    const key = this.getKey(SECRET_KEYS.SERVICE_ACCOUNT, projectId);
+    await this.secretStorage.delete(key);
+    logger.info("Service account deleted", { projectId });
+  }
+  async storeOAuthToken(projectId, token) {
+    const key = this.getKey(SECRET_KEYS.OAUTH_TOKEN, projectId);
+    await this.secretStorage.store(key, JSON.stringify(token));
+    logger.info("OAuth token stored", { projectId });
+  }
+  async getOAuthToken(projectId) {
+    const key = this.getKey(SECRET_KEYS.OAUTH_TOKEN, projectId);
+    const value = await this.secretStorage.get(key);
+    if (!value)
+      return null;
+    try {
+      return JSON.parse(value);
+    } catch {
+      logger.error("Failed to parse OAuth token", { projectId });
+      return null;
+    }
+  }
+  async deleteOAuthToken(projectId) {
+    const key = this.getKey(SECRET_KEYS.OAUTH_TOKEN, projectId);
+    await this.secretStorage.delete(key);
+    logger.info("OAuth token deleted", { projectId });
+  }
+  async storeEmulatorConfig(projectId, config) {
+    const key = this.getKey(SECRET_KEYS.EMULATOR_CONFIG, projectId);
+    await this.secretStorage.store(key, JSON.stringify(config));
+    logger.info("Emulator config stored", { projectId });
+  }
+  async getEmulatorConfig(projectId) {
+    const key = this.getKey(SECRET_KEYS.EMULATOR_CONFIG, projectId);
+    const value = await this.secretStorage.get(key);
+    if (!value)
+      return null;
+    try {
+      return JSON.parse(value);
+    } catch {
+      logger.error("Failed to parse emulator config", { projectId });
+      return null;
+    }
+  }
+  async deleteEmulatorConfig(projectId) {
+    const key = this.getKey(SECRET_KEYS.EMULATOR_CONFIG, projectId);
+    await this.secretStorage.delete(key);
+    logger.info("Emulator config deleted", { projectId });
+  }
+  async storeConnection(connection) {
+    const connections = await this.getConnections();
+    const existingIndex = connections.findIndex((c) => c.projectId === connection.projectId);
+    if (existingIndex >= 0) {
+      connections[existingIndex] = connection;
+    } else {
+      connections.push(connection);
+    }
+    await this.secretStorage.store(SECRET_KEYS.CONNECTIONS, JSON.stringify(connections));
+    logger.info("Connection stored", { projectId: connection.projectId });
+  }
+  async getConnections() {
+    const value = await this.secretStorage.get(SECRET_KEYS.CONNECTIONS);
+    if (!value)
+      return [];
+    try {
+      return JSON.parse(value);
+    } catch {
+      logger.error("Failed to parse connections");
+      return [];
+    }
+  }
+  async getConnection(projectId) {
+    const connections = await this.getConnections();
+    return connections.find((c) => c.projectId === projectId) || null;
+  }
+  async deleteConnection(projectId) {
+    const connections = await this.getConnections();
+    const filtered = connections.filter((c) => c.projectId !== projectId);
+    await this.secretStorage.store(SECRET_KEYS.CONNECTIONS, JSON.stringify(filtered));
+    await this.deleteServiceAccount(projectId);
+    await this.deleteOAuthToken(projectId);
+    await this.deleteEmulatorConfig(projectId);
+    logger.info("Connection deleted", { projectId });
+  }
+  async setActiveConnection(projectId) {
+    await this.secretStorage.store(SECRET_KEYS.ACTIVE_CONNECTION, projectId);
+  }
+  async getActiveConnection() {
+    const value = await this.secretStorage.get(SECRET_KEYS.ACTIVE_CONNECTION);
+    return value ?? null;
+  }
+  async clearAll() {
+    const connections = await this.getConnections();
+    for (const conn of connections) {
+      await this.deleteServiceAccount(conn.projectId);
+      await this.deleteOAuthToken(conn.projectId);
+      await this.deleteEmulatorConfig(conn.projectId);
+    }
+    await this.secretStorage.delete(SECRET_KEYS.CONNECTIONS);
+    await this.secretStorage.delete(SECRET_KEYS.ACTIVE_CONNECTION);
+    logger.info("All credentials cleared");
+  }
+  getKey(prefix, projectId) {
+    return `${prefix}.${projectId}`;
+  }
+  dispose() {
+    for (const d of this.disposal) {
+      d.dispose();
+    }
+    this.disposal = [];
+  }
+};
+function createCredentialService(secretStorage) {
+  return new CredentialService(secretStorage);
+}
+
 // ../../packages/emulator/dist/index.js
 init_dist();
-var fs = __toESM(require("fs"), 1);
+var fs2 = __toESM(require("fs"), 1);
 var path = __toESM(require("path"), 1);
 var EmulatorService = class {
   workspaceRoot;
@@ -114042,10 +114137,10 @@ var EmulatorService = class {
   }
   detectEmulatorConfig() {
     const firebaseJsonPath = path.join(this.workspaceRoot, "firebase.json");
-    if (!fs.existsSync(firebaseJsonPath))
+    if (!fs2.existsSync(firebaseJsonPath))
       return null;
     try {
-      const content = fs.readFileSync(firebaseJsonPath, "utf8");
+      const content = fs2.readFileSync(firebaseJsonPath, "utf8");
       const config = JSON.parse(content);
       if (!config.emulators)
         return null;
@@ -114083,18 +114178,18 @@ var EmulatorService = class {
     });
   }
   async detectProjectFiles() {
-    const firebaseJson = fs.existsSync(path.join(this.workspaceRoot, "firebase.json"));
-    const firebaserc = fs.existsSync(path.join(this.workspaceRoot, ".firebaserc"));
-    const firestoreRules = fs.existsSync(path.join(this.workspaceRoot, "firestore.rules"));
-    const firestoreIndexes = fs.existsSync(path.join(this.workspaceRoot, "firestore.indexes.json"));
-    const packageJson = fs.existsSync(path.join(this.workspaceRoot, "package.json"));
+    const firebaseJson = fs2.existsSync(path.join(this.workspaceRoot, "firebase.json"));
+    const firebaserc = fs2.existsSync(path.join(this.workspaceRoot, ".firebaserc"));
+    const firestoreRules = fs2.existsSync(path.join(this.workspaceRoot, "firestore.rules"));
+    const firestoreIndexes = fs2.existsSync(path.join(this.workspaceRoot, "firestore.indexes.json"));
+    const packageJson = fs2.existsSync(path.join(this.workspaceRoot, "package.json"));
     if (!firebaseJson && !firebaserc && !firestoreRules && !firestoreIndexes) {
       return null;
     }
     let projectId = "unknown";
     if (firebaserc) {
       try {
-        const content = fs.readFileSync(path.join(this.workspaceRoot, ".firebaserc"), "utf8");
+        const content = fs2.readFileSync(path.join(this.workspaceRoot, ".firebaserc"), "utf8");
         const config = JSON.parse(content);
         projectId = config.projects?.default || "unknown";
       } catch {
@@ -114121,625 +114216,9 @@ function createEmulatorService(workspaceRoot) {
   return new EmulatorService(workspaceRoot);
 }
 
-// ../../packages/audit/dist/index.js
-init_dist();
-var MAX_ENTRIES = 1e4;
-var AuditService = class {
-  entries = [];
-  persistencePath = null;
-  constructor(persistencePath) {
-    this.persistencePath = persistencePath || null;
-    this.load();
-  }
-  record(entry) {
-    const auditEntry = {
-      id: crypto.randomUUID(),
-      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-      ...entry
-    };
-    this.entries.unshift(auditEntry);
-    if (this.entries.length > MAX_ENTRIES) {
-      this.entries = this.entries.slice(0, MAX_ENTRIES);
-    }
-    this.persist();
-    return auditEntry;
-  }
-  getEntries(options) {
-    let filtered = [...this.entries];
-    if (options?.projectId) {
-      filtered = filtered.filter((e) => e.projectId === options.projectId);
-    }
-    if (options?.operation) {
-      filtered = filtered.filter((e) => e.operation === options.operation);
-    }
-    if (options?.startDate) {
-      filtered = filtered.filter((e) => e.timestamp >= options.startDate);
-    }
-    if (options?.endDate) {
-      filtered = filtered.filter((e) => e.timestamp <= options.endDate);
-    }
-    const offset = options?.offset || 0;
-    const limit = options?.limit || 100;
-    return filtered.slice(offset, offset + limit);
-  }
-  search(query) {
-    const lowerQuery = query.toLowerCase();
-    return this.entries.filter((e) => e.projectId.toLowerCase().includes(lowerQuery) || e.collectionPath?.toLowerCase().includes(lowerQuery) || e.documentPath?.toLowerCase().includes(lowerQuery) || e.operation.toLowerCase().includes(lowerQuery) || e.error?.toLowerCase().includes(lowerQuery));
-  }
-  clear(projectId) {
-    const before = this.entries.length;
-    if (projectId) {
-      this.entries = this.entries.filter((e) => e.projectId !== projectId);
-    } else {
-      this.entries = [];
-    }
-    this.persist();
-    return before - this.entries.length;
-  }
-  export() {
-    return JSON.stringify(this.entries, null, 2);
-  }
-  getStats() {
-    const byOperation = {};
-    const byProject = {};
-    for (const entry of this.entries) {
-      byOperation[entry.operation] = (byOperation[entry.operation] || 0) + 1;
-      byProject[entry.projectId] = (byProject[entry.projectId] || 0) + 1;
-    }
-    return {
-      total: this.entries.length,
-      byOperation,
-      byProject
-    };
-  }
-  load() {
-    if (!this.persistencePath || !require("fs").existsSync(this.persistencePath))
-      return;
-    try {
-      const content = require("fs").readFileSync(this.persistencePath, "utf8");
-      this.entries = JSON.parse(content);
-      logger.info("Audit history loaded", { count: this.entries.length });
-    } catch (error) {
-      logger.error("Failed to load audit history", { error: error.message });
-    }
-  }
-  persist() {
-    if (!this.persistencePath)
-      return;
-    try {
-      require("fs").writeFileSync(this.persistencePath, JSON.stringify(this.entries));
-    } catch (error) {
-      logger.error("Failed to persist audit history", { error: error.message });
-    }
-  }
-};
-function createAuditService(persistencePath) {
-  return new AuditService(persistencePath);
-}
-
 // src/extension.ts
 init_dist();
-
-// src/treeProvider.ts
-var vscode = __toESM(require("vscode"));
-init_dist();
-var treeLogger = createChildLogger("treeProvider");
-var ProjectTreeProvider = class {
-  constructor(connectionManager2, webviewManager2) {
-    this.connectionManager = connectionManager2;
-    this.webviewManager = webviewManager2;
-  }
-  _onDidChangeTreeData = new vscode.EventEmitter();
-  onDidChangeTreeData = this._onDidChangeTreeData.event;
-  refresh() {
-    this._onDidChangeTreeData.fire();
-  }
-  getTreeItem(element) {
-    return element;
-  }
-  async getChildren(element) {
-    if (!element) {
-      return this.getRootItems();
-    }
-    switch (element.type) {
-      case "project":
-        return this.getProjectChildren(element);
-      case "firestore":
-        return this.getFirestoreChildren(element);
-      case "collection":
-        return this.getCollectionChildren(element);
-      default:
-        return [];
-    }
-  }
-  getRootItems() {
-    const connections = this.connectionManager.getConnections();
-    const activeProjectId = this.connectionManager.getActiveProjectId();
-    const items = [];
-    for (const conn of connections) {
-      const isActive = conn.projectId === activeProjectId;
-      const isEmulator = conn.authMethod === "emulator";
-      const isProduction = conn.environment === "production";
-      const item = new ProjectTreeItem(
-        conn.displayName || conn.projectId,
-        "project",
-        vscode.TreeItemCollapsibleState.Collapsed,
-        {
-          projectId: conn.projectId,
-          isActive,
-          isEmulator,
-          isProduction,
-          environment: conn.environment
-        }
-      );
-      item.iconPath = isEmulator ? new vscode.ThemeIcon("debug-alt") : isProduction ? new vscode.ThemeIcon("warning", new vscode.ThemeColor("errorForeground")) : new vscode.ThemeIcon("cloud");
-      item.contextValue = isEmulator ? "emulatorProject" : isProduction ? "productionProject" : "project";
-      item.tooltip = `${conn.displayName}
-${conn.projectId}
-${conn.environment}`;
-      items.push(item);
-    }
-    if (items.length === 0) {
-      const item = new ProjectTreeItem(
-        "No projects connected",
-        "empty",
-        vscode.TreeItemCollapsibleState.None,
-        {},
-        "Click to connect"
-      );
-      item.command = {
-        command: "vistiq.connectProject",
-        title: "Connect Project"
-      };
-      items.push(item);
-    }
-    return items;
-  }
-  async getProjectChildren(element) {
-    const projectId = element.context.projectId;
-    if (!projectId) return [];
-    const connection = this.connectionManager.getConnection(projectId);
-    if (!connection || !connection.firestore) {
-      return [new ProjectTreeItem("Not connected", "error", vscode.TreeItemCollapsibleState.None, {})];
-    }
-    try {
-      const collections = await connection.firestore.listCollections();
-      const items = [];
-      items.push(new ProjectTreeItem(
-        "Firestore",
-        "firestore",
-        vscode.TreeItemCollapsibleState.Collapsed,
-        { projectId },
-        `${collections.length} collections`
-      ));
-      if (connection.emulatorConfig) {
-        items.push(new ProjectTreeItem(
-          "Emulator",
-          "emulator",
-          vscode.TreeItemCollapsibleState.Collapsed,
-          { projectId },
-          `Firestore: ${connection.emulatorConfig.firestorePort}`
-        ));
-      }
-      return items;
-    } catch (error) {
-      treeLogger.error("Failed to load project children", { projectId, error: error.message });
-      return [new ProjectTreeItem("Failed to load", "error", vscode.TreeItemCollapsibleState.None, {})];
-    }
-  }
-  async getFirestoreChildren(element) {
-    const projectId = element.context.projectId;
-    if (!projectId) return [];
-    const connection = this.connectionManager.getConnection(projectId);
-    if (!connection || !connection.firestore) return [];
-    try {
-      const collections = await connection.firestore.listCollections();
-      return collections.map((col) => {
-        const item = new ProjectTreeItem(
-          col.id,
-          "collection",
-          vscode.TreeItemCollapsibleState.Collapsed,
-          { projectId, collectionPath: col.path },
-          col.documentCount !== void 0 ? `${col.documentCount} docs` : ""
-        );
-        item.iconPath = new vscode.ThemeIcon("folder");
-        item.contextValue = "collection";
-        return item;
-      });
-    } catch (error) {
-      treeLogger.error("Failed to load collections", { projectId, error: error.message });
-      return [new ProjectTreeItem("Failed to load collections", "error", vscode.TreeItemCollapsibleState.None, {})];
-    }
-  }
-  async getCollectionChildren(element) {
-    const { projectId, collectionPath } = element.context;
-    if (!projectId || !collectionPath) return [];
-    const connection = this.connectionManager.getConnection(projectId);
-    if (!connection || !connection.firestore) return [];
-    try {
-      const page = await connection.firestore.listDocuments(collectionPath, { limit: 20 });
-      return page.documents.map((doc) => {
-        const item = new ProjectTreeItem(
-          doc.id,
-          "document",
-          vscode.TreeItemCollapsibleState.None,
-          { projectId, documentPath: doc.path, collectionPath },
-          "Document"
-        );
-        item.iconPath = new vscode.ThemeIcon("file");
-        item.contextValue = "document";
-        item.command = {
-          command: "vistiq.openDocument",
-          title: "Open Document",
-          arguments: [doc.path]
-        };
-        return item;
-      });
-    } catch (error) {
-      treeLogger.error("Failed to load documents", { projectId, collectionPath, error: error.message });
-      return [new ProjectTreeItem("Failed to load documents", "error", vscode.TreeItemCollapsibleState.None, {})];
-    }
-  }
-};
-var ProjectTreeItem = class extends vscode.TreeItem {
-  constructor(label, type, collapsibleState, context, description) {
-    super(label, collapsibleState);
-    this.type = type;
-    this.context = context;
-    this.description = description;
-  }
-};
-
-// src/webviewManager.ts
-var vscode2 = __toESM(require("vscode"));
-init_dist();
-var webviewLogger = createChildLogger("webviewManager");
-var WebviewManager = class {
-  constructor(context, connectionManager2, auditService2) {
-    this.context = context;
-    this.connectionManager = connectionManager2;
-    this.auditService = auditService2;
-  }
-  panels = /* @__PURE__ */ new Map();
-  pendingRequests = /* @__PURE__ */ new Map();
-  requestPanelMap = /* @__PURE__ */ new Map();
-  // requestId -> panel viewType
-  requestIdCounter = 0;
-  openFirestore() {
-    const active = this.connectionManager.getActiveConnection();
-    if (!active) {
-      vscode2.window.showErrorMessage("No active connection. Connect to a project first.");
-      return;
-    }
-    this.createOrShowPanel("firestore", "Firestore", vscode2.ViewColumn.One, {});
-  }
-  newDocument() {
-    const active = this.connectionManager.getActiveConnection();
-    if (!active) {
-      vscode2.window.showErrorMessage("No active connection");
-      return;
-    }
-    this.sendToPanel("firestore", { type: "newDocument", payload: {} });
-  }
-  runQuery() {
-    this.sendToPanel("firestore", { type: "openQueryBuilder", payload: {} });
-  }
-  saveQuery() {
-    this.sendToPanel("firestore", { type: "saveQuery", payload: {} });
-  }
-  exportCollection() {
-    this.sendToPanel("firestore", { type: "exportCollection", payload: {} });
-  }
-  importCollection() {
-    this.sendToPanel("firestore", { type: "importCollection", payload: {} });
-  }
-  compareDocuments() {
-    this.createOrShowPanel("compare", "Compare Documents", vscode2.ViewColumn.One, {});
-  }
-  compareProjects() {
-    this.createOrShowPanel("project-compare", "Compare Projects", vscode2.ViewColumn.One, {});
-  }
-  copyToProject() {
-    this.createOrShowPanel("migration", "Copy to Project", vscode2.ViewColumn.One, {});
-  }
-  openAuditHistory() {
-    this.createOrShowPanel("audit", "Audit History", vscode2.ViewColumn.One, {});
-  }
-  openDocument(documentPath) {
-    const active = this.connectionManager.getActiveConnection();
-    if (!active) {
-      vscode2.window.showErrorMessage("No active connection");
-      return;
-    }
-    const viewType = `document-${documentPath.replace(/\//g, "-")}`;
-    const title = documentPath.split("/").pop() || "Document";
-    this.createOrShowPanel(viewType, title, vscode2.ViewColumn.One, {
-      enableScripts: true,
-      retainContextWhenHidden: true
-    });
-    const panel = this.panels.get(viewType);
-    if (panel) {
-      const disposable = panel.onDidChangeViewState((e) => {
-        if (e.webviewPanel.visible) {
-          disposable.dispose();
-          setTimeout(() => {
-            this.sendToPanel(viewType, { type: "openDocument", payload: { documentPath } });
-          }, 200);
-        }
-      }, null, this.context.subscriptions);
-      setTimeout(() => {
-        this.sendToPanel(viewType, { type: "openDocument", payload: { documentPath } });
-      }, 500);
-    }
-  }
-  createOrShowPanel(viewType, title, column, _options) {
-    const existing = this.panels.get(viewType);
-    if (existing) {
-      existing.reveal(column);
-      return;
-    }
-    const panel = vscode2.window.createWebviewPanel(
-      viewType,
-      title,
-      column,
-      {
-        enableScripts: true,
-        retainContextWhenHidden: true,
-        localResourceRoots: [
-          vscode2.Uri.joinPath(this.context.extensionUri, "dist", "webview")
-        ]
-      }
-    );
-    panel.webview.html = this.getWebviewHtml(viewType);
-    panel.webview.onDidReceiveMessage((message) => this.handleMessage(message, viewType), null, this.context.subscriptions);
-    panel.onDidDispose(() => {
-      this.panels.delete(viewType);
-    }, null, this.context.subscriptions);
-    this.panels.set(viewType, panel);
-  }
-  sendToPanel(viewType, message) {
-    const panel = this.panels.get(viewType);
-    if (panel) {
-      panel.webview.postMessage(message);
-    }
-  }
-  async handleMessage(message, panelViewType) {
-    webviewLogger.debug("Received message", { type: message.type, panel: panelViewType });
-    if (message.type === "response") {
-      const callback = this.pendingRequests.get(message.requestId);
-      if (callback) {
-        callback(message);
-        this.pendingRequests.delete(message.requestId);
-      }
-      return;
-    }
-    if (message.requestId) {
-      this.requestPanelMap.set(message.requestId, panelViewType);
-    }
-    try {
-      let result;
-      switch (message.type) {
-        case "getCollections":
-          result = await this.handleGetCollections(message.payload);
-          break;
-        case "listDocuments":
-          result = await this.handleListDocuments(message.payload);
-          break;
-        case "getDocument":
-          result = await this.handleGetDocument(message.payload);
-          break;
-        case "createDocument":
-          result = await this.handleCreateDocument(message.payload);
-          break;
-        case "updateDocument":
-          result = await this.handleUpdateDocument(message.payload);
-          break;
-        case "deleteDocument":
-          result = await this.handleDeleteDocument(message.payload);
-          break;
-        case "runQuery":
-          result = await this.handleRunQuery(message.payload);
-          break;
-        case "exportCollection":
-          result = await this.handleExportCollection(message.payload);
-          break;
-        case "importCollection":
-          result = await this.handleImportCollection(message.payload);
-          break;
-        case "getConnections":
-          result = this.connectionManager.getConnections().map((c) => ({
-            projectId: c.projectId,
-            displayName: c.displayName,
-            environment: c.environment,
-            authMethod: c.authMethod
-          }));
-          break;
-        case "getActiveConnection":
-          result = this.connectionManager.getActiveConnection();
-          break;
-        case "getAuditHistory":
-          result = await this.handleGetAuditHistory(message.payload);
-          break;
-        default:
-          throw new Error(`Unknown message type: ${message.type}`);
-      }
-      this.sendResponse(message.requestId, true, result);
-    } catch (error) {
-      webviewLogger.error("Message handler error", { type: message.type, error: error.message });
-      this.sendResponse(message.requestId, false, void 0, error.message);
-    }
-  }
-  sendResponse(requestId, success, data, error) {
-    const panelViewType = this.requestPanelMap.get(requestId);
-    const panel = panelViewType ? this.panels.get(panelViewType) : Array.from(this.panels.values())[0];
-    if (panel) {
-      panel.webview.postMessage({
-        type: "response",
-        requestId,
-        success,
-        data,
-        error
-      });
-    }
-    this.requestPanelMap.delete(requestId);
-  }
-  getPanelViewTypeForMessage(message) {
-    return void 0;
-  }
-  async handleGetCollections(payload) {
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    return active.firestore.listCollections();
-  }
-  async handleListDocuments(payload) {
-    const { collectionPath, options } = payload;
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    return active.firestore.listDocuments(collectionPath, options);
-  }
-  async handleGetDocument(payload) {
-    const { documentPath } = payload;
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    return active.firestore.getDocument(documentPath);
-  }
-  async handleCreateDocument(payload) {
-    const { collectionPath, data, documentId } = payload;
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    const id = await active.firestore.createDocument(collectionPath, data, documentId);
-    this.auditService.record({
-      operation: "create-document",
-      projectId: active.projectId,
-      collectionPath,
-      documentPath: `${collectionPath}/${id}`,
-      result: "success"
-    });
-    return { id };
-  }
-  async handleUpdateDocument(payload) {
-    const { documentPath, data } = payload;
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    await active.firestore.updateDocument(documentPath, data);
-    this.auditService.record({
-      operation: "update-document",
-      projectId: active.projectId,
-      documentPath,
-      result: "success"
-    });
-    return { success: true };
-  }
-  async handleDeleteDocument(payload) {
-    const { documentPath } = payload;
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    await active.firestore.deleteDocument(documentPath);
-    this.auditService.record({
-      operation: "delete-document",
-      projectId: active.projectId,
-      documentPath,
-      result: "success"
-    });
-    return { success: true };
-  }
-  async handleRunQuery(payload) {
-    const { query } = payload;
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    const result = await active.firestore.runQuery(query);
-    this.auditService.record({
-      operation: "run-query",
-      projectId: active.projectId,
-      collectionPath: query.collectionPath,
-      result: "success"
-    });
-    return result;
-  }
-  async handleExportCollection(payload) {
-    const { collectionPath, format, outputPath } = payload;
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    const { ExportService: ExportService2, createExportService: createExportService2 } = await Promise.resolve().then(() => (init_dist2(), dist_exports));
-    const exportService = createExportService2(active.firestore);
-    await exportService.export({
-      format,
-      includeDocumentId: true,
-      includeNestedFields: true,
-      collectionPath,
-      outputPath
-    });
-    this.auditService.record({
-      operation: "export-collection",
-      projectId: active.projectId,
-      collectionPath,
-      result: "success"
-    });
-    return { success: true, path: outputPath };
-  }
-  async handleImportCollection(payload) {
-    const { collectionPath, format, mode, inputPath } = payload;
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    const { ImportService: ImportService2, createImportService: createImportService2 } = await Promise.resolve().then(() => (init_dist3(), dist_exports2));
-    const importService = createImportService2(active.firestore);
-    const result = await importService.import({
-      format,
-      mode,
-      collectionPath,
-      inputPath
-    });
-    this.auditService.record({
-      operation: "import-collection",
-      projectId: active.projectId,
-      collectionPath,
-      result: result.failed > 0 ? "partial" : "success"
-    });
-    return result;
-  }
-  async handleGetAuditHistory(payload) {
-    const options = payload;
-    return this.auditService.getEntries(options);
-  }
-  getWebviewHtml(viewType) {
-    const nonce = this.generateNonce();
-    const scriptUri = this.getScriptUri(viewType);
-    const styleUri = this.getStyleUri(viewType);
-    return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}'; style-src 'nonce-${nonce}' https:; img-src https: data:; font-src https: data:; connect-src https:;">
-  <link nonce="${nonce}" rel="stylesheet" href="${styleUri}">
-  <title>Vistiq - ${viewType}</title>
-</head>
-<body>
-  <div id="root"></div>
-  <script nonce="${nonce}" src="${scriptUri}"></script>
-</body>
-</html>`;
-  }
-  getScriptUri(viewType) {
-    const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
-    return vscode2.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${baseType}.js`);
-  }
-  getStyleUri(viewType) {
-    const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
-    return vscode2.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${baseType}.css`);
-  }
-  generateNonce() {
-    let text = "";
-    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for (let i = 0; i < 32; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-  }
-};
-
-// src/connectionManager.ts
-var vscode3 = __toESM(require("vscode"));
+var vscode4 = __toESM(require("vscode"));
 
 // ../../packages/firestore/dist/index.js
 init_dist();
@@ -115041,6 +114520,7 @@ function createFirestoreService(firestore, projectId) {
 
 // src/connectionManager.ts
 init_dist();
+var vscode = __toESM(require("vscode"));
 var connLogger = createChildLogger("connectionManager");
 var ConnectionManager = class {
   connections = /* @__PURE__ */ new Map();
@@ -115093,7 +114573,10 @@ var ConnectionManager = class {
         });
       }
     } catch (error) {
-      connLogger.warn("Failed to restore connection", { projectId: stored.projectId, error: error.message });
+      connLogger.warn("Failed to restore connection", {
+        projectId: stored.projectId,
+        error: error.message
+      });
     }
   }
   async connectServiceAccount(projectId, displayName, environment, serviceAccount) {
@@ -115221,10 +114704,21 @@ var ConnectionManager = class {
     });
   }
   async showConnectDialog() {
-    const authMethod = await vscode3.window.showQuickPick([
-      { label: "Service Account", value: "service-account", description: "Connect using Google Cloud Service Account JSON" },
-      { label: "Firebase Emulator", value: "emulator", description: "Connect to local Firebase Emulator" }
-    ], { placeHolder: "Select authentication method" });
+    const authMethod = await vscode.window.showQuickPick(
+      [
+        {
+          label: "Service Account",
+          value: "service-account",
+          description: "Connect using Google Cloud Service Account JSON"
+        },
+        {
+          label: "Firebase Emulator",
+          value: "emulator",
+          description: "Connect to local Firebase Emulator"
+        }
+      ],
+      { placeHolder: "Select authentication method" }
+    );
     if (!authMethod) return;
     if (authMethod.value === "service-account") {
       await this.showServiceAccountDialog();
@@ -115233,28 +114727,31 @@ var ConnectionManager = class {
     }
   }
   async showServiceAccountDialog() {
-    const projectId = await vscode3.window.showInputBox({
+    const projectId = await vscode.window.showInputBox({
       prompt: "Enter Firebase Project ID",
       placeHolder: "my-project-123",
       validateInput: (v) => v ? null : "Project ID is required"
     });
     if (!projectId) return;
-    const displayName = await vscode3.window.showInputBox({
+    const displayName = await vscode.window.showInputBox({
       prompt: "Enter display name",
       placeHolder: projectId,
       value: projectId
     });
     if (!displayName) return;
-    const environment = await vscode3.window.showQuickPick([
-      { label: "Development", value: "development" },
-      { label: "Staging", value: "staging" },
-      { label: "Production", value: "production" },
-      { label: "Custom", value: "custom" }
-    ], { placeHolder: "Select environment" });
+    const environment = await vscode.window.showQuickPick(
+      [
+        { label: "Development", value: "development" },
+        { label: "Staging", value: "staging" },
+        { label: "Production", value: "production" },
+        { label: "Custom", value: "custom" }
+      ],
+      { placeHolder: "Select environment" }
+    );
     if (!environment) return;
     const isProduction = environment.value === "production";
     if (isProduction) {
-      const confirm = await vscode3.window.showWarningMessage(
+      const confirm = await vscode.window.showWarningMessage(
         "This is a PRODUCTION project. Are you sure?",
         { modal: true },
         "Yes, I understand",
@@ -115262,7 +114759,7 @@ var ConnectionManager = class {
       );
       if (confirm !== "Yes, I understand") return;
     }
-    const json = await vscode3.window.showInputBox({
+    const json = await vscode.window.showInputBox({
       prompt: "Paste Service Account JSON",
       placeHolder: '{ "type": "service_account", ... }',
       validateInput: (v) => {
@@ -115280,29 +114777,34 @@ var ConnectionManager = class {
     try {
       serviceAccount = JSON.parse(json);
     } catch {
-      vscode3.window.showErrorMessage("Invalid Service Account JSON");
+      vscode.window.showErrorMessage("Invalid Service Account JSON");
       return;
     }
     try {
-      await vscode3.window.withProgress(
-        { location: vscode3.ProgressLocation.Notification, title: "Connecting to Firestore..." },
+      await vscode.window.withProgress(
+        { location: vscode.ProgressLocation.Notification, title: "Connecting to Firestore..." },
         async () => {
-          await this.connectServiceAccount(projectId, displayName, environment.value, serviceAccount);
+          await this.connectServiceAccount(
+            projectId,
+            displayName,
+            environment.value,
+            serviceAccount
+          );
         }
       );
-      vscode3.window.showInformationMessage(`Connected to ${displayName}`);
+      vscode.window.showInformationMessage(`Connected to ${displayName}`);
     } catch (error) {
-      vscode3.window.showErrorMessage(`Failed to connect: ${error.message}`);
+      vscode.window.showErrorMessage(`Failed to connect: ${error.message}`);
     }
   }
   async showEmulatorDialog() {
     const config = this.emulatorService.detectEmulatorConfig();
-    const host = await vscode3.window.showInputBox({
+    const host = await vscode.window.showInputBox({
       prompt: "Emulator host",
       value: config?.host || "localhost"
     });
     if (!host) return;
-    const firestorePort = await vscode3.window.showInputBox({
+    const firestorePort = await vscode.window.showInputBox({
       prompt: "Firestore emulator port",
       value: String(config?.firestorePort || 8080),
       validateInput: (v) => /^\d+$/.test(v) ? null : "Must be a number"
@@ -115318,7 +114820,7 @@ var ConnectionManager = class {
     };
     const running = await this.emulatorService.isEmulatorRunning(emulatorConfig);
     if (!running) {
-      const proceed = await vscode3.window.showWarningMessage(
+      const proceed = await vscode.window.showWarningMessage(
         "Emulator does not appear to be running. Connect anyway?",
         "Yes",
         "No"
@@ -115326,19 +114828,616 @@ var ConnectionManager = class {
       if (proceed !== "Yes") return;
     }
     try {
-      await vscode3.window.withProgress(
-        { location: vscode3.ProgressLocation.Notification, title: "Connecting to Emulator..." },
+      await vscode.window.withProgress(
+        { location: vscode.ProgressLocation.Notification, title: "Connecting to Emulator..." },
         async () => {
           await this.connectEmulator(emulatorConfig);
         }
       );
-      vscode3.window.showInformationMessage("Connected to Firebase Emulator");
+      vscode.window.showInformationMessage("Connected to Firebase Emulator");
     } catch (error) {
-      vscode3.window.showErrorMessage(`Failed to connect: ${error.message}`);
+      vscode.window.showErrorMessage(`Failed to connect: ${error.message}`);
     }
   }
   detectProjectFiles() {
     return this.emulatorService.detectProjectFiles();
+  }
+};
+
+// src/treeProvider.ts
+init_dist();
+var vscode2 = __toESM(require("vscode"));
+var treeLogger = createChildLogger("treeProvider");
+var ProjectTreeProvider = class {
+  constructor(connectionManager2, webviewManager2) {
+    this.connectionManager = connectionManager2;
+    this.webviewManager = webviewManager2;
+  }
+  _onDidChangeTreeData = new vscode2.EventEmitter();
+  onDidChangeTreeData = this._onDidChangeTreeData.event;
+  refresh() {
+    this._onDidChangeTreeData.fire();
+  }
+  getTreeItem(element) {
+    return element;
+  }
+  async getChildren(element) {
+    if (!element) {
+      return this.getRootItems();
+    }
+    switch (element.type) {
+      case "project":
+        return this.getProjectChildren(element);
+      case "firestore":
+        return this.getFirestoreChildren(element);
+      case "collection":
+        return this.getCollectionChildren(element);
+      default:
+        return [];
+    }
+  }
+  getRootItems() {
+    const connections = this.connectionManager.getConnections();
+    const activeProjectId = this.connectionManager.getActiveProjectId();
+    const items = [];
+    for (const conn of connections) {
+      const isActive = conn.projectId === activeProjectId;
+      const isEmulator = conn.authMethod === "emulator";
+      const isProduction = conn.environment === "production";
+      const item = new ProjectTreeItem(
+        conn.displayName || conn.projectId,
+        "project",
+        vscode2.TreeItemCollapsibleState.Collapsed,
+        {
+          projectId: conn.projectId,
+          isActive,
+          isEmulator,
+          isProduction,
+          environment: conn.environment
+        }
+      );
+      item.iconPath = isEmulator ? new vscode2.ThemeIcon("debug-alt") : isProduction ? new vscode2.ThemeIcon("warning", new vscode2.ThemeColor("errorForeground")) : new vscode2.ThemeIcon("cloud");
+      item.contextValue = isEmulator ? "emulatorProject" : isProduction ? "productionProject" : "project";
+      item.tooltip = `${conn.displayName}
+${conn.projectId}
+${conn.environment}`;
+      items.push(item);
+    }
+    if (items.length === 0) {
+      const item = new ProjectTreeItem(
+        "No projects connected",
+        "empty",
+        vscode2.TreeItemCollapsibleState.None,
+        {},
+        "Click to connect"
+      );
+      item.command = {
+        command: "vistiq.connectProject",
+        title: "Connect Project"
+      };
+      items.push(item);
+    }
+    return items;
+  }
+  async getProjectChildren(element) {
+    const projectId = element.context.projectId;
+    if (!projectId) return [];
+    const connection = this.connectionManager.getConnection(projectId);
+    if (!connection || !connection.firestore) {
+      return [
+        new ProjectTreeItem(
+          "Not connected",
+          "error",
+          vscode2.TreeItemCollapsibleState.None,
+          {}
+        )
+      ];
+    }
+    try {
+      const collections = await connection.firestore.listCollections();
+      const items = [];
+      items.push(
+        new ProjectTreeItem(
+          "Firestore",
+          "firestore",
+          vscode2.TreeItemCollapsibleState.Collapsed,
+          { projectId },
+          `${collections.length} collections`
+        )
+      );
+      if (connection.emulatorConfig) {
+        items.push(
+          new ProjectTreeItem(
+            "Emulator",
+            "emulator",
+            vscode2.TreeItemCollapsibleState.Collapsed,
+            { projectId },
+            `Firestore: ${connection.emulatorConfig.firestorePort}`
+          )
+        );
+      }
+      return items;
+    } catch (error) {
+      treeLogger.error("Failed to load project children", {
+        projectId,
+        error: error.message
+      });
+      return [
+        new ProjectTreeItem(
+          "Failed to load",
+          "error",
+          vscode2.TreeItemCollapsibleState.None,
+          {}
+        )
+      ];
+    }
+  }
+  async getFirestoreChildren(element) {
+    const projectId = element.context.projectId;
+    if (!projectId) return [];
+    const connection = this.connectionManager.getConnection(projectId);
+    if (!connection || !connection.firestore) return [];
+    try {
+      const collections = await connection.firestore.listCollections();
+      return collections.map((col) => {
+        const item = new ProjectTreeItem(
+          col.id,
+          "collection",
+          vscode2.TreeItemCollapsibleState.Collapsed,
+          { projectId, collectionPath: col.path },
+          col.documentCount !== void 0 ? `${col.documentCount} docs` : ""
+        );
+        item.iconPath = new vscode2.ThemeIcon("folder");
+        item.contextValue = "collection";
+        return item;
+      });
+    } catch (error) {
+      treeLogger.error("Failed to load collections", {
+        projectId,
+        error: error.message
+      });
+      return [
+        new ProjectTreeItem(
+          "Failed to load collections",
+          "error",
+          vscode2.TreeItemCollapsibleState.None,
+          {}
+        )
+      ];
+    }
+  }
+  async getCollectionChildren(element) {
+    const { projectId, collectionPath } = element.context;
+    if (!projectId || !collectionPath) return [];
+    const connection = this.connectionManager.getConnection(projectId);
+    if (!connection || !connection.firestore) return [];
+    try {
+      const page = await connection.firestore.listDocuments(collectionPath, { limit: 20 });
+      return page.documents.map((doc) => {
+        const item = new ProjectTreeItem(
+          doc.id,
+          "document",
+          vscode2.TreeItemCollapsibleState.None,
+          { projectId, documentPath: doc.path, collectionPath },
+          "Document"
+        );
+        item.iconPath = new vscode2.ThemeIcon("file");
+        item.contextValue = "document";
+        item.command = {
+          command: "vistiq.openDocument",
+          title: "Open Document",
+          arguments: [doc.path]
+        };
+        return item;
+      });
+    } catch (error) {
+      treeLogger.error("Failed to load documents", {
+        projectId,
+        collectionPath,
+        error: error.message
+      });
+      return [
+        new ProjectTreeItem(
+          "Failed to load documents",
+          "error",
+          vscode2.TreeItemCollapsibleState.None,
+          {}
+        )
+      ];
+    }
+  }
+};
+var ProjectTreeItem = class extends vscode2.TreeItem {
+  constructor(label, type, collapsibleState, context, description) {
+    super(label, collapsibleState);
+    this.type = type;
+    this.context = context;
+    this.description = description;
+  }
+};
+
+// src/webviewManager.ts
+init_dist();
+var vscode3 = __toESM(require("vscode"));
+var webviewLogger = createChildLogger("webviewManager");
+var WebviewManager = class {
+  constructor(context, connectionManager2, auditService2) {
+    this.context = context;
+    this.connectionManager = connectionManager2;
+    this.auditService = auditService2;
+  }
+  panels = /* @__PURE__ */ new Map();
+  pendingRequests = /* @__PURE__ */ new Map();
+  requestPanelMap = /* @__PURE__ */ new Map();
+  // requestId -> panel viewType
+  requestIdCounter = 0;
+  openFirestore() {
+    const active = this.connectionManager.getActiveConnection();
+    if (!active) {
+      void vscode3.window.showErrorMessage("No active connection");
+      return;
+    }
+    void this.createOrShowPanel("firestore", "Firestore", vscode3.ViewColumn.One, {});
+  }
+  newDocument() {
+    const active = this.connectionManager.getActiveConnection();
+    if (!active) {
+      void vscode3.window.showErrorMessage("No active connection");
+      return;
+    }
+    void this.sendToPanel("firestore", { type: "newDocument", payload: {} });
+  }
+  runQuery() {
+    void this.sendToPanel("firestore", { type: "openQueryBuilder", payload: {} });
+  }
+  saveQuery() {
+    void this.sendToPanel("firestore", { type: "saveQuery", payload: {} });
+  }
+  exportCollection() {
+    void this.sendToPanel("firestore", { type: "exportCollection", payload: {} });
+  }
+  importCollection() {
+    void this.sendToPanel("firestore", { type: "importCollection", payload: {} });
+  }
+  compareDocuments() {
+    void this.createOrShowPanel("compare", "Compare Documents", vscode3.ViewColumn.One, {});
+  }
+  compareProjects() {
+    void this.createOrShowPanel("project-compare", "Compare Projects", vscode3.ViewColumn.One, {});
+  }
+  copyToProject() {
+    void this.createOrShowPanel("migration", "Copy to Project", vscode3.ViewColumn.One, {});
+  }
+  openAuditHistory() {
+    void this.createOrShowPanel("audit", "Audit History", vscode3.ViewColumn.One, {});
+  }
+  openDocument(documentPath) {
+    const active = this.connectionManager.getActiveConnection();
+    if (!active) {
+      void vscode3.window.showErrorMessage("No active connection");
+      return;
+    }
+    const panel = this.createOrShowPanel("firestore", "Firestore", vscode3.ViewColumn.One, {
+      enableScripts: true,
+      retainContextWhenHidden: true
+    });
+    this.sendWhenReady(panel, { type: "openDocument", payload: { documentPath } });
+  }
+  createOrShowPanel(viewType, title, column, _options) {
+    const existing = this.panels.get(viewType);
+    if (existing) {
+      existing.reveal(column);
+      return existing;
+    }
+    const panel = vscode3.window.createWebviewPanel(viewType, title, column, {
+      enableScripts: true,
+      retainContextWhenHidden: true,
+      localResourceRoots: [vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview")]
+    });
+    panel.webview.html = this.getWebviewHtml(viewType, panel.webview);
+    panel.webview.onDidReceiveMessage(
+      (message) => this.handleMessage(message, viewType),
+      null,
+      this.context.subscriptions
+    );
+    panel.onDidDispose(
+      () => {
+        this.panels.delete(viewType);
+      },
+      null,
+      this.context.subscriptions
+    );
+    this.panels.set(viewType, panel);
+    return panel;
+  }
+  sendWhenReady(panel, message) {
+    if (panel.visible) {
+      void panel.webview.postMessage(message);
+      return;
+    }
+    const disposable = panel.onDidChangeViewState(
+      (e) => {
+        if (e.webviewPanel.visible) {
+          disposable.dispose();
+          setTimeout(() => {
+            void panel.webview.postMessage(message);
+          }, 100);
+        }
+      },
+      null,
+      this.context.subscriptions
+    );
+    setTimeout(() => {
+      disposable.dispose();
+      void panel.webview.postMessage(message);
+    }, 1e3);
+  }
+  sendToPanel(viewType, message) {
+    const panel = this.panels.get(viewType);
+    if (panel) {
+      void panel.webview.postMessage(message);
+    }
+  }
+  async handleMessage(message, panelViewType) {
+    webviewLogger.debug("Received message", { type: message.type, panel: panelViewType });
+    if (message.type === "response") {
+      const callback = this.pendingRequests.get(message.requestId);
+      if (callback) {
+        callback(message);
+        this.pendingRequests.delete(message.requestId);
+      }
+      return;
+    }
+    if (message.requestId) {
+      this.requestPanelMap.set(message.requestId, panelViewType);
+    }
+    try {
+      let result;
+      switch (message.type) {
+        case "getCollections":
+          result = await this.handleGetCollections(message.payload);
+          break;
+        case "listDocuments":
+          result = await this.handleListDocuments(message.payload);
+          break;
+        case "getDocument":
+          result = await this.handleGetDocument(message.payload);
+          break;
+        case "createDocument":
+          result = await this.handleCreateDocument(message.payload);
+          break;
+        case "updateDocument":
+          result = await this.handleUpdateDocument(message.payload);
+          break;
+        case "deleteDocument":
+          result = await this.handleDeleteDocument(message.payload);
+          break;
+        case "runQuery":
+          result = await this.handleRunQuery(message.payload);
+          break;
+        case "exportCollection":
+          result = await this.handleExportCollection(message.payload);
+          break;
+        case "importCollection":
+          result = await this.handleImportCollection(message.payload);
+          break;
+        case "getConnections":
+          result = this.connectionManager.getConnections().map((c) => ({
+            projectId: c.projectId,
+            displayName: c.displayName,
+            environment: c.environment,
+            authMethod: c.authMethod
+          }));
+          break;
+        case "getActiveConnection":
+          result = this.connectionManager.getActiveConnection();
+          break;
+        case "getAuditHistory":
+          result = await this.handleGetAuditHistory(message.payload);
+          break;
+        default:
+          throw new Error(`Unknown message type: ${message.type}`);
+      }
+      this.sendResponse(message.requestId, true, result);
+    } catch (error) {
+      webviewLogger.error("Message handler error", {
+        type: message.type,
+        error: error.message
+      });
+      this.sendResponse(message.requestId, false, void 0, error.message);
+    }
+  }
+  sendResponse(requestId, success, data, error) {
+    const panelViewType = this.requestPanelMap.get(requestId);
+    const panel = panelViewType ? this.panels.get(panelViewType) : Array.from(this.panels.values())[0];
+    if (panel) {
+      void panel.webview.postMessage({
+        type: "response",
+        requestId,
+        success,
+        data,
+        error
+      });
+    }
+    this.requestPanelMap.delete(requestId);
+  }
+  getPanelViewTypeForMessage(_message) {
+    return void 0;
+  }
+  handleGetCollections(_payload) {
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    return active.firestore.listCollections();
+  }
+  handleListDocuments(payload) {
+    const { collectionPath, options } = payload;
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    return active.firestore.listDocuments(collectionPath, options);
+  }
+  handleGetDocument(payload) {
+    const { documentPath } = payload;
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    return active.firestore.getDocument(documentPath);
+  }
+  async handleCreateDocument(payload) {
+    const { collectionPath, data, documentId } = payload;
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    const id = await active.firestore.createDocument(collectionPath, data, documentId);
+    this.auditService.record({
+      operation: "create-document",
+      projectId: active.projectId,
+      collectionPath,
+      documentPath: `${collectionPath}/${id}`,
+      result: "success"
+    });
+    return { id };
+  }
+  async handleUpdateDocument(payload) {
+    const { documentPath, data } = payload;
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    await active.firestore.updateDocument(documentPath, data);
+    this.auditService.record({
+      operation: "update-document",
+      projectId: active.projectId,
+      documentPath,
+      result: "success"
+    });
+    return { success: true };
+  }
+  async handleDeleteDocument(payload) {
+    const { documentPath } = payload;
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    await active.firestore.deleteDocument(documentPath);
+    this.auditService.record({
+      operation: "delete-document",
+      projectId: active.projectId,
+      documentPath,
+      result: "success"
+    });
+    return { success: true };
+  }
+  async handleRunQuery(payload) {
+    const { query } = payload;
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    const result = await active.firestore.runQuery(query);
+    this.auditService.record({
+      operation: "run-query",
+      projectId: active.projectId,
+      collectionPath: query.collectionPath,
+      result: "success"
+    });
+    return result;
+  }
+  async handleExportCollection(payload) {
+    const { collectionPath, format, outputPath } = payload;
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    const { ExportService: ExportService2, createExportService: createExportService2 } = await Promise.resolve().then(() => (init_dist2(), dist_exports));
+    const exportService = createExportService2(active.firestore);
+    await exportService.export({
+      format,
+      includeDocumentId: true,
+      includeNestedFields: true,
+      collectionPath,
+      outputPath
+    });
+    this.auditService.record({
+      operation: "export-collection",
+      projectId: active.projectId,
+      collectionPath,
+      result: "success"
+    });
+    return { success: true, path: outputPath };
+  }
+  async handleImportCollection(payload) {
+    const { collectionPath, format, mode, inputPath } = payload;
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    const { ImportService: ImportService2, createImportService: createImportService2 } = await Promise.resolve().then(() => (init_dist3(), dist_exports2));
+    const importService = createImportService2(active.firestore);
+    const result = await importService.import({
+      format,
+      mode,
+      collectionPath,
+      inputPath
+    });
+    this.auditService.record({
+      operation: "import-collection",
+      projectId: active.projectId,
+      collectionPath,
+      result: result.failed > 0 ? "partial" : "success"
+    });
+    return result;
+  }
+  handleGetAuditHistory(payload) {
+    const options = payload;
+    return this.auditService.getEntries(options);
+  }
+  getWebviewHtml(viewType, webview) {
+    const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
+    const nonce = this.generateNonce();
+    const htmlDiskPath = vscode3.Uri.joinPath(
+      this.context.extensionUri,
+      "dist",
+      "webview",
+      baseType,
+      "index.html"
+    );
+    let html;
+    try {
+      html = fs.readFileSync(htmlDiskPath.fsPath, "utf8");
+    } catch (err) {
+      webviewLogger.error("Failed to read webview index.html", {
+        viewType,
+        path: htmlDiskPath.fsPath,
+        error: err.message
+      });
+      return `<!DOCTYPE html><html><body>Failed to load webview: ${baseType}/index.html not found</body></html>`;
+    }
+    const baseDiskDir = vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", baseType);
+    html = html.replace(/(src|href)="([^"]+)"/g, (match, attr, relPath) => {
+      if (/^https?:\/\//.test(relPath) || relPath.startsWith("data:")) {
+        return match;
+      }
+      const cleanRelPath = relPath.replace(/^\.?\//, "");
+      const onDisk = vscode3.Uri.joinPath(baseDiskDir, cleanRelPath);
+      const webviewUri = webview.asWebviewUri(onDisk);
+      return `${attr}="${webviewUri}"`;
+    });
+    html = html.replace(/<script /g, `<script nonce="${nonce}" `);
+    const csp = `default-src 'none'; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline'; img-src ${webview.cspSource} https: data:; font-src ${webview.cspSource} https: data:; connect-src https:;`;
+    if (html.includes("<head>")) {
+      html = html.replace(
+        "<head>",
+        `<head>
+  <meta http-equiv="Content-Security-Policy" content="${csp}">`
+      );
+    }
+    return html;
+  }
+  getScriptUri(viewType, webview) {
+    const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
+    const onDiskPath = vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${baseType}.js`);
+    return webview.asWebviewUri(onDiskPath);
+  }
+  getStyleUri(viewType, webview) {
+    const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
+    const onDiskPath = vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${baseType}.css`);
+    return webview.asWebviewUri(onDiskPath);
+  }
+  generateNonce() {
+    let text = "";
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (let i = 0; i < 32; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
   }
 };
 
@@ -115370,21 +115469,48 @@ async function activate(context) {
   projectTreeProvider = new ProjectTreeProvider(connectionManager, webviewManager);
   context.subscriptions.push(
     vscode4.window.registerTreeDataProvider("vistiq.projects", projectTreeProvider),
-    vscode4.commands.registerCommand("vistiq.connectProject", () => connectionManager.showConnectDialog()),
-    vscode4.commands.registerCommand("vistiq.disconnectProject", () => connectionManager.disconnectActive()),
+    vscode4.commands.registerCommand(
+      "vistiq.connectProject",
+      () => connectionManager.showConnectDialog()
+    ),
+    vscode4.commands.registerCommand(
+      "vistiq.disconnectProject",
+      () => connectionManager.disconnectActive()
+    ),
     vscode4.commands.registerCommand("vistiq.refresh", () => projectTreeProvider.refresh()),
     vscode4.commands.registerCommand("vistiq.openFirestore", () => webviewManager.openFirestore()),
     vscode4.commands.registerCommand("vistiq.newDocument", () => webviewManager.newDocument()),
     vscode4.commands.registerCommand("vistiq.runQuery", () => webviewManager.runQuery()),
     vscode4.commands.registerCommand("vistiq.saveQuery", () => webviewManager.saveQuery()),
-    vscode4.commands.registerCommand("vistiq.exportCollection", () => webviewManager.exportCollection()),
-    vscode4.commands.registerCommand("vistiq.importCollection", () => webviewManager.importCollection()),
-    vscode4.commands.registerCommand("vistiq.compareDocuments", () => webviewManager.compareDocuments()),
-    vscode4.commands.registerCommand("vistiq.compareProjects", () => webviewManager.compareProjects()),
+    vscode4.commands.registerCommand(
+      "vistiq.exportCollection",
+      () => webviewManager.exportCollection()
+    ),
+    vscode4.commands.registerCommand(
+      "vistiq.importCollection",
+      () => webviewManager.importCollection()
+    ),
+    vscode4.commands.registerCommand(
+      "vistiq.compareDocuments",
+      () => webviewManager.compareDocuments()
+    ),
+    vscode4.commands.registerCommand(
+      "vistiq.compareProjects",
+      () => webviewManager.compareProjects()
+    ),
     vscode4.commands.registerCommand("vistiq.copyToProject", () => webviewManager.copyToProject()),
-    vscode4.commands.registerCommand("vistiq.openAuditHistory", () => webviewManager.openAuditHistory()),
-    vscode4.commands.registerCommand("vistiq.openDocument", (documentPath) => webviewManager.openDocument(documentPath)),
-    vscode4.commands.registerCommand("vistiq.settings", () => vscode4.commands.executeCommand("workbench.action.openSettings", "vistiq")),
+    vscode4.commands.registerCommand(
+      "vistiq.openAuditHistory",
+      () => webviewManager.openAuditHistory()
+    ),
+    vscode4.commands.registerCommand(
+      "vistiq.openDocument",
+      (documentPath) => webviewManager.openDocument(documentPath)
+    ),
+    vscode4.commands.registerCommand(
+      "vistiq.settings",
+      () => vscode4.commands.executeCommand("workbench.action.openSettings", "vistiq")
+    ),
     vscode4.workspace.onDidChangeConfiguration((e) => {
       if (e.affectsConfiguration("vistiq.enableDebugLogging")) {
         setLogLevel(config.get("enableDebugLogging") ? "debug" : "info");
@@ -115395,7 +115521,7 @@ async function activate(context) {
   extLogger.info("Vistiq extension activated");
 }
 function deactivate() {
-  credentialService?.dispose();
+  credentialService.dispose();
   authProviders.serviceAccount.disconnect();
   authProviders.emulator.disconnect();
   authProviders.oauth.disconnect();

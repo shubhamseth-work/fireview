@@ -1,19 +1,21 @@
-import * as vscode from 'vscode';
-import { CredentialService, createCredentialService } from '@vistiq/credentials';
-import { createAuthProviders, AuthProviders } from '@vistiq/auth';
-import { FirestoreService, createFirestoreService } from '@vistiq/firestore';
-import { ExportService, createExportService } from '@vistiq/export';
-import { ImportService, createImportService } from '@vistiq/import';
+import type { AuditService } from '@vistiq/audit';
+import { createAuditService } from '@vistiq/audit';
+import type { AuthProviders } from '@vistiq/auth';
+import { createAuthProviders } from '@vistiq/auth';
 import { BatchService, createBatchService } from '@vistiq/batch';
+import type { CredentialService } from '@vistiq/credentials';
+import { createCredentialService } from '@vistiq/credentials';
 import { DiffService, createDiffService } from '@vistiq/diff';
-import { ProjectCompareService, createProjectCompareService } from '@vistiq/project-compare';
-import { MigrationService, createMigrationService } from '@vistiq/migration';
 import { EmulatorService, createEmulatorService } from '@vistiq/emulator';
-import { AuditService, createAuditService } from '@vistiq/audit';
-import { logger, setLogLevel, createChildLogger } from '@vistiq/shared';
+import { ExportService, createExportService } from '@vistiq/export';
+import { FirestoreService, createFirestoreService } from '@vistiq/firestore';
+import { ImportService, createImportService } from '@vistiq/import';
+import { MigrationService, createMigrationService } from '@vistiq/migration';
+import { createChildLogger, logger, setLogLevel } from '@vistiq/shared';
+import * as vscode from 'vscode';
+import { ConnectionManager } from './connectionManager.js';
 import { ProjectTreeProvider } from './treeProvider.js';
 import { WebviewManager } from './webviewManager.js';
-import { ConnectionManager } from './connectionManager.js';
 
 let credentialService: CredentialService;
 let authProviders: AuthProviders;
@@ -47,21 +49,39 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
   context.subscriptions.push(
     vscode.window.registerTreeDataProvider('vistiq.projects', projectTreeProvider),
-    vscode.commands.registerCommand('vistiq.connectProject', () => connectionManager.showConnectDialog()),
-    vscode.commands.registerCommand('vistiq.disconnectProject', () => connectionManager.disconnectActive()),
+    vscode.commands.registerCommand('vistiq.connectProject', () =>
+      connectionManager.showConnectDialog()
+    ),
+    vscode.commands.registerCommand('vistiq.disconnectProject', () =>
+      connectionManager.disconnectActive()
+    ),
     vscode.commands.registerCommand('vistiq.refresh', () => projectTreeProvider.refresh()),
     vscode.commands.registerCommand('vistiq.openFirestore', () => webviewManager.openFirestore()),
     vscode.commands.registerCommand('vistiq.newDocument', () => webviewManager.newDocument()),
     vscode.commands.registerCommand('vistiq.runQuery', () => webviewManager.runQuery()),
     vscode.commands.registerCommand('vistiq.saveQuery', () => webviewManager.saveQuery()),
-    vscode.commands.registerCommand('vistiq.exportCollection', () => webviewManager.exportCollection()),
-    vscode.commands.registerCommand('vistiq.importCollection', () => webviewManager.importCollection()),
-    vscode.commands.registerCommand('vistiq.compareDocuments', () => webviewManager.compareDocuments()),
-    vscode.commands.registerCommand('vistiq.compareProjects', () => webviewManager.compareProjects()),
+    vscode.commands.registerCommand('vistiq.exportCollection', () =>
+      webviewManager.exportCollection()
+    ),
+    vscode.commands.registerCommand('vistiq.importCollection', () =>
+      webviewManager.importCollection()
+    ),
+    vscode.commands.registerCommand('vistiq.compareDocuments', () =>
+      webviewManager.compareDocuments()
+    ),
+    vscode.commands.registerCommand('vistiq.compareProjects', () =>
+      webviewManager.compareProjects()
+    ),
     vscode.commands.registerCommand('vistiq.copyToProject', () => webviewManager.copyToProject()),
-    vscode.commands.registerCommand('vistiq.openAuditHistory', () => webviewManager.openAuditHistory()),
-    vscode.commands.registerCommand('vistiq.openDocument', (documentPath: string) => webviewManager.openDocument(documentPath)),
-    vscode.commands.registerCommand('vistiq.settings', () => vscode.commands.executeCommand('workbench.action.openSettings', 'vistiq')),
+    vscode.commands.registerCommand('vistiq.openAuditHistory', () =>
+      webviewManager.openAuditHistory()
+    ),
+    vscode.commands.registerCommand('vistiq.openDocument', (documentPath: string) =>
+      webviewManager.openDocument(documentPath)
+    ),
+    vscode.commands.registerCommand('vistiq.settings', () =>
+      vscode.commands.executeCommand('workbench.action.openSettings', 'vistiq')
+    ),
     vscode.workspace.onDidChangeConfiguration(e => {
       if (e.affectsConfiguration('vistiq.enableDebugLogging')) {
         setLogLevel(config.get<boolean>('enableDebugLogging') ? 'debug' : 'info');
@@ -74,7 +94,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 }
 
 export function deactivate(): void {
-  credentialService?.dispose();
+  credentialService.dispose();
   authProviders.serviceAccount.disconnect();
   authProviders.emulator.disconnect();
   authProviders.oauth.disconnect();
