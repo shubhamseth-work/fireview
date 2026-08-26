@@ -245,12 +245,25 @@ const AppInner: React.FC = () => {
   };
 
   const handleCreateDocument = async (collectionPath: string, data: FirestoreDocument) => {
+    console.log('[App] handleCreateDocument called', { collectionPath, docId: data.id, dataKeys: Object.keys(data.data) });
     log.info('handleCreateDocument called', { collectionPath });
     try {
       await sendMessage('createDocument', { collectionPath, data });
       await loadDocuments(collectionPath);
     } catch (err) {
       log.error('handleCreateDocument: Error', { error: (err as Error).message });
+      setError((err as Error).message);
+    }
+  };
+
+  const handleCreateCollection = async (collectionId: string) => {
+    console.log('[App] handleCreateCollection called', { collectionId });
+    log.info('handleCreateCollection called', { collectionId });
+    try {
+      await sendMessage('createCollection', { collectionId });
+      await loadCollections();
+    } catch (err) {
+      log.error('handleCreateCollection: Error', { error: (err as Error).message });
       setError((err as Error).message);
     }
   };
@@ -539,6 +552,7 @@ const AppInner: React.FC = () => {
             onCloseDocument={handleCloseDocument}
             onRunQuery={handleRunQuery}
             onCreateDocument={handleCreateDocument}
+            onCreateCollection={handleCreateCollection}
             onUpdateDocument={handleUpdateDocument}
             onDeleteDocument={handleDeleteDocument}
             onExportCollection={handleExportCollection}

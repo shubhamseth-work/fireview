@@ -5,6 +5,7 @@ export interface FirestoreConnection {
     listDocuments(collectionPath: string, options?: QueryOptions): Promise<DocumentPage>;
     getDocument(documentPath: string): Promise<FirestoreDocument | null>;
     createDocument(collectionPath: string, data: FirestoreDocument, documentId?: string): Promise<string>;
+    createCollection(collectionId: string): Promise<void>;
     updateDocument(documentPath: string, data: Partial<FirestoreDocument>): Promise<void>;
     deleteDocument(documentPath: string): Promise<void>;
     runQuery(query: FirestoreQuery): Promise<DocumentPage>;

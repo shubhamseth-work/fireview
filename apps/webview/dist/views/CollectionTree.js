@@ -1,12 +1,14 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState, useRef, useEffect } from 'react';
 import { ConfirmationModal } from './ConfirmationModal';
+import { NewDocumentModal } from './NewDocumentModal';
 import { useNotify } from '../context/NotificationContext';
-export const CollectionTree = ({ collections, selectedCollection, onSelect, loading, readOnlyCollections, onToggleReadOnly, onExportCollection, onImportCollection, connections, activeProjectId, }) => {
+export const CollectionTree = ({ collections, selectedCollection, onSelect, loading, readOnlyCollections, onToggleReadOnly, onExportCollection, onImportCollection, onAddDocument, connections, activeProjectId, }) => {
     const notify = useNotify();
     const [contextMenu, setContextMenu] = useState(null);
     const [confirmModal, setConfirmModal] = useState(null);
     const [copyMoveModal, setCopyMoveModal] = useState(null);
+    const [newDocModal, setNewDocModal] = useState(null);
     const menuRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -24,6 +26,9 @@ export const CollectionTree = ({ collections, selectedCollection, onSelect, load
     };
     const handleAction = (action, collection) => {
         switch (action) {
+            case 'addDocument':
+                setNewDocModal({ isOpen: true, collectionPath: collection.path });
+                break;
             case 'toggleReadOnly':
                 onToggleReadOnly(collection.path);
                 break;
@@ -67,6 +72,16 @@ export const CollectionTree = ({ collections, selectedCollection, onSelect, load
     };
     const handleConfirmCancel = () => {
         setConfirmModal(null);
+    };
+    const handleNewDocConfirm = (docId, data) => {
+        if (newDocModal) {
+            onAddDocument(newDocModal.collectionPath, docId, data);
+            notify('success', 'Document created successfully');
+        }
+        setNewDocModal(null);
+    };
+    const handleNewDocCancel = () => {
+        setNewDocModal(null);
     };
     if (loading) {
         return (_jsx("div", { style: { padding: 16, textAlign: 'center', color: 'var(--vscode-descriptionForeground)' }, children: "Loading collections..." }));
@@ -130,7 +145,19 @@ export const CollectionTree = ({ collections, selectedCollection, onSelect, load
                             fontSize: 12,
                             textAlign: 'left',
                             cursor: 'pointer',
-                        }, onMouseOver: e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)', onMouseOut: e => e.currentTarget.style.backgroundColor = 'transparent', children: [_jsx("span", { children: "\uD83D\uDCE5" }), _jsx("span", { children: "Import Collection..." })] }), _jsx("div", { style: { borderTop: '1px solid var(--vscode-dropdown-border)', margin: '4px 0' } }), _jsxs("button", { onClick: () => handleAction('rename', contextMenu.collection), style: {
+                        }, onMouseOver: e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)', onMouseOut: e => e.currentTarget.style.backgroundColor = 'transparent', children: [_jsx("span", { children: "\uD83D\uDCE5" }), _jsx("span", { children: "Import Collection..." })] }), _jsxs("button", { onClick: () => handleAction('addDocument', contextMenu.collection), style: {
+                            width: '100%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            padding: '6px 12px',
+                            background: 'none',
+                            border: 'none',
+                            color: 'var(--vscode-dropdown-foreground)',
+                            fontSize: 12,
+                            textAlign: 'left',
+                            cursor: 'pointer',
+                        }, onMouseOver: e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)', onMouseOut: e => e.currentTarget.style.backgroundColor = 'transparent', children: [_jsx("span", { children: "\u2795" }), _jsx("span", { children: "Add Document..." })] }), _jsx("div", { style: { borderTop: '1px solid var(--vscode-dropdown-border)', margin: '4px 0' } }), _jsxs("button", { onClick: () => handleAction('rename', contextMenu.collection), style: {
                             width: '100%',
                             display: 'flex',
                             alignItems: 'center',
@@ -154,6 +181,6 @@ export const CollectionTree = ({ collections, selectedCollection, onSelect, load
                             fontSize: 12,
                             textAlign: 'left',
                             cursor: 'pointer',
-                        }, onMouseOver: e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)', onMouseOut: e => e.currentTarget.style.backgroundColor = 'transparent', children: [_jsx("span", { children: "\uD83D\uDDD1\uFE0F" }), _jsx("span", { children: "Delete Collection" })] })] })), confirmModal && (_jsx(ConfirmationModal, { isOpen: true, title: confirmModal.title, message: confirmModal.message, onConfirm: handleConfirmOk, onCancel: handleConfirmCancel, variant: confirmModal.variant }))] }));
+                        }, onMouseOver: e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)', onMouseOut: e => e.currentTarget.style.backgroundColor = 'transparent', children: [_jsx("span", { children: "\uD83D\uDDD1\uFE0F" }), _jsx("span", { children: "Delete Collection" })] })] })), confirmModal && (_jsx(ConfirmationModal, { isOpen: true, title: confirmModal.title, message: confirmModal.message, onConfirm: handleConfirmOk, onCancel: handleConfirmCancel, variant: confirmModal.variant })), newDocModal && (_jsx(NewDocumentModal, { isOpen: true, onConfirm: handleNewDocConfirm, onCancel: handleNewDocCancel }))] }));
 };
 //# sourceMappingURL=CollectionTree.js.map

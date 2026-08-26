@@ -114249,6 +114249,18 @@ var FirestoreService = class {
       throw this.handleError(error);
     }
   }
+  async createCollection(collectionId) {
+    try {
+      const collectionRef = this.firestore.collection(collectionId);
+      const placeholderRef = collectionRef.doc("_placeholder");
+      await placeholderRef.set({ createdAt: (/* @__PURE__ */ new Date()).toISOString() });
+      await placeholderRef.delete();
+      logger.info("Collection created", { collectionId, projectId: this.projectId });
+    } catch (error) {
+      logger.error("Failed to create collection", { collectionId, error: error.message });
+      throw this.handleError(error);
+    }
+  }
   async listDocuments(collectionPath, options) {
     try {
       let query = this.firestore.collection(collectionPath);
@@ -115237,6 +115249,9 @@ var WebviewManager = class {
         case "importCollection":
           result = await this.handleImportCollection(message.payload);
           break;
+        case "createCollection":
+          result = await this.handleCreateCollection(message.payload);
+          break;
         case "getConnections":
           result = this.connectionManager.getConnections().map((c) => ({
             projectId: c.projectId,
@@ -115333,7 +115348,9 @@ var WebviewManager = class {
     });
   }
   async handleCreateDocument(payload) {
-    const { collectionPath, data, documentId } = payload;
+    const { collectionPath, data } = payload;
+    const documentId = data.id || void 0;
+    webviewLogger.debug("handleCreateDocument called", { collectionPath, docId: data.id, dataKeys: Object.keys(data.data) });
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error("No active Firestore connection");
     const id = await active.firestore.createDocument(collectionPath, data, documentId);
@@ -115425,6 +115442,19 @@ var WebviewManager = class {
       result: result.failed > 0 ? "partial" : "success"
     });
     return result;
+  }
+  async handleCreateCollection(payload) {
+    const { collectionId } = payload;
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
+    await active.firestore.createCollection(collectionId);
+    this.auditService.record({
+      operation: "create-collection",
+      projectId: active.projectId,
+      collectionPath: collectionId,
+      result: "success"
+    });
+    return { success: true };
   }
   handleGetAuditHistory(payload) {
     const options = payload;

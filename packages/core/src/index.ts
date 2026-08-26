@@ -12,6 +12,7 @@ export interface FirestoreConnection {
     data: FirestoreDocument,
     documentId?: string
   ): Promise<string>;
+  createCollection(collectionId: string): Promise<void>;
   updateDocument(
     documentPath: string,
     data: Partial<FirestoreDocument>

@@ -8,6 +8,7 @@ interface CollectionTreeProps {
     onToggleReadOnly: (collectionPath: string) => void;
     onExportCollection: (collectionPath: string) => void;
     onImportCollection: (collectionPath: string) => void;
+    onAddDocument: (collectionPath: string, docId: string, data: Record<string, any>) => void;
     connections: Array<{
         projectId: string;
         displayName: string;

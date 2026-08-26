@@ -6,6 +6,7 @@ import { CollectionTree } from './CollectionTree';
 import { ExportModal } from './ExportModal';
 import { ImportModal } from './ImportModal';
 import { NewDocumentModal } from './NewDocumentModal';
+import { NewCollectionModal } from './NewCollectionModal';
 import { FirestoreDocument, FirestoreQuery, FirestoreValue, QueryFilter, QueryOperator, OrderByClause } from '@vistiq/core';
 import { Connection } from '@vistiq/core';
 
@@ -22,6 +23,7 @@ interface FirestoreViewProps {
   onCloseDocument: () => void;
   onRunQuery: (query: FirestoreQuery) => void;
   onCreateDocument: (collectionPath: string, data: FirestoreDocument) => void;
+  onCreateCollection: (collectionId: string) => void;
   onUpdateDocument: (documentPath: string, data: Partial<FirestoreDocument>) => void;
   onDeleteDocument: (documentPath: string) => void;
   onExportCollection: (collectionPath: string, format: 'json' | 'csv', outputPath: string) => void;
@@ -56,6 +58,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
   onCloseDocument,
   onRunQuery,
   onCreateDocument,
+  onCreateCollection,
   onUpdateDocument,
   onDeleteDocument,
   onExportCollection,
@@ -81,6 +84,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
   const [showExportModal, setShowExportModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
   const [showNewDocumentModal, setShowNewDocumentModal] = useState(false);
+  const [showNewCollectionModal, setShowNewCollectionModal] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(280);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
@@ -95,18 +99,42 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
     setShowNewDocumentModal(true);
   };
 
-  const handleNewDocumentConfirm = (docId: string) => {
+  const handleNewDocumentConfirm = (docId: string, data: Record<string, any>) => {
     const newDoc: FirestoreDocument = {
       id: docId,
       path: '',
-      data: {},
+      data,
     };
     onOpenDocument(newDoc);
     setShowNewDocumentModal(false);
   };
 
+  const handleAddDocumentFromTree = (collectionPath: string, docId: string, data: Record<string, any>) => {
+    console.log('[FirestoreView] handleAddDocumentFromTree called', { collectionPath, docId, dataKeys: Object.keys(data) });
+    const newDoc: FirestoreDocument = {
+      id: docId,
+      path: '',
+      data,
+    };
+    console.log('[FirestoreView] Calling onCreateDocument');
+    onCreateDocument(collectionPath, newDoc);
+  };
+
   const handleNewDocumentCancel = () => {
     setShowNewDocumentModal(false);
+  };
+
+  const handleNewCollection = () => {
+    setShowNewCollectionModal(true);
+  };
+
+  const handleNewCollectionConfirm = (collectionId: string) => {
+    onCreateCollection(collectionId);
+    setShowNewCollectionModal(false);
+  };
+
+  const handleNewCollectionCancel = () => {
+    setShowNewCollectionModal(false);
   };
 
   const handleRunQuery = (query: FirestoreQuery) => {
@@ -160,6 +188,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
           }}
         >
           <div className="toolbar">
+            <button onClick={handleNewCollection} title="Add Collection (Ctrl+Shift+N)">+ Collection</button>
             <button onClick={handleNewDocument} title="New Document (Ctrl+N)">+ Document</button>
             <button onClick={() => setShowQueryBuilder(!showQueryBuilder)} title="Query Builder">🔍 Query</button>
             <button onClick={handleExport} title="Export Collection">📤 Export</button>
@@ -182,6 +211,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
               onToggleReadOnly={handleToggleReadOnly}
               onExportCollection={handleCollectionExport}
               onImportCollection={handleCollectionImport}
+onAddDocument={handleAddDocumentFromTree}
               connections={connections}
               activeProjectId={activeProjectId}
             />
@@ -292,6 +322,14 @@ window.addEventListener('mousemove', onMouseMove);
           isOpen={true}
           onConfirm={handleNewDocumentConfirm}
           onCancel={handleNewDocumentCancel}
+        />
+      )}
+
+      {showNewCollectionModal && (
+        <NewCollectionModal
+          isOpen={true}
+          onConfirm={handleNewCollectionConfirm}
+          onCancel={handleNewCollectionCancel}
         />
       )}
     </div>

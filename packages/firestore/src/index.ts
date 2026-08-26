@@ -46,6 +46,23 @@ export class FirestoreService implements FirestoreConnection {
     }
   }
 
+  async createCollection(collectionId: string): Promise<void> {
+    try {
+      // In Firestore, collections are created implicitly when you add a document
+      // We create a placeholder document and KEEP it to ensure the collection appears in listCollections()
+      const collectionRef = this.firestore.collection(collectionId);
+      const placeholderRef = collectionRef.doc('_placeholder');
+      await placeholderRef.set({ 
+        createdAt: new Date().toISOString(),
+        _system: true
+      });
+      logger.info('Collection created', { collectionId, projectId: this.projectId });
+    } catch (error) {
+      logger.error('Failed to create collection', { collectionId, error: (error as Error).message });
+      throw this.handleError(error);
+    }
+  }
+
   async listDocuments(
     collectionPath: string,
     options?: QueryOptions
@@ -78,7 +95,10 @@ export class FirestoreService implements FirestoreConnection {
       }
 
       const snapshot = await query.get();
-      const documents = snapshot.docs.map(doc => this.convertDocument(doc));
+      // Filter out _placeholder system document
+      const documents = snapshot.docs
+        .filter(doc => doc.id !== '_placeholder')
+        .map(doc => this.convertDocument(doc));
 
       let nextPageToken: string | undefined;
       const docCount = snapshot.docs.length;
@@ -101,7 +121,7 @@ export class FirestoreService implements FirestoreConnection {
   async getDocument(documentPath: string): Promise<FirestoreDocument | null> {
     try {
       const doc = await this.firestore.doc(documentPath).get();
-      if (!doc.exists) return null;
+      if (!doc.exists || doc.id === '_placeholder') return null;
       return this.convertDocument(doc);
     } catch (error) {
       logger.error('Failed to get document', { documentPath, error: (error as Error).message });
@@ -177,7 +197,10 @@ export class FirestoreService implements FirestoreConnection {
       }
 
       const snapshot = await q.get();
-      const documents = snapshot.docs.map(doc => this.convertDocument(doc));
+      // Filter out _placeholder system document
+      const documents = snapshot.docs
+        .filter(doc => doc.id !== '_placeholder')
+        .map(doc => this.convertDocument(doc));
 
       let nextPageToken: string | undefined;
       const docCount = snapshot.docs.length;
@@ -214,7 +237,10 @@ export class FirestoreService implements FirestoreConnection {
       }
 
       const snapshot = await q.get();
-      const documents = snapshot.docs.map(doc => this.convertDocument(doc));
+      // Filter out _placeholder system document
+      const documents = snapshot.docs
+        .filter(doc => doc.id !== '_placeholder')
+        .map(doc => this.convertDocument(doc));
 
       let nextPageToken: string | undefined;
       const docCount = snapshot.docs.length;

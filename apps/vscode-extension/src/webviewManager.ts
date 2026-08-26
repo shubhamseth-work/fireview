@@ -233,6 +233,9 @@ export class WebviewManager {
         case 'importCollection':
           result = await this.handleImportCollection(message.payload);
           break;
+        case 'createCollection':
+          result = await this.handleCreateCollection(message.payload);
+          break;
         case 'getConnections':
           result = this.connectionManager.getConnections().map(c => ({
             projectId: c.projectId,
@@ -345,11 +348,12 @@ export class WebviewManager {
   }
 
   private async handleCreateDocument(payload: unknown): Promise<unknown> {
-    const { collectionPath, data, documentId } = payload as {
+    const { collectionPath, data } = payload as {
       collectionPath: string;
       data: FirestoreDocument;
-      documentId?: string;
     };
+    const documentId = data.id || undefined;
+    webviewLogger.debug('handleCreateDocument called', { collectionPath, docId: data.id, dataKeys: Object.keys(data.data) });
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error('No active Firestore connection');
     const id = await active.firestore.createDocument(collectionPath, data, documentId);
@@ -466,6 +470,23 @@ export class WebviewManager {
     });
 
     return result;
+  }
+
+  private async handleCreateCollection(payload: unknown): Promise<unknown> {
+    const { collectionId } = payload as { collectionId: string };
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error('No active Firestore connection');
+    
+    await active.firestore.createCollection(collectionId);
+    
+    this.auditService.record({
+      operation: 'create-collection',
+      projectId: active.projectId,
+      collectionPath: collectionId,
+      result: 'success',
+    });
+
+    return { success: true };
   }
 
   private handleGetAuditHistory(payload: unknown): Promise<unknown> {

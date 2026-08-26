@@ -228,6 +228,7 @@ const AppInner = () => {
         }
     };
     const handleCreateDocument = async (collectionPath, data) => {
+        console.log('[App] handleCreateDocument called', { collectionPath, docId: data.id, dataKeys: Object.keys(data.data) });
         log.info('handleCreateDocument called', { collectionPath });
         try {
             await sendMessage('createDocument', { collectionPath, data });
@@ -235,6 +236,18 @@ const AppInner = () => {
         }
         catch (err) {
             log.error('handleCreateDocument: Error', { error: err.message });
+            setError(err.message);
+        }
+    };
+    const handleCreateCollection = async (collectionId) => {
+        console.log('[App] handleCreateCollection called', { collectionId });
+        log.info('handleCreateCollection called', { collectionId });
+        try {
+            await sendMessage('createCollection', { collectionId });
+            await loadCollections();
+        }
+        catch (err) {
+            log.error('handleCreateCollection: Error', { error: err.message });
             setError(err.message);
         }
     };
@@ -501,7 +514,7 @@ const AppInner = () => {
     const renderView = () => {
         switch (view) {
             case 'firestore':
-                return (_jsx(FirestoreView, { connection: connection, collections: collections, documents: documents, selectedDocument: selectedDocument, loading: loading, error: error, pagination: pagination, onLoadDocuments: loadDocuments, onOpenDocument: handleOpenDocument, onCloseDocument: handleCloseDocument, onRunQuery: handleRunQuery, onCreateDocument: handleCreateDocument, onUpdateDocument: handleUpdateDocument, onDeleteDocument: handleDeleteDocument, onExportCollection: handleExportCollection, onImportCollection: handleImportCollection, onLoadMore: loadMore, onPageSizeChange: handlePageSizeChange, onCopyDocument: () => { }, onCopyDocumentTo: handleCopyDocument, onDuplicateDocument: handleDuplicateDocument, onRenameDocument: handleRenameDocument, onMoveDocument: handleMoveDocument, onShowGeopoints: handleShowGeopoints, onImportDocument: handleImportDocument, onExportDocument: handleExportDocument, onRevealInConsole: handleRevealInConsole, connections: connections, activeProjectId: connection?.projectId || null, readOnlyCollections: readOnlyCollections, setReadOnlyCollections: setReadOnlyCollections }));
+                return (_jsx(FirestoreView, { connection: connection, collections: collections, documents: documents, selectedDocument: selectedDocument, loading: loading, error: error, pagination: pagination, onLoadDocuments: loadDocuments, onOpenDocument: handleOpenDocument, onCloseDocument: handleCloseDocument, onRunQuery: handleRunQuery, onCreateDocument: handleCreateDocument, onCreateCollection: handleCreateCollection, onUpdateDocument: handleUpdateDocument, onDeleteDocument: handleDeleteDocument, onExportCollection: handleExportCollection, onImportCollection: handleImportCollection, onLoadMore: loadMore, onPageSizeChange: handlePageSizeChange, onCopyDocument: () => { }, onCopyDocumentTo: handleCopyDocument, onDuplicateDocument: handleDuplicateDocument, onRenameDocument: handleRenameDocument, onMoveDocument: handleMoveDocument, onShowGeopoints: handleShowGeopoints, onImportDocument: handleImportDocument, onExportDocument: handleExportDocument, onRevealInConsole: handleRevealInConsole, connections: connections, activeProjectId: connection?.projectId || null, readOnlyCollections: readOnlyCollections, setReadOnlyCollections: setReadOnlyCollections }));
             case 'compare':
                 return _jsx(CompareView, { connection: connection, onRunQuery: handleRunQuery });
             case 'project-compare':

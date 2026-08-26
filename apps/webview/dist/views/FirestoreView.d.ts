@@ -19,6 +19,7 @@ interface FirestoreViewProps {
     onCloseDocument: () => void;
     onRunQuery: (query: FirestoreQuery) => void;
     onCreateDocument: (collectionPath: string, data: FirestoreDocument) => void;
+    onCreateCollection: (collectionId: string) => void;
     onUpdateDocument: (documentPath: string, data: Partial<FirestoreDocument>) => void;
     onDeleteDocument: (documentPath: string) => void;
     onExportCollection: (collectionPath: string, format: 'json' | 'csv', outputPath: string) => void;

@@ -7,12 +7,14 @@ import { CollectionTree } from './CollectionTree';
 import { ExportModal } from './ExportModal';
 import { ImportModal } from './ImportModal';
 import { NewDocumentModal } from './NewDocumentModal';
-export const FirestoreView = ({ connection, collections, documents, selectedDocument, loading, error, pagination, onLoadDocuments, onOpenDocument, onCloseDocument, onRunQuery, onCreateDocument, onUpdateDocument, onDeleteDocument, onExportCollection, onImportCollection, onLoadMore, onPageSizeChange, onCopyDocument, onCopyDocumentTo, onDuplicateDocument, onRenameDocument, onMoveDocument, onShowGeopoints, onImportDocument, onExportDocument, onRevealInConsole, connections, activeProjectId, readOnlyCollections, setReadOnlyCollections, }) => {
+import { NewCollectionModal } from './NewCollectionModal';
+export const FirestoreView = ({ connection, collections, documents, selectedDocument, loading, error, pagination, onLoadDocuments, onOpenDocument, onCloseDocument, onRunQuery, onCreateDocument, onCreateCollection, onUpdateDocument, onDeleteDocument, onExportCollection, onImportCollection, onLoadMore, onPageSizeChange, onCopyDocument, onCopyDocumentTo, onDuplicateDocument, onRenameDocument, onMoveDocument, onShowGeopoints, onImportDocument, onExportDocument, onRevealInConsole, connections, activeProjectId, readOnlyCollections, setReadOnlyCollections, }) => {
     const [selectedCollection, setSelectedCollection] = useState('');
     const [showQueryBuilder, setShowQueryBuilder] = useState(false);
     const [showExportModal, setShowExportModal] = useState(false);
     const [showImportModal, setShowImportModal] = useState(false);
     const [showNewDocumentModal, setShowNewDocumentModal] = useState(false);
+    const [showNewCollectionModal, setShowNewCollectionModal] = useState(false);
     const [sidebarWidth, setSidebarWidth] = useState(280);
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const handleCollectionClick = (collectionPath) => {
@@ -25,17 +27,37 @@ export const FirestoreView = ({ connection, collections, documents, selectedDocu
             return;
         setShowNewDocumentModal(true);
     };
-    const handleNewDocumentConfirm = (docId) => {
+    const handleNewDocumentConfirm = (docId, data) => {
         const newDoc = {
             id: docId,
             path: '',
-            data: {},
+            data,
         };
         onOpenDocument(newDoc);
         setShowNewDocumentModal(false);
     };
+    const handleAddDocumentFromTree = (collectionPath, docId, data) => {
+        console.log('[FirestoreView] handleAddDocumentFromTree called', { collectionPath, docId, dataKeys: Object.keys(data) });
+        const newDoc = {
+            id: docId,
+            path: '',
+            data,
+        };
+        console.log('[FirestoreView] Calling onCreateDocument');
+        onCreateDocument(collectionPath, newDoc);
+    };
     const handleNewDocumentCancel = () => {
         setShowNewDocumentModal(false);
+    };
+    const handleNewCollection = () => {
+        setShowNewCollectionModal(true);
+    };
+    const handleNewCollectionConfirm = (collectionId) => {
+        onCreateCollection(collectionId);
+        setShowNewCollectionModal(false);
+    };
+    const handleNewCollectionCancel = () => {
+        setShowNewCollectionModal(false);
     };
     const handleRunQuery = (query) => {
         onRunQuery(query);
@@ -78,7 +100,7 @@ export const FirestoreView = ({ connection, collections, documents, selectedDocu
                     flexDirection: 'column',
                     backgroundColor: 'var(--vscode-sidebar-bg)',
                     flexShrink: 0,
-                }, children: [_jsxs("div", { className: "toolbar", children: [_jsx("button", { onClick: handleNewDocument, title: "New Document (Ctrl+N)", children: "+ Document" }), _jsx("button", { onClick: () => setShowQueryBuilder(!showQueryBuilder), title: "Query Builder", children: "\uD83D\uDD0D Query" }), _jsx("button", { onClick: handleExport, title: "Export Collection", children: "\uD83D\uDCE4 Export" }), _jsx("button", { onClick: handleImport, title: "Import Collection", children: "\uD83D\uDCE5 Import" }), _jsx("button", { onClick: () => setIsSidebarCollapsed(true), title: "Collapse sidebar", style: { marginLeft: 'auto', padding: '4px 8px' }, children: "\u25C0" })] }), showQueryBuilder ? (_jsx(QueryBuilder, { collections: collections, onRunQuery: handleRunQuery, onClose: () => setShowQueryBuilder(false) })) : (_jsx(CollectionTree, { collections: collections, selectedCollection: selectedCollection, onSelect: handleCollectionClick, loading: loading, readOnlyCollections: readOnlyCollections, onToggleReadOnly: handleToggleReadOnly, onExportCollection: handleCollectionExport, onImportCollection: handleCollectionImport, connections: connections, activeProjectId: activeProjectId }))] })), isSidebarCollapsed && (_jsx("button", { onClick: () => setIsSidebarCollapsed(false), style: {
+                }, children: [_jsxs("div", { className: "toolbar", children: [_jsx("button", { onClick: handleNewCollection, title: "Add Collection (Ctrl+Shift+N)", children: "+ Collection" }), _jsx("button", { onClick: handleNewDocument, title: "New Document (Ctrl+N)", children: "+ Document" }), _jsx("button", { onClick: () => setShowQueryBuilder(!showQueryBuilder), title: "Query Builder", children: "\uD83D\uDD0D Query" }), _jsx("button", { onClick: handleExport, title: "Export Collection", children: "\uD83D\uDCE4 Export" }), _jsx("button", { onClick: handleImport, title: "Import Collection", children: "\uD83D\uDCE5 Import" }), _jsx("button", { onClick: () => setIsSidebarCollapsed(true), title: "Collapse sidebar", style: { marginLeft: 'auto', padding: '4px 8px' }, children: "\u25C0" })] }), showQueryBuilder ? (_jsx(QueryBuilder, { collections: collections, onRunQuery: handleRunQuery, onClose: () => setShowQueryBuilder(false) })) : (_jsx(CollectionTree, { collections: collections, selectedCollection: selectedCollection, onSelect: handleCollectionClick, loading: loading, readOnlyCollections: readOnlyCollections, onToggleReadOnly: handleToggleReadOnly, onExportCollection: handleCollectionExport, onImportCollection: handleCollectionImport, onAddDocument: handleAddDocumentFromTree, connections: connections, activeProjectId: activeProjectId }))] })), isSidebarCollapsed && (_jsx("button", { onClick: () => setIsSidebarCollapsed(false), style: {
                     width: 32,
                     height: '100%',
                     borderRight: '1px solid var(--vscode-border)',
@@ -104,6 +126,6 @@ export const FirestoreView = ({ connection, collections, documents, selectedDocu
                     };
                     window.addEventListener('mousemove', onMouseMove);
                     window.addEventListener('mouseup', onMouseUp);
-                } })), _jsx("div", { style: { flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }, children: selectedDocument ? (_jsx(DocumentViewer, { document: selectedDocument, connection: connection, onClose: onCloseDocument, onUpdate: onUpdateDocument, onCreateDocument: onCreateDocument, onDelete: onDeleteDocument })) : (_jsx(DocumentTable, { documents: documents, loading: loading, error: error, pagination: pagination, onRowClick: onOpenDocument, onRunQuery: onRunQuery, onLoadMore: onLoadMore, onPageSizeChange: onPageSizeChange, onCopyDocument: onCopyDocument, onCopyDocumentTo: onCopyDocumentTo, onOpenDocument: onOpenDocument, onDeleteDocument: onDeleteDocument, onDuplicateDocument: onDuplicateDocument, onRenameDocument: onRenameDocument, onMoveDocument: onMoveDocument, onShowGeopoints: onShowGeopoints, onImportDocument: onImportDocument, onExportDocument: onExportDocument, onRevealInConsole: onRevealInConsole, connections: connections, activeProjectId: activeProjectId, collections: collections.map(c => c.id), selectedCollection: selectedCollection, readOnlyCollections: readOnlyCollections })) }), showExportModal && (_jsx(ExportModal, { collectionPath: selectedCollection, onClose: () => setShowExportModal(false), onExport: onExportCollection })), showImportModal && (_jsx(ImportModal, { collectionPath: selectedCollection, onClose: () => setShowImportModal(false), onImport: onImportCollection })), showNewDocumentModal && (_jsx(NewDocumentModal, { isOpen: true, onConfirm: handleNewDocumentConfirm, onCancel: handleNewDocumentCancel }))] }));
+                } })), _jsx("div", { style: { flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }, children: selectedDocument ? (_jsx(DocumentViewer, { document: selectedDocument, connection: connection, onClose: onCloseDocument, onUpdate: onUpdateDocument, onCreateDocument: onCreateDocument, onDelete: onDeleteDocument })) : (_jsx(DocumentTable, { documents: documents, loading: loading, error: error, pagination: pagination, onRowClick: onOpenDocument, onRunQuery: onRunQuery, onLoadMore: onLoadMore, onPageSizeChange: onPageSizeChange, onCopyDocument: onCopyDocument, onCopyDocumentTo: onCopyDocumentTo, onOpenDocument: onOpenDocument, onDeleteDocument: onDeleteDocument, onDuplicateDocument: onDuplicateDocument, onRenameDocument: onRenameDocument, onMoveDocument: onMoveDocument, onShowGeopoints: onShowGeopoints, onImportDocument: onImportDocument, onExportDocument: onExportDocument, onRevealInConsole: onRevealInConsole, connections: connections, activeProjectId: activeProjectId, collections: collections.map(c => c.id), selectedCollection: selectedCollection, readOnlyCollections: readOnlyCollections })) }), showExportModal && (_jsx(ExportModal, { collectionPath: selectedCollection, onClose: () => setShowExportModal(false), onExport: onExportCollection })), showImportModal && (_jsx(ImportModal, { collectionPath: selectedCollection, onClose: () => setShowImportModal(false), onImport: onImportCollection })), showNewDocumentModal && (_jsx(NewDocumentModal, { isOpen: true, onConfirm: handleNewDocumentConfirm, onCancel: handleNewDocumentCancel })), showNewCollectionModal && (_jsx(NewCollectionModal, { isOpen: true, onConfirm: handleNewCollectionConfirm, onCancel: handleNewCollectionCancel }))] }));
 };
 //# sourceMappingURL=FirestoreView.js.map

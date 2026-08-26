@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Connection } from '@vistiq/core';
 import { ConfirmationModal } from './ConfirmationModal';
 import { CopyMoveModal } from './CopyMoveModal';
+import { NewDocumentModal } from './NewDocumentModal';
 import { useNotify } from '../context/NotificationContext';
 
 interface CollectionTreeProps {
@@ -13,6 +14,7 @@ interface CollectionTreeProps {
   onToggleReadOnly: (collectionPath: string) => void;
   onExportCollection: (collectionPath: string) => void;
   onImportCollection: (collectionPath: string) => void;
+  onAddDocument: (collectionPath: string, docId: string, data: Record<string, any>) => void;
   connections: Array<{ projectId: string; displayName: string }>;
   activeProjectId: string | null;
 }
@@ -26,6 +28,7 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
   onToggleReadOnly,
   onExportCollection,
   onImportCollection,
+  onAddDocument,
   connections,
   activeProjectId,
 }) => {
@@ -33,6 +36,7 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
   const [contextMenu, setContextMenu] = useState<{ collection: any; x: number; y: number } | null>(null);
   const [confirmModal, setConfirmModal] = useState<{ title: string; message: string; onConfirm: () => void; variant?: 'danger' | 'primary' } | null>(null);
   const [copyMoveModal, setCopyMoveModal] = useState<{ mode: 'copy' | 'move'; collection: any } | null>(null);
+  const [newDocModal, setNewDocModal] = useState<{ isOpen: boolean; collectionPath: string } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,6 +57,9 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
 
   const handleAction = (action: string, collection: any) => {
     switch (action) {
+      case 'addDocument':
+        setNewDocModal({ isOpen: true, collectionPath: collection.path });
+        break;
       case 'toggleReadOnly':
         onToggleReadOnly(collection.path);
         break;
@@ -98,6 +105,18 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
 
   const handleConfirmCancel = () => {
     setConfirmModal(null);
+  };
+
+  const handleNewDocConfirm = (docId: string, data: Record<string, any>) => {
+    if (newDocModal) {
+      onAddDocument(newDocModal.collectionPath, docId, data);
+      notify('success', 'Document created successfully');
+    }
+    setNewDocModal(null);
+  };
+
+  const handleNewDocCancel = () => {
+    setNewDocModal(null);
   };
 
   if (loading) {
@@ -233,6 +252,27 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
             <span>📥</span>
             <span>Import Collection...</span>
           </button>
+          <button
+            onClick={() => handleAction('addDocument', contextMenu.collection)}
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '6px 12px',
+              background: 'none',
+              border: 'none',
+              color: 'var(--vscode-dropdown-foreground)',
+              fontSize: 12,
+              textAlign: 'left',
+              cursor: 'pointer',
+            }}
+            onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)'}
+            onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+          >
+            <span>➕</span>
+            <span>Add Document...</span>
+          </button>
           <div style={{ borderTop: '1px solid var(--vscode-dropdown-border)', margin: '4px 0' }} />
           <button
             onClick={() => handleAction('rename', contextMenu.collection)}
@@ -287,6 +327,14 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
           onConfirm={handleConfirmOk}
           onCancel={handleConfirmCancel}
           variant={confirmModal.variant}
+        />
+      )}
+
+      {newDocModal && (
+        <NewDocumentModal
+          isOpen={true}
+          onConfirm={handleNewDocConfirm}
+          onCancel={handleNewDocCancel}
         />
       )}
     </div>

@@ -27,6 +27,21 @@ export class FirestoreService {
             throw this.handleError(error);
         }
     }
+    async createCollection(collectionId) {
+        try {
+            // In Firestore, collections are created implicitly when you add a document
+            // We create a placeholder document and delete it to ensure the collection exists
+            const collectionRef = this.firestore.collection(collectionId);
+            const placeholderRef = collectionRef.doc('_placeholder');
+            await placeholderRef.set({ createdAt: new Date().toISOString() });
+            await placeholderRef.delete();
+            logger.info('Collection created', { collectionId, projectId: this.projectId });
+        }
+        catch (error) {
+            logger.error('Failed to create collection', { collectionId, error: error.message });
+            throw this.handleError(error);
+        }
+    }
     async listDocuments(collectionPath, options) {
         try {
             let query = this.firestore.collection(collectionPath);
