@@ -5,6 +5,7 @@ import { ProjectCompareView } from './views/ProjectCompareView';
 import { MigrationView } from './views/MigrationView';
 import { AuditView } from './views/AuditView';
 import { Connection, FirestoreDocument, FirestoreQuery } from '@vistiq/core';
+import { NotificationProvider, useNotify } from './context/NotificationContext';
 
 declare const acquireVsCodeApi: () => { postMessage: (msg: unknown) => void; getState: () => unknown; setState: (state: unknown) => void };
 
@@ -32,7 +33,9 @@ const log = {
   warn: (msg: string, meta?: Record<string, unknown>) => console.warn(`[Webview] ${msg}`, meta || ''),
   error: (msg: string, meta?: Record<string, unknown>) => console.error(`[Webview] ${msg}`, meta || ''),
 };
-export const App: React.FC = () => {
+
+const AppInner: React.FC = () => {
+  const notify = useNotify();
   const [view, setView] = useState<ViewType>('firestore');
   const [connection, setConnection] = useState<Connection | null>(null);
   const [collections, setCollections] = useState<any[]>([]);
@@ -42,6 +45,8 @@ export const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [pagination, setPagination] = useState({ page: 1, hasMore: false, nextToken: '', pageSize: 50 });
   const [selectedCollection, setSelectedCollection] = useState<string>('');
+  const [readOnlyCollections, setReadOnlyCollections] = useState<Set<string>>(new Set());
+  const [connections, setConnections] = useState<Array<{ projectId: string; displayName: string }>>([]);
 
   // const vscode = acquireVsCodeApi();
 
@@ -77,6 +82,14 @@ export const App: React.FC = () => {
           loadCollections();
         } else {
           log.warn('App: No active connection found');
+        }
+        
+        // Fetch all connections for Copy/Move modal
+        try {
+          const conns = await sendMessage('getConnections');
+          setConnections(conns as Array<{ projectId: string; displayName: string }>);
+        } catch (err) {
+          log.warn('App: Could not fetch connections', { error: (err as Error).message });
         }
       } catch (err) {
         log.error('App: Error getting active connection', { error: (err as Error).message });
@@ -401,7 +414,7 @@ export const App: React.FC = () => {
     const geopoints = extractGeopoints(doc.data);
     
     if (geopoints.length === 0) {
-      alert('No geopoints found in this document');
+      notify('info', 'No geopoints found in this document');
       return;
     }
     
@@ -438,7 +451,7 @@ export const App: React.FC = () => {
           
           const collectionPath = targetCollection || (doc ? doc.path.split('/').slice(0, -1).join('/') : selectedCollection);
           if (!collectionPath) {
-            alert('No collection selected. Please select a collection first.');
+            notify('error', 'No collection selected. Please select a collection first.');
             resolve();
             return;
           }
@@ -449,11 +462,13 @@ export const App: React.FC = () => {
               documentPath: doc.path, 
               data: { data: importData } 
             });
+            notify('success', 'Document updated successfully');
           } else {
             await sendMessage('createDocument', { 
               collectionPath, 
               data: { id: '', path: '', data: importData } 
             });
+            notify('success', 'Document created successfully');
           }
           
           if (selectedCollection) await loadDocuments(selectedCollection);
@@ -461,7 +476,7 @@ export const App: React.FC = () => {
         } catch (err) {
           log.error('handleImportDocument: Error', { error: (err as Error).message });
           setError((err as Error).message);
-          alert(`Import failed: ${(err as Error).message}`);
+          notify('error', `Import failed: ${(err as Error).message}`);
           resolve();
         }
       };
@@ -539,6 +554,10 @@ export const App: React.FC = () => {
             onImportDocument={handleImportDocument}
             onExportDocument={handleExportDocument}
             onRevealInConsole={handleRevealInConsole}
+            connections={connections}
+            activeProjectId={connection?.projectId || null}
+            readOnlyCollections={readOnlyCollections}
+            setReadOnlyCollections={setReadOnlyCollections}
           />
         );
       case 'compare':
@@ -555,28 +574,36 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <div className="toolbar">
-        <div className="toolbar-group">
-          <button onClick={() => setView('firestore')} className={view === 'firestore' ? 'active' : ''}>Firestore</button>
-          <button onClick={() => setView('compare')} className={view === 'compare' ? 'active' : ''}>Compare</button>
-          <button onClick={() => setView('project-compare')} className={view === 'project-compare' ? 'active' : ''}>Projects</button>
-          <button onClick={() => setView('migration')} className={view === 'migration' ? 'active' : ''}>Migration</button>
-          <button onClick={() => setView('audit')} className={view === 'audit' ? 'active' : ''}>Audit</button>
+    <NotificationProvider>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+        <div className="toolbar">
+          <div className="toolbar-group">
+            <button onClick={() => setView('firestore')} className={view === 'firestore' ? 'active' : ''}>Firestore</button>
+            <button onClick={() => setView('compare')} className={view === 'compare' ? 'active' : ''}>Compare</button>
+            <button onClick={() => setView('project-compare')} className={view === 'project-compare' ? 'active' : ''}>Projects</button>
+            <button onClick={() => setView('migration')} className={view === 'migration' ? 'active' : ''}>Migration</button>
+            <button onClick={() => setView('audit')} className={view === 'audit' ? 'active' : ''}>Audit</button>
+          </div>
+          <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <span className={`badge ${connection.environment}`}>{connection.environment}</span>
+            {connection.authMethod === 'emulator' && <span className="badge emulator">Emulator</span>}
+            {connection.environment === 'production' && <span className="badge production">Production</span>}
+          </div>
         </div>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }}>
-          <span className={`badge ${connection.environment}`}>{connection.environment}</span>
-          {connection.authMethod === 'emulator' && <span className="badge emulator">Emulator</span>}
-          {connection.environment === 'production' && <span className="badge production">Production</span>}
+        <div style={{ flex: 1, overflow: 'hidden' }}>
+          {renderView()}
+        </div>
+        <div className="status-bar">
+          <span>{connection.displayName} ({connection.projectId})</span>
+          <span>{documents.length} documents</span>
         </div>
       </div>
-      <div style={{ flex: 1, overflow: 'hidden' }}>
-        {renderView()}
-      </div>
-      <div className="status-bar">
-        <span>{connection.displayName} ({connection.projectId})</span>
-        <span>{documents.length} documents</span>
-      </div>
-    </div>
+    </NotificationProvider>
   );
 };
+
+export const App: React.FC = () => (
+  <NotificationProvider>
+    <AppInner />
+  </NotificationProvider>
+);

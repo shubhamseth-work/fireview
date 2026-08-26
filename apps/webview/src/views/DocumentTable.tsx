@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FirestoreDocument, FirestoreQuery, QueryFilter, QueryOperator, OrderByClause } from '@vistiq/core';
 import { Connection } from '@vistiq/core';
+import { ConfirmationModal } from './ConfirmationModal';
+import { CopyMoveModal } from './CopyMoveModal';
+import { RenameModal } from './RenameModal';
+import { useNotify } from '../context/NotificationContext';
 
 interface DocumentTableProps {
   documents: FirestoreDocument[];
@@ -22,6 +26,11 @@ interface DocumentTableProps {
   onImportDocument: (doc: FirestoreDocument) => void;
   onExportDocument: (doc: FirestoreDocument) => void;
   onRevealInConsole: (doc: FirestoreDocument) => void;
+  connections: Array<{ projectId: string; displayName: string }>;
+  activeProjectId: string | null;
+  collections: string[];
+  selectedCollection: string;
+  readOnlyCollections: Set<string>;
 }
 
 type MenuAction = 
@@ -112,9 +121,18 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
   onImportDocument,
   onExportDocument,
   onRevealInConsole,
+  connections,
+  activeProjectId,
+  collections,
+  selectedCollection,
+  readOnlyCollections,
 }) => {
+  const notify = useNotify();
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [menuAnchor, setMenuAnchor] = useState<{ doc: FirestoreDocument; rect: DOMRect } | null>(null);
+  const [confirmModal, setConfirmModal] = useState<{ title: string; message: string; onConfirm: () => void; variant?: 'danger' | 'primary' } | null>(null);
+  const [copyMoveModal, setCopyMoveModal] = useState<{ mode: 'copy' | 'move'; doc: FirestoreDocument } | null>(null);
+  const [renameModal, setRenameModal] = useState<{ doc: FirestoreDocument; currentName: string } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -130,6 +148,18 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
   const handleMenuAction = (action: MenuAction) => {
     if (!menuAnchor) return;
     const { doc } = menuAnchor;
+    
+    // Check if document's collection is read-only
+    const isReadOnly = readOnlyCollections.has(selectedCollection);
+    
+    // Actions that modify data
+    const modifyingActions: MenuAction[] = ['rename', 'move', 'duplicate', 'copyTo', 'delete', 'import'];
+    
+    if (isReadOnly && modifyingActions.includes(action)) {
+      notify('warning', 'This collection is read-only. Please disable read-only mode first to perform this action.');
+      setMenuAnchor(null);
+      return;
+    }
 
     switch (action) {
       case 'editJson':
@@ -139,22 +169,24 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
         onOpenDocument(doc);
         break;
       case 'rename':
-        const newId = prompt('Enter new document ID:', doc.id);
-        if (newId && newId !== doc.id) onRenameDocument(doc, newId);
+        setRenameModal({ doc, currentName: doc.id });
         break;
       case 'move':
-        const targetCol = prompt('Enter target collection path:', '');
-        if (targetCol) onMoveDocument(doc, targetCol);
+        setCopyMoveModal({ mode: 'move', doc });
         break;
       case 'duplicate':
         onDuplicateDocument(doc);
         break;
       case 'copyTo':
-        const copyTarget = prompt('Enter target collection path:', '');
-        if (copyTarget) onCopyDocumentTo(doc, copyTarget);
+        setCopyMoveModal({ mode: 'copy', doc });
         break;
       case 'delete':
-        if (confirm(`Delete document ${doc.id}?`)) onDeleteDocument(doc.path);
+        setConfirmModal({
+          title: 'Delete Document',
+          message: `Are you sure you want to delete document "${doc.id}"? This action cannot be undone.`,
+          onConfirm: () => onDeleteDocument(doc.path),
+          variant: 'danger',
+        });
         break;
       case 'showGeopoints':
         onShowGeopoints(doc);
@@ -171,6 +203,7 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
         navigator.clipboard.writeText(json);
         setCopiedId(doc.id);
         setTimeout(() => setCopiedId(null), 2000);
+        notify('success', 'Document data copied as JSON');
         onCopyDocument(doc);
         break;
       case 'revealInConsole':
@@ -178,6 +211,52 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
         break;
     }
     setMenuAnchor(null);
+  };
+
+  const handleCopyMoveConfirm = (targetProjectId: string, targetCollection: string, targetDocId?: string) => {
+    if (!copyMoveModal) return;
+    
+    // For now, we only support same-project operations via the existing callbacks
+    // The callbacks expect targetCollection path, but we need to handle cross-project differently
+    // For same project, just call the existing callback
+    if (targetProjectId === activeProjectId) {
+      if (copyMoveModal.mode === 'copy') {
+        onCopyDocumentTo(copyMoveModal.doc, targetCollection);
+        notify('success', `Document copied to ${targetCollection}`);
+      } else {
+        onMoveDocument(copyMoveModal.doc, targetCollection);
+        notify('success', `Document moved to ${targetCollection}`);
+      }
+    } else {
+      // Cross-project: would need new API endpoints
+      notify('error', `Cross-project ${copyMoveModal.mode} not yet implemented. Please use same project.`);
+    }
+    setCopyMoveModal(null);
+  };
+
+  const handleCopyMoveCancel = () => {
+    setCopyMoveModal(null);
+  };
+
+  const handleConfirmCancel = () => {
+    setConfirmModal(null);
+  };
+
+  const handleConfirmOk = () => {
+    confirmModal?.onConfirm();
+    setConfirmModal(null);
+  };
+
+  const handleRenameConfirm = (newName: string) => {
+    if (renameModal) {
+      onRenameDocument(renameModal.doc, newName);
+      notify('success', `Document renamed to ${newName}`);
+    }
+    setRenameModal(null);
+  };
+
+  const handleRenameCancel = () => {
+    setRenameModal(null);
   };
 
   if (loading) {
@@ -399,6 +478,43 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
           )}
         </div>
       </div>
+
+      {confirmModal && (
+        <ConfirmationModal
+          isOpen={true}
+          title={confirmModal.title}
+          message={confirmModal.message}
+          onConfirm={handleConfirmOk}
+          onCancel={handleConfirmCancel}
+          variant={confirmModal.variant}
+        />
+      )}
+
+      {copyMoveModal && (
+        <CopyMoveModal
+          isOpen={true}
+          mode={copyMoveModal.mode}
+          sourceDoc={{
+            id: copyMoveModal.doc.id,
+            path: copyMoveModal.doc.path,
+            collectionPath: selectedCollection,
+          }}
+          connections={connections}
+          activeProjectId={activeProjectId}
+          collections={collections}
+          onConfirm={handleCopyMoveConfirm}
+          onCancel={handleCopyMoveCancel}
+        />
+      )}
+
+      {renameModal && (
+        <RenameModal
+          isOpen={true}
+          currentName={renameModal.currentName}
+          onConfirm={handleRenameConfirm}
+          onCancel={handleRenameCancel}
+        />
+      )}
     </div>
   );
 };

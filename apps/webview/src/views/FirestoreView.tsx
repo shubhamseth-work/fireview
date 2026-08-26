@@ -36,6 +36,10 @@ interface FirestoreViewProps {
   onImportDocument: (doc: FirestoreDocument) => void;
   onExportDocument: (doc: FirestoreDocument) => void;
   onRevealInConsole: (doc: FirestoreDocument) => void;
+  connections: Array<{ projectId: string; displayName: string }>;
+  activeProjectId: string | null;
+  readOnlyCollections: Set<string>;
+  setReadOnlyCollections: (updater: Set<string> | ((prev: Set<string>) => Set<string>)) => void;
 }
 
 export const FirestoreView: React.FC<FirestoreViewProps> = ({
@@ -66,6 +70,10 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
   onImportDocument,
   onExportDocument,
   onRevealInConsole,
+  connections,
+  activeProjectId,
+  readOnlyCollections,
+  setReadOnlyCollections,
 }) => {
   const [selectedCollection, setSelectedCollection] = useState<string>('');
   const [showQueryBuilder, setShowQueryBuilder] = useState(false);
@@ -105,6 +113,26 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
     setShowImportModal(true);
   };
 
+  const handleToggleReadOnly = (collectionPath: string) => {
+    setReadOnlyCollections((prev: Set<string>) => {
+      const next = new Set(prev);
+      if (next.has(collectionPath)) {
+        next.delete(collectionPath);
+      } else {
+        next.add(collectionPath);
+      }
+      return next;
+    });
+  };
+
+  const handleCollectionExport = (collectionPath: string) => {
+    onExportCollection(collectionPath, 'json', '');
+  };
+
+  const handleCollectionImport = (collectionPath: string) => {
+    onImportCollection(collectionPath, 'json', 'upsert', '');
+  };
+
   return (
     <div style={{ display: 'flex', height: '100%', overflow: 'hidden' }}>
       {!isSidebarCollapsed && (
@@ -139,6 +167,12 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
               selectedCollection={selectedCollection}
               onSelect={handleCollectionClick}
               loading={loading}
+              readOnlyCollections={readOnlyCollections}
+              onToggleReadOnly={handleToggleReadOnly}
+              onExportCollection={handleCollectionExport}
+              onImportCollection={handleCollectionImport}
+              connections={connections}
+              activeProjectId={activeProjectId}
             />
           )}
         </div>
@@ -216,6 +250,11 @@ window.addEventListener('mousemove', onMouseMove);
             onImportDocument={onImportDocument}
             onExportDocument={onExportDocument}
             onRevealInConsole={onRevealInConsole}
+            connections={connections}
+            activeProjectId={activeProjectId}
+            collections={collections.map(c => c.id)}
+            selectedCollection={selectedCollection}
+            readOnlyCollections={readOnlyCollections}
           />
         )}
       </div>

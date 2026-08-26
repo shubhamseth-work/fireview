@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FirestoreDocument, FirestoreValue } from '@vistiq/core';
 import { Connection } from '@vistiq/core';
+import { useNotify } from '../context/NotificationContext';
+import { ConfirmationModal } from './ConfirmationModal';
 
 // Logger for DocumentViewer
 const log = {
@@ -25,6 +27,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   onUpdate,
   onDelete,
 }) => {
+  const notify = useNotify();
+  const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; isProduction: boolean } | null>(null);
   log.info('DocumentViewer rendered', { 
     docId: document.id, 
     docPath: document.path,
@@ -53,27 +57,29 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     try {
       const parsed = JSON.parse(editData);
       await onUpdate(document.path, { data: parsed });
+      notify('success', 'Document updated successfully');
       setEditing(false);
     } catch (err) {
-      alert('Invalid JSON: ' + (err as Error).message);
+      notify('error', `Invalid JSON: ${(err as Error).message}`);
     }
   };
 
   const handleDelete = async () => {
-    if (isProduction && !confirmDelete) {
-      setConfirmDelete(true);
-      return;
-    }
-    const confirmed = window.confirm(
-      isProduction
-        ? `⚠️ PRODUCTION: Delete document ${document.id}? Type "DELETE ${document.id}" to confirm.`
-        : `Delete document ${document.id}?`
-    );
-    if (confirmed) {
-      await onDelete(document.path);
+    const isProd = connection.environment === 'production';
+    setDeleteConfirm({ isOpen: true, isProduction: isProd });
+  };
+
+  const handleDeleteConfirm = () => {
+    if (deleteConfirm) {
+      onDelete(document.path);
+      notify('success', 'Document deleted successfully');
       onClose();
     }
-    setConfirmDelete(false);
+    setDeleteConfirm(null);
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteConfirm(null);
   };
 
   const handleDuplicate = async () => {
@@ -84,9 +90,10 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         data: document.data,
       };
       await onUpdate('', { data: newDoc as any });
+      notify('success', 'Document duplicated successfully');
       onClose();
     } catch (err) {
-      alert('Failed to duplicate: ' + (err as Error).message);
+      notify('error', `Failed to duplicate: ${(err as Error).message}`);
     }
   };
 
@@ -238,31 +245,11 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
             <>
               <button onClick={() => setEditing(true)} className="secondary">Edit</button>
               <button onClick={handleDuplicate} className="secondary">Duplicate</button>
-              <button onClick={handleDelete} className="danger" disabled={isProduction && !confirmDelete}>Delete</button>
+              <button onClick={handleDelete} className="danger">Delete</button>
             </>
           )}
         </div>
       </div>
-
-      {confirmDelete && isProduction && (
-        <div style={{ padding: 16, backgroundColor: 'rgba(244, 71, 71, 0.1)', border: '1px solid var(--vscode-error)', borderRadius: 4, margin: '0 16px 16px' }}>
-          <div style={{ color: 'var(--vscode-error)', fontWeight: 600, marginBottom: 8 }}>
-            ⚠️ PRODUCTION DELETION CONFIRMATION REQUIRED
-          </div>
-          <div style={{ marginBottom: 8 }}>
-            Type <code style={{ background: 'var(--vscode-input-bg)', padding: '2px 6px', borderRadius: 2 }}>
-              DELETE {document.id}
-            </code> to confirm deletion
-          </div>
-          <input
-            type="text"
-            placeholder={`DELETE ${document.id}`}
-            onChange={e => setConfirmDelete(e.target.value === `DELETE ${document.id}`)}
-            style={{ width: '100%', marginBottom: 8 }}
-          />
-          <button onClick={handleDelete} className="danger" disabled={!confirmDelete}>Confirm Delete</button>
-        </div>
-      )}
 
       <div className="tabs">
         <button className={viewMode === 'table' ? 'active' : ''} onClick={() => setViewMode('table')}>Table</button>
@@ -297,6 +284,20 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           {viewMode === 'json' && renderJsonView()}
           {viewMode === 'raw' && renderRawView()}
         </div>
+      )}
+
+      {deleteConfirm && (
+        <ConfirmationModal
+          isOpen={true}
+          title={deleteConfirm.isProduction ? '⚠️ PRODUCTION: Delete Document' : 'Delete Document'}
+          message={deleteConfirm.isProduction
+            ? `This is a PRODUCTION document. Type "DELETE ${document.id}" to confirm deletion.`
+            : `Are you sure you want to delete document "${document.id}"? This action cannot be undone.`}
+          onConfirm={handleDeleteConfirm}
+          onCancel={handleDeleteCancel}
+          variant="danger"
+          confirmLabel={deleteConfirm.isProduction ? 'Type DELETE to confirm' : 'Delete'}
+        />
       )}
     </div>
   );

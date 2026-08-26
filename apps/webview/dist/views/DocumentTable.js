@@ -1,5 +1,9 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState, useRef, useEffect } from 'react';
+import { ConfirmationModal } from './ConfirmationModal';
+import { CopyMoveModal } from './CopyMoveModal';
+import { RenameModal } from './RenameModal';
+import { useNotify } from '../context/NotificationContext';
 const menuItems = [
     { action: 'editJson', label: 'Edit Document as JSON...', icon: '✏️' },
     { action: 'openNewTab', label: 'Open in new Tab', icon: '🔗', divider: true },
@@ -53,9 +57,13 @@ function cleanValue(value) {
     }
     return objResult;
 }
-export const DocumentTable = ({ documents, loading, error, pagination, onRowClick, onRunQuery, onLoadMore, onPageSizeChange, onCopyDocument, onCopyDocumentTo, onOpenDocument, onDeleteDocument, onDuplicateDocument, onRenameDocument, onMoveDocument, onShowGeopoints, onImportDocument, onExportDocument, onRevealInConsole, }) => {
+export const DocumentTable = ({ documents, loading, error, pagination, onRowClick, onRunQuery, onLoadMore, onPageSizeChange, onCopyDocument, onCopyDocumentTo, onOpenDocument, onDeleteDocument, onDuplicateDocument, onRenameDocument, onMoveDocument, onShowGeopoints, onImportDocument, onExportDocument, onRevealInConsole, connections, activeProjectId, collections, selectedCollection, readOnlyCollections, }) => {
+    const notify = useNotify();
     const [copiedId, setCopiedId] = useState(null);
     const [menuAnchor, setMenuAnchor] = useState(null);
+    const [confirmModal, setConfirmModal] = useState(null);
+    const [copyMoveModal, setCopyMoveModal] = useState(null);
+    const [renameModal, setRenameModal] = useState(null);
     const menuRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -70,6 +78,15 @@ export const DocumentTable = ({ documents, loading, error, pagination, onRowClic
         if (!menuAnchor)
             return;
         const { doc } = menuAnchor;
+        // Check if document's collection is read-only
+        const isReadOnly = readOnlyCollections.has(selectedCollection);
+        // Actions that modify data
+        const modifyingActions = ['rename', 'move', 'duplicate', 'copyTo', 'delete', 'import'];
+        if (isReadOnly && modifyingActions.includes(action)) {
+            notify('warning', 'This collection is read-only. Please disable read-only mode first to perform this action.');
+            setMenuAnchor(null);
+            return;
+        }
         switch (action) {
             case 'editJson':
                 onOpenDocument(doc);
@@ -78,26 +95,24 @@ export const DocumentTable = ({ documents, loading, error, pagination, onRowClic
                 onOpenDocument(doc);
                 break;
             case 'rename':
-                const newId = prompt('Enter new document ID:', doc.id);
-                if (newId && newId !== doc.id)
-                    onRenameDocument(doc, newId);
+                setRenameModal({ doc, currentName: doc.id });
                 break;
             case 'move':
-                const targetCol = prompt('Enter target collection path:', '');
-                if (targetCol)
-                    onMoveDocument(doc, targetCol);
+                setCopyMoveModal({ mode: 'move', doc });
                 break;
             case 'duplicate':
                 onDuplicateDocument(doc);
                 break;
             case 'copyTo':
-                const copyTarget = prompt('Enter target collection path:', '');
-                if (copyTarget)
-                    onCopyDocumentTo(doc, copyTarget);
+                setCopyMoveModal({ mode: 'copy', doc });
                 break;
             case 'delete':
-                if (confirm(`Delete document ${doc.id}?`))
-                    onDeleteDocument(doc.path);
+                setConfirmModal({
+                    title: 'Delete Document',
+                    message: `Are you sure you want to delete document "${doc.id}"? This action cannot be undone.`,
+                    onConfirm: () => onDeleteDocument(doc.path),
+                    variant: 'danger',
+                });
                 break;
             case 'showGeopoints':
                 onShowGeopoints(doc);
@@ -114,6 +129,7 @@ export const DocumentTable = ({ documents, loading, error, pagination, onRowClic
                 navigator.clipboard.writeText(json);
                 setCopiedId(doc.id);
                 setTimeout(() => setCopiedId(null), 2000);
+                notify('success', 'Document data copied as JSON');
                 onCopyDocument(doc);
                 break;
             case 'revealInConsole':
@@ -121,6 +137,48 @@ export const DocumentTable = ({ documents, loading, error, pagination, onRowClic
                 break;
         }
         setMenuAnchor(null);
+    };
+    const handleCopyMoveConfirm = (targetProjectId, targetCollection, targetDocId) => {
+        if (!copyMoveModal)
+            return;
+        // For now, we only support same-project operations via the existing callbacks
+        // The callbacks expect targetCollection path, but we need to handle cross-project differently
+        // For same project, just call the existing callback
+        if (targetProjectId === activeProjectId) {
+            if (copyMoveModal.mode === 'copy') {
+                onCopyDocumentTo(copyMoveModal.doc, targetCollection);
+                notify('success', `Document copied to ${targetCollection}`);
+            }
+            else {
+                onMoveDocument(copyMoveModal.doc, targetCollection);
+                notify('success', `Document moved to ${targetCollection}`);
+            }
+        }
+        else {
+            // Cross-project: would need new API endpoints
+            notify('error', `Cross-project ${copyMoveModal.mode} not yet implemented. Please use same project.`);
+        }
+        setCopyMoveModal(null);
+    };
+    const handleCopyMoveCancel = () => {
+        setCopyMoveModal(null);
+    };
+    const handleConfirmCancel = () => {
+        setConfirmModal(null);
+    };
+    const handleConfirmOk = () => {
+        confirmModal?.onConfirm();
+        setConfirmModal(null);
+    };
+    const handleRenameConfirm = (newName) => {
+        if (renameModal) {
+            onRenameDocument(renameModal.doc, newName);
+            notify('success', `Document renamed to ${newName}`);
+        }
+        setRenameModal(null);
+    };
+    const handleRenameCancel = () => {
+        setRenameModal(null);
     };
     if (loading) {
         return (_jsx("div", { style: { display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }, children: _jsxs("div", { style: { textAlign: 'center' }, children: [_jsx("div", { style: { fontSize: 24, marginBottom: 8 }, children: "\u23F3" }), _jsx("div", { children: "Loading documents..." })] }) }));
@@ -221,6 +279,10 @@ export const DocumentTable = ({ documents, loading, error, pagination, onRowClic
                                     borderRadius: 2,
                                     cursor: loading ? 'not-allowed' : 'pointer',
                                     opacity: loading ? 0.6 : 1,
-                                }, children: loading ? 'Loading...' : 'Load More' })), !pagination.hasMore && documents.length > 0 && (_jsx("span", { style: { fontSize: 12, color: 'var(--vscode-descriptionForeground)' }, children: "End of results" }))] })] })] }));
+                                }, children: loading ? 'Loading...' : 'Load More' })), !pagination.hasMore && documents.length > 0 && (_jsx("span", { style: { fontSize: 12, color: 'var(--vscode-descriptionForeground)' }, children: "End of results" }))] })] }), confirmModal && (_jsx(ConfirmationModal, { isOpen: true, title: confirmModal.title, message: confirmModal.message, onConfirm: handleConfirmOk, onCancel: handleConfirmCancel, variant: confirmModal.variant })), copyMoveModal && (_jsx(CopyMoveModal, { isOpen: true, mode: copyMoveModal.mode, sourceDoc: {
+                    id: copyMoveModal.doc.id,
+                    path: copyMoveModal.doc.path,
+                    collectionPath: selectedCollection,
+                }, connections: connections, activeProjectId: activeProjectId, collections: collections, onConfirm: handleCopyMoveConfirm, onCancel: handleCopyMoveCancel })), renameModal && (_jsx(RenameModal, { isOpen: true, currentName: renameModal.currentName, onConfirm: handleRenameConfirm, onCancel: handleRenameCancel }))] }));
 };
 //# sourceMappingURL=DocumentTable.js.map

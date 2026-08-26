@@ -25,6 +25,14 @@ interface DocumentTableProps {
     onImportDocument: (doc: FirestoreDocument) => void;
     onExportDocument: (doc: FirestoreDocument) => void;
     onRevealInConsole: (doc: FirestoreDocument) => void;
+    connections: Array<{
+        projectId: string;
+        displayName: string;
+    }>;
+    activeProjectId: string | null;
+    collections: string[];
+    selectedCollection: string;
+    readOnlyCollections: Set<string>;
 }
 export declare const DocumentTable: React.FC<DocumentTableProps>;
 export {};

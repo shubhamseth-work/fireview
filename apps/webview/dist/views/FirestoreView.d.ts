@@ -34,6 +34,13 @@ interface FirestoreViewProps {
     onImportDocument: (doc: FirestoreDocument) => void;
     onExportDocument: (doc: FirestoreDocument) => void;
     onRevealInConsole: (doc: FirestoreDocument) => void;
+    connections: Array<{
+        projectId: string;
+        displayName: string;
+    }>;
+    activeProjectId: string | null;
+    readOnlyCollections: Set<string>;
+    setReadOnlyCollections: (updater: Set<string> | ((prev: Set<string>) => Set<string>)) => void;
 }
 export declare const FirestoreView: React.FC<FirestoreViewProps>;
 export {};

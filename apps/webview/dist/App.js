@@ -5,6 +5,7 @@ import { CompareView } from './views/CompareView';
 import { ProjectCompareView } from './views/ProjectCompareView';
 import { MigrationView } from './views/MigrationView';
 import { AuditView } from './views/AuditView';
+import { NotificationProvider, useNotify } from './context/NotificationContext';
 const vscode = acquireVsCodeApi();
 // Logger for webview
 const log = {
@@ -13,7 +14,8 @@ const log = {
     warn: (msg, meta) => console.warn(`[Webview] ${msg}`, meta || ''),
     error: (msg, meta) => console.error(`[Webview] ${msg}`, meta || ''),
 };
-export const App = () => {
+const AppInner = () => {
+    const notify = useNotify();
     const [view, setView] = useState('firestore');
     const [connection, setConnection] = useState(null);
     const [collections, setCollections] = useState([]);
@@ -23,6 +25,8 @@ export const App = () => {
     const [error, setError] = useState(null);
     const [pagination, setPagination] = useState({ page: 1, hasMore: false, nextToken: '', pageSize: 50 });
     const [selectedCollection, setSelectedCollection] = useState('');
+    const [readOnlyCollections, setReadOnlyCollections] = useState(new Set());
+    const [connections, setConnections] = useState([]);
     // const vscode = acquireVsCodeApi();
     const sendMessage = useCallback((type, payload) => {
         log.debug('sendMessage called', { type, payload });
@@ -58,6 +62,14 @@ export const App = () => {
                 }
                 else {
                     log.warn('App: No active connection found');
+                }
+                // Fetch all connections for Copy/Move modal
+                try {
+                    const conns = await sendMessage('getConnections');
+                    setConnections(conns);
+                }
+                catch (err) {
+                    log.warn('App: Could not fetch connections', { error: err.message });
                 }
             }
             catch (err) {
@@ -386,7 +398,7 @@ export const App = () => {
         log.info('handleShowGeopoints called', { docId: doc.id });
         const geopoints = extractGeopoints(doc.data);
         if (geopoints.length === 0) {
-            alert('No geopoints found in this document');
+            notify('info', 'No geopoints found in this document');
             return;
         }
         if (geopoints.length === 1) {
@@ -420,7 +432,7 @@ export const App = () => {
                     const importData = JSON.parse(text);
                     const collectionPath = targetCollection || (doc ? doc.path.split('/').slice(0, -1).join('/') : selectedCollection);
                     if (!collectionPath) {
-                        alert('No collection selected. Please select a collection first.');
+                        notify('error', 'No collection selected. Please select a collection first.');
                         resolve();
                         return;
                     }
@@ -430,12 +442,14 @@ export const App = () => {
                             documentPath: doc.path,
                             data: { data: importData }
                         });
+                        notify('success', 'Document updated successfully');
                     }
                     else {
                         await sendMessage('createDocument', {
                             collectionPath,
                             data: { id: '', path: '', data: importData }
                         });
+                        notify('success', 'Document created successfully');
                     }
                     if (selectedCollection)
                         await loadDocuments(selectedCollection);
@@ -444,7 +458,7 @@ export const App = () => {
                 catch (err) {
                     log.error('handleImportDocument: Error', { error: err.message });
                     setError(err.message);
-                    alert(`Import failed: ${err.message}`);
+                    notify('error', `Import failed: ${err.message}`);
                     resolve();
                 }
             };
@@ -487,7 +501,7 @@ export const App = () => {
     const renderView = () => {
         switch (view) {
             case 'firestore':
-                return (_jsx(FirestoreView, { connection: connection, collections: collections, documents: documents, selectedDocument: selectedDocument, loading: loading, error: error, pagination: pagination, onLoadDocuments: loadDocuments, onOpenDocument: handleOpenDocument, onCloseDocument: handleCloseDocument, onRunQuery: handleRunQuery, onCreateDocument: handleCreateDocument, onUpdateDocument: handleUpdateDocument, onDeleteDocument: handleDeleteDocument, onExportCollection: handleExportCollection, onImportCollection: handleImportCollection, onLoadMore: loadMore, onPageSizeChange: handlePageSizeChange, onCopyDocument: () => { }, onCopyDocumentTo: handleCopyDocument, onDuplicateDocument: handleDuplicateDocument, onRenameDocument: handleRenameDocument, onMoveDocument: handleMoveDocument, onShowGeopoints: handleShowGeopoints, onImportDocument: handleImportDocument, onExportDocument: handleExportDocument, onRevealInConsole: handleRevealInConsole }));
+                return (_jsx(FirestoreView, { connection: connection, collections: collections, documents: documents, selectedDocument: selectedDocument, loading: loading, error: error, pagination: pagination, onLoadDocuments: loadDocuments, onOpenDocument: handleOpenDocument, onCloseDocument: handleCloseDocument, onRunQuery: handleRunQuery, onCreateDocument: handleCreateDocument, onUpdateDocument: handleUpdateDocument, onDeleteDocument: handleDeleteDocument, onExportCollection: handleExportCollection, onImportCollection: handleImportCollection, onLoadMore: loadMore, onPageSizeChange: handlePageSizeChange, onCopyDocument: () => { }, onCopyDocumentTo: handleCopyDocument, onDuplicateDocument: handleDuplicateDocument, onRenameDocument: handleRenameDocument, onMoveDocument: handleMoveDocument, onShowGeopoints: handleShowGeopoints, onImportDocument: handleImportDocument, onExportDocument: handleExportDocument, onRevealInConsole: handleRevealInConsole, connections: connections, activeProjectId: connection?.projectId || null, readOnlyCollections: readOnlyCollections, setReadOnlyCollections: setReadOnlyCollections }));
             case 'compare':
                 return _jsx(CompareView, { connection: connection, onRunQuery: handleRunQuery });
             case 'project-compare':
@@ -500,6 +514,7 @@ export const App = () => {
                 return null;
         }
     };
-    return (_jsxs("div", { style: { display: 'flex', flexDirection: 'column', height: '100vh' }, children: [_jsxs("div", { className: "toolbar", children: [_jsxs("div", { className: "toolbar-group", children: [_jsx("button", { onClick: () => setView('firestore'), className: view === 'firestore' ? 'active' : '', children: "Firestore" }), _jsx("button", { onClick: () => setView('compare'), className: view === 'compare' ? 'active' : '', children: "Compare" }), _jsx("button", { onClick: () => setView('project-compare'), className: view === 'project-compare' ? 'active' : '', children: "Projects" }), _jsx("button", { onClick: () => setView('migration'), className: view === 'migration' ? 'active' : '', children: "Migration" }), _jsx("button", { onClick: () => setView('audit'), className: view === 'audit' ? 'active' : '', children: "Audit" })] }), _jsxs("div", { style: { marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }, children: [_jsx("span", { className: `badge ${connection.environment}`, children: connection.environment }), connection.authMethod === 'emulator' && _jsx("span", { className: "badge emulator", children: "Emulator" }), connection.environment === 'production' && _jsx("span", { className: "badge production", children: "Production" })] })] }), _jsx("div", { style: { flex: 1, overflow: 'hidden' }, children: renderView() }), _jsxs("div", { className: "status-bar", children: [_jsxs("span", { children: [connection.displayName, " (", connection.projectId, ")"] }), _jsxs("span", { children: [documents.length, " documents"] })] })] }));
+    return (_jsx(NotificationProvider, { children: _jsxs("div", { style: { display: 'flex', flexDirection: 'column', height: '100vh' }, children: [_jsxs("div", { className: "toolbar", children: [_jsxs("div", { className: "toolbar-group", children: [_jsx("button", { onClick: () => setView('firestore'), className: view === 'firestore' ? 'active' : '', children: "Firestore" }), _jsx("button", { onClick: () => setView('compare'), className: view === 'compare' ? 'active' : '', children: "Compare" }), _jsx("button", { onClick: () => setView('project-compare'), className: view === 'project-compare' ? 'active' : '', children: "Projects" }), _jsx("button", { onClick: () => setView('migration'), className: view === 'migration' ? 'active' : '', children: "Migration" }), _jsx("button", { onClick: () => setView('audit'), className: view === 'audit' ? 'active' : '', children: "Audit" })] }), _jsxs("div", { style: { marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }, children: [_jsx("span", { className: `badge ${connection.environment}`, children: connection.environment }), connection.authMethod === 'emulator' && _jsx("span", { className: "badge emulator", children: "Emulator" }), connection.environment === 'production' && _jsx("span", { className: "badge production", children: "Production" })] })] }), _jsx("div", { style: { flex: 1, overflow: 'hidden' }, children: renderView() }), _jsxs("div", { className: "status-bar", children: [_jsxs("span", { children: [connection.displayName, " (", connection.projectId, ")"] }), _jsxs("span", { children: [documents.length, " documents"] })] })] }) }));
 };
+export const App = () => (_jsx(NotificationProvider, { children: _jsx(AppInner, {}) }));
 //# sourceMappingURL=App.js.map
