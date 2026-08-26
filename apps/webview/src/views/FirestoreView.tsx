@@ -50,6 +50,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
   const [showExportModal, setShowExportModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(280);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const handleCollectionClick = (collectionPath: string) => {
     setSelectedCollection(collectionPath);
@@ -84,46 +85,70 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
 
   return (
     <div style={{ display: 'flex', height: '100%', overflow: 'hidden' }}>
-      <div
-        style={{
-          width: sidebarWidth,
-          minWidth: 200,
-          maxWidth: 500,
-          borderRight: '1px solid var(--vscode-border)',
-          display: 'flex',
-          flexDirection: 'column',
-          backgroundColor: 'var(--vscode-sidebar-bg)',
-        }}
-      >
-        <div className="toolbar">
-          <button onClick={handleNewDocument} title="New Document (Ctrl+N)">+ Document</button>
-          <button onClick={() => setShowQueryBuilder(!showQueryBuilder)} title="Query Builder">🔍 Query</button>
-          <button onClick={handleExport} title="Export Collection">📤 Export</button>
-          <button onClick={handleImport} title="Import Collection">📥 Import</button>
+      {!isSidebarCollapsed && (
+        <div
+          style={{
+            width: sidebarWidth,
+            minWidth: 200,
+            maxWidth: 500,
+            borderRight: '1px solid var(--vscode-border)',
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: 'var(--vscode-sidebar-bg)',
+            flexShrink: 0,
+          }}
+        >
+          <div className="toolbar">
+            <button onClick={handleNewDocument} title="New Document (Ctrl+N)">+ Document</button>
+            <button onClick={() => setShowQueryBuilder(!showQueryBuilder)} title="Query Builder">🔍 Query</button>
+            <button onClick={handleExport} title="Export Collection">📤 Export</button>
+            <button onClick={handleImport} title="Import Collection">📥 Import</button>
+            <button onClick={() => setIsSidebarCollapsed(true)} title="Collapse sidebar" style={{ marginLeft: 'auto', padding: '4px 8px' }}>◀</button>
+          </div>
+          {showQueryBuilder ? (
+            <QueryBuilder
+              collections={collections}
+              onRunQuery={handleRunQuery}
+              onClose={() => setShowQueryBuilder(false)}
+            />
+          ) : (
+            <CollectionTree
+              collections={collections}
+              selectedCollection={selectedCollection}
+              onSelect={handleCollectionClick}
+              loading={loading}
+            />
+          )}
         </div>
-        {showQueryBuilder ? (
-          <QueryBuilder
-            collections={collections}
-            onRunQuery={handleRunQuery}
-            onClose={() => setShowQueryBuilder(false)}
-          />
-        ) : (
-          <CollectionTree
-            collections={collections}
-            selectedCollection={selectedCollection}
-            onSelect={handleCollectionClick}
-            loading={loading}
-          />
-        )}
-      </div>
+      )}
+      {isSidebarCollapsed && (
+        <button
+          onClick={() => setIsSidebarCollapsed(false)}
+          style={{
+            width: 32,
+            height: '100%',
+            borderRight: '1px solid var(--vscode-border)',
+            backgroundColor: 'var(--vscode-sidebar-bg)',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 16,
+          }}
+          title="Expand sidebar"
+        >
+          ▶
+        </button>
+      )}
 
-      <div
-        style={{
-          width: 6,
-          cursor: 'col-resize',
-          backgroundColor: 'transparent',
-        }}
-        onMouseDown={(e) => {
+      {!isSidebarCollapsed && (
+        <div
+          style={{
+            width: 6,
+            cursor: 'col-resize',
+            backgroundColor: 'transparent',
+          }}
+          onMouseDown={(e) => {
           const startX = e.clientX;
           const startWidth = sidebarWidth;
           const onMouseMove = (e: MouseEvent) => {
@@ -133,10 +158,11 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
             window.removeEventListener('mousemove', onMouseMove);
             window.removeEventListener('mouseup', onMouseUp);
           };
-          window.addEventListener('mousemove', onMouseMove);
-          window.addEventListener('mouseup', onMouseUp);
-        }}
-      />
+window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+          }}
+        />
+      )}
 
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         {selectedDocument ? (

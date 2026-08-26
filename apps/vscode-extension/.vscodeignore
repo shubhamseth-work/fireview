@@ -1,0 +1,32 @@
+# Ignore everything outside extension directory
+../
+../../
+
+# Ignore root config files
+**/.eslintrc.json
+**/.prettierrc
+**/.gitignore
+**/tsconfig.json
+**/tsconfig.tsbuildinfo
+
+# Ignore standard files
+**/node_modules/**
+**/.git/**
+**/*.log
+**/dist/**/*.map
+**/coverage/**
+**/.vscode/**
+**/.idea/**
+**/*.vsix
+
+# Keep only extension source
+!src/**
+!resources/**
+!dist/**
+!package.json
+!esbuild.config.mjs
+!tsconfig.json
+!README.md
+!LICENSE*
+!CHANGELOG*
+!vsc-extension-quickstart.md

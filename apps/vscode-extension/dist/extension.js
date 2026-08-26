@@ -113906,7 +113906,7 @@ var ServiceAccountProvider = class {
   async testConnection() {
     if (!this.firestore)
       throw new VistiqError("Not initialized", ERROR_CODES.AUTH_FAILED);
-    await this.firestore.collection("__vistiq_test__").limit(1).get();
+    await this.firestore.collection("_vistiq_test").limit(1).get();
   }
   getFirestore() {
     return this.firestore;
@@ -113959,7 +113959,7 @@ var EmulatorProvider = class {
       return { connected: false };
     }
     try {
-      await this.firestore.collection("__vistiq_test__").limit(1).get();
+      await this.firestore.collection("_vistiq_test").limit(1).get();
       return { connected: true, projectId: "demo-project" };
     } catch {
       return { connected: false, error: "Emulator connection test failed" };
@@ -114402,6 +114402,8 @@ var WebviewManager = class {
   }
   panels = /* @__PURE__ */ new Map();
   pendingRequests = /* @__PURE__ */ new Map();
+  requestPanelMap = /* @__PURE__ */ new Map();
+  // requestId -> panel viewType
   requestIdCounter = 0;
   openFirestore() {
     const active = this.connectionManager.getActiveConnection();
@@ -114444,7 +114446,31 @@ var WebviewManager = class {
     this.createOrShowPanel("audit", "Audit History", vscode2.ViewColumn.One, {});
   }
   openDocument(documentPath) {
-    this.sendToPanel("firestore", { type: "openDocument", payload: { documentPath } });
+    const active = this.connectionManager.getActiveConnection();
+    if (!active) {
+      vscode2.window.showErrorMessage("No active connection");
+      return;
+    }
+    const viewType = `document-${documentPath.replace(/\//g, "-")}`;
+    const title = documentPath.split("/").pop() || "Document";
+    this.createOrShowPanel(viewType, title, vscode2.ViewColumn.One, {
+      enableScripts: true,
+      retainContextWhenHidden: true
+    });
+    const panel = this.panels.get(viewType);
+    if (panel) {
+      const disposable = panel.onDidChangeViewState((e) => {
+        if (e.webviewPanel.visible) {
+          disposable.dispose();
+          setTimeout(() => {
+            this.sendToPanel(viewType, { type: "openDocument", payload: { documentPath } });
+          }, 200);
+        }
+      }, null, this.context.subscriptions);
+      setTimeout(() => {
+        this.sendToPanel(viewType, { type: "openDocument", payload: { documentPath } });
+      }, 500);
+    }
   }
   createOrShowPanel(viewType, title, column, _options) {
     const existing = this.panels.get(viewType);
@@ -114465,7 +114491,7 @@ var WebviewManager = class {
       }
     );
     panel.webview.html = this.getWebviewHtml(viewType);
-    panel.webview.onDidReceiveMessage(this.handleMessage.bind(this), null, this.context.subscriptions);
+    panel.webview.onDidReceiveMessage((message) => this.handleMessage(message, viewType), null, this.context.subscriptions);
     panel.onDidDispose(() => {
       this.panels.delete(viewType);
     }, null, this.context.subscriptions);
@@ -114477,8 +114503,8 @@ var WebviewManager = class {
       panel.webview.postMessage(message);
     }
   }
-  async handleMessage(message) {
-    webviewLogger.debug("Received message", { type: message.type });
+  async handleMessage(message, panelViewType) {
+    webviewLogger.debug("Received message", { type: message.type, panel: panelViewType });
     if (message.type === "response") {
       const callback = this.pendingRequests.get(message.requestId);
       if (callback) {
@@ -114486,6 +114512,9 @@ var WebviewManager = class {
         this.pendingRequests.delete(message.requestId);
       }
       return;
+    }
+    if (message.requestId) {
+      this.requestPanelMap.set(message.requestId, panelViewType);
     }
     try {
       let result;
@@ -114541,7 +114570,8 @@ var WebviewManager = class {
     }
   }
   sendResponse(requestId, success, data, error) {
-    const panel = Array.from(this.panels.values())[0];
+    const panelViewType = this.requestPanelMap.get(requestId);
+    const panel = panelViewType ? this.panels.get(panelViewType) : Array.from(this.panels.values())[0];
     if (panel) {
       panel.webview.postMessage({
         type: "response",
@@ -114551,6 +114581,10 @@ var WebviewManager = class {
         error
       });
     }
+    this.requestPanelMap.delete(requestId);
+  }
+  getPanelViewTypeForMessage(message) {
+    return void 0;
   }
   async handleGetCollections(payload) {
     const active = this.connectionManager.getActiveConnection();
@@ -114687,10 +114721,12 @@ var WebviewManager = class {
 </html>`;
   }
   getScriptUri(viewType) {
-    return vscode2.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${viewType}.js`);
+    const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
+    return vscode2.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${baseType}.js`);
   }
   getStyleUri(viewType) {
-    return vscode2.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${viewType}.css`);
+    const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
+    return vscode2.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${baseType}.css`);
   }
   generateNonce() {
     let text = "";
@@ -114715,7 +114751,7 @@ var FirestoreService = class {
     this.projectId = projectId;
   }
   async connect() {
-    await this.firestore.collection("__vistiq_test__").limit(1).get();
+    await this.firestore.collection("_vistiq_test").limit(1).get();
     logger.info("Firestore service connected", { projectId: this.projectId });
   }
   async disconnect() {
@@ -115347,6 +115383,7 @@ async function activate(context) {
     vscode4.commands.registerCommand("vistiq.compareProjects", () => webviewManager.compareProjects()),
     vscode4.commands.registerCommand("vistiq.copyToProject", () => webviewManager.copyToProject()),
     vscode4.commands.registerCommand("vistiq.openAuditHistory", () => webviewManager.openAuditHistory()),
+    vscode4.commands.registerCommand("vistiq.openDocument", (documentPath) => webviewManager.openDocument(documentPath)),
     vscode4.commands.registerCommand("vistiq.settings", () => vscode4.commands.executeCommand("workbench.action.openSettings", "vistiq")),
     vscode4.workspace.onDidChangeConfiguration((e) => {
       if (e.affectsConfiguration("vistiq.enableDebugLogging")) {

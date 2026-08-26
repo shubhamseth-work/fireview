@@ -43,6 +43,23 @@ export const App = () => {
             setConnection(msg.payload);
             loadCollections();
         }
+        else if (msg.type === 'openDocument') {
+            const { documentPath } = msg.payload;
+            loadDocument(documentPath);
+        }
+    };
+    const loadDocument = async (documentPath) => {
+        try {
+            setLoading(true);
+            const doc = await sendMessage('getDocument', { documentPath });
+            setSelectedDocument(doc);
+        }
+        catch (err) {
+            setError(err.message);
+        }
+        finally {
+            setLoading(false);
+        }
     };
     const loadCollections = async () => {
         try {

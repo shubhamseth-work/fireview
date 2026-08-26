@@ -23,6 +23,7 @@ interface WebviewResponse {
 export class WebviewManager {
   private panels: Map<string, vscode.WebviewPanel> = new Map();
   private pendingRequests: Map<string, (response: WebviewResponse) => void> = new Map();
+  private requestPanelMap: Map<string, string> = new Map(); // requestId -> panel viewType
   private requestIdCounter = 0;
 
   constructor(
@@ -84,7 +85,40 @@ export class WebviewManager {
   }
 
   openDocument(documentPath: string): void {
-    this.sendToPanel('firestore', { type: 'openDocument', payload: { documentPath } });
+    const active = this.connectionManager.getActiveConnection();
+    if (!active) {
+      vscode.window.showErrorMessage('No active connection');
+      return;
+    }
+
+    // Create a unique panel for each document (like editor tabs)
+    const viewType = `document-${documentPath.replace(/\//g, '-')}`;
+    const title = documentPath.split('/').pop() || 'Document';
+
+    this.createOrShowPanel(viewType, title, vscode.ViewColumn.One, {
+      enableScripts: true,
+      retainContextWhenHidden: true,
+    });
+
+    // Wait for panel to be ready, then send document path
+    const panel = this.panels.get(viewType);
+    if (panel) {
+      // Wait for webview to be ready by listening for viewState change
+      const disposable = panel.onDidChangeViewState((e) => {
+        if (e.webviewPanel.visible) {
+          disposable.dispose();
+          // Small delay to ensure webview is fully loaded
+          setTimeout(() => {
+            this.sendToPanel(viewType, { type: 'openDocument', payload: { documentPath } });
+          }, 200);
+        }
+      }, null, this.context.subscriptions);
+      
+      // Fallback timeout in case viewState doesn't fire
+      setTimeout(() => {
+        this.sendToPanel(viewType, { type: 'openDocument', payload: { documentPath } });
+      }, 500);
+    }
   }
 
   private createOrShowPanel(
@@ -113,7 +147,7 @@ export class WebviewManager {
     );
 
     panel.webview.html = this.getWebviewHtml(viewType);
-    panel.webview.onDidReceiveMessage(this.handleMessage.bind(this), null, this.context.subscriptions);
+    panel.webview.onDidReceiveMessage((message) => this.handleMessage(message, viewType), null, this.context.subscriptions);
 
     panel.onDidDispose(() => {
       this.panels.delete(viewType);
@@ -129,8 +163,8 @@ export class WebviewManager {
     }
   }
 
-  private async handleMessage(message: WebviewMessage): Promise<void> {
-    webviewLogger.debug('Received message', { type: message.type });
+  private async handleMessage(message: WebviewMessage, panelViewType: string): Promise<void> {
+    webviewLogger.debug('Received message', { type: message.type, panel: panelViewType });
 
     if (message.type === 'response') {
       const callback = this.pendingRequests.get((message as WebviewResponse).requestId);
@@ -139,6 +173,11 @@ export class WebviewManager {
         this.pendingRequests.delete((message as WebviewResponse).requestId);
       }
       return;
+    }
+
+    // Track which panel this request came from
+    if (message.requestId) {
+      this.requestPanelMap.set(message.requestId, panelViewType);
     }
 
     try {
@@ -198,7 +237,9 @@ export class WebviewManager {
   }
 
   private sendResponse(requestId: string, success: boolean, data?: unknown, error?: string): void {
-    const panel = Array.from(this.panels.values())[0];
+    const panelViewType = this.requestPanelMap.get(requestId);
+    const panel = panelViewType ? this.panels.get(panelViewType) : Array.from(this.panels.values())[0];
+    
     if (panel) {
       panel.webview.postMessage({
         type: 'response',
@@ -208,6 +249,15 @@ export class WebviewManager {
         error,
       } as WebviewResponse);
     }
+    this.requestPanelMap.delete(requestId);
+  }
+
+  private getPanelViewTypeForMessage(message: WebviewMessage): string | undefined {
+    // Find which panel this message came from by checking the webview that sent it
+    // Since we can't directly get the sender panel, we'll use the message type to infer
+    // For messages that are responses to commands, we track the panel in openDocument
+    // For other messages, we need to infer from context
+    return undefined; // Will be set in specific handlers
   }
 
   private async handleGetCollections(payload: unknown): Promise<unknown> {
@@ -378,11 +428,14 @@ export class WebviewManager {
   }
 
   private getScriptUri(viewType: string): vscode.Uri {
-    return vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${viewType}.js`);
+    // For document panels, use the firestore bundle
+    const baseType = viewType.startsWith('document-') ? 'firestore' : viewType;
+    return vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${baseType}.js`);
   }
 
   private getStyleUri(viewType: string): vscode.Uri {
-    return vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${viewType}.css`);
+    const baseType = viewType.startsWith('document-') ? 'firestore' : viewType;
+    return vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${baseType}.css`);
   }
 
   private generateNonce(): string {

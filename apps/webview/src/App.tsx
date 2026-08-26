@@ -63,6 +63,21 @@ export const App: React.FC = () => {
     if (msg.type === 'init') {
       setConnection(msg.payload as Connection);
       loadCollections();
+    } else if (msg.type === 'openDocument') {
+      const { documentPath } = msg.payload as { documentPath: string };
+      loadDocument(documentPath);
+    }
+  };
+
+  const loadDocument = async (documentPath: string) => {
+    try {
+      setLoading(true);
+      const doc = await sendMessage('getDocument', { documentPath });
+      setSelectedDocument(doc as FirestoreDocument);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setLoading(false);
     }
   };
 

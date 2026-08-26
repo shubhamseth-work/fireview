@@ -60,6 +60,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     vscode.commands.registerCommand('vistiq.compareProjects', () => webviewManager.compareProjects()),
     vscode.commands.registerCommand('vistiq.copyToProject', () => webviewManager.copyToProject()),
     vscode.commands.registerCommand('vistiq.openAuditHistory', () => webviewManager.openAuditHistory()),
+    vscode.commands.registerCommand('vistiq.openDocument', (documentPath: string) => webviewManager.openDocument(documentPath)),
     vscode.commands.registerCommand('vistiq.settings', () => vscode.commands.executeCommand('workbench.action.openSettings', 'vistiq')),
     vscode.workspace.onDidChangeConfiguration(e => {
       if (e.affectsConfiguration('vistiq.enableDebugLogging')) {

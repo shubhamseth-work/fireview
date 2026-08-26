@@ -7,7 +7,7 @@ export class FirestoreService {
         this.projectId = projectId;
     }
     async connect() {
-        await this.firestore.collection('__vistiq_test__').limit(1).get();
+        await this.firestore.collection('_vistiq_test').limit(1).get();
         logger.info('Firestore service connected', { projectId: this.projectId });
     }
     async disconnect() {
