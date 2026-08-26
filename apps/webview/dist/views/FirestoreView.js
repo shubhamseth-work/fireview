@@ -6,11 +6,13 @@ import { QueryBuilder } from './QueryBuilder';
 import { CollectionTree } from './CollectionTree';
 import { ExportModal } from './ExportModal';
 import { ImportModal } from './ImportModal';
+import { NewDocumentModal } from './NewDocumentModal';
 export const FirestoreView = ({ connection, collections, documents, selectedDocument, loading, error, pagination, onLoadDocuments, onOpenDocument, onCloseDocument, onRunQuery, onCreateDocument, onUpdateDocument, onDeleteDocument, onExportCollection, onImportCollection, onLoadMore, onPageSizeChange, onCopyDocument, onCopyDocumentTo, onDuplicateDocument, onRenameDocument, onMoveDocument, onShowGeopoints, onImportDocument, onExportDocument, onRevealInConsole, connections, activeProjectId, readOnlyCollections, setReadOnlyCollections, }) => {
     const [selectedCollection, setSelectedCollection] = useState('');
     const [showQueryBuilder, setShowQueryBuilder] = useState(false);
     const [showExportModal, setShowExportModal] = useState(false);
     const [showImportModal, setShowImportModal] = useState(false);
+    const [showNewDocumentModal, setShowNewDocumentModal] = useState(false);
     const [sidebarWidth, setSidebarWidth] = useState(280);
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const handleCollectionClick = (collectionPath) => {
@@ -21,12 +23,19 @@ export const FirestoreView = ({ connection, collections, documents, selectedDocu
     const handleNewDocument = () => {
         if (!selectedCollection)
             return;
+        setShowNewDocumentModal(true);
+    };
+    const handleNewDocumentConfirm = (docId) => {
         const newDoc = {
-            id: '',
+            id: docId,
             path: '',
             data: {},
         };
         onOpenDocument(newDoc);
+        setShowNewDocumentModal(false);
+    };
+    const handleNewDocumentCancel = () => {
+        setShowNewDocumentModal(false);
     };
     const handleRunQuery = (query) => {
         onRunQuery(query);
@@ -95,6 +104,6 @@ export const FirestoreView = ({ connection, collections, documents, selectedDocu
                     };
                     window.addEventListener('mousemove', onMouseMove);
                     window.addEventListener('mouseup', onMouseUp);
-                } })), _jsx("div", { style: { flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }, children: selectedDocument ? (_jsx(DocumentViewer, { document: selectedDocument, connection: connection, onClose: onCloseDocument, onUpdate: onUpdateDocument, onCreateDocument: onCreateDocument, onDelete: onDeleteDocument })) : (_jsx(DocumentTable, { documents: documents, loading: loading, error: error, pagination: pagination, onRowClick: onOpenDocument, onRunQuery: onRunQuery, onLoadMore: onLoadMore, onPageSizeChange: onPageSizeChange, onCopyDocument: onCopyDocument, onCopyDocumentTo: onCopyDocumentTo, onOpenDocument: onOpenDocument, onDeleteDocument: onDeleteDocument, onDuplicateDocument: onDuplicateDocument, onRenameDocument: onRenameDocument, onMoveDocument: onMoveDocument, onShowGeopoints: onShowGeopoints, onImportDocument: onImportDocument, onExportDocument: onExportDocument, onRevealInConsole: onRevealInConsole, connections: connections, activeProjectId: activeProjectId, collections: collections.map(c => c.id), selectedCollection: selectedCollection, readOnlyCollections: readOnlyCollections })) }), showExportModal && (_jsx(ExportModal, { collectionPath: selectedCollection, onClose: () => setShowExportModal(false), onExport: onExportCollection })), showImportModal && (_jsx(ImportModal, { collectionPath: selectedCollection, onClose: () => setShowImportModal(false), onImport: onImportCollection }))] }));
+                } })), _jsx("div", { style: { flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }, children: selectedDocument ? (_jsx(DocumentViewer, { document: selectedDocument, connection: connection, onClose: onCloseDocument, onUpdate: onUpdateDocument, onCreateDocument: onCreateDocument, onDelete: onDeleteDocument })) : (_jsx(DocumentTable, { documents: documents, loading: loading, error: error, pagination: pagination, onRowClick: onOpenDocument, onRunQuery: onRunQuery, onLoadMore: onLoadMore, onPageSizeChange: onPageSizeChange, onCopyDocument: onCopyDocument, onCopyDocumentTo: onCopyDocumentTo, onOpenDocument: onOpenDocument, onDeleteDocument: onDeleteDocument, onDuplicateDocument: onDuplicateDocument, onRenameDocument: onRenameDocument, onMoveDocument: onMoveDocument, onShowGeopoints: onShowGeopoints, onImportDocument: onImportDocument, onExportDocument: onExportDocument, onRevealInConsole: onRevealInConsole, connections: connections, activeProjectId: activeProjectId, collections: collections.map(c => c.id), selectedCollection: selectedCollection, readOnlyCollections: readOnlyCollections })) }), showExportModal && (_jsx(ExportModal, { collectionPath: selectedCollection, onClose: () => setShowExportModal(false), onExport: onExportCollection })), showImportModal && (_jsx(ImportModal, { collectionPath: selectedCollection, onClose: () => setShowImportModal(false), onImport: onImportCollection })), showNewDocumentModal && (_jsx(NewDocumentModal, { isOpen: true, onConfirm: handleNewDocumentConfirm, onCancel: handleNewDocumentCancel }))] }));
 };
 //# sourceMappingURL=FirestoreView.js.map
