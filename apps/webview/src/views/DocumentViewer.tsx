@@ -17,6 +17,7 @@ interface DocumentViewerProps {
   connection: Connection;
   onClose: () => void;
   onUpdate: (documentPath: string, data: Partial<FirestoreDocument>) => void;
+  onCreateDocument: (collectionPath: string, data: FirestoreDocument) => void;
   onDelete: (documentPath: string) => void;
 }
 
@@ -25,6 +26,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   connection,
   onClose,
   onUpdate,
+  onCreateDocument,
   onDelete,
 }) => {
   const notify = useNotify();
@@ -84,12 +86,13 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
 
   const handleDuplicate = async () => {
     try {
+      const collectionPath = document.path.split('/').slice(0, -1).join('/');
       const newDoc: FirestoreDocument = {
         id: '',
         path: '',
         data: document.data,
       };
-      await onUpdate('', { data: newDoc as any });
+      await onCreateDocument(collectionPath, newDoc);
       notify('success', 'Document duplicated successfully');
       onClose();
     } catch (err) {

@@ -9,7 +9,7 @@ const log = {
     warn: (msg, meta) => console.warn(`[DocumentViewer] ${msg}`, meta || ''),
     error: (msg, meta) => console.error(`[DocumentViewer] ${msg}`, meta || ''),
 };
-export const DocumentViewer = ({ document, connection, onClose, onUpdate, onDelete, }) => {
+export const DocumentViewer = ({ document, connection, onClose, onUpdate, onCreateDocument, onDelete, }) => {
     const notify = useNotify();
     const [deleteConfirm, setDeleteConfirm] = useState(null);
     log.info('DocumentViewer rendered', {
@@ -60,12 +60,13 @@ export const DocumentViewer = ({ document, connection, onClose, onUpdate, onDele
     };
     const handleDuplicate = async () => {
         try {
+            const collectionPath = document.path.split('/').slice(0, -1).join('/');
             const newDoc = {
                 id: '',
                 path: '',
                 data: document.data,
             };
-            await onUpdate('', { data: newDoc });
+            await onCreateDocument(collectionPath, newDoc);
             notify('success', 'Document duplicated successfully');
             onClose();
         }

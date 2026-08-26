@@ -5,6 +5,7 @@ import { QueryBuilder } from './QueryBuilder';
 import { CollectionTree } from './CollectionTree';
 import { ExportModal } from './ExportModal';
 import { ImportModal } from './ImportModal';
+import { NewDocumentModal } from './NewDocumentModal';
 import { FirestoreDocument, FirestoreQuery, FirestoreValue, QueryFilter, QueryOperator, OrderByClause } from '@vistiq/core';
 import { Connection } from '@vistiq/core';
 
@@ -79,6 +80,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
   const [showQueryBuilder, setShowQueryBuilder] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showNewDocumentModal, setShowNewDocumentModal] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(280);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
@@ -90,12 +92,21 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
 
   const handleNewDocument = () => {
     if (!selectedCollection) return;
+    setShowNewDocumentModal(true);
+  };
+
+  const handleNewDocumentConfirm = (docId: string) => {
     const newDoc: FirestoreDocument = {
-      id: '',
+      id: docId,
       path: '',
       data: {},
     };
     onOpenDocument(newDoc);
+    setShowNewDocumentModal(false);
+  };
+
+  const handleNewDocumentCancel = () => {
+    setShowNewDocumentModal(false);
   };
 
   const handleRunQuery = (query: FirestoreQuery) => {
@@ -227,6 +238,7 @@ window.addEventListener('mousemove', onMouseMove);
             connection={connection}
             onClose={onCloseDocument}
             onUpdate={onUpdateDocument}
+            onCreateDocument={onCreateDocument}
             onDelete={onDeleteDocument}
           />
         ) : (
@@ -272,6 +284,14 @@ window.addEventListener('mousemove', onMouseMove);
           collectionPath={selectedCollection}
           onClose={() => setShowImportModal(false)}
           onImport={onImportCollection}
+        />
+      )}
+
+      {showNewDocumentModal && (
+        <NewDocumentModal
+          isOpen={true}
+          onConfirm={handleNewDocumentConfirm}
+          onCancel={handleNewDocumentCancel}
         />
       )}
     </div>

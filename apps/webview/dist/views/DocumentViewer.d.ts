@@ -6,6 +6,7 @@ interface DocumentViewerProps {
     connection: Connection;
     onClose: () => void;
     onUpdate: (documentPath: string, data: Partial<FirestoreDocument>) => void;
+    onCreateDocument: (collectionPath: string, data: FirestoreDocument) => void;
     onDelete: (documentPath: string) => void;
 }
 export declare const DocumentViewer: React.FC<DocumentViewerProps>;
