@@ -122,21 +122,6 @@ const AppInner = () => {
             log.info('handleMessage: Received openDocument', { documentPath });
             loadDocument(documentPath);
         }
-        else if (msg.type === 'firebaseAuthResult') {
-            // Firebase Auth result from extension
-            const { success, user, projects, error } = msg.payload;
-            if (success) {
-                log.info('Firebase Auth successful', { user: user?.email, projectsCount: projects?.length });
-            }
-            else {
-                log.error('Firebase Auth failed', { error });
-            }
-        }
-        else if (msg.type === 'firebaseProjects') {
-            // Firebase projects list from extension
-            const { projects } = msg.payload;
-            log.info('Received Firebase projects', { count: projects?.length });
-        }
     };
     const loadDocument = async (documentPath) => {
         log.info('loadDocument called', { documentPath });
@@ -550,72 +535,6 @@ const AppInner = () => {
             setLoading(false);
         }
     };
-    // Firebase Auth handlers
-    const handleFirebaseAuthSignIn = async () => {
-        try {
-            setLoading(true);
-            // The webview will handle the Firebase Auth popup
-            // This is a placeholder - the actual sign-in happens in the webview
-            // The webview will send a message back with the ID token
-            return { success: true };
-        }
-        catch (err) {
-            return { success: false, error: err.message };
-        }
-        finally {
-            setLoading(false);
-        }
-    };
-    const handleListFirebaseProjects = async () => {
-        try {
-            const result = await sendMessage('listFirebaseProjects');
-            // Check if result is a valid object
-            if (result && typeof result === 'object' && 'projects' in result) {
-                // Safely cast after the check
-                return result.projects || [];
-            }
-            return [];
-        }
-        catch (err) {
-            return [];
-        }
-    };
-    const handleSelectFirebaseProject = async (projectId) => {
-        try {
-            await sendMessage('selectFirebaseProject', { projectId });
-            return { success: true };
-        }
-        catch (err) {
-            return { success: false, error: err.message };
-        }
-    };
-    const handleFirebaseSignOut = async () => {
-        try {
-            await sendMessage('firebaseSignOut');
-            return { success: true };
-        }
-        catch (err) {
-            return { success: false, error: err.message };
-        }
-    };
-    const handleFirebaseAuthComplete = async (idToken, refreshToken, user) => {
-        try {
-            // Send auth result to extension
-            await sendMessage('firebaseAuthResult', {
-                idToken,
-                refreshToken,
-                user: {
-                    uid: user.uid,
-                    email: user.email,
-                    displayName: user.displayName,
-                    photoURL: user.photoURL
-                }
-            });
-        }
-        catch (err) {
-            console.error('Firebase auth complete error:', err);
-        }
-    };
     if (!connection) {
         return (_jsxs("div", { className: "empty-state", style: { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16 }, children: [_jsx("div", { className: "icon", children: "\uD83D\uDD0C" }), _jsx("h3", { children: "No Connection" }), _jsx("p", { style: { textAlign: 'center', maxWidth: 400 }, children: "Connect to a Firebase project to get started." }), _jsxs("div", { style: { display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }, children: [_jsx("button", { onClick: () => vscode.postMessage({ type: 'connectServiceAccount' }), style: {
                                 padding: '12px 24px',
@@ -635,21 +554,14 @@ const AppInner = () => {
                                 border: '1px solid var(--vscode-button-secondaryBorder)',
                                 borderRadius: 4,
                                 cursor: 'pointer',
-                            }, children: "\uD83E\uDDEA Firebase Emulator" }), _jsx("button", { onClick: () => vscode.postMessage({ type: 'connectFirebaseAuth' }), style: {
-                                padding: '12px 24px',
-                                fontSize: 14,
-                                fontWeight: 500,
-                                backgroundColor: 'var(--vscode-button-background)',
-                                color: 'var(--vscode-button-foreground)',
-                                border: 'none',
-                                borderRadius: 4,
-                                cursor: 'pointer',
-                            }, children: "\u2601\uFE0F Google Account (Firebase Auth)" })] })] }));
+                            }, children: "\uD83E\uDDEA Firebase Emulator" })] })] }));
     }
     const renderView = () => {
         switch (view) {
             case 'firestore':
-                return (_jsx(FirestoreView, { connection: connection, collections: collections, documents: documents, selectedDocument: selectedDocument, loading: loading, error: error, pagination: pagination, onLoadDocuments: loadDocuments, onOpenDocument: handleOpenDocument, onCloseDocument: handleCloseDocument, onRunQuery: handleRunQuery, onCreateDocument: handleCreateDocument, onCreateCollection: handleCreateCollection, onUpdateDocument: handleUpdateDocument, onDeleteDocument: handleDeleteDocument, onExportCollection: handleExportCollection, onImportCollection: handleImportCollection, onLoadMore: loadMore, onPageSizeChange: handlePageSizeChange, onCopyDocument: () => { }, onCopyDocumentTo: handleCopyDocument, onDuplicateDocument: handleDuplicateDocument, onRenameDocument: handleRenameDocument, onMoveDocument: handleMoveDocument, onShowGeopoints: handleShowGeopoints, onImportDocument: handleImportDocument, onExportDocument: handleExportDocument, onRevealInConsole: handleRevealInConsole, onFirebaseAuthSignIn: handleFirebaseAuthSignIn, onListFirebaseProjects: handleListFirebaseProjects, onSelectFirebaseProject: handleSelectFirebaseProject, onFirebaseSignOut: handleFirebaseSignOut, onFirebaseAuthComplete: handleFirebaseAuthComplete, connections: connections, activeProjectId: connection?.projectId || null, readOnlyCollections: readOnlyCollections, setReadOnlyCollections: setReadOnlyCollections, firebaseConfig: firebaseConfig || undefined, onConfigImport: handleConfigImport }));
+            case 'collection':
+            case 'query':
+                return (_jsx(FirestoreView, { connection: connection, collections: collections, documents: documents, selectedDocument: selectedDocument, loading: loading, error: error, pagination: pagination, onLoadDocuments: loadDocuments, onOpenDocument: handleOpenDocument, onCloseDocument: handleCloseDocument, onRunQuery: handleRunQuery, onCreateDocument: handleCreateDocument, onCreateCollection: handleCreateCollection, onUpdateDocument: handleUpdateDocument, onDeleteDocument: handleDeleteDocument, onExportCollection: handleExportCollection, onImportCollection: handleImportCollection, onLoadMore: loadMore, onPageSizeChange: handlePageSizeChange, onCopyDocument: () => { }, onCopyDocumentTo: handleCopyDocument, onDuplicateDocument: handleDuplicateDocument, onRenameDocument: handleRenameDocument, onMoveDocument: handleMoveDocument, onShowGeopoints: handleShowGeopoints, onImportDocument: handleImportDocument, onExportDocument: handleExportDocument, onRevealInConsole: handleRevealInConsole, connections: connections, activeProjectId: connection?.projectId || null, readOnlyCollections: readOnlyCollections, setReadOnlyCollections: setReadOnlyCollections, firebaseConfig: firebaseConfig || undefined, onConfigImport: handleConfigImport, initialView: view === 'query' ? 'query' : view === 'collection' ? 'collection' : 'firestore' }));
             case 'compare':
                 return _jsx(CompareView, { connection: connection, onRunQuery: handleRunQuery });
             case 'project-compare':
@@ -662,7 +574,7 @@ const AppInner = () => {
                 return null;
         }
     };
-    return (_jsx(NotificationProvider, { children: _jsxs("div", { style: { display: 'flex', flexDirection: 'column', height: '100vh' }, children: [_jsxs("div", { className: "toolbar", children: [_jsxs("div", { className: "toolbar-group", children: [_jsx("button", { onClick: () => setView('firestore'), className: view === 'firestore' ? 'active' : '', children: "Firestore" }), _jsx("button", { onClick: () => setView('compare'), className: view === 'compare' ? 'active' : '', children: "Compare" }), _jsx("button", { onClick: () => setView('project-compare'), className: view === 'project-compare' ? 'active' : '', children: "Projects" }), _jsx("button", { onClick: () => setView('migration'), className: view === 'migration' ? 'active' : '', children: "Migration" }), _jsx("button", { onClick: () => setView('audit'), className: view === 'audit' ? 'active' : '', children: "Audit" })] }), _jsxs("div", { style: { marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }, children: [_jsx("span", { className: `badge ${connection.environment}`, children: connection.environment }), connection.authMethod === 'emulator' && _jsx("span", { className: "badge emulator", children: "Emulator" }), connection.environment === 'production' && _jsx("span", { className: "badge production", children: "Production" })] })] }), _jsx("div", { style: { flex: 1, overflow: 'hidden' }, children: renderView() }), _jsxs("div", { className: "status-bar", children: [_jsxs("span", { children: [connection.displayName, " (", connection.projectId, ")"] }), _jsxs("span", { children: [documents.length, " documents"] })] })] }) }));
+    return (_jsx(NotificationProvider, { children: _jsxs("div", { style: { display: 'flex', flexDirection: 'column', height: '100vh' }, children: [_jsxs("div", { className: "toolbar", children: [_jsxs("div", { className: "toolbar-group", children: [_jsx("button", { onClick: () => setView('firestore'), className: view === 'firestore' ? 'active' : '', children: "Firestore" }), _jsx("button", { onClick: () => setView('collection'), className: view === 'collection' ? 'active' : '', children: "Collection" }), _jsx("button", { onClick: () => setView('query'), className: view === 'query' ? 'active' : '', children: "Query" }), _jsx("button", { onClick: () => setView('compare'), className: view === 'compare' ? 'active' : '', children: "Compare" }), _jsx("button", { onClick: () => setView('project-compare'), className: view === 'project-compare' ? 'active' : '', children: "Projects" }), _jsx("button", { onClick: () => setView('migration'), className: view === 'migration' ? 'active' : '', children: "Migration" }), _jsx("button", { onClick: () => setView('audit'), className: view === 'audit' ? 'active' : '', children: "Audit" })] }), _jsxs("div", { style: { marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }, children: [_jsx("span", { className: `badge ${connection.environment}`, children: connection.environment }), connection.authMethod === 'emulator' && _jsx("span", { className: "badge emulator", children: "Emulator" }), connection.environment === 'production' && _jsx("span", { className: "badge production", children: "Production" })] })] }), _jsx("div", { style: { flex: 1, overflow: 'hidden' }, children: renderView() }), _jsxs("div", { className: "status-bar", children: [_jsxs("span", { children: [connection.displayName, " (", connection.projectId, ")"] }), _jsxs("span", { children: [documents.length, " documents"] })] })] }) }));
 };
 export const App = () => (_jsx(NotificationProvider, { children: _jsx(AppInner, {}) }));
 //# sourceMappingURL=App.js.map

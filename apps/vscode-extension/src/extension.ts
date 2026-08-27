@@ -46,11 +46,15 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     vscode.commands.registerCommand('vistiq.connectProject', () =>
       connectionManager.showConnectDialog()
     ),
+    vscode.commands.registerCommand('vistiq.connectOAuth', () =>
+      connectionManager.showFirebaseAuthDialog()
+    ),
     vscode.commands.registerCommand('vistiq.disconnectProject', () =>
       connectionManager.disconnectActive()
     ),
     vscode.commands.registerCommand('vistiq.refresh', () => projectTreeProvider.refresh()),
-    vscode.commands.registerCommand('vistiq.openFirestore', () => webviewManager.openFirestore()),
+    vscode.commands.registerCommand('vistiq.openFirestore', (requireActiveConnection = true) => webviewManager.openFirestore(requireActiveConnection)),
+    vscode.commands.registerCommand('vistiq.showFirebaseAuthModal', () => webviewManager.showFirebaseAuthModal()),
     vscode.commands.registerCommand('vistiq.newDocument', () => webviewManager.newDocument()),
     vscode.commands.registerCommand('vistiq.runQuery', () => webviewManager.runQuery()),
     vscode.commands.registerCommand('vistiq.saveQuery', () => webviewManager.saveQuery()),

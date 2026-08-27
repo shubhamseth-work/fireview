@@ -43,23 +43,6 @@ interface FirestoreViewProps {
     onImportDocument: (doc: FirestoreDocument) => void;
     onExportDocument: (doc: FirestoreDocument) => void;
     onRevealInConsole: (doc: FirestoreDocument) => void;
-    onFirebaseAuthSignIn: () => Promise<{
-        success: boolean;
-        error?: string;
-    }>;
-    onListFirebaseProjects: () => Promise<Array<{
-        projectId: string;
-        name: string;
-    }>>;
-    onSelectFirebaseProject: (projectId: string) => Promise<{
-        success: boolean;
-        error?: string;
-    }>;
-    onFirebaseSignOut: () => Promise<{
-        success: boolean;
-        error?: string;
-    }>;
-    onFirebaseAuthComplete: (idToken: string, refreshToken: string, user: any) => Promise<void>;
     connections: Array<{
         projectId: string;
         displayName: string;
@@ -69,6 +52,7 @@ interface FirestoreViewProps {
     setReadOnlyCollections: (updater: Set<string> | ((prev: Set<string>) => Set<string>)) => void;
     firebaseConfig?: FirebaseConfig;
     onConfigImport: (config: FirebaseConfig) => void;
+    initialView?: 'firestore' | 'collection' | 'query';
 }
 export declare const FirestoreView: React.FC<FirestoreViewProps>;
 export {};

@@ -127627,11 +127627,6 @@ var ConnectionManager = class {
           description: "Connect using Google Cloud Service Account JSON"
         },
         {
-          label: "Firebase Auth",
-          value: "firebase-auth",
-          description: "Sign in with Google via Firebase Authentication"
-        },
-        {
           label: "Firebase Emulator",
           value: "emulator",
           description: "Connect to local Firebase Emulator"
@@ -127644,8 +127639,6 @@ var ConnectionManager = class {
       await this.showServiceAccountDialog();
     } else if (authMethod.value === "emulator") {
       await this.showEmulatorDialog();
-    } else if (authMethod.value === "firebase-auth") {
-      await this.showFirebaseAuthDialog();
     }
   }
   async showServiceAccountDialog() {
@@ -127813,19 +127806,6 @@ var ConnectionManager = class {
   detectProjectFiles() {
     return this.emulatorService.detectProjectFiles();
   }
-  async showFirebaseAuthDialog() {
-    if (!this.activeProjectId) {
-      await vscode.commands.executeCommand("vistiq.openFirestore");
-    }
-    vscode.window.showInformationMessage(
-      "Please complete the Firebase Authentication in the Firestore view.",
-      "Open Firestore"
-    ).then((selection) => {
-      if (selection === "Open Firestore") {
-        vscode.commands.executeCommand("vistiq.openFirestore");
-      }
-    });
-  }
   async connectFirebaseAuth(idToken, refreshToken2, projectId, userId, email) {
     await this.authProviders.firebaseAuth.connect({
       idToken,
@@ -127955,21 +127935,34 @@ ${conn.environment}`;
     }
     return items;
   }
-  async getProjectChildren(element) {
+  getProjectChildren(element) {
     const projectId = element.context.projectId;
-    if (!projectId) return [];
+    if (!projectId) return Promise.resolve([]);
     const connection = this.connectionManager.getConnection(projectId);
     if (!connection || !connection.firestore) {
-      return [
+      return Promise.resolve([
         new ProjectTreeItem(
           "Not connected",
           "error",
           vscode2.TreeItemCollapsibleState.None,
           {}
         )
-      ];
+      ]);
     }
+    return this.loadProjectChildren(connection);
+  }
+  async loadProjectChildren(connection) {
     try {
+      if (!connection.firestore) {
+        return [
+          new ProjectTreeItem(
+            "Not connected",
+            "error",
+            vscode2.TreeItemCollapsibleState.None,
+            {}
+          )
+        ];
+      }
       const collections = await connection.firestore.listCollections();
       const items = [];
       items.push(
@@ -127977,25 +127970,14 @@ ${conn.environment}`;
           "Firestore",
           "firestore",
           vscode2.TreeItemCollapsibleState.Collapsed,
-          { projectId },
+          { projectId: connection.projectId },
           `${collections.length} collections`
         )
       );
-      if (connection.emulatorConfig) {
-        items.push(
-          new ProjectTreeItem(
-            "Emulator",
-            "emulator",
-            vscode2.TreeItemCollapsibleState.Collapsed,
-            { projectId },
-            `Firestore: ${connection.emulatorConfig.firestorePort}`
-          )
-        );
-      }
       return items;
     } catch (error) {
       treeLogger.error("Failed to load project children", {
-        projectId,
+        projectId: connection.projectId,
         error: error.message
       });
       return [
@@ -128108,13 +128090,19 @@ var WebviewManager = class {
   requestPanelMap = /* @__PURE__ */ new Map();
   // requestId -> panel viewType
   requestIdCounter = 0;
-  openFirestore() {
-    const active = this.connectionManager.getActiveConnection();
-    if (!active) {
-      void vscode3.window.showErrorMessage("No active connection");
-      return;
+  openFirestore(requireActiveConnection = true) {
+    if (requireActiveConnection) {
+      const active = this.connectionManager.getActiveConnection();
+      if (!active) {
+        void vscode3.window.showErrorMessage("No active connection");
+        return;
+      }
     }
     void this.createOrShowPanel("firestore", "Firestore", vscode3.ViewColumn.One, {});
+  }
+  showFirebaseAuthModal() {
+    const panel = this.createOrShowPanel("firestore", "Firestore", vscode3.ViewColumn.One, {});
+    this.sendWhenReady(panel, { type: "showFirebaseAuthModal", payload: {} });
   }
   newDocument() {
     const active = this.connectionManager.getActiveConnection();
@@ -128287,29 +128275,11 @@ var WebviewManager = class {
         case "createCollection":
           result = await this.handleCreateCollection(message.payload);
           break;
-        case "firebaseAuthSignIn":
-          result = await this.handleFirebaseAuthSignIn(message.payload);
-          break;
-        case "firebaseAuthResult":
-          result = await this.handleFirebaseAuthResult(message.payload);
-          break;
-        case "listFirebaseProjects":
-          result = await this.handleListFirebaseProjects(message.payload);
-          break;
-        case "selectFirebaseProject":
-          result = await this.handleSelectFirebaseProject(message.payload);
-          break;
-        case "firebaseSignOut":
-          result = await this.handleFirebaseSignOut(message.payload);
-          break;
         case "connectServiceAccount":
           result = await this.handleConnectServiceAccount(message.payload);
           break;
         case "connectEmulator":
           result = await this.handleConnectEmulator(message.payload);
-          break;
-        case "connectFirebaseAuth":
-          result = await this.handleConnectFirebaseAuth(message.payload);
           break;
         case "getConnections":
           result = this.connectionManager.getConnections().map((c) => ({
@@ -128528,58 +128498,12 @@ var WebviewManager = class {
     const options = payload;
     return this.auditService.getEntries(options);
   }
-  async handleFirebaseAuthSignIn(payload) {
-    return { success: true, message: "Firebase Auth modal opened" };
-  }
-  async handleListFirebaseProjects(payload) {
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error("No active Firestore connection");
-    try {
-      return { projects: [] };
-    } catch (error) {
-      return { projects: [], error: error.message };
-    }
-  }
-  async handleSelectFirebaseProject(payload) {
-    const { projectId } = payload;
-    const connection = this.connectionManager.getActiveConnection();
-    if (!connection || connection.authMethod !== "firebase-auth") {
-      throw new Error("No active Firebase Auth connection");
-    }
-    await this.connectionManager.switchFirebaseProject(projectId);
-    return { success: true };
-  }
-  async handleFirebaseSignOut(payload) {
-    const active = this.connectionManager.getActiveConnection();
-    if (active && active.authMethod === "firebase-auth") {
-      await this.connectionManager.disconnect(active.projectId);
-    }
-    return { success: true };
-  }
-  async handleFirebaseAuthResult(payload) {
-    const { idToken, refreshToken: refreshToken2, user } = payload;
-    if (!idToken || !user?.uid) {
-      throw new Error("Invalid Firebase auth result");
-    }
-    const connection = await this.connectionManager.connectFirebaseAuth(
-      idToken,
-      refreshToken2 || "",
-      user.uid,
-      user.uid,
-      user.email
-    );
-    return { success: true, connection };
-  }
   async handleConnectServiceAccount(_payload) {
     await this.connectionManager.showServiceAccountDialog();
     return { success: true };
   }
   async handleConnectEmulator(_payload) {
     await this.connectionManager.showEmulatorDialog();
-    return { success: true };
-  }
-  async handleConnectFirebaseAuth(_payload) {
-    await this.connectionManager.showFirebaseAuthDialog();
     return { success: true };
   }
   getScriptUri(viewType, webview) {
@@ -128674,11 +128598,16 @@ async function activate(context) {
       () => connectionManager.showConnectDialog()
     ),
     vscode4.commands.registerCommand(
+      "vistiq.connectOAuth",
+      () => connectionManager.showFirebaseAuthDialog()
+    ),
+    vscode4.commands.registerCommand(
       "vistiq.disconnectProject",
       () => connectionManager.disconnectActive()
     ),
     vscode4.commands.registerCommand("vistiq.refresh", () => projectTreeProvider.refresh()),
-    vscode4.commands.registerCommand("vistiq.openFirestore", () => webviewManager.openFirestore()),
+    vscode4.commands.registerCommand("vistiq.openFirestore", (requireActiveConnection = true) => webviewManager.openFirestore(requireActiveConnection)),
+    vscode4.commands.registerCommand("vistiq.showFirebaseAuthModal", () => webviewManager.showFirebaseAuthModal()),
     vscode4.commands.registerCommand("vistiq.newDocument", () => webviewManager.newDocument()),
     vscode4.commands.registerCommand("vistiq.runQuery", () => webviewManager.runQuery()),
     vscode4.commands.registerCommand("vistiq.saveQuery", () => webviewManager.saveQuery()),

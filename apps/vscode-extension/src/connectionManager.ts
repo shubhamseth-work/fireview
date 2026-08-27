@@ -17,7 +17,7 @@ import * as vscode from 'vscode';
 
 const connLogger = createChildLogger('connectionManager');
 
-interface ActiveConnection extends Connection {
+export interface ActiveConnection extends Connection {
   firestore?: FirestoreService;
   serviceAccount?: StoredServiceAccount;
   emulatorConfig?: EmulatorConfig;
@@ -271,18 +271,13 @@ export class ConnectionManager {
 
   async showConnectDialog(): Promise<void> {
     const authMethod = await vscode.window.showQuickPick<
-      vscode.QuickPickItem & { value: 'service-account' | 'emulator' | 'firebase-auth' }
+      vscode.QuickPickItem & { value: 'service-account' | 'emulator' }
     >(
       [
         {
           label: 'Service Account',
           value: 'service-account',
           description: 'Connect using Google Cloud Service Account JSON',
-        },
-        {
-          label: 'Firebase Auth',
-          value: 'firebase-auth',
-          description: 'Sign in with Google via Firebase Authentication',
         },
         {
           label: 'Firebase Emulator',
@@ -299,8 +294,6 @@ export class ConnectionManager {
       await this.showServiceAccountDialog();
     } else if (authMethod.value === 'emulator') {
       await this.showEmulatorDialog();
-    } else if (authMethod.value === 'firebase-auth') {
-      await this.showFirebaseAuthDialog();
     }
   }
 
@@ -496,28 +489,6 @@ export class ConnectionManager {
 
   detectProjectFiles(): ReturnType<EmulatorService['detectProjectFiles']> {
     return this.emulatorService.detectProjectFiles();
-  }
-
-  async showFirebaseAuthDialog(): Promise<void> {
-    // The webview will handle the Firebase Auth flow
-    // We just need to trigger it via the webview
-    if (!this.activeProjectId) {
-      // Open the Firestore view to show the Firebase Auth modal
-      await vscode.commands.executeCommand('vistiq.openFirestore');
-    }
-
-    // The webview will handle the Firebase Auth flow and send messages back
-    // We just need to ensure the webview is open
-    vscode.window
-      .showInformationMessage(
-        'Please complete the Firebase Authentication in the Firestore view.',
-        'Open Firestore'
-      )
-      .then(selection => {
-        if (selection === 'Open Firestore') {
-          vscode.commands.executeCommand('vistiq.openFirestore');
-        }
-      });
   }
 
   async connectFirebaseAuth(

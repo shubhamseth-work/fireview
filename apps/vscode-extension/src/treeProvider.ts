@@ -1,7 +1,7 @@
 import { Connection } from '@vistiq/core';
 import { createChildLogger } from '@vistiq/shared';
 import * as vscode from 'vscode';
-import type { ConnectionManager } from './connectionManager.js';
+import type { ConnectionManager, ActiveConnection } from './connectionManager.js';
 import type { WebviewManager } from './webviewManager.js';
 
 const treeLogger = createChildLogger('treeProvider');
@@ -99,23 +99,37 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
     return items;
   }
 
-  private async getProjectChildren(element: ProjectTreeItem): Promise<ProjectTreeItem[]> {
+  private getProjectChildren(element: ProjectTreeItem): Promise<ProjectTreeItem[]> {
     const projectId = element.context.projectId as string;
-    if (!projectId) return [];
+    if (!projectId) return Promise.resolve([]);
 
     const connection = this.connectionManager.getConnection(projectId);
     if (!connection || !connection.firestore) {
-      return [
+      return Promise.resolve([
         new ProjectTreeItem(
           'Not connected',
           'error',
           vscode.TreeItemCollapsibleState.None,
           {} as Record<string, unknown>
         ),
-      ];
+      ]);
     }
 
+    return this.loadProjectChildren(connection);
+  }
+
+  private async loadProjectChildren(connection: ActiveConnection): Promise<ProjectTreeItem[]> {
     try {
+      if (!connection.firestore) {
+        return [
+          new ProjectTreeItem(
+            'Not connected',
+            'error',
+            vscode.TreeItemCollapsibleState.None,
+            {} as Record<string, unknown>
+          ),
+        ];
+      }
       const collections = await connection.firestore.listCollections();
       const items: ProjectTreeItem[] = [];
 
@@ -124,27 +138,15 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
           'Firestore',
           'firestore',
           vscode.TreeItemCollapsibleState.Collapsed,
-          { projectId },
+          { projectId: connection.projectId },
           `${collections.length} collections`
         )
       );
 
-      if (connection.emulatorConfig) {
-        items.push(
-          new ProjectTreeItem(
-            'Emulator',
-            'emulator',
-            vscode.TreeItemCollapsibleState.Collapsed,
-            { projectId },
-            `Firestore: ${connection.emulatorConfig.firestorePort}`
-          )
-        );
-      }
-
       return items;
     } catch (error) {
       treeLogger.error('Failed to load project children', {
-        projectId,
+        projectId: connection.projectId,
         error: (error as Error).message,
       });
       return [

@@ -33,14 +33,24 @@ export class WebviewManager {
     private auditService: AuditService
   ) {}
 
-  openFirestore(): void {
-    const active = this.connectionManager.getActiveConnection();
-    if (!active) {
-      void vscode.window.showErrorMessage('No active connection');
-      return;
+  openFirestore(requireActiveConnection = true): void {
+    if (requireActiveConnection) {
+      const active = this.connectionManager.getActiveConnection();
+      if (!active) {
+        void vscode.window.showErrorMessage('No active connection');
+        return;
+      }
     }
 
     void this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
+  }
+
+  showFirebaseAuthModal(): void {
+    // Open the Firestore view without requiring an active connection
+    const panel = this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
+
+    // Send message to show Firebase Auth modal when panel is ready
+    this.sendWhenReady(panel, { type: 'showFirebaseAuthModal', payload: {} });
   }
 
   newDocument(): void {
@@ -248,29 +258,11 @@ export class WebviewManager {
         case 'createCollection':
           result = await this.handleCreateCollection(message.payload);
           break;
-        case 'firebaseAuthSignIn':
-          result = await this.handleFirebaseAuthSignIn(message.payload);
-          break;
-        case 'firebaseAuthResult':
-          result = await this.handleFirebaseAuthResult(message.payload);
-          break;
-        case 'listFirebaseProjects':
-          result = await this.handleListFirebaseProjects(message.payload);
-          break;
-        case 'selectFirebaseProject':
-          result = await this.handleSelectFirebaseProject(message.payload);
-          break;
-        case 'firebaseSignOut':
-          result = await this.handleFirebaseSignOut(message.payload);
-          break;
         case 'connectServiceAccount':
           result = await this.handleConnectServiceAccount(message.payload);
           break;
         case 'connectEmulator':
           result = await this.handleConnectEmulator(message.payload);
-          break;
-        case 'connectFirebaseAuth':
-          result = await this.handleConnectFirebaseAuth(message.payload);
           break;
         case 'getConnections':
           result = this.connectionManager.getConnections().map(c => ({
@@ -540,68 +532,6 @@ export class WebviewManager {
     return this.auditService.getEntries(options);
   }
 
-  private async handleFirebaseAuthSignIn(payload: unknown): Promise<unknown> {
-    // Trigger the webview to show the Firebase Auth modal
-    // The webview will handle the Firebase Auth popup and send back the ID token
-    return { success: true, message: 'Firebase Auth modal opened' };
-  }
-
-  private async handleListFirebaseProjects(payload: unknown): Promise<unknown> {
-    const active = this.connectionManager.getActiveConnection();
-    if (!active?.firestore) throw new Error('No active Firestore connection');
-
-    // Get Firebase Auth provider and list projects
-    try {
-      // The webview will handle the project listing
-      return { projects: [] };
-    } catch (error) {
-      return { projects: [], error: (error as Error).message };
-    }
-  }
-
-  private async handleSelectFirebaseProject(payload: unknown): Promise<unknown> {
-    const { projectId } = payload as { projectId: string };
-    const connection = this.connectionManager.getActiveConnection();
-    if (!connection || connection.authMethod !== 'firebase-auth') {
-      throw new Error('No active Firebase Auth connection');
-    }
-
-    // Switch to the selected project
-    await this.connectionManager.switchFirebaseProject(projectId);
-    return { success: true };
-  }
-
-  private async handleFirebaseSignOut(payload: unknown): Promise<unknown> {
-    const active = this.connectionManager.getActiveConnection();
-    if (active && active.authMethod === 'firebase-auth') {
-      await this.connectionManager.disconnect(active.projectId);
-    }
-    return { success: true };
-  }
-
-  private async handleFirebaseAuthResult(payload: unknown): Promise<unknown> {
-    const { idToken, refreshToken, user } = payload as {
-      idToken: string;
-      refreshToken: string;
-      user: { uid: string; email: string; displayName: string; photoURL: string };
-    };
-    
-    if (!idToken || !user?.uid) {
-      throw new Error('Invalid Firebase auth result');
-    }
-
-    // Connect using the Firebase Auth credentials
-    const connection = await this.connectionManager.connectFirebaseAuth(
-      idToken,
-      refreshToken || '',
-      user.uid,
-      user.uid,
-      user.email
-    );
-    
-    return { success: true, connection };
-  }
-
   private async handleConnectServiceAccount(_payload: unknown): Promise<unknown> {
     await this.connectionManager.showServiceAccountDialog();
     return { success: true };
@@ -609,11 +539,6 @@ export class WebviewManager {
 
   private async handleConnectEmulator(_payload: unknown): Promise<unknown> {
     await this.connectionManager.showEmulatorDialog();
-    return { success: true };
-  }
-
-  private async handleConnectFirebaseAuth(_payload: unknown): Promise<unknown> {
-    await this.connectionManager.showFirebaseAuthDialog();
     return { success: true };
   }
 
