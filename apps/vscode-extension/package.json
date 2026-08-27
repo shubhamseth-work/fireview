@@ -67,6 +67,11 @@
         "icon": "$(cloud)"
       },
       {
+        "command": "vistiq.connectOAuth",
+        "title": "Vistiq: Connect with Google (Firebase)",
+        "icon": "$(cloud)"
+      },
+      {
         "command": "vistiq.disconnectProject",
         "title": "Vistiq: Disconnect Project",
         "icon": "$(plug)"
