@@ -1,7 +1,7 @@
 {
   "name": "vistiq-viewer",
   "publisher": "vistiq",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Vistiq VS Code Extension",
   "main": "dist/extension.js",
   "scripts": {

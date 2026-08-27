@@ -1,6 +1,14 @@
 import React from 'react';
 import { FirestoreDocument, FirestoreQuery } from '@vistiq/core';
 import { Connection } from '@vistiq/core';
+interface FirebaseConfig {
+    apiKey: string;
+    authDomain: string;
+    projectId: string;
+    storageBucket: string;
+    messagingSenderId: string;
+    appId: string;
+}
 interface FirestoreViewProps {
     connection: Connection;
     collections: any[];
@@ -35,6 +43,23 @@ interface FirestoreViewProps {
     onImportDocument: (doc: FirestoreDocument) => void;
     onExportDocument: (doc: FirestoreDocument) => void;
     onRevealInConsole: (doc: FirestoreDocument) => void;
+    onFirebaseAuthSignIn: () => Promise<{
+        success: boolean;
+        error?: string;
+    }>;
+    onListFirebaseProjects: () => Promise<Array<{
+        projectId: string;
+        name: string;
+    }>>;
+    onSelectFirebaseProject: (projectId: string) => Promise<{
+        success: boolean;
+        error?: string;
+    }>;
+    onFirebaseSignOut: () => Promise<{
+        success: boolean;
+        error?: string;
+    }>;
+    onFirebaseAuthComplete: (idToken: string, refreshToken: string, user: any) => Promise<void>;
     connections: Array<{
         projectId: string;
         displayName: string;
@@ -42,6 +67,8 @@ interface FirestoreViewProps {
     activeProjectId: string | null;
     readOnlyCollections: Set<string>;
     setReadOnlyCollections: (updater: Set<string> | ((prev: Set<string>) => Set<string>)) => void;
+    firebaseConfig?: FirebaseConfig;
+    onConfigImport: (config: FirebaseConfig) => void;
 }
 export declare const FirestoreView: React.FC<FirestoreViewProps>;
 export {};

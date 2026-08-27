@@ -1,14 +1,18 @@
 import type { AuditService } from '@vistiq/audit';
 import type { AuthProviders } from '@vistiq/auth';
-import { EmulatorProvider, ServiceAccountProvider } from '@vistiq/auth';
-import { CredentialService } from '@vistiq/credentials';
-import { EmulatorService } from '@vistiq/emulator';
-import type { createFirestoreService, FirestoreService } from '@vistiq/firestore';
-import { createFirestoreService } from '@vistiq/firestore';
+import type {
+  AuthMethod,
+  Connection,
+  EmulatorConfig,
+  EnvironmentLabel,
+  StoredConnection,
+  StoredServiceAccount,
+} from '@vistiq/core';
+import type { CredentialService } from '@vistiq/credentials';
+import type { EmulatorService } from '@vistiq/emulator';
+import { createFirestoreService, type FirestoreService } from '@vistiq/firestore';
 import { createChildLogger, ERROR_CODES, VistiqError } from '@vistiq/shared';
-import type { logger } from '@vistiq/shared';
-import type { cert, getApps, initializeApp } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
+import * as fs from 'fs';
 import * as vscode from 'vscode';
 
 const connLogger = createChildLogger('connectionManager');
@@ -17,6 +21,7 @@ interface ActiveConnection extends Connection {
   firestore?: FirestoreService;
   serviceAccount?: StoredServiceAccount;
   emulatorConfig?: EmulatorConfig;
+  firebaseAuth?: { refreshToken: string; userId: string; email: string };
 }
 
 export class ConnectionManager {
@@ -71,6 +76,22 @@ export class ConnectionManager {
           this.authProviders.emulator.getFirestore()!,
           'demo-project'
         );
+      } else if (stored.authMethod === 'firebase-auth') {
+        const firebaseAuth = await this.credentialService.getFirebaseAuth(stored.projectId);
+        if (firebaseAuth) {
+          this.authProviders.firebaseAuth.setProjectId(stored.projectId);
+          await this.authProviders.firebaseAuth.connect({
+            idToken: '', // Will be refreshed from refresh token
+            refreshToken: firebaseAuth.refreshToken,
+            projectId: stored.projectId,
+            userId: firebaseAuth.userId,
+            email: firebaseAuth.email,
+          } as any);
+          firestore = createFirestoreService(
+            this.authProviders.firebaseAuth.getFirestore()!,
+            stored.projectId
+          );
+        }
       }
 
       if (firestore) {
@@ -189,6 +210,9 @@ export class ConnectionManager {
       await this.credentialService.deleteServiceAccount(projectId);
     } else if (connection.authMethod === 'emulator') {
       await this.authProviders.emulator.disconnect();
+    } else if (connection.authMethod === 'firebase-auth') {
+      await this.authProviders.firebaseAuth.disconnect();
+      await this.credentialService.deleteFirebaseAuth(projectId);
     }
 
     if (connection.firestore) {
@@ -247,13 +271,18 @@ export class ConnectionManager {
 
   async showConnectDialog(): Promise<void> {
     const authMethod = await vscode.window.showQuickPick<
-      vscode.QuickPickItem & { value: 'service-account' | 'emulator' }
+      vscode.QuickPickItem & { value: 'service-account' | 'emulator' | 'firebase-auth' }
     >(
       [
         {
           label: 'Service Account',
           value: 'service-account',
           description: 'Connect using Google Cloud Service Account JSON',
+        },
+        {
+          label: 'Firebase Auth',
+          value: 'firebase-auth',
+          description: 'Sign in with Google via Firebase Authentication',
         },
         {
           label: 'Firebase Emulator',
@@ -268,12 +297,14 @@ export class ConnectionManager {
 
     if (authMethod.value === 'service-account') {
       await this.showServiceAccountDialog();
-    } else {
+    } else if (authMethod.value === 'emulator') {
       await this.showEmulatorDialog();
+    } else if (authMethod.value === 'firebase-auth') {
+      await this.showFirebaseAuthDialog();
     }
   }
 
-  private async showServiceAccountDialog(): Promise<void> {
+  async showServiceAccountDialog(): Promise<void> {
     const projectId = await vscode.window.showInputBox({
       prompt: 'Enter Firebase Project ID',
       placeHolder: 'my-project-123',
@@ -312,26 +343,88 @@ export class ConnectionManager {
       if (confirm !== 'Yes, I understand') return;
     }
 
-    const json = await vscode.window.showInputBox({
-      prompt: 'Paste Service Account JSON',
-      placeHolder: '{ "type": "service_account", ... }',
-      validateInput: v => {
-        try {
-          JSON.parse(v);
-          return null;
-        } catch {
-          return 'Invalid JSON';
-        }
-      },
-      password: true,
+    // Step 1: File picker for service account JSON
+    const jsonUri = await vscode.window.showOpenDialog({
+      canSelectFiles: true,
+      canSelectFolders: false,
+      canSelectMany: false,
+      filters: { 'JSON Files': ['json'] },
+      openLabel: 'Select Service Account JSON',
+      title: 'Select Service Account Key File',
     });
-    if (!json) return;
 
     let serviceAccount: StoredServiceAccount;
-    try {
-      serviceAccount = JSON.parse(json);
-    } catch {
-      vscode.window.showErrorMessage('Invalid Service Account JSON');
+    let finalProjectId = projectId;
+    let finalDisplayName = displayName;
+
+    if (jsonUri && jsonUri.length > 0) {
+      // File selected - read and parse
+      try {
+        const jsonContent = fs.readFileSync(jsonUri[0].fsPath, 'utf8');
+        serviceAccount = JSON.parse(jsonContent);
+
+        if (!serviceAccount.type || serviceAccount.type !== 'service_account') {
+          throw new Error('Not a valid service account JSON (missing type=service_account)');
+        }
+      } catch {
+        vscode.window.showErrorMessage('Invalid Service Account JSON file');
+        return;
+      }
+
+      // Auto-fill project ID from JSON if not provided
+      if (!finalProjectId && serviceAccount.project_id) {
+        finalProjectId = serviceAccount.project_id;
+      }
+
+      // Auto-fill display name from client_email if not provided
+      if (!finalDisplayName && serviceAccount.client_email) {
+        finalDisplayName = serviceAccount.client_email;
+      }
+    } else {
+      // Step 2: Fallback - paste JSON (user cancelled file picker)
+      const pasteAction = await vscode.window.showInformationMessage(
+        'No file selected. Paste Service Account JSON instead?',
+        'Paste JSON',
+        'Cancel'
+      );
+
+      if (pasteAction !== 'Paste JSON') return;
+
+      const json = await vscode.window.showInputBox({
+        prompt: 'Paste Service Account JSON',
+        placeHolder: '{ "type": "service_account", ... }',
+        validateInput: v => {
+          try { JSON.parse(v); return null; } catch { return 'Invalid JSON'; }
+        },
+        password: true,
+      });
+      if (!json) return;
+
+      try {
+        serviceAccount = JSON.parse(json);
+      } catch {
+        vscode.window.showErrorMessage('Invalid Service Account JSON');
+        return;
+      }
+
+      // Auto-fill project ID from JSON if not provided
+      if (!finalProjectId && serviceAccount.project_id) {
+        finalProjectId = serviceAccount.project_id;
+      }
+
+      // Auto-fill display name from client_email if not provided
+      if (!finalDisplayName && serviceAccount.client_email) {
+        finalDisplayName = serviceAccount.client_email;
+      }
+    }
+
+    // Validate required fields
+    if (!finalProjectId) {
+      vscode.window.showErrorMessage('Project ID is required');
+      return;
+    }
+    if (!finalDisplayName) {
+      vscode.window.showErrorMessage('Display name is required');
       return;
     }
 
@@ -340,20 +433,20 @@ export class ConnectionManager {
         { location: vscode.ProgressLocation.Notification, title: 'Connecting to Firestore...' },
         async () => {
           await this.connectServiceAccount(
-            projectId,
-            displayName,
+            finalProjectId,
+            finalDisplayName,
             environment.value,
             serviceAccount
           );
         }
       );
-      vscode.window.showInformationMessage(`Connected to ${displayName}`);
+      vscode.window.showInformationMessage(`Connected to ${finalDisplayName}`);
     } catch (error) {
       vscode.window.showErrorMessage(`Failed to connect: ${(error as Error).message}`);
     }
   }
 
-  private async showEmulatorDialog(): Promise<void> {
+  async showEmulatorDialog(): Promise<void> {
     const config = this.emulatorService.detectEmulatorConfig();
 
     const host = await vscode.window.showInputBox({
@@ -403,5 +496,97 @@ export class ConnectionManager {
 
   detectProjectFiles(): ReturnType<EmulatorService['detectProjectFiles']> {
     return this.emulatorService.detectProjectFiles();
+  }
+
+  async showFirebaseAuthDialog(): Promise<void> {
+    // The webview will handle the Firebase Auth flow
+    // We just need to trigger it via the webview
+    if (!this.activeProjectId) {
+      // Open the Firestore view to show the Firebase Auth modal
+      await vscode.commands.executeCommand('vistiq.openFirestore');
+    }
+
+    // The webview will handle the Firebase Auth flow and send messages back
+    // We just need to ensure the webview is open
+    vscode.window
+      .showInformationMessage(
+        'Please complete the Firebase Authentication in the Firestore view.',
+        'Open Firestore'
+      )
+      .then(selection => {
+        if (selection === 'Open Firestore') {
+          vscode.commands.executeCommand('vistiq.openFirestore');
+        }
+      });
+  }
+
+  async connectFirebaseAuth(
+    idToken: string,
+    refreshToken: string,
+    projectId: string,
+    userId: string,
+    email: string
+  ): Promise<Connection> {
+    await this.authProviders.firebaseAuth.connect({
+      idToken,
+      refreshToken,
+      projectId,
+      userId,
+      email,
+    } as any);
+    const firestoreInstance = this.authProviders.firebaseAuth.getFirestore()!;
+    const firestore = createFirestoreService(firestoreInstance, projectId);
+
+    const connection: ActiveConnection = {
+      projectId,
+      displayName: email,
+      environment: 'custom',
+      authMethod: 'firebase-auth',
+      connectedAt: new Date().toISOString(),
+      lastUsedAt: new Date().toISOString(),
+      firestore,
+      firebaseAuth: { refreshToken, userId, email },
+    };
+
+    await firestore.connect();
+    this.connections.set(projectId, connection);
+    await this.credentialService.storeConnection({
+      projectId,
+      displayName: email,
+      environment: 'custom',
+      authMethod: 'firebase-auth',
+      connectedAt: connection.connectedAt,
+      lastUsedAt: connection.lastUsedAt,
+    });
+
+    await this.setActiveConnection(projectId);
+
+    this.auditService.record({
+      operation: 'connect',
+      projectId,
+      result: 'success',
+    });
+
+    return connection;
+  }
+
+  async switchFirebaseProject(projectId: string): Promise<Connection> {
+    // Switch to a different Firebase project for the authenticated user
+    const firebaseAuth = await this.credentialService.getFirebaseAuth(this.activeProjectId!);
+    if (!firebaseAuth) {
+      throw new VistiqError('No Firebase Auth found', ERROR_CODES.INVALID_CREDENTIALS);
+    }
+
+    // Disconnect current connection
+    await this.disconnect(this.activeProjectId!);
+
+    // Connect to new project with same credentials
+    return this.connectFirebaseAuth(
+      '',
+      firebaseAuth.refreshToken,
+      projectId,
+      firebaseAuth.userId,
+      firebaseAuth.email
+    );
   }
 }

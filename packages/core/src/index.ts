@@ -263,7 +263,7 @@ export interface AuthStatus {
 }
 
 export type EnvironmentLabel = 'development' | 'staging' | 'production' | 'custom';
-export type AuthMethod = 'service-account' | 'oauth' | 'emulator';
+export type AuthMethod = 'service-account' | 'oauth' | 'emulator' | 'firebase-auth';
 
 export interface EmulatorConfig {
   host: string;
@@ -511,7 +511,8 @@ export type AuditOperation =
   | 'compare-projects'
   | 'diff-documents'
   | 'emulator-connect'
-  | 'emulator-disconnect';
+  | 'emulator-disconnect'
+  | 'create-collection';
 
 export interface SavedQuery {
   id: string;

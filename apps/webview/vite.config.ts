@@ -7,6 +7,9 @@ const outDir = path.resolve(__dirname, '../../apps/vscode-extension/dist/webview
 export default defineConfig({
   plugins: [react()],
   root: 'src',
+  optimizeDeps: {
+    include: ['firebase/auth'],
+  },
   build: {
     outDir,
     emptyOutDir: true,
@@ -17,6 +20,11 @@ export default defineConfig({
         projectCompare: 'src/project-compare/index.html',
         migration: 'src/migration/index.html',
         audit: 'src/audit/index.html',
+      },
+      output: {
+        manualChunks: {
+          'firebase-auth': ['firebase/auth'],
+        },
       },
     },
   },

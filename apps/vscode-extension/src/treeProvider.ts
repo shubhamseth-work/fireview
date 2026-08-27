@@ -1,5 +1,4 @@
-import { Connection, StoredConnection } from '@vistiq/core';
-import type { logger } from '@vistiq/shared';
+import { Connection } from '@vistiq/core';
 import { createChildLogger } from '@vistiq/shared';
 import * as vscode from 'vscode';
 import type { ConnectionManager } from './connectionManager.js';

@@ -118,7 +118,7 @@ export interface AuthStatus {
     expiresAt?: string;
 }
 export type EnvironmentLabel = 'development' | 'staging' | 'production' | 'custom';
-export type AuthMethod = 'service-account' | 'oauth' | 'emulator';
+export type AuthMethod = 'service-account' | 'oauth' | 'emulator' | 'firebase-auth';
 export interface EmulatorConfig {
     host: string;
     firestorePort?: number;
@@ -313,7 +313,7 @@ export interface AuditEntry {
     details?: Record<string, unknown>;
     error?: string;
 }
-export type AuditOperation = 'connect' | 'disconnect' | 'create-document' | 'update-document' | 'delete-document' | 'batch-delete' | 'batch-update' | 'batch-create' | 'export-collection' | 'import-collection' | 'run-query' | 'copy-documents' | 'migrate' | 'compare-projects' | 'diff-documents' | 'emulator-connect' | 'emulator-disconnect';
+export type AuditOperation = 'connect' | 'disconnect' | 'create-document' | 'update-document' | 'delete-document' | 'batch-delete' | 'batch-update' | 'batch-create' | 'export-collection' | 'import-collection' | 'run-query' | 'copy-documents' | 'migrate' | 'compare-projects' | 'diff-documents' | 'emulator-connect' | 'emulator-disconnect' | 'create-collection';
 export interface SavedQuery {
     id: string;
     name: string;

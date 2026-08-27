@@ -15,7 +15,12 @@
     "format": "prettier --write src",
     "format:check": "prettier --check src"
   },
-  "keywords": ["vistiq", "webview", "react", "firestore"],
+  "keywords": [
+    "vistiq",
+    "webview",
+    "react",
+    "firestore"
+  ],
   "author": "Vistiq Contributors",
   "license": "Apache-2.0",
   "devDependencies": {
@@ -34,6 +39,7 @@
   "dependencies": {
     "@vistiq/core": "*",
     "@vistiq/shared": "*",
+    "firebase": "^10.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

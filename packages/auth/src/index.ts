@@ -4,6 +4,7 @@ import { CredentialService } from '@vistiq/credentials';
 import { OAuth2Client } from 'google-auth-library';
 import { initializeApp, cert, getApps, App } from 'firebase-admin/app';
 import { getFirestore, Firestore } from 'firebase-admin/firestore';
+import { getAuth, Auth } from 'firebase-admin/auth';
 
 export class ServiceAccountProvider implements AuthProvider {
   private credentialService: CredentialService;
@@ -227,7 +228,123 @@ export function createAuthProviders(credentialService: CredentialService) {
     serviceAccount: new ServiceAccountProvider(credentialService),
     emulator: new EmulatorProvider(),
     oauth: new GoogleOAuthProvider(credentialService),
+    firebaseAuth: new FirebaseAuthProvider(credentialService),
   };
 }
 
 export type AuthProviders = ReturnType<typeof createAuthProviders>;
+
+export class FirebaseAuthProvider implements AuthProvider {
+  private credentialService: CredentialService;
+  private app: App | null = null;
+  private firestore: Firestore | null = null;
+  private auth: any = null;
+  private projectId: string | null = null;
+  private userId: string | null = null;
+  private refreshToken: string | null = null;
+
+  constructor(credentialService: CredentialService) {
+    this.credentialService = credentialService;
+  }
+
+  async connect(config?: EmulatorConfig): Promise<Connection> {
+    // Firebase Auth provider expects a custom config with idToken, not EmulatorConfig
+    const firebaseConfig = config as { idToken: string; refreshToken: string; projectId: string; userId: string; email: string } | undefined;
+    
+    if (!firebaseConfig) {
+      throw new VistiqError('Firebase Auth config required', ERROR_CODES.INVALID_CREDENTIALS);
+    }
+
+    try {
+      const { idToken, refreshToken, projectId, userId, email: configEmail } = firebaseConfig;
+
+      // Verify the ID token
+      const adminAuth = getAuth();
+      const decodedToken = await adminAuth.verifyIdToken(idToken);
+      const { uid, email: tokenEmail, firebase } = decodedToken;
+
+      this.userId = uid;
+      this.projectId = projectId;
+      this.refreshToken = refreshToken;
+
+      // Create custom token for this user
+      const customToken = await adminAuth.createCustomToken(uid);
+
+      // Initialize Admin SDK with user's custom token
+      const appName = `vistiq-firebase-${projectId}`;
+      const existingApp = getApps().find(a => a.name === appName);
+      
+      // Use custom token as credential
+      const userCredential = cert({ projectId, clientEmail: 'firebase-auth', privateKey: customToken });
+      
+      this.app = existingApp || initializeApp({ credential: userCredential }, appName);
+      this.firestore = getFirestore(this.app);
+      this.auth = getAuth(this.app);
+
+      // Store refresh token for persistence
+      await this.credentialService.storeFirebaseAuth(projectId, {
+        refreshToken,
+        projectId,
+        userId: uid,
+        email: tokenEmail || configEmail || '',
+        expiresAt: Date.now() + 3600000 // 1 hour
+      });
+
+      const connection: Connection = {
+        projectId,
+        displayName: tokenEmail || configEmail || projectId,
+        environment: 'custom',
+        authMethod: 'firebase-auth',
+        connectedAt: new Date().toISOString(),
+        lastUsedAt: new Date().toISOString(),
+      };
+
+      logger.info('Firebase Auth connected', { projectId, email: tokenEmail || configEmail });
+      return connection;
+    } catch (error) {
+      logger.error('Firebase Auth connection failed', { error: (error as Error).message });
+      throw new VistiqError(
+        `Failed to connect: ${(error as Error).message}`,
+        ERROR_CODES.AUTH_FAILED,
+        { originalError: error }
+      );
+    }
+  }
+
+  async disconnect(): Promise<void> {
+    if (this.app) {
+      await (this.app as any).delete();
+      this.app = null;
+      this.firestore = null;
+      this.auth = null;
+    }
+    this.projectId = null;
+    this.userId = null;
+    this.refreshToken = null;
+    logger.info('Firebase Auth disconnected');
+  }
+
+  async getStatus(): Promise<AuthStatus> {
+    if (!this.app || !this.projectId) {
+      return { connected: false };
+    }
+    try {
+      await this.firestore!.collection('_vistiq_test').limit(1).get();
+      return { connected: true, projectId: this.projectId };
+    } catch {
+      return { connected: false, projectId: this.projectId, error: 'Connection test failed' };
+    }
+  }
+
+  getFirestore(): Firestore | null {
+    return this.firestore;
+  }
+
+  getProjectId(): string | null {
+    return this.projectId;
+  }
+
+  setProjectId(projectId: string): void {
+    this.projectId = projectId;
+  }
+}

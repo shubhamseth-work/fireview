@@ -1,8 +1,9 @@
 import type { AuditService } from '@vistiq/audit';
 import type { FirestoreDocument, FirestoreQuery } from '@vistiq/core';
 import { createChildLogger } from '@vistiq/shared';
-import * as vscode from 'vscode';
 import * as fs from 'fs';
+import * as vscode from 'vscode';
+import type { ConnectionManager } from './connectionManager.js';
 
 const webviewLogger = createChildLogger('webviewManager');
 
@@ -93,10 +94,7 @@ export class WebviewManager {
       return;
     }
 
-    const panel = this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {
-      enableScripts: true,
-      retainContextWhenHidden: true,
-    });
+    const panel = this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
 
     // Wait for panel to be ready, then send openDocument message
     webviewLogger.debug('openDocument: Sending openDocument message when ready', { documentPath });
@@ -141,18 +139,27 @@ export class WebviewManager {
   }
 
   private sendWhenReady(panel: vscode.WebviewPanel, message: WebviewMessage): void {
-    webviewLogger.debug('sendWhenReady called', { messageType: message.type, panelVisible: panel.visible });
+    webviewLogger.debug('sendWhenReady called', {
+      messageType: message.type,
+      panelVisible: panel.visible,
+    });
     if (panel.visible) {
-      webviewLogger.debug('sendWhenReady: Panel visible, sending immediately', { messageType: message.type });
+      webviewLogger.debug('sendWhenReady: Panel visible, sending immediately', {
+        messageType: message.type,
+      });
       void panel.webview.postMessage(message);
       return;
     }
 
-    webviewLogger.debug('sendWhenReady: Panel not visible, waiting for visibility change', { messageType: message.type });
+    webviewLogger.debug('sendWhenReady: Panel not visible, waiting for visibility change', {
+      messageType: message.type,
+    });
     const disposable = panel.onDidChangeViewState(
       e => {
         if (e.webviewPanel.visible) {
-          webviewLogger.debug('sendWhenReady: Panel became visible, sending message', { messageType: message.type });
+          webviewLogger.debug('sendWhenReady: Panel became visible, sending message', {
+            messageType: message.type,
+          });
           disposable.dispose();
           setTimeout(() => {
             void panel.webview.postMessage(message);
@@ -165,7 +172,9 @@ export class WebviewManager {
 
     // Fallback timeout
     setTimeout(() => {
-      webviewLogger.debug('sendWhenReady: Fallback timeout, sending message anyway', { messageType: message.type });
+      webviewLogger.debug('sendWhenReady: Fallback timeout, sending message anyway', {
+        messageType: message.type,
+      });
       disposable.dispose();
       void panel.webview.postMessage(message);
     }, 1000);
@@ -179,11 +188,11 @@ export class WebviewManager {
   }
 
   private async handleMessage(message: WebviewMessage, panelViewType: string): Promise<void> {
-    webviewLogger.debug('handleMessage: Received message', { 
-      type: message.type, 
+    webviewLogger.debug('handleMessage: Received message', {
+      type: message.type,
       panel: panelViewType,
       hasRequestId: !!message.requestId,
-      requestId: message.requestId
+      requestId: message.requestId,
     });
 
     if (message.type === 'response') {
@@ -199,7 +208,10 @@ export class WebviewManager {
     // Track which panel this request came from
     if (message.requestId) {
       this.requestPanelMap.set(message.requestId, panelViewType);
-      webviewLogger.debug('handleMessage: Mapped requestId to panel', { requestId: message.requestId, panelViewType });
+      webviewLogger.debug('handleMessage: Mapped requestId to panel', {
+        requestId: message.requestId,
+        panelViewType,
+      });
     }
 
     try {
@@ -236,6 +248,30 @@ export class WebviewManager {
         case 'createCollection':
           result = await this.handleCreateCollection(message.payload);
           break;
+        case 'firebaseAuthSignIn':
+          result = await this.handleFirebaseAuthSignIn(message.payload);
+          break;
+        case 'firebaseAuthResult':
+          result = await this.handleFirebaseAuthResult(message.payload);
+          break;
+        case 'listFirebaseProjects':
+          result = await this.handleListFirebaseProjects(message.payload);
+          break;
+        case 'selectFirebaseProject':
+          result = await this.handleSelectFirebaseProject(message.payload);
+          break;
+        case 'firebaseSignOut':
+          result = await this.handleFirebaseSignOut(message.payload);
+          break;
+        case 'connectServiceAccount':
+          result = await this.handleConnectServiceAccount(message.payload);
+          break;
+        case 'connectEmulator':
+          result = await this.handleConnectEmulator(message.payload);
+          break;
+        case 'connectFirebaseAuth':
+          result = await this.handleConnectFirebaseAuth(message.payload);
+          break;
         case 'getConnections':
           result = this.connectionManager.getConnections().map(c => ({
             projectId: c.projectId,
@@ -265,7 +301,12 @@ export class WebviewManager {
   }
 
   private sendResponse(requestId: string, success: boolean, data?: unknown, error?: string): void {
-    webviewLogger.debug('sendResponse', { requestId, success, hasError: !!error, errorMessage: error });
+    webviewLogger.debug('sendResponse', {
+      requestId,
+      success,
+      hasError: !!error,
+      errorMessage: error,
+    });
     const panelViewType = this.requestPanelMap.get(requestId);
     const panel = panelViewType
       ? this.panels.get(panelViewType)
@@ -316,32 +357,33 @@ export class WebviewManager {
       throw new Error('No active connection');
     }
     if (!active.firestore) {
-      webviewLogger.error('handleGetDocument: No active Firestore connection', { 
+      webviewLogger.error('handleGetDocument: No active Firestore connection', {
         projectId: active.projectId,
-        authMethod: active.authMethod 
+        authMethod: active.authMethod,
       });
       throw new Error('No active Firestore connection');
     }
-    webviewLogger.debug('handleGetDocument: Calling firestore.getDocument', { 
+    webviewLogger.debug('handleGetDocument: Calling firestore.getDocument', {
       documentPath,
-      projectId: active.projectId 
+      projectId: active.projectId,
     });
-    return active.firestore.getDocument(documentPath)
+    return active.firestore
+      .getDocument(documentPath)
       .then(doc => {
-        webviewLogger.debug('handleGetDocument: Success', { 
+        webviewLogger.debug('handleGetDocument: Success', {
           documentPath,
           found: doc !== null,
           docId: doc?.id,
           docPath: doc?.path,
-          dataKeys: doc?.data ? Object.keys(doc.data) : []
+          dataKeys: doc?.data ? Object.keys(doc.data) : [],
         });
         return doc;
       })
       .catch(err => {
-        webviewLogger.error('handleGetDocument: Error', { 
+        webviewLogger.error('handleGetDocument: Error', {
           documentPath,
           error: (err as Error).message,
-          stack: (err as Error).stack
+          stack: (err as Error).stack,
         });
         throw err;
       });
@@ -353,7 +395,11 @@ export class WebviewManager {
       data: FirestoreDocument;
     };
     const documentId = data.id || undefined;
-    webviewLogger.debug('handleCreateDocument called', { collectionPath, docId: data.id, dataKeys: Object.keys(data.data) });
+    webviewLogger.debug('handleCreateDocument called', {
+      collectionPath,
+      docId: data.id,
+      dataKeys: Object.keys(data.data),
+    });
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error('No active Firestore connection');
     const id = await active.firestore.createDocument(collectionPath, data, documentId);
@@ -476,9 +522,9 @@ export class WebviewManager {
     const { collectionId } = payload as { collectionId: string };
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error('No active Firestore connection');
-    
+
     await active.firestore.createCollection(collectionId);
-    
+
     this.auditService.record({
       operation: 'create-collection',
       projectId: active.projectId,
@@ -489,75 +535,107 @@ export class WebviewManager {
     return { success: true };
   }
 
-  private handleGetAuditHistory(payload: unknown): Promise<unknown> {
+  private async handleGetAuditHistory(payload: unknown): Promise<unknown> {
     const options = payload as any;
     return this.auditService.getEntries(options);
   }
 
-  private getWebviewHtml(viewType: string, webview: vscode.Webview): string {
-    const baseType = viewType.startsWith('document-') ? 'firestore' : viewType;
-    const nonce = this.generateNonce();
+  private async handleFirebaseAuthSignIn(payload: unknown): Promise<unknown> {
+    // Trigger the webview to show the Firebase Auth modal
+    // The webview will handle the Firebase Auth popup and send back the ID token
+    return { success: true, message: 'Firebase Auth modal opened' };
+  }
 
-    const htmlDiskPath = vscode.Uri.joinPath(
-      this.context.extensionUri, 'dist', 'webview', baseType, 'index.html'
-    );
+  private async handleListFirebaseProjects(payload: unknown): Promise<unknown> {
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error('No active Firestore connection');
 
-    let html: string;
+    // Get Firebase Auth provider and list projects
     try {
-      html = fs.readFileSync(htmlDiskPath.fsPath, 'utf8');
-    } catch (err) {
-      webviewLogger.error('Failed to read webview index.html', {
-        viewType,
-        path: htmlDiskPath.fsPath,
-        error: (err as Error).message,
-      });
-      return `<!DOCTYPE html><html><body>Failed to load webview: ${baseType}/index.html not found</body></html>`;
+      // The webview will handle the project listing
+      return { projects: [] };
+    } catch (error) {
+      return { projects: [], error: (error as Error).message };
+    }
+  }
+
+  private async handleSelectFirebaseProject(payload: unknown): Promise<unknown> {
+    const { projectId } = payload as { projectId: string };
+    const connection = this.connectionManager.getActiveConnection();
+    if (!connection || connection.authMethod !== 'firebase-auth') {
+      throw new Error('No active Firebase Auth connection');
     }
 
-    const baseDiskDir = vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', baseType);
+    // Switch to the selected project
+    await this.connectionManager.switchFirebaseProject(projectId);
+    return { success: true };
+  }
 
-    // Rewrite src="..." and href="..." pointing at relative assets to webview URIs
-    html = html.replace(/(src|href)="([^"]+)"/g, (match, attr, relPath) => {
-      if (/^https?:\/\//.test(relPath) || relPath.startsWith('data:')) {
-        return match; // leave absolute/data URIs alone
-      }
-      let onDisk: vscode.Uri;
-      if (relPath.startsWith('/assets/')) {
-        // Assets are at dist/webview/assets/, not dist/webview/<viewType>/assets/
-        const cleanRelPath = relPath.replace(/^\/assets\//, '');
-        onDisk = vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', 'assets', cleanRelPath);
-      } else {
-        const cleanRelPath = relPath.replace(/^\.?\//, ''); // strip leading ./ or /
-        onDisk = vscode.Uri.joinPath(baseDiskDir, cleanRelPath);
-      }
-      const webviewUri = webview.asWebviewUri(onDisk);
-      return `${attr}="${webviewUri}"`;
-    });
+  private async handleFirebaseSignOut(payload: unknown): Promise<unknown> {
+    const active = this.connectionManager.getActiveConnection();
+    if (active && active.authMethod === 'firebase-auth') {
+      await this.connectionManager.disconnect(active.projectId);
+    }
+    return { success: true };
+  }
 
-    // Add nonce to script tags for CSP, and inject our CSP meta tag
-    html = html.replace(/<script /g, `<script nonce="${nonce}" `);
-
-    const csp = `default-src 'none'; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline'; img-src ${webview.cspSource} https: data:; font-src ${webview.cspSource} https: data:; connect-src https:;`;
-
-    if (html.includes('<head>')) {
-      html = html.replace(
-        '<head>',
-        `<head>\n  <meta http-equiv="Content-Security-Policy" content="${csp}">`
-      );
+  private async handleFirebaseAuthResult(payload: unknown): Promise<unknown> {
+    const { idToken, refreshToken, user } = payload as {
+      idToken: string;
+      refreshToken: string;
+      user: { uid: string; email: string; displayName: string; photoURL: string };
+    };
+    
+    if (!idToken || !user?.uid) {
+      throw new Error('Invalid Firebase auth result');
     }
 
-    return html;
+    // Connect using the Firebase Auth credentials
+    const connection = await this.connectionManager.connectFirebaseAuth(
+      idToken,
+      refreshToken || '',
+      user.uid,
+      user.uid,
+      user.email
+    );
+    
+    return { success: true, connection };
+  }
+
+  private async handleConnectServiceAccount(_payload: unknown): Promise<unknown> {
+    await this.connectionManager.showServiceAccountDialog();
+    return { success: true };
+  }
+
+  private async handleConnectEmulator(_payload: unknown): Promise<unknown> {
+    await this.connectionManager.showEmulatorDialog();
+    return { success: true };
+  }
+
+  private async handleConnectFirebaseAuth(_payload: unknown): Promise<unknown> {
+    await this.connectionManager.showFirebaseAuthDialog();
+    return { success: true };
   }
 
   private getScriptUri(viewType: string, webview: vscode.Webview): vscode.Uri {
     const baseType = viewType.startsWith('document-') ? 'firestore' : viewType;
-    const onDiskPath = vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${baseType}.js`);
+    const onDiskPath = vscode.Uri.joinPath(
+      this.context.extensionUri,
+      'dist',
+      'webview',
+      `${baseType}.js`
+    );
     return webview.asWebviewUri(onDiskPath);
   }
 
   private getStyleUri(viewType: string, webview: vscode.Webview): vscode.Uri {
     const baseType = viewType.startsWith('document-') ? 'firestore' : viewType;
-    const onDiskPath = vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', `${baseType}.css`);
+    const onDiskPath = vscode.Uri.joinPath(
+      this.context.extensionUri,
+      'dist',
+      'webview',
+      `${baseType}.css`
+    );
     return webview.asWebviewUri(onDiskPath);
   }
 
@@ -568,5 +646,41 @@ export class WebviewManager {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
+  }
+
+  private getWebviewHtml(viewType: string, webview: vscode.Webview): string {
+    const baseType = viewType.startsWith('document-') ? 'firestore' : viewType;
+    const htmlPath = vscode.Uri.joinPath(
+      this.context.extensionUri,
+      'dist',
+      'webview',
+      baseType,
+      'index.html'
+    );
+
+    let html = fs.readFileSync(htmlPath.fsPath, 'utf8');
+    const nonce = this.generateNonce();
+    const cspSource = webview.cspSource;
+
+    // Replace script and style asset paths with webview URIs
+    html = html.replace(/src="\/assets\/([^"]+)"/g, (_match, filename: string) => {
+      const scriptUri = webview.asWebviewUri(
+        vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', 'assets', filename)
+      );
+      return `src="${scriptUri}" nonce="${nonce}"`;
+    });
+
+    html = html.replace(/href="\/assets\/([^"]+)"/g, (_match, filename: string) => {
+      const styleUri = webview.asWebviewUri(
+        vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview', 'assets', filename)
+      );
+      return `href="${styleUri}"`;
+    });
+
+    // Add CSP meta tag with nonce
+    const cspMeta = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}' 'unsafe-eval' https://apis.google.com https://www.gstatic.com; style-src ${cspSource} 'unsafe-inline'; img-src ${cspSource} data:; font-src ${cspSource} data:; frame-src https://accounts.google.com https://apis.google.com; connect-src https://www.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com;">`;
+    html = html.replace('<head>', `<head>\n  ${cspMeta}`);
+
+    return html;
   }
 }

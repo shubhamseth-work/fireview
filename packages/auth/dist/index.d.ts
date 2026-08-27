@@ -39,6 +39,23 @@ export declare function createAuthProviders(credentialService: CredentialService
     serviceAccount: ServiceAccountProvider;
     emulator: EmulatorProvider;
     oauth: GoogleOAuthProvider;
+    firebaseAuth: FirebaseAuthProvider;
 };
 export type AuthProviders = ReturnType<typeof createAuthProviders>;
+export declare class FirebaseAuthProvider implements AuthProvider {
+    private credentialService;
+    private app;
+    private firestore;
+    private auth;
+    private projectId;
+    private userId;
+    private refreshToken;
+    constructor(credentialService: CredentialService);
+    connect(config?: EmulatorConfig): Promise<Connection>;
+    disconnect(): Promise<void>;
+    getStatus(): Promise<AuthStatus>;
+    getFirestore(): Firestore | null;
+    getProjectId(): string | null;
+    setProjectId(projectId: string): void;
+}
 //# sourceMappingURL=index.d.ts.map

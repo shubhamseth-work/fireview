@@ -23,6 +23,15 @@ interface Response {
   error?: string;
 }
 
+interface FirebaseConfig {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+}
+
 type ViewType = 'firestore' | 'compare' | 'project-compare' | 'migration' | 'audit';
 const vscode = acquireVsCodeApi();
 
@@ -47,6 +56,33 @@ const AppInner: React.FC = () => {
   const [selectedCollection, setSelectedCollection] = useState<string>('');
   const [readOnlyCollections, setReadOnlyCollections] = useState<Set<string>>(new Set());
   const [connections, setConnections] = useState<Array<{ projectId: string; displayName: string }>>([]);
+  const [firebaseConfig, setFirebaseConfig] = useState<FirebaseConfig | null>(null);
+
+  // Load Firebase config from localStorage on init
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('vistiq-firebase-config');
+      if (stored) {
+        const config = JSON.parse(stored) as FirebaseConfig;
+        if (config.apiKey && config.projectId) {
+          setFirebaseConfig(config);
+          log.info('Loaded Firebase config from localStorage');
+        }
+      }
+    } catch (err) {
+      log.warn('Failed to load Firebase config from localStorage', { error: (err as Error).message });
+    }
+  }, []);
+
+  const handleConfigImport = useCallback((config: FirebaseConfig) => {
+    setFirebaseConfig(config);
+    try {
+      localStorage.setItem('vistiq-firebase-config', JSON.stringify(config));
+      log.info('Saved Firebase config to localStorage');
+    } catch (err) {
+      log.error('Failed to save Firebase config', { error: (err as Error).message });
+    }
+  }, []);
 
   // const vscode = acquireVsCodeApi();
 
@@ -113,6 +149,23 @@ const AppInner: React.FC = () => {
       const { documentPath } = msg.payload as { documentPath: string };
       log.info('handleMessage: Received openDocument', { documentPath });
       loadDocument(documentPath);
+    } else if (msg.type === 'firebaseAuthResult') {
+      // Firebase Auth result from extension
+      const { success, user, projects, error } = msg.payload as { 
+        success: boolean; 
+        user?: { uid: string; email: string; displayName: string; photoURL: string };
+        projects?: Array<{ projectId: string; name: string }>;
+        error?: string;
+      };
+      if (success) {
+        log.info('Firebase Auth successful', { user: user?.email, projectsCount: projects?.length });
+      } else {
+        log.error('Firebase Auth failed', { error });
+      }
+    } else if (msg.type === 'firebaseProjects') {
+      // Firebase projects list from extension
+      const { projects } = msg.payload as { projects: Array<{ projectId: string; name: string }> };
+      log.info('Received Firebase projects', { count: projects?.length });
     }
   };
 
@@ -525,12 +578,126 @@ const AppInner: React.FC = () => {
     }
   };
 
+  // Firebase Auth handlers
+  const handleFirebaseAuthSignIn = async () => {
+    try {
+      setLoading(true);
+      // The webview will handle the Firebase Auth popup
+      // This is a placeholder - the actual sign-in happens in the webview
+      // The webview will send a message back with the ID token
+      return { success: true };
+    } catch (err) {
+      return { success: false, error: (err as Error).message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleListFirebaseProjects = async () => {
+    try {
+      const result = await sendMessage('listFirebaseProjects');
+      
+      // Check if result is a valid object
+      if (result && typeof result === 'object' && 'projects' in result) {
+        // Safely cast after the check
+        return (result as { projects: any[] }).projects || [];
+      }
+      
+      return [];
+    } catch (err) {
+      return [];
+    }
+  };
+
+  const handleSelectFirebaseProject = async (projectId: string) => {
+    try {
+      await sendMessage('selectFirebaseProject', { projectId });
+      return { success: true };
+    } catch (err) {
+      return { success: false, error: (err as Error).message };
+    }
+  };
+
+  const handleFirebaseSignOut = async () => {
+    try {
+      await sendMessage('firebaseSignOut');
+      return { success: true };
+    } catch (err) {
+      return { success: false, error: (err as Error).message };
+    }
+  };
+
+  const handleFirebaseAuthComplete = async (idToken: string, refreshToken: string, user: any) => {
+    try {
+      // Send auth result to extension
+      await sendMessage('firebaseAuthResult', {
+        idToken,
+        refreshToken,
+        user: {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        }
+      });
+    } catch (err) {
+      console.error('Firebase auth complete error:', err);
+    }
+  };
+
   if (!connection) {
     return (
-      <div className="empty-state" style={{ flex: 1 }}>
+      <div className="empty-state" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
         <div className="icon">🔌</div>
         <h3>No Connection</h3>
-        <p>Connect to a Firebase project from the sidebar to get started.</p>
+        <p style={{ textAlign: 'center', maxWidth: 400 }}>Connect to a Firebase project to get started.</p>
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <button
+            onClick={() => vscode.postMessage({ type: 'connectServiceAccount' })}
+            style={{
+              padding: '12px 24px',
+              fontSize: 14,
+              fontWeight: 500,
+              backgroundColor: 'var(--vscode-button-background)',
+              color: 'var(--vscode-button-foreground)',
+              border: 'none',
+              borderRadius: 4,
+              cursor: 'pointer',
+            }}
+          >
+            🔐 Service Account
+          </button>
+          <button
+            onClick={() => vscode.postMessage({ type: 'connectEmulator' })}
+            style={{
+              padding: '12px 24px',
+              fontSize: 14,
+              fontWeight: 500,
+              backgroundColor: 'var(--vscode-button-secondaryBackground)',
+              color: 'var(--vscode-button-secondaryForeground)',
+              border: '1px solid var(--vscode-button-secondaryBorder)',
+              borderRadius: 4,
+              cursor: 'pointer',
+            }}
+          >
+            🧪 Firebase Emulator
+          </button>
+          <button
+            onClick={() => vscode.postMessage({ type: 'connectFirebaseAuth' })}
+            style={{
+              padding: '12px 24px',
+              fontSize: 14,
+              fontWeight: 500,
+              backgroundColor: 'var(--vscode-button-background)',
+              color: 'var(--vscode-button-foreground)',
+              border: 'none',
+              borderRadius: 4,
+              cursor: 'pointer',
+            }}
+          >
+            ☁️ Google Account (Firebase Auth)
+          </button>
+        </div>
       </div>
     );
   }
@@ -568,10 +735,17 @@ const AppInner: React.FC = () => {
             onImportDocument={handleImportDocument}
             onExportDocument={handleExportDocument}
             onRevealInConsole={handleRevealInConsole}
+            onFirebaseAuthSignIn={handleFirebaseAuthSignIn}
+            onListFirebaseProjects={handleListFirebaseProjects}
+            onSelectFirebaseProject={handleSelectFirebaseProject}
+            onFirebaseSignOut={handleFirebaseSignOut}
+            onFirebaseAuthComplete={handleFirebaseAuthComplete}
             connections={connections}
             activeProjectId={connection?.projectId || null}
             readOnlyCollections={readOnlyCollections}
             setReadOnlyCollections={setReadOnlyCollections}
+            firebaseConfig={firebaseConfig || undefined}
+            onConfigImport={handleConfigImport}
           />
         );
       case 'compare':

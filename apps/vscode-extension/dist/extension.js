@@ -8,8 +8,8 @@ var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __esm = (fn, res) => function __init() {
   return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
 };
-var __commonJS = (cb, mod3) => function __require() {
-  return mod3 || (0, cb[__getOwnPropNames(cb)[0]])((mod3 = { exports: {} }).exports, mod3), mod3.exports;
+var __commonJS = (cb, mod4) => function __require() {
+  return mod4 || (0, cb[__getOwnPropNames(cb)[0]])((mod4 = { exports: {} }).exports, mod4), mod4.exports;
 };
 var __export = (target, all) => {
   for (var name in all)
@@ -23,15 +23,15 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod3, isNodeMode, target) => (target = mod3 != null ? __create(__getProtoOf(mod3)) : {}, __copyProps(
+var __toESM = (mod4, isNodeMode, target) => (target = mod4 != null ? __create(__getProtoOf(mod4)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
   // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod3 || !mod3.__esModule ? __defProp(target, "default", { value: mod3, enumerable: true }) : target,
-  mod3
+  isNodeMode || !mod4 || !mod4.__esModule ? __defProp(target, "default", { value: mod4, enumerable: true }) : target,
+  mod4
 ));
-var __toCommonJS = (mod3) => __copyProps(__defProp({}, "__esModule", { value: true }), mod3);
+var __toCommonJS = (mod4) => __copyProps(__defProp({}, "__esModule", { value: true }), mod4);
 
 // ../../packages/shared/dist/logger.js
 function redactSecrets(obj) {
@@ -3411,8 +3411,8 @@ var require_util = __commonJS({
 var require_common = __commonJS({
   "../../node_modules/gcp-metadata/node_modules/gaxios/build/src/common.js"(exports2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     var _a;
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -4802,13 +4802,13 @@ var require_helpers = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -4872,13 +4872,13 @@ var require_dist = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
@@ -5010,8 +5010,8 @@ var require_dist = __commonJS({
 var require_parse_proxy_response = __commonJS({
   "../../node_modules/gcp-metadata/node_modules/https-proxy-agent/dist/parse-proxy-response.js"(exports2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.parseProxyResponse = void 0;
@@ -5124,17 +5124,17 @@ var require_dist2 = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.HttpsProxyAgent = void 0;
@@ -5274,13 +5274,13 @@ var require_gaxios = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     var __classPrivateFieldGet = exports2 && exports2.__classPrivateFieldGet || function(receiver, state, kind, f) {
@@ -5294,8 +5294,8 @@ var require_gaxios = __commonJS({
       if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
       return kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value), value;
     };
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     var _Gaxios_instances;
     var _a;
@@ -7611,13 +7611,13 @@ var require_logging_utils = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -7691,12 +7691,12 @@ var require_logging_utils = __commonJS({
             this.setFilters();
             this.filtersSet = true;
           }
-          let logger3 = this.cached.get(namespace);
-          if (!logger3) {
-            logger3 = this.makeLogger(namespace);
-            this.cached.set(namespace, logger3);
+          let logger2 = this.cached.get(namespace);
+          if (!logger2) {
+            logger2 = this.makeLogger(namespace);
+            this.cached.set(namespace, logger2);
           }
-          logger3(fields, ...args);
+          logger2(fields, ...args);
         } catch (e) {
           console.error(e);
         }
@@ -7833,7 +7833,7 @@ var require_logging_utils = __commonJS({
       } else if (cachedBackend === void 0) {
         cachedBackend = getNodeBackend();
       }
-      const logger3 = (() => {
+      const logger2 = (() => {
         let previousBackend = void 0;
         const newLogger = new AdhocDebugLogger(namespace, (fields, ...args) => {
           if (previousBackend !== cachedBackend) {
@@ -7848,8 +7848,8 @@ var require_logging_utils = __commonJS({
         });
         return newLogger;
       })();
-      loggerCache.set(namespace, logger3);
-      return logger3.func;
+      loggerCache.set(namespace, logger2);
+      return logger2.func;
     }
   }
 });
@@ -7913,14 +7913,14 @@ var require_src4 = __commonJS({
     var gaxios_1 = require_src2();
     var jsonBigint = require_json_bigint();
     var gcp_residency_1 = require_gcp_residency();
-    var logger3 = require_src3();
+    var logger2 = require_src3();
     exports2.BASE_PATH = "/computeMetadata/v1";
     exports2.HOST_ADDRESS = "http://169.254.169.254";
     exports2.SECONDARY_HOST_ADDRESS = "http://metadata.google.internal.";
     exports2.HEADER_NAME = "Metadata-Flavor";
     exports2.HEADER_VALUE = "Google";
     exports2.HEADERS = Object.freeze({ [exports2.HEADER_NAME]: exports2.HEADER_VALUE });
-    var log = logger3.log("gcp metadata");
+    var log = logger2.log("gcp metadata");
     exports2.METADATA_SERVER_DETECTION = Object.freeze({
       "assume-present": "don't try to ping the metadata server, but assume it's present",
       none: "don't try to ping the metadata server, but don't try to use it either",
@@ -8550,8 +8550,8 @@ var require_util2 = __commonJS({
 var require_common3 = __commonJS({
   "../../node_modules/google-auth-library/node_modules/gaxios/build/src/common.js"(exports2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     var _a;
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -8826,13 +8826,13 @@ var require_helpers2 = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -8896,13 +8896,13 @@ var require_dist3 = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
@@ -9034,8 +9034,8 @@ var require_dist3 = __commonJS({
 var require_parse_proxy_response2 = __commonJS({
   "../../node_modules/google-auth-library/node_modules/https-proxy-agent/dist/parse-proxy-response.js"(exports2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.parseProxyResponse = void 0;
@@ -9148,17 +9148,17 @@ var require_dist4 = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.HttpsProxyAgent = void 0;
@@ -9298,13 +9298,13 @@ var require_gaxios2 = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     var __classPrivateFieldGet = exports2 && exports2.__classPrivateFieldGet || function(receiver, state, kind, f) {
@@ -9318,8 +9318,8 @@ var require_gaxios2 = __commonJS({
       if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
       return kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value), value;
     };
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     var _Gaxios_instances;
     var _a;
@@ -11376,8 +11376,8 @@ var require_util4 = __commonJS({
 var require_common4 = __commonJS({
   "../../node_modules/gtoken/node_modules/gaxios/build/src/common.js"(exports2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     var _a;
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -11652,13 +11652,13 @@ var require_helpers3 = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -11722,13 +11722,13 @@ var require_dist5 = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
@@ -11860,8 +11860,8 @@ var require_dist5 = __commonJS({
 var require_parse_proxy_response3 = __commonJS({
   "../../node_modules/gtoken/node_modules/https-proxy-agent/dist/parse-proxy-response.js"(exports2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.parseProxyResponse = void 0;
@@ -11974,17 +11974,17 @@ var require_dist6 = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.HttpsProxyAgent = void 0;
@@ -12124,13 +12124,13 @@ var require_gaxios3 = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || function(mod3) {
-      if (mod3 && mod3.__esModule) return mod3;
+    var __importStar = exports2 && exports2.__importStar || function(mod4) {
+      if (mod4 && mod4.__esModule) return mod4;
       var result = {};
-      if (mod3 != null) {
-        for (var k in mod3) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod3, k)) __createBinding(result, mod3, k);
+      if (mod4 != null) {
+        for (var k in mod4) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod4, k)) __createBinding(result, mod4, k);
       }
-      __setModuleDefault(result, mod3);
+      __setModuleDefault(result, mod4);
       return result;
     };
     var __classPrivateFieldGet = exports2 && exports2.__classPrivateFieldGet || function(receiver, state, kind, f) {
@@ -12144,8 +12144,8 @@ var require_gaxios3 = __commonJS({
       if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
       return kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value), value;
     };
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     var _Gaxios_instances;
     var _a;
@@ -13134,12 +13134,12 @@ var require_src7 = __commonJS({
     var _GoogleToken_requestToken;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleToken = void 0;
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var gaxios_1 = require_src6();
     var jws = require_jws();
     var path4 = require("path");
     var util_1 = require("util");
-    var readFile = fs5.readFile ? (0, util_1.promisify)(fs5.readFile) : async () => {
+    var readFile = fs6.readFile ? (0, util_1.promisify)(fs6.readFile) : async () => {
       throw new ErrorWithCode("use key rather than keyFile.", "MISSING_CREDENTIALS");
     };
     var GOOGLE_TOKEN_URL = "https://www.googleapis.com/oauth2/v4/token";
@@ -14696,12 +14696,12 @@ var require_filesubjecttokensupplier = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.FileSubjectTokenSupplier = void 0;
     var util_1 = require("util");
-    var fs5 = require("fs");
-    var readFile = (0, util_1.promisify)((_a = fs5.readFile) !== null && _a !== void 0 ? _a : () => {
+    var fs6 = require("fs");
+    var readFile = (0, util_1.promisify)((_a = fs6.readFile) !== null && _a !== void 0 ? _a : () => {
     });
-    var realpath = (0, util_1.promisify)((_b = fs5.realpath) !== null && _b !== void 0 ? _b : () => {
+    var realpath = (0, util_1.promisify)((_b = fs6.realpath) !== null && _b !== void 0 ? _b : () => {
     });
-    var lstat = (0, util_1.promisify)((_c = fs5.lstat) !== null && _c !== void 0 ? _c : () => {
+    var lstat = (0, util_1.promisify)((_c = fs6.lstat) !== null && _c !== void 0 ? _c : () => {
     });
     var FileSubjectTokenSupplier = class {
       /**
@@ -15419,7 +15419,7 @@ var require_pluggable_auth_handler = __commonJS({
     var pluggable_auth_client_1 = require_pluggable_auth_client();
     var executable_response_1 = require_executable_response();
     var childProcess = require("child_process");
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var PluggableAuthHandler = class _PluggableAuthHandler {
       /**
        * Instantiates a PluggableAuthHandler instance using the provided
@@ -15489,14 +15489,14 @@ var require_pluggable_auth_handler = __commonJS({
         }
         let filePath;
         try {
-          filePath = await fs5.promises.realpath(this.outputFile);
+          filePath = await fs6.promises.realpath(this.outputFile);
         } catch (_a) {
           return void 0;
         }
-        if (!(await fs5.promises.lstat(filePath)).isFile()) {
+        if (!(await fs6.promises.lstat(filePath)).isFile()) {
           return void 0;
         }
-        const responseString = await fs5.promises.readFile(filePath, {
+        const responseString = await fs6.promises.readFile(filePath, {
           encoding: "utf8"
         });
         if (responseString === "") {
@@ -15917,7 +15917,7 @@ var require_googleauth = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleAuth = exports2.GoogleAuthExceptionMessages = exports2.CLOUD_SDK_CLIENT_ID = void 0;
     var child_process_1 = require("child_process");
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var gcpMetadata = require_src4();
     var os = require("os");
     var path4 = require("path");
@@ -16186,7 +16186,7 @@ var require_googleauth = __commonJS({
         }
         if (location) {
           location = path4.join(location, "gcloud", "application_default_credentials.json");
-          if (!fs5.existsSync(location)) {
+          if (!fs6.existsSync(location)) {
             location = null;
           }
         }
@@ -16207,8 +16207,8 @@ var require_googleauth = __commonJS({
           throw new Error("The file path is invalid.");
         }
         try {
-          filePath = fs5.realpathSync(filePath);
-          if (!fs5.lstatSync(filePath).isFile()) {
+          filePath = fs6.realpathSync(filePath);
+          if (!fs6.lstatSync(filePath).isFile()) {
             throw new Error();
           }
         } catch (err) {
@@ -16217,7 +16217,7 @@ var require_googleauth = __commonJS({
           }
           throw err;
         }
-        const readStream = fs5.createReadStream(filePath);
+        const readStream = fs6.createReadStream(filePath);
         return this.fromStream(readStream, options);
       }
       /**
@@ -16604,7 +16604,7 @@ var require_googleauth = __commonJS({
         return this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
       } else if (this.keyFilename) {
         const filePath = path4.resolve(this.keyFilename);
-        const stream = fs5.createReadStream(filePath);
+        const stream = fs6.createReadStream(filePath);
         return await this.fromStreamAsync(stream, this.clientOptions);
       } else if (this.apiKey) {
         const client = await this.fromAPIKey(this.apiKey, this.clientOptions);
@@ -41814,13 +41814,13 @@ var require_log = __commonJS({
     forge.log.logMessage = function(message) {
       var messageLevelIndex = sLevelInfo[message.level].index;
       for (var i2 = 0; i2 < sLoggers.length; ++i2) {
-        var logger4 = sLoggers[i2];
-        if (logger4.flags & forge.log.NO_LEVEL_CHECK) {
-          logger4.f(message);
+        var logger3 = sLoggers[i2];
+        if (logger3.flags & forge.log.NO_LEVEL_CHECK) {
+          logger3.f(message);
         } else {
-          var loggerLevelIndex = sLevelInfo[logger4.level].index;
+          var loggerLevelIndex = sLevelInfo[logger3.level].index;
           if (messageLevelIndex <= loggerLevelIndex) {
-            logger4.f(logger4, message);
+            logger3.f(logger3, message);
           }
         }
       }
@@ -41868,20 +41868,20 @@ var require_log = __commonJS({
     var levels;
     var i;
     forge.log.makeLogger = function(logFunction) {
-      var logger4 = {
+      var logger3 = {
         flags: 0,
         f: logFunction
       };
-      forge.log.setLevel(logger4, "none");
-      return logger4;
+      forge.log.setLevel(logger3, "none");
+      return logger3;
     };
-    forge.log.setLevel = function(logger4, level2) {
+    forge.log.setLevel = function(logger3, level2) {
       var rval = false;
-      if (logger4 && !(logger4.flags & forge.log.LEVEL_LOCKED)) {
+      if (logger3 && !(logger3.flags & forge.log.LEVEL_LOCKED)) {
         for (var i2 = 0; i2 < forge.log.levels.length; ++i2) {
           var aValidLevel = forge.log.levels[i2];
           if (level2 == aValidLevel) {
-            logger4.level = level2;
+            logger3.level = level2;
             rval = true;
             break;
           }
@@ -41889,15 +41889,15 @@ var require_log = __commonJS({
       }
       return rval;
     };
-    forge.log.lock = function(logger4, lock2) {
+    forge.log.lock = function(logger3, lock2) {
       if (typeof lock2 === "undefined" || lock2) {
-        logger4.flags |= forge.log.LEVEL_LOCKED;
+        logger3.flags |= forge.log.LEVEL_LOCKED;
       } else {
-        logger4.flags &= ~forge.log.LEVEL_LOCKED;
+        logger3.flags &= ~forge.log.LEVEL_LOCKED;
       }
     };
-    forge.log.addLogger = function(logger4) {
-      sLoggers.push(logger4);
+    forge.log.addLogger = function(logger3) {
+      sLoggers.push(logger3);
     };
     if (typeof console !== "undefined" && "log" in console) {
       if (console.error && console.warn && console.info && console.debug) {
@@ -41908,31 +41908,31 @@ var require_log = __commonJS({
           debug: console.debug,
           verbose: console.debug
         };
-        f = function(logger4, message) {
+        f = function(logger3, message) {
           forge.log.prepareStandard(message);
           var handler = levelHandlers[message.level];
           var args = [message.standard];
           args = args.concat(message["arguments"].slice());
           handler.apply(console, args);
         };
-        logger3 = forge.log.makeLogger(f);
+        logger2 = forge.log.makeLogger(f);
       } else {
-        f = function(logger4, message) {
+        f = function(logger3, message) {
           forge.log.prepareStandardFull(message);
           console.log(message.standardFull);
         };
-        logger3 = forge.log.makeLogger(f);
+        logger2 = forge.log.makeLogger(f);
       }
-      forge.log.setLevel(logger3, "debug");
-      forge.log.addLogger(logger3);
-      sConsoleLogger = logger3;
+      forge.log.setLevel(logger2, "debug");
+      forge.log.addLogger(logger2);
+      sConsoleLogger = logger2;
     } else {
       console = {
         log: function() {
         }
       };
     }
-    var logger3;
+    var logger2;
     var levelHandlers;
     var f;
     if (sConsoleLogger !== null && typeof window !== "undefined" && window.location) {
@@ -43130,7 +43130,7 @@ var require_credential_internal = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getApplicationDefault = exports2.isApplicationDefault = exports2.ImpersonatedServiceAccountCredential = exports2.RefreshTokenCredential = exports2.ComputeEngineCredential = exports2.ServiceAccountCredential = void 0;
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var os = require("os");
     var path4 = require("path");
     var error_1 = require_error();
@@ -43215,7 +43215,7 @@ var require_credential_internal = __commonJS({
     var ServiceAccount = class _ServiceAccount {
       static fromPath(filePath) {
         try {
-          return new _ServiceAccount(JSON.parse(fs5.readFileSync(filePath, "utf8")));
+          return new _ServiceAccount(JSON.parse(fs6.readFileSync(filePath, "utf8")));
         } catch (error) {
           throw new error_1.FirebaseAppError(error_1.AppErrorCodes.INVALID_CREDENTIAL, "Failed to parse service account json file: " + error);
         }
@@ -43342,7 +43342,7 @@ var require_credential_internal = __commonJS({
        */
       static fromPath(filePath) {
         try {
-          return new _RefreshToken(JSON.parse(fs5.readFileSync(filePath, "utf8")));
+          return new _RefreshToken(JSON.parse(fs6.readFileSync(filePath, "utf8")));
         } catch (error) {
           throw new error_1.FirebaseAppError(error_1.AppErrorCodes.INVALID_CREDENTIAL, "Failed to parse refresh token file: " + error);
         }
@@ -43407,7 +43407,7 @@ var require_credential_internal = __commonJS({
        */
       static fromPath(filePath) {
         try {
-          return new _ImpersonatedServiceAccount(JSON.parse(fs5.readFileSync(filePath, "utf8")));
+          return new _ImpersonatedServiceAccount(JSON.parse(fs6.readFileSync(filePath, "utf8")));
         } catch (error) {
           throw new error_1.FirebaseAppError(error_1.AppErrorCodes.INVALID_CREDENTIAL, "Failed to parse impersonated service account file: " + error);
         }
@@ -43515,7 +43515,7 @@ var require_credential_internal = __commonJS({
     function readCredentialFile(filePath, ignoreMissing) {
       let fileText;
       try {
-        fileText = fs5.readFileSync(filePath, "utf8");
+        fileText = fs6.readFileSync(filePath, "utf8");
       } catch (error) {
         if (ignoreMissing) {
           return null;
@@ -44130,7 +44130,7 @@ var require_lifecycle = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.FIREBASE_CONFIG_VAR = exports2.deleteApp = exports2.getApps = exports2.getApp = exports2.initializeApp = exports2.defaultAppStore = exports2.AppStore = void 0;
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var validator = require_validator();
     var error_1 = require_error();
     var credential_internal_1 = require_credential_internal();
@@ -44219,7 +44219,7 @@ var require_lifecycle = __commonJS({
         return {};
       }
       try {
-        const contents = config.startsWith("{") ? config : fs5.readFileSync(config, "utf8");
+        const contents = config.startsWith("{") ? config : fs6.readFileSync(config, "utf8");
         return JSON.parse(contents);
       } catch (error) {
         throw new error_1.FirebaseAppError(error_1.AppErrorCodes.INVALID_APP_OPTIONS, "Failed to parse app options file: " + error);
@@ -45195,8 +45195,8 @@ var require_inquire = __commonJS({
         if (typeof require !== "function") {
           return null;
         }
-        var mod3 = require(moduleName);
-        if (mod3 && (mod3.length || Object.keys(mod3).length)) return mod3;
+        var mod4 = require(moduleName);
+        if (mod4 && (mod4.length || Object.keys(mod4).length)) return mod4;
         return null;
       } catch (err) {
         return null;
@@ -46268,17 +46268,17 @@ var require_codegen = __commonJS({
 var require_fs = __commonJS({
   "../../node_modules/@protobufjs/fetch/util/fs.js"(exports2, module2) {
     "use strict";
-    var fs5 = null;
+    var fs6 = null;
     try {
-      fs5 = require(
+      fs6 = require(
         /* webpackIgnore: true */
         "fs"
       );
-      if (!fs5 || !fs5.readFile || !fs5.readFileSync)
-        fs5 = null;
+      if (!fs6 || !fs6.readFile || !fs6.readFileSync)
+        fs6 = null;
     } catch (e) {
     }
-    module2.exports = fs5;
+    module2.exports = fs6;
   }
 });
 
@@ -46288,7 +46288,7 @@ var require_fetch = __commonJS({
     "use strict";
     module2.exports = fetch;
     var asPromise = require_aspromise();
-    var fs5 = require_fs();
+    var fs6 = require_fs();
     function fetch(filename, options, callback) {
       if (typeof options === "function") {
         callback = options;
@@ -46297,8 +46297,8 @@ var require_fetch = __commonJS({
         options = {};
       if (!callback)
         return asPromise(fetch, this, filename, options);
-      if (!options.xhr && fs5 && fs5.readFile)
-        return fs5.readFile(filename, function fetchReadFileCallback(err, contents) {
+      if (!options.xhr && fs6 && fs6.readFile)
+        return fs6.readFile(filename, function fetchReadFileCallback(err, contents) {
           return err && typeof XMLHttpRequest !== "undefined" ? fetch.xhr(filename, options, callback) : err ? callback(err) : callback(null, options.binary ? contents : contents.toString("utf8"));
         });
       return fetch.xhr(filename, options, callback);
@@ -50547,8 +50547,8 @@ var require_promisify = __commonJS({
 var require_src10 = __commonJS({
   "../../node_modules/agent-base/dist/src/index.js"(exports2, module2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     var events_1 = require("events");
     var debug_1 = __importDefault(require_src());
@@ -50730,8 +50730,8 @@ var require_src10 = __commonJS({
 var require_parse_proxy_response4 = __commonJS({
   "../../node_modules/https-proxy-agent/dist/parse-proxy-response.js"(exports2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     var debug_1 = __importDefault(require_src());
@@ -50823,8 +50823,8 @@ var require_agent = __commonJS({
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
     };
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     var net_1 = __importDefault(require("net"));
@@ -50956,8 +50956,8 @@ var require_agent = __commonJS({
 var require_dist7 = __commonJS({
   "../../node_modules/https-proxy-agent/dist/index.js"(exports2, module2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     var agent_1 = __importDefault(require_agent());
     function createHttpsProxyAgent(opts) {
@@ -50975,8 +50975,8 @@ var require_dist7 = __commonJS({
 var require_gaxios4 = __commonJS({
   "../../node_modules/gaxios/build/src/gaxios.js"(exports2) {
     "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod3) {
-      return mod3 && mod3.__esModule ? mod3 : { "default": mod3 };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Gaxios = void 0;
@@ -53003,10 +53003,10 @@ var require_src13 = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getPem = void 0;
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var forge = require_lib4();
     var util_1 = require("util");
-    var readFile = (0, util_1.promisify)(fs5.readFile);
+    var readFile = (0, util_1.promisify)(fs6.readFile);
     function getPem(filename, callback) {
       if (callback) {
         getPemAsync(filename).then((pem) => callback(null, pem)).catch((err) => callback(err, null));
@@ -53042,12 +53042,12 @@ var require_src14 = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleToken = void 0;
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var gaxios_1 = require_src11();
     var jws = require_jws();
     var path4 = require("path");
     var util_1 = require("util");
-    var readFile = fs5.readFile ? (0, util_1.promisify)(fs5.readFile) : async () => {
+    var readFile = fs6.readFile ? (0, util_1.promisify)(fs6.readFile) : async () => {
       throw new ErrorWithCode("use key rather than keyFile.", "MISSING_CREDENTIALS");
     };
     var GOOGLE_TOKEN_URL = "https://www.googleapis.com/oauth2/v4/token";
@@ -55120,14 +55120,14 @@ var require_identitypoolclient2 = __commonJS({
     var _c;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.IdentityPoolClient = void 0;
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var util_1 = require("util");
     var baseexternalclient_1 = require_baseexternalclient2();
-    var readFile = (0, util_1.promisify)((_a = fs5.readFile) !== null && _a !== void 0 ? _a : () => {
+    var readFile = (0, util_1.promisify)((_a = fs6.readFile) !== null && _a !== void 0 ? _a : () => {
     });
-    var realpath = (0, util_1.promisify)((_b = fs5.realpath) !== null && _b !== void 0 ? _b : () => {
+    var realpath = (0, util_1.promisify)((_b = fs6.realpath) !== null && _b !== void 0 ? _b : () => {
     });
-    var lstat = (0, util_1.promisify)((_c = fs5.lstat) !== null && _c !== void 0 ? _c : () => {
+    var lstat = (0, util_1.promisify)((_c = fs6.lstat) !== null && _c !== void 0 ? _c : () => {
     });
     var IdentityPoolClient = class extends baseexternalclient_1.BaseExternalAccountClient {
       /**
@@ -55700,7 +55700,7 @@ var require_pluggable_auth_handler2 = __commonJS({
     var pluggable_auth_client_1 = require_pluggable_auth_client2();
     var executable_response_1 = require_executable_response2();
     var childProcess = require("child_process");
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var PluggableAuthHandler = class _PluggableAuthHandler {
       /**
        * Instantiates a PluggableAuthHandler instance using the provided
@@ -55770,14 +55770,14 @@ var require_pluggable_auth_handler2 = __commonJS({
         }
         let filePath;
         try {
-          filePath = await fs5.promises.realpath(this.outputFile);
+          filePath = await fs6.promises.realpath(this.outputFile);
         } catch (_a) {
           return void 0;
         }
-        if (!(await fs5.promises.lstat(filePath)).isFile()) {
+        if (!(await fs6.promises.lstat(filePath)).isFile()) {
           return void 0;
         }
-        const responseString = await fs5.promises.readFile(filePath, {
+        const responseString = await fs6.promises.readFile(filePath, {
           encoding: "utf8"
         });
         if (responseString === "") {
@@ -56173,7 +56173,7 @@ var require_googleauth2 = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleAuth = exports2.CLOUD_SDK_CLIENT_ID = void 0;
     var child_process_1 = require("child_process");
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var gcpMetadata = require_src12();
     var os = require("os");
     var path4 = require("path");
@@ -56395,7 +56395,7 @@ var require_googleauth2 = __commonJS({
         }
         if (location) {
           location = path4.join(location, "gcloud", "application_default_credentials.json");
-          if (!fs5.existsSync(location)) {
+          if (!fs6.existsSync(location)) {
             location = null;
           }
         }
@@ -56416,8 +56416,8 @@ var require_googleauth2 = __commonJS({
           throw new Error("The file path is invalid.");
         }
         try {
-          filePath = fs5.realpathSync(filePath);
-          if (!fs5.lstatSync(filePath).isFile()) {
+          filePath = fs6.realpathSync(filePath);
+          if (!fs6.lstatSync(filePath).isFile()) {
             throw new Error();
           }
         } catch (err) {
@@ -56426,7 +56426,7 @@ var require_googleauth2 = __commonJS({
           }
           throw err;
         }
-        const readStream = fs5.createReadStream(filePath);
+        const readStream = fs6.createReadStream(filePath);
         return this.fromStream(readStream, options);
       }
       /**
@@ -56681,7 +56681,7 @@ var require_googleauth2 = __commonJS({
             this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
           } else if (this.keyFilename) {
             const filePath = path4.resolve(this.keyFilename);
-            const stream = fs5.createReadStream(filePath);
+            const stream = fs6.createReadStream(filePath);
             await this.fromStreamAsync(stream, this.clientOptions);
           } else {
             await this.getApplicationDefaultAsync(this.clientOptions);
@@ -75291,7 +75291,7 @@ var require_logger = __commonJS({
     var validate_1 = require_validate();
     var libVersion;
     var logFunction = null;
-    function logger3(methodName, requestTag, logMessage, ...additionalArgs) {
+    function logger2(methodName, requestTag, logMessage, ...additionalArgs) {
       requestTag = requestTag || "#####";
       if (logFunction) {
         const formattedMessage = util.format(logMessage, ...additionalArgs);
@@ -75299,11 +75299,11 @@ var require_logger = __commonJS({
         logFunction(`Firestore (${libVersion}) ${time} ${requestTag} [${methodName}]: ` + formattedMessage);
       }
     }
-    exports2.logger = logger3;
-    function setLogFunction2(logger4) {
-      if (logger4 !== null)
-        (0, validate_1.validateFunction)("logger", logger4);
-      logFunction = logger4;
+    exports2.logger = logger2;
+    function setLogFunction2(logger3) {
+      if (logger3 !== null)
+        (0, validate_1.validateFunction)("logger", logger3);
+      logFunction = logger3;
     }
     exports2.setLogFunction = setLogFunction2;
     function setLibVersion(version2) {
@@ -78488,8 +78488,8 @@ var require_logging = __commonJS({
       return _logger;
     };
     exports2.getLogger = getLogger;
-    var setLogger = (logger3) => {
-      _logger = logger3;
+    var setLogger = (logger2) => {
+      _logger = logger2;
     };
     exports2.setLogger = setLogger;
     var setLoggerVerbosity = (verbosity) => {
@@ -78928,14 +78928,14 @@ var require_tls_helpers = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getDefaultRootsData = exports2.CIPHER_SUITES = void 0;
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     exports2.CIPHER_SUITES = process.env.GRPC_SSL_CIPHER_SUITES;
     var DEFAULT_ROOTS_FILE_PATH = process.env.GRPC_DEFAULT_SSL_ROOTS_FILE_PATH;
     var defaultRootsData = null;
     function getDefaultRootsData() {
       if (DEFAULT_ROOTS_FILE_PATH) {
         if (defaultRootsData === null) {
-          defaultRootsData = fs5.readFileSync(DEFAULT_ROOTS_FILE_PATH);
+          defaultRootsData = fs6.readFileSync(DEFAULT_ROOTS_FILE_PATH);
         }
         return defaultRootsData;
       }
@@ -83561,17 +83561,17 @@ var require_patterns = __commonJS({
 var require_fs2 = __commonJS({
   "../../node_modules/protobufjs/src/util/fs.js"(exports2, module2) {
     "use strict";
-    var fs5 = null;
+    var fs6 = null;
     try {
-      fs5 = require(
+      fs6 = require(
         /* webpackIgnore: true */
         "fs"
       );
-      if (!fs5 || !fs5.readFile || !fs5.readFileSync)
-        fs5 = null;
+      if (!fs6 || !fs6.readFile || !fs6.readFileSync)
+        fs6 = null;
     } catch (e) {
     }
-    module2.exports = fs5;
+    module2.exports = fs6;
   }
 });
 
@@ -89844,7 +89844,7 @@ var require_util11 = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.addCommonProtos = exports2.loadProtosWithOptionsSync = exports2.loadProtosWithOptions = void 0;
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var path4 = require("path");
     var Protobuf = require_protobufjs2();
     function addIncludePathResolver(root, includePaths) {
@@ -89856,7 +89856,7 @@ var require_util11 = __commonJS({
         for (const directory of includePaths) {
           const fullPath = path4.join(directory, target);
           try {
-            fs5.accessSync(fullPath, fs5.constants.R_OK);
+            fs6.accessSync(fullPath, fs6.constants.R_OK);
             return fullPath;
           } catch (err) {
             continue;
@@ -97270,8 +97270,8 @@ var require_src19 = __commonJS({
       throw new Error("Not available in this library. Use @grpc/proto-loader and loadPackageDefinition instead");
     };
     exports2.load = load;
-    var setLogger = (logger3) => {
-      logging.setLogger(logger3);
+    var setLogger = (logger2) => {
+      logging.setLogger(logger2);
     };
     exports2.setLogger = setLogger;
     var setLogVerbosity = (verbosity) => {
@@ -97467,7 +97467,7 @@ var require_grpc = __commonJS({
     exports2.GoogleProtoFilesRoot = exports2.GrpcClient = exports2.ClientStub = void 0;
     var grpcProtoLoader = require_src18();
     var child_process_1 = require("child_process");
-    var fs5 = require("fs");
+    var fs6 = require("fs");
     var google_auth_library_1 = require_src15();
     var grpc = require_src19();
     var os = require("os");
@@ -97483,7 +97483,7 @@ var require_grpc = __commonJS({
     var COMMON_PROTO_FILES = commonProtoFiles.map((file) => file.replace(/[/\\]/g, path4.sep));
     async function readFileAsync(path5) {
       return new Promise((resolve, reject) => {
-        fs5.readFile(path5, "utf8", (err, content) => {
+        fs6.readFile(path5, "utf8", (err, content) => {
           if (err)
             return reject(err);
           else
@@ -97636,7 +97636,7 @@ var require_grpc = __commonJS({
         return this.loadFromProto(filename, options, ignoreCache);
       }
       static _resolveFile(protoPath, filename) {
-        if (fs5.existsSync(path4.join(protoPath, filename))) {
+        if (fs6.existsSync(path4.join(protoPath, filename))) {
           return path4.join(protoPath, filename);
         } else if (COMMON_PROTO_FILES.indexOf(filename) > -1) {
           return path4.join(googleProtoFilesDir, filename);
@@ -97825,7 +97825,7 @@ var require_grpc = __commonJS({
         originPath = path4.normalize(originPath);
         includePath = path4.normalize(includePath);
         if (path4.isAbsolute(includePath)) {
-          if (!fs5.existsSync(includePath)) {
+          if (!fs6.existsSync(includePath)) {
             throw new Error("The include `" + includePath + "` was not found.");
           }
           return includePath;
@@ -97839,10 +97839,10 @@ var require_grpc = __commonJS({
         originPath = path4.normalize(originPath);
         includePath = path4.normalize(includePath);
         let current = originPath;
-        let found = fs5.existsSync(path4.join(current, includePath));
+        let found = fs6.existsSync(path4.join(current, includePath));
         while (!found && current.length > 0) {
           current = current.substring(0, current.lastIndexOf(path4.sep));
-          found = fs5.existsSync(path4.join(current, includePath));
+          found = fs6.existsSync(path4.join(current, includePath));
         }
         if (!found) {
           throw new Error("The include `" + includePath + "` was not found.");
@@ -113248,6 +113248,12745 @@ var require_firestore = __commonJS({
   }
 });
 
+// ../../node_modules/firebase-admin/lib/auth/user-import-builder.js
+var require_user_import_builder = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/user-import-builder.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.UserImportBuilder = exports2.convertMultiFactorInfoToServerFormat = void 0;
+    var deep_copy_1 = require_deep_copy();
+    var utils = require_utils3();
+    var validator = require_validator();
+    var error_1 = require_error();
+    function convertMultiFactorInfoToServerFormat(multiFactorInfo) {
+      let enrolledAt;
+      if (typeof multiFactorInfo.enrollmentTime !== "undefined") {
+        if (validator.isUTCDateString(multiFactorInfo.enrollmentTime)) {
+          enrolledAt = new Date(multiFactorInfo.enrollmentTime).toISOString();
+        } else {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ENROLLMENT_TIME, `The second factor "enrollmentTime" for "${multiFactorInfo.uid}" must be a valid UTC date string.`);
+        }
+      }
+      if (isPhoneFactor(multiFactorInfo)) {
+        const authFactorInfo = {
+          mfaEnrollmentId: multiFactorInfo.uid,
+          displayName: multiFactorInfo.displayName,
+          // Required for all phone second factors.
+          phoneInfo: multiFactorInfo.phoneNumber,
+          enrolledAt
+        };
+        for (const objKey in authFactorInfo) {
+          if (typeof authFactorInfo[objKey] === "undefined") {
+            delete authFactorInfo[objKey];
+          }
+        }
+        return authFactorInfo;
+      } else {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.UNSUPPORTED_SECOND_FACTOR, `Unsupported second factor "${JSON.stringify(multiFactorInfo)}" provided.`);
+      }
+    }
+    exports2.convertMultiFactorInfoToServerFormat = convertMultiFactorInfoToServerFormat;
+    function isPhoneFactor(multiFactorInfo) {
+      return multiFactorInfo.factorId === "phone";
+    }
+    function getNumberField(obj, key) {
+      if (typeof obj[key] !== "undefined" && obj[key] !== null) {
+        return parseInt(obj[key].toString(), 10);
+      }
+      return NaN;
+    }
+    function populateUploadAccountUser(user, userValidator) {
+      const result = {
+        localId: user.uid,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        displayName: user.displayName,
+        disabled: user.disabled,
+        photoUrl: user.photoURL,
+        phoneNumber: user.phoneNumber,
+        providerUserInfo: [],
+        mfaInfo: [],
+        tenantId: user.tenantId,
+        customAttributes: user.customClaims && JSON.stringify(user.customClaims)
+      };
+      if (typeof user.passwordHash !== "undefined") {
+        if (!validator.isBuffer(user.passwordHash)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PASSWORD_HASH);
+        }
+        result.passwordHash = utils.toWebSafeBase64(user.passwordHash);
+      }
+      if (typeof user.passwordSalt !== "undefined") {
+        if (!validator.isBuffer(user.passwordSalt)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PASSWORD_SALT);
+        }
+        result.salt = utils.toWebSafeBase64(user.passwordSalt);
+      }
+      if (validator.isNonNullObject(user.metadata)) {
+        if (validator.isNonEmptyString(user.metadata.creationTime)) {
+          result.createdAt = new Date(user.metadata.creationTime).getTime();
+        }
+        if (validator.isNonEmptyString(user.metadata.lastSignInTime)) {
+          result.lastLoginAt = new Date(user.metadata.lastSignInTime).getTime();
+        }
+      }
+      if (validator.isArray(user.providerData)) {
+        user.providerData.forEach((providerData) => {
+          result.providerUserInfo.push({
+            providerId: providerData.providerId,
+            rawId: providerData.uid,
+            email: providerData.email,
+            displayName: providerData.displayName,
+            photoUrl: providerData.photoURL
+          });
+        });
+      }
+      if (validator.isNonNullObject(user.multiFactor) && validator.isNonEmptyArray(user.multiFactor.enrolledFactors)) {
+        user.multiFactor.enrolledFactors.forEach((multiFactorInfo) => {
+          result.mfaInfo.push(convertMultiFactorInfoToServerFormat(multiFactorInfo));
+        });
+      }
+      let key;
+      for (key in result) {
+        if (typeof result[key] === "undefined") {
+          delete result[key];
+        }
+      }
+      if (result.providerUserInfo.length === 0) {
+        delete result.providerUserInfo;
+      }
+      if (result.mfaInfo.length === 0) {
+        delete result.mfaInfo;
+      }
+      if (typeof userValidator === "function") {
+        userValidator(result);
+      }
+      return result;
+    }
+    var UserImportBuilder = class {
+      /**
+       * @param {UserImportRecord[]} users The list of user records to import.
+       * @param {UserImportOptions=} options The import options which includes hashing
+       *     algorithm details.
+       * @param {ValidatorFunction=} userRequestValidator The user request validator function.
+       * @constructor
+       */
+      constructor(users, options, userRequestValidator) {
+        this.requiresHashOptions = false;
+        this.validatedUsers = [];
+        this.userImportResultErrors = [];
+        this.indexMap = {};
+        this.validatedUsers = this.populateUsers(users, userRequestValidator);
+        this.validatedOptions = this.populateOptions(options, this.requiresHashOptions);
+      }
+      /**
+       * Returns the corresponding constructed uploadAccount request.
+       * @returns {UploadAccountRequest} The constructed uploadAccount request.
+       */
+      buildRequest() {
+        const users = this.validatedUsers.map((user) => {
+          return (0, deep_copy_1.deepCopy)(user);
+        });
+        return (0, deep_copy_1.deepExtend)({ users }, (0, deep_copy_1.deepCopy)(this.validatedOptions));
+      }
+      /**
+       * Populates the UserImportResult using the client side detected errors and the server
+       * side returned errors.
+       * @returns {UserImportResult} The user import result based on the returned failed
+       *     uploadAccount response.
+       */
+      buildResponse(failedUploads) {
+        const importResult = {
+          successCount: this.validatedUsers.length,
+          failureCount: this.userImportResultErrors.length,
+          errors: (0, deep_copy_1.deepCopy)(this.userImportResultErrors)
+        };
+        importResult.failureCount += failedUploads.length;
+        importResult.successCount -= failedUploads.length;
+        failedUploads.forEach((failedUpload) => {
+          importResult.errors.push({
+            // Map backend request index to original developer provided array index.
+            index: this.indexMap[failedUpload.index],
+            error: new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_USER_IMPORT, failedUpload.message)
+          });
+        });
+        importResult.errors.sort((a, b) => {
+          return a.index - b.index;
+        });
+        return importResult;
+      }
+      /**
+       * Validates and returns the hashing options of the uploadAccount request.
+       * Throws an error whenever an invalid or missing options is detected.
+       * @param {UserImportOptions} options The UserImportOptions.
+       * @param {boolean} requiresHashOptions Whether to require hash options.
+       * @returns {UploadAccountOptions} The populated UploadAccount options.
+       */
+      populateOptions(options, requiresHashOptions) {
+        let populatedOptions;
+        if (!requiresHashOptions) {
+          return {};
+        }
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"UserImportOptions" are required when importing users with passwords.');
+        }
+        if (!validator.isNonNullObject(options.hash)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MISSING_HASH_ALGORITHM, '"hash.algorithm" is missing from the provided "UserImportOptions".');
+        }
+        if (typeof options.hash.algorithm === "undefined" || !validator.isNonEmptyString(options.hash.algorithm)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_ALGORITHM, '"hash.algorithm" must be a string matching the list of supported algorithms.');
+        }
+        let rounds;
+        switch (options.hash.algorithm) {
+          case "HMAC_SHA512":
+          case "HMAC_SHA256":
+          case "HMAC_SHA1":
+          case "HMAC_MD5":
+            if (!validator.isBuffer(options.hash.key)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_KEY, `A non-empty "hash.key" byte buffer must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            populatedOptions = {
+              hashAlgorithm: options.hash.algorithm,
+              signerKey: utils.toWebSafeBase64(options.hash.key)
+            };
+            break;
+          case "MD5":
+          case "SHA1":
+          case "SHA256":
+          case "SHA512": {
+            rounds = getNumberField(options.hash, "rounds");
+            const minRounds = options.hash.algorithm === "MD5" ? 0 : 1;
+            if (isNaN(rounds) || rounds < minRounds || rounds > 8192) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_ROUNDS, `A valid "hash.rounds" number between ${minRounds} and 8192 must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            populatedOptions = {
+              hashAlgorithm: options.hash.algorithm,
+              rounds
+            };
+            break;
+          }
+          case "PBKDF_SHA1":
+          case "PBKDF2_SHA256":
+            rounds = getNumberField(options.hash, "rounds");
+            if (isNaN(rounds) || rounds < 0 || rounds > 12e4) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_ROUNDS, `A valid "hash.rounds" number between 0 and 120000 must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            populatedOptions = {
+              hashAlgorithm: options.hash.algorithm,
+              rounds
+            };
+            break;
+          case "SCRYPT": {
+            if (!validator.isBuffer(options.hash.key)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_KEY, `A "hash.key" byte buffer must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            rounds = getNumberField(options.hash, "rounds");
+            if (isNaN(rounds) || rounds <= 0 || rounds > 8) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_ROUNDS, `A valid "hash.rounds" number between 1 and 8 must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            const memoryCost = getNumberField(options.hash, "memoryCost");
+            if (isNaN(memoryCost) || memoryCost <= 0 || memoryCost > 14) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_MEMORY_COST, `A valid "hash.memoryCost" number between 1 and 14 must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            if (typeof options.hash.saltSeparator !== "undefined" && !validator.isBuffer(options.hash.saltSeparator)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_SALT_SEPARATOR, '"hash.saltSeparator" must be a byte buffer.');
+            }
+            populatedOptions = {
+              hashAlgorithm: options.hash.algorithm,
+              signerKey: utils.toWebSafeBase64(options.hash.key),
+              rounds,
+              memoryCost,
+              saltSeparator: utils.toWebSafeBase64(options.hash.saltSeparator || Buffer.from(""))
+            };
+            break;
+          }
+          case "BCRYPT":
+            populatedOptions = {
+              hashAlgorithm: options.hash.algorithm
+            };
+            break;
+          case "STANDARD_SCRYPT": {
+            const cpuMemCost = getNumberField(options.hash, "memoryCost");
+            if (isNaN(cpuMemCost)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_MEMORY_COST, `A valid "hash.memoryCost" number must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            const parallelization = getNumberField(options.hash, "parallelization");
+            if (isNaN(parallelization)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_PARALLELIZATION, `A valid "hash.parallelization" number must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            const blockSize = getNumberField(options.hash, "blockSize");
+            if (isNaN(blockSize)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_BLOCK_SIZE, `A valid "hash.blockSize" number must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            const dkLen = getNumberField(options.hash, "derivedKeyLength");
+            if (isNaN(dkLen)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_DERIVED_KEY_LENGTH, `A valid "hash.derivedKeyLength" number must be provided for hash algorithm ${options.hash.algorithm}.`);
+            }
+            populatedOptions = {
+              hashAlgorithm: options.hash.algorithm,
+              cpuMemCost,
+              parallelization,
+              blockSize,
+              dkLen
+            };
+            break;
+          }
+          default:
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_HASH_ALGORITHM, `Unsupported hash algorithm provider "${options.hash.algorithm}".`);
+        }
+        return populatedOptions;
+      }
+      /**
+       * Validates and returns the users list of the uploadAccount request.
+       * Whenever a user with an error is detected, the error is cached and will later be
+       * merged into the user import result. This allows the processing of valid users without
+       * failing early on the first error detected.
+       * @param {UserImportRecord[]} users The UserImportRecords to convert to UnploadAccountUser
+       *     objects.
+       * @param {ValidatorFunction=} userValidator The user validator function.
+       * @returns {UploadAccountUser[]} The populated uploadAccount users.
+       */
+      populateUsers(users, userValidator) {
+        const populatedUsers = [];
+        users.forEach((user, index) => {
+          try {
+            const result = populateUploadAccountUser(user, userValidator);
+            if (typeof result.passwordHash !== "undefined") {
+              this.requiresHashOptions = true;
+            }
+            populatedUsers.push(result);
+            this.indexMap[populatedUsers.length - 1] = index;
+          } catch (error) {
+            this.userImportResultErrors.push({
+              index,
+              error
+            });
+          }
+        });
+        return populatedUsers;
+      }
+    };
+    exports2.UserImportBuilder = UserImportBuilder;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/action-code-settings-builder.js
+var require_action_code_settings_builder = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/action-code-settings-builder.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ActionCodeSettingsBuilder = void 0;
+    var validator = require_validator();
+    var error_1 = require_error();
+    var ActionCodeSettingsBuilder = class {
+      /**
+       * ActionCodeSettingsBuilder constructor.
+       *
+       * @param {ActionCodeSettings} actionCodeSettings The ActionCodeSettings
+       *     object used to initiliaze this server request builder.
+       * @constructor
+       */
+      constructor(actionCodeSettings) {
+        if (!validator.isNonNullObject(actionCodeSettings)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"ActionCodeSettings" must be a non-null object.');
+        }
+        if (typeof actionCodeSettings.url === "undefined") {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MISSING_CONTINUE_URI);
+        } else if (!validator.isURL(actionCodeSettings.url)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONTINUE_URI);
+        }
+        this.continueUrl = actionCodeSettings.url;
+        if (typeof actionCodeSettings.handleCodeInApp !== "undefined" && !validator.isBoolean(actionCodeSettings.handleCodeInApp)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"ActionCodeSettings.handleCodeInApp" must be a boolean.');
+        }
+        this.canHandleCodeInApp = actionCodeSettings.handleCodeInApp || false;
+        if (typeof actionCodeSettings.dynamicLinkDomain !== "undefined" && !validator.isNonEmptyString(actionCodeSettings.dynamicLinkDomain)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_DYNAMIC_LINK_DOMAIN);
+        }
+        this.dynamicLinkDomain = actionCodeSettings.dynamicLinkDomain;
+        if (typeof actionCodeSettings.iOS !== "undefined") {
+          if (!validator.isNonNullObject(actionCodeSettings.iOS)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"ActionCodeSettings.iOS" must be a valid non-null object.');
+          } else if (typeof actionCodeSettings.iOS.bundleId === "undefined") {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MISSING_IOS_BUNDLE_ID);
+          } else if (!validator.isNonEmptyString(actionCodeSettings.iOS.bundleId)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"ActionCodeSettings.iOS.bundleId" must be a valid non-empty string.');
+          }
+          this.ibi = actionCodeSettings.iOS.bundleId;
+        }
+        if (typeof actionCodeSettings.android !== "undefined") {
+          if (!validator.isNonNullObject(actionCodeSettings.android)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"ActionCodeSettings.android" must be a valid non-null object.');
+          } else if (typeof actionCodeSettings.android.packageName === "undefined") {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MISSING_ANDROID_PACKAGE_NAME);
+          } else if (!validator.isNonEmptyString(actionCodeSettings.android.packageName)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"ActionCodeSettings.android.packageName" must be a valid non-empty string.');
+          } else if (typeof actionCodeSettings.android.minimumVersion !== "undefined" && !validator.isNonEmptyString(actionCodeSettings.android.minimumVersion)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"ActionCodeSettings.android.minimumVersion" must be a valid non-empty string.');
+          } else if (typeof actionCodeSettings.android.installApp !== "undefined" && !validator.isBoolean(actionCodeSettings.android.installApp)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"ActionCodeSettings.android.installApp" must be a valid boolean.');
+          }
+          this.apn = actionCodeSettings.android.packageName;
+          this.amv = actionCodeSettings.android.minimumVersion;
+          this.installApp = actionCodeSettings.android.installApp || false;
+        }
+      }
+      /**
+       * Returns the corresponding constructed server request corresponding to the
+       * current ActionCodeSettings.
+       *
+       * @returns The constructed EmailActionCodeRequest request.
+       */
+      buildRequest() {
+        const request = {
+          continueUrl: this.continueUrl,
+          canHandleCodeInApp: this.canHandleCodeInApp,
+          dynamicLinkDomain: this.dynamicLinkDomain,
+          androidPackageName: this.apn,
+          androidMinimumVersion: this.amv,
+          androidInstallApp: this.installApp,
+          iOSBundleId: this.ibi
+        };
+        for (const key in request) {
+          if (Object.prototype.hasOwnProperty.call(request, key)) {
+            if (typeof request[key] === "undefined" || request[key] === null) {
+              delete request[key];
+            }
+          }
+        }
+        return request;
+      }
+    };
+    exports2.ActionCodeSettingsBuilder = ActionCodeSettingsBuilder;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/auth-config.js
+var require_auth_config = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/auth-config.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.EmailPrivacyAuthConfig = exports2.PasswordPolicyAuthConfig = exports2.RecaptchaAuthConfig = exports2.SmsRegionsAuthConfig = exports2.OIDCConfig = exports2.SAMLConfig = exports2.EmailSignInConfig = exports2.validateTestPhoneNumbers = exports2.MultiFactorAuthConfig = exports2.MAXIMUM_TEST_PHONE_NUMBERS = void 0;
+    var validator = require_validator();
+    var deep_copy_1 = require_deep_copy();
+    var error_1 = require_error();
+    exports2.MAXIMUM_TEST_PHONE_NUMBERS = 10;
+    var AUTH_FACTOR_CLIENT_TO_SERVER_TYPE = {
+      phone: "PHONE_SMS"
+    };
+    var AUTH_FACTOR_SERVER_TO_CLIENT_TYPE = Object.keys(AUTH_FACTOR_CLIENT_TO_SERVER_TYPE).reduce((res, key) => {
+      res[AUTH_FACTOR_CLIENT_TO_SERVER_TYPE[key]] = key;
+      return res;
+    }, {});
+    var MultiFactorAuthConfig = class _MultiFactorAuthConfig {
+      /**
+       * Static method to convert a client side request to a MultiFactorAuthServerConfig.
+       * Throws an error if validation fails.
+       *
+       * @param options - The options object to convert to a server request.
+       * @returns The resulting server request.
+       * @internal
+       */
+      static buildServerRequest(options) {
+        const request = {};
+        _MultiFactorAuthConfig.validate(options);
+        if (Object.prototype.hasOwnProperty.call(options, "state")) {
+          request.state = options.state;
+        }
+        if (Object.prototype.hasOwnProperty.call(options, "factorIds")) {
+          (options.factorIds || []).forEach((factorId) => {
+            if (typeof request.enabledProviders === "undefined") {
+              request.enabledProviders = [];
+            }
+            request.enabledProviders.push(AUTH_FACTOR_CLIENT_TO_SERVER_TYPE[factorId]);
+          });
+          if (options.factorIds && options.factorIds.length === 0) {
+            request.enabledProviders = [];
+          }
+        }
+        if (Object.prototype.hasOwnProperty.call(options, "providerConfigs")) {
+          request.providerConfigs = options.providerConfigs;
+        }
+        return request;
+      }
+      /**
+       * Validates the MultiFactorConfig options object. Throws an error on failure.
+       *
+       * @param options - The options object to validate.
+       */
+      static validate(options) {
+        const validKeys = {
+          state: true,
+          factorIds: true,
+          providerConfigs: true
+        };
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"MultiFactorConfig" must be a non-null object.');
+        }
+        for (const key in options) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid MultiFactorConfig parameter.`);
+          }
+        }
+        if (typeof options.state !== "undefined" && options.state !== "ENABLED" && options.state !== "DISABLED") {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"MultiFactorConfig.state" must be either "ENABLED" or "DISABLED".');
+        }
+        if (typeof options.factorIds !== "undefined") {
+          if (!validator.isArray(options.factorIds)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"MultiFactorConfig.factorIds" must be an array of valid "AuthFactorTypes".');
+          }
+          options.factorIds.forEach((factorId) => {
+            if (typeof AUTH_FACTOR_CLIENT_TO_SERVER_TYPE[factorId] === "undefined") {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${factorId}" is not a valid "AuthFactorType".`);
+            }
+          });
+        }
+        if (typeof options.providerConfigs !== "undefined") {
+          if (!validator.isArray(options.providerConfigs)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"MultiFactorConfig.providerConfigs" must be an array of valid "MultiFactorProviderConfig."');
+          }
+          options.providerConfigs.forEach((multiFactorProviderConfig) => {
+            if (typeof multiFactorProviderConfig === "undefined" || !validator.isObject(multiFactorProviderConfig)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${multiFactorProviderConfig}" is not a valid "MultiFactorProviderConfig" type.`);
+            }
+            const validProviderConfigKeys = {
+              state: true,
+              totpProviderConfig: true
+            };
+            for (const key in multiFactorProviderConfig) {
+              if (!(key in validProviderConfigKeys)) {
+                throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid ProviderConfig parameter.`);
+              }
+            }
+            if (typeof multiFactorProviderConfig.state === "undefined" || multiFactorProviderConfig.state !== "ENABLED" && multiFactorProviderConfig.state !== "DISABLED") {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"MultiFactorConfig.providerConfigs.state" must be either "ENABLED" or "DISABLED".');
+            }
+            if (typeof multiFactorProviderConfig.totpProviderConfig === "undefined") {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"MultiFactorConfig.providerConfigs.totpProviderConfig" must be defined.');
+            }
+            const validTotpProviderConfigKeys = {
+              adjacentIntervals: true
+            };
+            for (const key in multiFactorProviderConfig.totpProviderConfig) {
+              if (!(key in validTotpProviderConfigKeys)) {
+                throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid TotpProviderConfig parameter.`);
+              }
+            }
+            const adjIntervals = multiFactorProviderConfig.totpProviderConfig.adjacentIntervals;
+            if (typeof adjIntervals !== "undefined" && (!Number.isInteger(adjIntervals) || adjIntervals < 0 || adjIntervals > 10)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"MultiFactorConfig.providerConfigs.totpProviderConfig.adjacentIntervals" must be a valid number between 0 and 10 (both inclusive).');
+            }
+          });
+        }
+      }
+      /**
+       * The MultiFactorAuthConfig constructor.
+       *
+       * @param response - The server side response used to initialize the
+       *     MultiFactorAuthConfig object.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        if (typeof response.state === "undefined") {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid multi-factor configuration response");
+        }
+        this.state = response.state;
+        this.factorIds = [];
+        (response.enabledProviders || []).forEach((enabledProvider) => {
+          if (typeof AUTH_FACTOR_SERVER_TO_CLIENT_TYPE[enabledProvider] !== "undefined") {
+            this.factorIds.push(AUTH_FACTOR_SERVER_TO_CLIENT_TYPE[enabledProvider]);
+          }
+        });
+        this.providerConfigs = [];
+        (response.providerConfigs || []).forEach((providerConfig) => {
+          if (typeof providerConfig !== "undefined") {
+            if (typeof providerConfig.state === "undefined" || typeof providerConfig.totpProviderConfig === "undefined" || typeof providerConfig.totpProviderConfig.adjacentIntervals !== "undefined" && typeof providerConfig.totpProviderConfig.adjacentIntervals !== "number") {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid multi-factor configuration response");
+            }
+            this.providerConfigs.push(providerConfig);
+          }
+        });
+      }
+      /** Converts MultiFactorConfig to JSON object
+       * @returns The plain object representation of the multi-factor config instance. */
+      toJSON() {
+        return {
+          state: this.state,
+          factorIds: this.factorIds,
+          providerConfigs: this.providerConfigs
+        };
+      }
+    };
+    exports2.MultiFactorAuthConfig = MultiFactorAuthConfig;
+    function validateTestPhoneNumbers(testPhoneNumbers) {
+      if (!validator.isObject(testPhoneNumbers)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"testPhoneNumbers" must be a map of phone number / code pairs.');
+      }
+      if (Object.keys(testPhoneNumbers).length > exports2.MAXIMUM_TEST_PHONE_NUMBERS) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MAXIMUM_TEST_PHONE_NUMBER_EXCEEDED);
+      }
+      for (const phoneNumber in testPhoneNumbers) {
+        if (!validator.isPhoneNumber(phoneNumber)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_TESTING_PHONE_NUMBER, `"${phoneNumber}" is not a valid E.164 standard compliant phone number.`);
+        }
+        if (!validator.isString(testPhoneNumbers[phoneNumber]) || !/^[\d]{6}$/.test(testPhoneNumbers[phoneNumber])) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_TESTING_PHONE_NUMBER, `"${testPhoneNumbers[phoneNumber]}" is not a valid 6 digit code string.`);
+        }
+      }
+    }
+    exports2.validateTestPhoneNumbers = validateTestPhoneNumbers;
+    var EmailSignInConfig = class _EmailSignInConfig {
+      /**
+       * Static method to convert a client side request to a EmailSignInConfigServerRequest.
+       * Throws an error if validation fails.
+       *
+       * @param options - The options object to convert to a server request.
+       * @returns The resulting server request.
+       * @internal
+       */
+      static buildServerRequest(options) {
+        const request = {};
+        _EmailSignInConfig.validate(options);
+        if (Object.prototype.hasOwnProperty.call(options, "enabled")) {
+          request.allowPasswordSignup = options.enabled;
+        }
+        if (Object.prototype.hasOwnProperty.call(options, "passwordRequired")) {
+          request.enableEmailLinkSignin = !options.passwordRequired;
+        }
+        return request;
+      }
+      /**
+       * Validates the EmailSignInConfig options object. Throws an error on failure.
+       *
+       * @param options - The options object to validate.
+       */
+      static validate(options) {
+        const validKeys = {
+          enabled: true,
+          passwordRequired: true
+        };
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"EmailSignInConfig" must be a non-null object.');
+        }
+        for (const key in options) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `"${key}" is not a valid EmailSignInConfig parameter.`);
+          }
+        }
+        if (typeof options.enabled !== "undefined" && !validator.isBoolean(options.enabled)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"EmailSignInConfig.enabled" must be a boolean.');
+        }
+        if (typeof options.passwordRequired !== "undefined" && !validator.isBoolean(options.passwordRequired)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"EmailSignInConfig.passwordRequired" must be a boolean.');
+        }
+      }
+      /**
+       * The EmailSignInConfig constructor.
+       *
+       * @param response - The server side response used to initialize the
+       *     EmailSignInConfig object.
+       * @constructor
+       */
+      constructor(response) {
+        if (typeof response.allowPasswordSignup === "undefined") {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid email sign-in configuration response");
+        }
+        this.enabled = response.allowPasswordSignup;
+        this.passwordRequired = !response.enableEmailLinkSignin;
+      }
+      /** @returns The plain object representation of the email sign-in config. */
+      toJSON() {
+        return {
+          enabled: this.enabled,
+          passwordRequired: this.passwordRequired
+        };
+      }
+    };
+    exports2.EmailSignInConfig = EmailSignInConfig;
+    var SAMLConfig = class _SAMLConfig {
+      /**
+       * Converts a client side request to a SAMLConfigServerRequest which is the format
+       * accepted by the backend server.
+       * Throws an error if validation fails. If the request is not a SAMLConfig request,
+       * returns null.
+       *
+       * @param options - The options object to convert to a server request.
+       * @param ignoreMissingFields - Whether to ignore missing fields.
+       * @returns The resulting server request or null if not valid.
+       */
+      static buildServerRequest(options, ignoreMissingFields = false) {
+        const makeRequest = validator.isNonNullObject(options) && (options.providerId || ignoreMissingFields);
+        if (!makeRequest) {
+          return null;
+        }
+        const request = {};
+        _SAMLConfig.validate(options, ignoreMissingFields);
+        request.enabled = options.enabled;
+        request.displayName = options.displayName;
+        if (options.idpEntityId || options.ssoURL || options.x509Certificates) {
+          request.idpConfig = {
+            idpEntityId: options.idpEntityId,
+            ssoUrl: options.ssoURL,
+            signRequest: options.enableRequestSigning,
+            idpCertificates: typeof options.x509Certificates === "undefined" ? void 0 : []
+          };
+          if (options.x509Certificates) {
+            for (const cert2 of options.x509Certificates || []) {
+              request.idpConfig.idpCertificates.push({ x509Certificate: cert2 });
+            }
+          }
+        }
+        if (options.callbackURL || options.rpEntityId) {
+          request.spConfig = {
+            spEntityId: options.rpEntityId,
+            callbackUri: options.callbackURL
+          };
+        }
+        return request;
+      }
+      /**
+       * Returns the provider ID corresponding to the resource name if available.
+       *
+       * @param resourceName - The server side resource name.
+       * @returns The provider ID corresponding to the resource, null otherwise.
+       */
+      static getProviderIdFromResourceName(resourceName) {
+        const matchProviderRes = resourceName.match(/\/inboundSamlConfigs\/(saml\..*)$/);
+        if (!matchProviderRes || matchProviderRes.length < 2) {
+          return null;
+        }
+        return matchProviderRes[1];
+      }
+      /**
+       * @param providerId - The provider ID to check.
+       * @returns Whether the provider ID corresponds to a SAML provider.
+       */
+      static isProviderId(providerId) {
+        return validator.isNonEmptyString(providerId) && providerId.indexOf("saml.") === 0;
+      }
+      /**
+       * Validates the SAMLConfig options object. Throws an error on failure.
+       *
+       * @param options - The options object to validate.
+       * @param ignoreMissingFields - Whether to ignore missing fields.
+       */
+      static validate(options, ignoreMissingFields = false) {
+        const validKeys = {
+          enabled: true,
+          displayName: true,
+          providerId: true,
+          idpEntityId: true,
+          ssoURL: true,
+          x509Certificates: true,
+          rpEntityId: true,
+          callbackURL: true,
+          enableRequestSigning: true
+        };
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig" must be a valid non-null object.');
+        }
+        for (const key in options) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid SAML config parameter.`);
+          }
+        }
+        if (validator.isNonEmptyString(options.providerId)) {
+          if (options.providerId.indexOf("saml.") !== 0) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID, '"SAMLAuthProviderConfig.providerId" must be a valid non-empty string prefixed with "saml.".');
+          }
+        } else if (!ignoreMissingFields) {
+          throw new error_1.FirebaseAuthError(!options.providerId ? error_1.AuthClientErrorCode.MISSING_PROVIDER_ID : error_1.AuthClientErrorCode.INVALID_PROVIDER_ID, '"SAMLAuthProviderConfig.providerId" must be a valid non-empty string prefixed with "saml.".');
+        }
+        if (!(ignoreMissingFields && typeof options.idpEntityId === "undefined") && !validator.isNonEmptyString(options.idpEntityId)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig.idpEntityId" must be a valid non-empty string.');
+        }
+        if (!(ignoreMissingFields && typeof options.ssoURL === "undefined") && !validator.isURL(options.ssoURL)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig.ssoURL" must be a valid URL string.');
+        }
+        if (!(ignoreMissingFields && typeof options.rpEntityId === "undefined") && !validator.isNonEmptyString(options.rpEntityId)) {
+          throw new error_1.FirebaseAuthError(!options.rpEntityId ? error_1.AuthClientErrorCode.MISSING_SAML_RELYING_PARTY_CONFIG : error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig.rpEntityId" must be a valid non-empty string.');
+        }
+        if (!(ignoreMissingFields && typeof options.callbackURL === "undefined") && !validator.isURL(options.callbackURL)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig.callbackURL" must be a valid URL string.');
+        }
+        if (!(ignoreMissingFields && typeof options.x509Certificates === "undefined") && !validator.isArray(options.x509Certificates)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig.x509Certificates" must be a valid array of X509 certificate strings.');
+        }
+        (options.x509Certificates || []).forEach((cert2) => {
+          if (!validator.isNonEmptyString(cert2)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig.x509Certificates" must be a valid array of X509 certificate strings.');
+          }
+        });
+        if (typeof options.enableRequestSigning !== "undefined" && !validator.isBoolean(options.enableRequestSigning)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig.enableRequestSigning" must be a boolean.');
+        }
+        if (typeof options.enabled !== "undefined" && !validator.isBoolean(options.enabled)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig.enabled" must be a boolean.');
+        }
+        if (typeof options.displayName !== "undefined" && !validator.isString(options.displayName)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SAMLAuthProviderConfig.displayName" must be a valid string.');
+        }
+      }
+      /**
+       * The SAMLConfig constructor.
+       *
+       * @param response - The server side response used to initialize the SAMLConfig object.
+       * @constructor
+       */
+      constructor(response) {
+        if (!response || !response.idpConfig || !response.idpConfig.idpEntityId || !response.idpConfig.ssoUrl || !response.spConfig || !response.spConfig.spEntityId || !response.name || !(validator.isString(response.name) && _SAMLConfig.getProviderIdFromResourceName(response.name))) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid SAML configuration response");
+        }
+        const providerId = _SAMLConfig.getProviderIdFromResourceName(response.name);
+        if (!providerId) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid SAML configuration response");
+        }
+        this.providerId = providerId;
+        this.rpEntityId = response.spConfig.spEntityId;
+        this.callbackURL = response.spConfig.callbackUri;
+        this.idpEntityId = response.idpConfig.idpEntityId;
+        this.ssoURL = response.idpConfig.ssoUrl;
+        this.enableRequestSigning = !!response.idpConfig.signRequest;
+        const x509Certificates = [];
+        for (const cert2 of response.idpConfig.idpCertificates || []) {
+          if (cert2.x509Certificate) {
+            x509Certificates.push(cert2.x509Certificate);
+          }
+        }
+        this.x509Certificates = x509Certificates;
+        this.enabled = !!response.enabled;
+        this.displayName = response.displayName;
+      }
+      /** @returns The plain object representation of the SAMLConfig. */
+      toJSON() {
+        return {
+          enabled: this.enabled,
+          displayName: this.displayName,
+          providerId: this.providerId,
+          idpEntityId: this.idpEntityId,
+          ssoURL: this.ssoURL,
+          x509Certificates: (0, deep_copy_1.deepCopy)(this.x509Certificates),
+          rpEntityId: this.rpEntityId,
+          callbackURL: this.callbackURL,
+          enableRequestSigning: this.enableRequestSigning
+        };
+      }
+    };
+    exports2.SAMLConfig = SAMLConfig;
+    var OIDCConfig = class _OIDCConfig {
+      /**
+       * Converts a client side request to a OIDCConfigServerRequest which is the format
+       * accepted by the backend server.
+       * Throws an error if validation fails. If the request is not a OIDCConfig request,
+       * returns null.
+       *
+       * @param options - The options object to convert to a server request.
+       * @param ignoreMissingFields - Whether to ignore missing fields.
+       * @returns The resulting server request or null if not valid.
+       */
+      static buildServerRequest(options, ignoreMissingFields = false) {
+        const makeRequest = validator.isNonNullObject(options) && (options.providerId || ignoreMissingFields);
+        if (!makeRequest) {
+          return null;
+        }
+        const request = {};
+        _OIDCConfig.validate(options, ignoreMissingFields);
+        request.enabled = options.enabled;
+        request.displayName = options.displayName;
+        request.issuer = options.issuer;
+        request.clientId = options.clientId;
+        if (typeof options.clientSecret !== "undefined") {
+          request.clientSecret = options.clientSecret;
+        }
+        if (typeof options.responseType !== "undefined") {
+          request.responseType = options.responseType;
+        }
+        return request;
+      }
+      /**
+       * Returns the provider ID corresponding to the resource name if available.
+       *
+       * @param resourceName - The server side resource name
+       * @returns The provider ID corresponding to the resource, null otherwise.
+       */
+      static getProviderIdFromResourceName(resourceName) {
+        const matchProviderRes = resourceName.match(/\/oauthIdpConfigs\/(oidc\..*)$/);
+        if (!matchProviderRes || matchProviderRes.length < 2) {
+          return null;
+        }
+        return matchProviderRes[1];
+      }
+      /**
+       * @param providerId - The provider ID to check.
+       * @returns Whether the provider ID corresponds to an OIDC provider.
+       */
+      static isProviderId(providerId) {
+        return validator.isNonEmptyString(providerId) && providerId.indexOf("oidc.") === 0;
+      }
+      /**
+       * Validates the OIDCConfig options object. Throws an error on failure.
+       *
+       * @param options - The options object to validate.
+       * @param ignoreMissingFields - Whether to ignore missing fields.
+       */
+      static validate(options, ignoreMissingFields = false) {
+        const validKeys = {
+          enabled: true,
+          displayName: true,
+          providerId: true,
+          clientId: true,
+          issuer: true,
+          clientSecret: true,
+          responseType: true
+        };
+        const validResponseTypes = {
+          idToken: true,
+          code: true
+        };
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"OIDCAuthProviderConfig" must be a valid non-null object.');
+        }
+        for (const key in options) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid OIDC config parameter.`);
+          }
+        }
+        if (validator.isNonEmptyString(options.providerId)) {
+          if (options.providerId.indexOf("oidc.") !== 0) {
+            throw new error_1.FirebaseAuthError(!options.providerId ? error_1.AuthClientErrorCode.MISSING_PROVIDER_ID : error_1.AuthClientErrorCode.INVALID_PROVIDER_ID, '"OIDCAuthProviderConfig.providerId" must be a valid non-empty string prefixed with "oidc.".');
+          }
+        } else if (!ignoreMissingFields) {
+          throw new error_1.FirebaseAuthError(!options.providerId ? error_1.AuthClientErrorCode.MISSING_PROVIDER_ID : error_1.AuthClientErrorCode.INVALID_PROVIDER_ID, '"OIDCAuthProviderConfig.providerId" must be a valid non-empty string prefixed with "oidc.".');
+        }
+        if (!(ignoreMissingFields && typeof options.clientId === "undefined") && !validator.isNonEmptyString(options.clientId)) {
+          throw new error_1.FirebaseAuthError(!options.clientId ? error_1.AuthClientErrorCode.MISSING_OAUTH_CLIENT_ID : error_1.AuthClientErrorCode.INVALID_OAUTH_CLIENT_ID, '"OIDCAuthProviderConfig.clientId" must be a valid non-empty string.');
+        }
+        if (!(ignoreMissingFields && typeof options.issuer === "undefined") && !validator.isURL(options.issuer)) {
+          throw new error_1.FirebaseAuthError(!options.issuer ? error_1.AuthClientErrorCode.MISSING_ISSUER : error_1.AuthClientErrorCode.INVALID_CONFIG, '"OIDCAuthProviderConfig.issuer" must be a valid URL string.');
+        }
+        if (typeof options.enabled !== "undefined" && !validator.isBoolean(options.enabled)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"OIDCAuthProviderConfig.enabled" must be a boolean.');
+        }
+        if (typeof options.displayName !== "undefined" && !validator.isString(options.displayName)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"OIDCAuthProviderConfig.displayName" must be a valid string.');
+        }
+        if (typeof options.clientSecret !== "undefined" && !validator.isNonEmptyString(options.clientSecret)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"OIDCAuthProviderConfig.clientSecret" must be a valid string.');
+        }
+        if (validator.isNonNullObject(options.responseType) && typeof options.responseType !== "undefined") {
+          Object.keys(options.responseType).forEach((key) => {
+            if (!(key in validResponseTypes)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid OAuthResponseType parameter.`);
+            }
+          });
+          const idToken = options.responseType.idToken;
+          if (typeof idToken !== "undefined" && !validator.isBoolean(idToken)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"OIDCAuthProviderConfig.responseType.idToken" must be a boolean.');
+          }
+          const code = options.responseType.code;
+          if (typeof code !== "undefined") {
+            if (!validator.isBoolean(code)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"OIDCAuthProviderConfig.responseType.code" must be a boolean.');
+            }
+            if (code && typeof options.clientSecret === "undefined") {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MISSING_OAUTH_CLIENT_SECRET, "The OAuth configuration client secret is required to enable OIDC code flow.");
+            }
+          }
+          const allKeys = Object.keys(options.responseType).length;
+          const enabledCount = Object.values(options.responseType).filter(Boolean).length;
+          if (allKeys > 1 && enabledCount !== 1) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_OAUTH_RESPONSETYPE, "Only exactly one OAuth responseType should be set to true.");
+          }
+        }
+      }
+      /**
+       * The OIDCConfig constructor.
+       *
+       * @param response - The server side response used to initialize the OIDCConfig object.
+       * @constructor
+       */
+      constructor(response) {
+        if (!response || !response.issuer || !response.clientId || !response.name || !(validator.isString(response.name) && _OIDCConfig.getProviderIdFromResourceName(response.name))) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid OIDC configuration response");
+        }
+        const providerId = _OIDCConfig.getProviderIdFromResourceName(response.name);
+        if (!providerId) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid SAML configuration response");
+        }
+        this.providerId = providerId;
+        this.clientId = response.clientId;
+        this.issuer = response.issuer;
+        this.enabled = !!response.enabled;
+        this.displayName = response.displayName;
+        if (typeof response.clientSecret !== "undefined") {
+          this.clientSecret = response.clientSecret;
+        }
+        if (typeof response.responseType !== "undefined") {
+          this.responseType = response.responseType;
+        }
+      }
+      /** @returns The plain object representation of the OIDCConfig. */
+      toJSON() {
+        return {
+          enabled: this.enabled,
+          displayName: this.displayName,
+          providerId: this.providerId,
+          issuer: this.issuer,
+          clientId: this.clientId,
+          clientSecret: (0, deep_copy_1.deepCopy)(this.clientSecret),
+          responseType: (0, deep_copy_1.deepCopy)(this.responseType)
+        };
+      }
+    };
+    exports2.OIDCConfig = OIDCConfig;
+    var SmsRegionsAuthConfig = class {
+      static validate(options) {
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SmsRegionConfig" must be a non-null object.');
+        }
+        const validKeys = {
+          allowlistOnly: true,
+          allowByDefault: true
+        };
+        for (const key in options) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid SmsRegionConfig parameter.`);
+          }
+        }
+        if (typeof options.allowByDefault !== "undefined" && typeof options.allowlistOnly !== "undefined") {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, 'SmsRegionConfig cannot have both "allowByDefault" and "allowlistOnly" parameters.');
+        }
+        if (typeof options.allowByDefault !== "undefined") {
+          const allowByDefaultValidKeys = {
+            disallowedRegions: true
+          };
+          for (const key in options.allowByDefault) {
+            if (!(key in allowByDefaultValidKeys)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid SmsRegionConfig.allowByDefault parameter.`);
+            }
+          }
+          if (typeof options.allowByDefault.disallowedRegions !== "undefined" && !validator.isArray(options.allowByDefault.disallowedRegions)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SmsRegionConfig.allowByDefault.disallowedRegions" must be a valid string array.');
+          }
+        }
+        if (typeof options.allowlistOnly !== "undefined") {
+          const allowListOnlyValidKeys = {
+            allowedRegions: true
+          };
+          for (const key in options.allowlistOnly) {
+            if (!(key in allowListOnlyValidKeys)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid SmsRegionConfig.allowlistOnly parameter.`);
+            }
+          }
+          if (typeof options.allowlistOnly.allowedRegions !== "undefined" && !validator.isArray(options.allowlistOnly.allowedRegions)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"SmsRegionConfig.allowlistOnly.allowedRegions" must be a valid string array.');
+          }
+        }
+      }
+    };
+    exports2.SmsRegionsAuthConfig = SmsRegionsAuthConfig;
+    var RecaptchaAuthConfig = class _RecaptchaAuthConfig {
+      constructor(recaptchaConfig) {
+        this.emailPasswordEnforcementState = recaptchaConfig.emailPasswordEnforcementState;
+        this.managedRules = recaptchaConfig.managedRules;
+        this.recaptchaKeys = recaptchaConfig.recaptchaKeys;
+        this.useAccountDefender = recaptchaConfig.useAccountDefender;
+      }
+      /**
+       * Validates the RecaptchaConfig options object. Throws an error on failure.
+       * @param options - The options object to validate.
+       */
+      static validate(options) {
+        const validKeys = {
+          emailPasswordEnforcementState: true,
+          managedRules: true,
+          recaptchaKeys: true,
+          useAccountDefender: true
+        };
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"RecaptchaConfig" must be a non-null object.');
+        }
+        for (const key in options) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid RecaptchaConfig parameter.`);
+          }
+        }
+        if (typeof options.emailPasswordEnforcementState !== void 0) {
+          if (!validator.isNonEmptyString(options.emailPasswordEnforcementState)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"RecaptchaConfig.emailPasswordEnforcementState" must be a valid non-empty string.');
+          }
+          if (options.emailPasswordEnforcementState !== "OFF" && options.emailPasswordEnforcementState !== "AUDIT" && options.emailPasswordEnforcementState !== "ENFORCE") {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"RecaptchaConfig.emailPasswordEnforcementState" must be either "OFF", "AUDIT" or "ENFORCE".');
+          }
+        }
+        if (typeof options.managedRules !== "undefined") {
+          if (!validator.isArray(options.managedRules)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"RecaptchaConfig.managedRules" must be an array of valid "RecaptchaManagedRule".');
+          }
+          options.managedRules.forEach((managedRule) => {
+            _RecaptchaAuthConfig.validateManagedRule(managedRule);
+          });
+        }
+        if (typeof options.useAccountDefender !== "undefined") {
+          if (!validator.isBoolean(options.useAccountDefender)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"RecaptchaConfig.useAccountDefender" must be a boolean value".');
+          }
+        }
+      }
+      /**
+       * Validate each element in ManagedRule array
+       * @param options - The options object to validate.
+       */
+      static validateManagedRule(options) {
+        const validKeys = {
+          endScore: true,
+          action: true
+        };
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"RecaptchaManagedRule" must be a non-null object.');
+        }
+        for (const key in options) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid RecaptchaManagedRule parameter.`);
+          }
+        }
+        if (typeof options.action !== "undefined" && options.action !== "BLOCK") {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"RecaptchaManagedRule.action" must be "BLOCK".');
+        }
+      }
+      /**
+       * Returns a JSON-serializable representation of this object.
+       * @returns The JSON-serializable object representation of the ReCaptcha config instance
+       */
+      toJSON() {
+        const json = {
+          emailPasswordEnforcementState: this.emailPasswordEnforcementState,
+          managedRules: (0, deep_copy_1.deepCopy)(this.managedRules),
+          recaptchaKeys: (0, deep_copy_1.deepCopy)(this.recaptchaKeys),
+          useAccountDefender: this.useAccountDefender
+        };
+        if (typeof json.emailPasswordEnforcementState === "undefined") {
+          delete json.emailPasswordEnforcementState;
+        }
+        if (typeof json.managedRules === "undefined") {
+          delete json.managedRules;
+        }
+        if (typeof json.recaptchaKeys === "undefined") {
+          delete json.recaptchaKeys;
+        }
+        if (typeof json.useAccountDefender === "undefined") {
+          delete json.useAccountDefender;
+        }
+        return json;
+      }
+    };
+    exports2.RecaptchaAuthConfig = RecaptchaAuthConfig;
+    var PasswordPolicyAuthConfig = class _PasswordPolicyAuthConfig {
+      /**
+       * Static method to convert a client side request to a PasswordPolicyAuthServerConfig.
+       * Throws an error if validation fails.
+       *
+       * @param options - The options object to convert to a server request.
+       * @returns The resulting server request.
+       * @internal
+       */
+      static buildServerRequest(options) {
+        const request = {};
+        _PasswordPolicyAuthConfig.validate(options);
+        if (Object.prototype.hasOwnProperty.call(options, "enforcementState")) {
+          request.passwordPolicyEnforcementState = options.enforcementState;
+        }
+        request.forceUpgradeOnSignin = false;
+        if (Object.prototype.hasOwnProperty.call(options, "forceUpgradeOnSignin")) {
+          request.forceUpgradeOnSignin = options.forceUpgradeOnSignin;
+        }
+        const constraintsRequest = {
+          containsUppercaseCharacter: false,
+          containsLowercaseCharacter: false,
+          containsNonAlphanumericCharacter: false,
+          containsNumericCharacter: false,
+          minPasswordLength: 6,
+          maxPasswordLength: 4096
+        };
+        request.passwordPolicyVersions = [];
+        if (Object.prototype.hasOwnProperty.call(options, "constraints")) {
+          if (options) {
+            if (options.constraints?.requireUppercase !== void 0) {
+              constraintsRequest.containsUppercaseCharacter = options.constraints.requireUppercase;
+            }
+            if (options.constraints?.requireLowercase !== void 0) {
+              constraintsRequest.containsLowercaseCharacter = options.constraints.requireLowercase;
+            }
+            if (options.constraints?.requireNonAlphanumeric !== void 0) {
+              constraintsRequest.containsNonAlphanumericCharacter = options.constraints.requireNonAlphanumeric;
+            }
+            if (options.constraints?.requireNumeric !== void 0) {
+              constraintsRequest.containsNumericCharacter = options.constraints.requireNumeric;
+            }
+            if (options.constraints?.minLength !== void 0) {
+              constraintsRequest.minPasswordLength = options.constraints.minLength;
+            }
+            if (options.constraints?.maxLength !== void 0) {
+              constraintsRequest.maxPasswordLength = options.constraints.maxLength;
+            }
+          }
+        }
+        request.passwordPolicyVersions.push({ customStrengthOptions: constraintsRequest });
+        return request;
+      }
+      /**
+       * Validates the PasswordPolicyConfig options object. Throws an error on failure.
+       *
+       * @param options - The options object to validate.
+       * @internal
+       */
+      static validate(options) {
+        const validKeys = {
+          enforcementState: true,
+          forceUpgradeOnSignin: true,
+          constraints: true
+        };
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig" must be a non-null object.');
+        }
+        for (const key in options) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid PasswordPolicyConfig parameter.`);
+          }
+        }
+        if (typeof options.enforcementState === "undefined" || !(options.enforcementState === "ENFORCE" || options.enforcementState === "OFF")) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.enforcementState" must be either "ENFORCE" or "OFF".');
+        }
+        if (typeof options.forceUpgradeOnSignin !== "undefined") {
+          if (!validator.isBoolean(options.forceUpgradeOnSignin)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.forceUpgradeOnSignin" must be a boolean.');
+          }
+        }
+        if (typeof options.constraints !== "undefined") {
+          if (options.enforcementState === "ENFORCE" && !validator.isNonNullObject(options.constraints)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints" must be a non-empty object.');
+          }
+          const validCharKeys = {
+            requireUppercase: true,
+            requireLowercase: true,
+            requireNumeric: true,
+            requireNonAlphanumeric: true,
+            minLength: true,
+            maxLength: true
+          };
+          for (const key in options.constraints) {
+            if (!(key in validCharKeys)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid PasswordPolicyConfig.constraints parameter.`);
+            }
+          }
+          if (typeof options.constraints.requireUppercase !== "undefined" && !validator.isBoolean(options.constraints.requireUppercase)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints.requireUppercase" must be a boolean.');
+          }
+          if (typeof options.constraints.requireLowercase !== "undefined" && !validator.isBoolean(options.constraints.requireLowercase)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints.requireLowercase" must be a boolean.');
+          }
+          if (typeof options.constraints.requireNonAlphanumeric !== "undefined" && !validator.isBoolean(options.constraints.requireNonAlphanumeric)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints.requireNonAlphanumeric" must be a boolean.');
+          }
+          if (typeof options.constraints.requireNumeric !== "undefined" && !validator.isBoolean(options.constraints.requireNumeric)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints.requireNumeric" must be a boolean.');
+          }
+          if (typeof options.constraints.minLength === "undefined") {
+            options.constraints.minLength = 6;
+          } else if (!validator.isNumber(options.constraints.minLength)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints.minLength" must be a number.');
+          } else {
+            if (!(options.constraints.minLength >= 6 && options.constraints.minLength <= 30)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints.minLength" must be an integer between 6 and 30, inclusive.');
+            }
+          }
+          if (typeof options.constraints.maxLength === "undefined") {
+            options.constraints.maxLength = 4096;
+          } else if (!validator.isNumber(options.constraints.maxLength)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints.maxLength" must be a number.');
+          } else {
+            if (!(options.constraints.maxLength >= options.constraints.minLength && options.constraints.maxLength <= 4096)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints.maxLength" must be greater than or equal to minLength and at max 4096.');
+            }
+          }
+        } else {
+          if (options.enforcementState === "ENFORCE") {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"PasswordPolicyConfig.constraints" must be defined.');
+          }
+        }
+      }
+      /**
+       * The PasswordPolicyAuthConfig constructor.
+       *
+       * @param response - The server side response used to initialize the
+       *     PasswordPolicyAuthConfig object.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        if (typeof response.passwordPolicyEnforcementState === "undefined") {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid password policy configuration response");
+        }
+        this.enforcementState = response.passwordPolicyEnforcementState;
+        let constraintsResponse = {};
+        if (typeof response.passwordPolicyVersions !== "undefined") {
+          (response.passwordPolicyVersions || []).forEach((policyVersion) => {
+            constraintsResponse = {
+              requireLowercase: policyVersion.customStrengthOptions?.containsLowercaseCharacter,
+              requireUppercase: policyVersion.customStrengthOptions?.containsUppercaseCharacter,
+              requireNonAlphanumeric: policyVersion.customStrengthOptions?.containsNonAlphanumericCharacter,
+              requireNumeric: policyVersion.customStrengthOptions?.containsNumericCharacter,
+              minLength: policyVersion.customStrengthOptions?.minPasswordLength,
+              maxLength: policyVersion.customStrengthOptions?.maxPasswordLength
+            };
+          });
+        }
+        this.constraints = constraintsResponse;
+        this.forceUpgradeOnSignin = response.forceUpgradeOnSignin ? true : false;
+      }
+    };
+    exports2.PasswordPolicyAuthConfig = PasswordPolicyAuthConfig;
+    var EmailPrivacyAuthConfig = class {
+      static validate(options) {
+        if (!validator.isNonNullObject(options)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"EmailPrivacyConfig" must be a non-null object.');
+        }
+        const validKeys = {
+          enableImprovedEmailPrivacy: true
+        };
+        for (const key in options) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, `"${key}" is not a valid "EmailPrivacyConfig" parameter.`);
+          }
+        }
+        if (typeof options.enableImprovedEmailPrivacy !== "undefined" && !validator.isBoolean(options.enableImprovedEmailPrivacy)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, '"EmailPrivacyConfig.enableImprovedEmailPrivacy" must be a valid boolean value.');
+        }
+      }
+    };
+    exports2.EmailPrivacyAuthConfig = EmailPrivacyAuthConfig;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/tenant.js
+var require_tenant = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/tenant.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Tenant = void 0;
+    var validator = require_validator();
+    var deep_copy_1 = require_deep_copy();
+    var error_1 = require_error();
+    var auth_config_1 = require_auth_config();
+    var Tenant2 = class _Tenant {
+      /**
+       * Builds the corresponding server request for a TenantOptions object.
+       *
+       * @param tenantOptions - The properties to convert to a server request.
+       * @param createRequest - Whether this is a create request.
+       * @returns The equivalent server request.
+       *
+       * @internal
+       */
+      static buildServerRequest(tenantOptions, createRequest) {
+        _Tenant.validate(tenantOptions, createRequest);
+        let request = {};
+        if (typeof tenantOptions.emailSignInConfig !== "undefined") {
+          request = auth_config_1.EmailSignInConfig.buildServerRequest(tenantOptions.emailSignInConfig);
+        }
+        if (typeof tenantOptions.displayName !== "undefined") {
+          request.displayName = tenantOptions.displayName;
+        }
+        if (typeof tenantOptions.anonymousSignInEnabled !== "undefined") {
+          request.enableAnonymousUser = tenantOptions.anonymousSignInEnabled;
+        }
+        if (typeof tenantOptions.multiFactorConfig !== "undefined") {
+          request.mfaConfig = auth_config_1.MultiFactorAuthConfig.buildServerRequest(tenantOptions.multiFactorConfig);
+        }
+        if (typeof tenantOptions.testPhoneNumbers !== "undefined") {
+          request.testPhoneNumbers = tenantOptions.testPhoneNumbers ?? {};
+        }
+        if (typeof tenantOptions.smsRegionConfig !== "undefined") {
+          request.smsRegionConfig = tenantOptions.smsRegionConfig;
+        }
+        if (typeof tenantOptions.recaptchaConfig !== "undefined") {
+          request.recaptchaConfig = tenantOptions.recaptchaConfig;
+        }
+        if (typeof tenantOptions.passwordPolicyConfig !== "undefined") {
+          request.passwordPolicyConfig = auth_config_1.PasswordPolicyAuthConfig.buildServerRequest(tenantOptions.passwordPolicyConfig);
+        }
+        if (typeof tenantOptions.emailPrivacyConfig !== "undefined") {
+          request.emailPrivacyConfig = tenantOptions.emailPrivacyConfig;
+        }
+        return request;
+      }
+      /**
+       * Returns the tenant ID corresponding to the resource name if available.
+       *
+       * @param resourceName - The server side resource name
+       * @returns The tenant ID corresponding to the resource, null otherwise.
+       *
+       * @internal
+       */
+      static getTenantIdFromResourceName(resourceName) {
+        const matchTenantRes = resourceName.match(/\/tenants\/(.*)$/);
+        if (!matchTenantRes || matchTenantRes.length < 2) {
+          return null;
+        }
+        return matchTenantRes[1];
+      }
+      /**
+       * Validates a tenant options object. Throws an error on failure.
+       *
+       * @param request - The tenant options object to validate.
+       * @param createRequest - Whether this is a create request.
+       */
+      static validate(request, createRequest) {
+        const validKeys = {
+          displayName: true,
+          emailSignInConfig: true,
+          anonymousSignInEnabled: true,
+          multiFactorConfig: true,
+          testPhoneNumbers: true,
+          smsRegionConfig: true,
+          recaptchaConfig: true,
+          passwordPolicyConfig: true,
+          emailPrivacyConfig: true
+        };
+        const label = createRequest ? "CreateTenantRequest" : "UpdateTenantRequest";
+        if (!validator.isNonNullObject(request)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `"${label}" must be a valid non-null object.`);
+        }
+        for (const key in request) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `"${key}" is not a valid ${label} parameter.`);
+          }
+        }
+        if (typeof request.displayName !== "undefined" && !validator.isNonEmptyString(request.displayName)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `"${label}.displayName" must be a valid non-empty string.`);
+        }
+        if (typeof request.emailSignInConfig !== "undefined") {
+          auth_config_1.EmailSignInConfig.buildServerRequest(request.emailSignInConfig);
+        }
+        if (typeof request.testPhoneNumbers !== "undefined" && request.testPhoneNumbers !== null) {
+          (0, auth_config_1.validateTestPhoneNumbers)(request.testPhoneNumbers);
+        } else if (request.testPhoneNumbers === null && createRequest) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `"${label}.testPhoneNumbers" must be a non-null object.`);
+        }
+        if (typeof request.multiFactorConfig !== "undefined") {
+          auth_config_1.MultiFactorAuthConfig.buildServerRequest(request.multiFactorConfig);
+        }
+        if (typeof request.smsRegionConfig !== "undefined") {
+          auth_config_1.SmsRegionsAuthConfig.validate(request.smsRegionConfig);
+        }
+        if (typeof request.recaptchaConfig !== "undefined") {
+          auth_config_1.RecaptchaAuthConfig.validate(request.recaptchaConfig);
+        }
+        if (typeof request.passwordPolicyConfig !== "undefined") {
+          auth_config_1.PasswordPolicyAuthConfig.buildServerRequest(request.passwordPolicyConfig);
+        }
+        if (typeof request.emailPrivacyConfig !== "undefined") {
+          auth_config_1.EmailPrivacyAuthConfig.validate(request.emailPrivacyConfig);
+        }
+      }
+      /**
+       * The Tenant object constructor.
+       *
+       * @param response - The server side response used to initialize the Tenant object.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        const tenantId = _Tenant.getTenantIdFromResourceName(response.name);
+        if (!tenantId) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid tenant response");
+        }
+        this.tenantId = tenantId;
+        this.displayName = response.displayName;
+        try {
+          this.emailSignInConfig_ = new auth_config_1.EmailSignInConfig(response);
+        } catch (e) {
+          this.emailSignInConfig_ = new auth_config_1.EmailSignInConfig({
+            allowPasswordSignup: false
+          });
+        }
+        this.anonymousSignInEnabled = !!response.enableAnonymousUser;
+        if (typeof response.mfaConfig !== "undefined") {
+          this.multiFactorConfig_ = new auth_config_1.MultiFactorAuthConfig(response.mfaConfig);
+        }
+        if (typeof response.testPhoneNumbers !== "undefined") {
+          this.testPhoneNumbers = (0, deep_copy_1.deepCopy)(response.testPhoneNumbers || {});
+        }
+        if (typeof response.smsRegionConfig !== "undefined") {
+          this.smsRegionConfig = (0, deep_copy_1.deepCopy)(response.smsRegionConfig);
+        }
+        if (typeof response.recaptchaConfig !== "undefined") {
+          this.recaptchaConfig_ = new auth_config_1.RecaptchaAuthConfig(response.recaptchaConfig);
+        }
+        if (typeof response.passwordPolicyConfig !== "undefined") {
+          this.passwordPolicyConfig = new auth_config_1.PasswordPolicyAuthConfig(response.passwordPolicyConfig);
+        }
+        if (typeof response.emailPrivacyConfig !== "undefined") {
+          this.emailPrivacyConfig = (0, deep_copy_1.deepCopy)(response.emailPrivacyConfig);
+        }
+      }
+      /**
+       * The email sign in provider configuration.
+       */
+      get emailSignInConfig() {
+        return this.emailSignInConfig_;
+      }
+      /**
+       * The multi-factor auth configuration on the current tenant.
+       */
+      get multiFactorConfig() {
+        return this.multiFactorConfig_;
+      }
+      /**
+       * The recaptcha config auth configuration of the current tenant.
+       */
+      get recaptchaConfig() {
+        return this.recaptchaConfig_;
+      }
+      /**
+       * Returns a JSON-serializable representation of this object.
+       *
+       * @returns A JSON-serializable representation of this object.
+       */
+      toJSON() {
+        const json = {
+          tenantId: this.tenantId,
+          displayName: this.displayName,
+          emailSignInConfig: this.emailSignInConfig_?.toJSON(),
+          multiFactorConfig: this.multiFactorConfig_?.toJSON(),
+          anonymousSignInEnabled: this.anonymousSignInEnabled,
+          testPhoneNumbers: this.testPhoneNumbers,
+          smsRegionConfig: (0, deep_copy_1.deepCopy)(this.smsRegionConfig),
+          recaptchaConfig: this.recaptchaConfig_?.toJSON(),
+          passwordPolicyConfig: (0, deep_copy_1.deepCopy)(this.passwordPolicyConfig),
+          emailPrivacyConfig: (0, deep_copy_1.deepCopy)(this.emailPrivacyConfig)
+        };
+        if (typeof json.multiFactorConfig === "undefined") {
+          delete json.multiFactorConfig;
+        }
+        if (typeof json.testPhoneNumbers === "undefined") {
+          delete json.testPhoneNumbers;
+        }
+        if (typeof json.smsRegionConfig === "undefined") {
+          delete json.smsRegionConfig;
+        }
+        if (typeof json.recaptchaConfig === "undefined") {
+          delete json.recaptchaConfig;
+        }
+        if (typeof json.passwordPolicyConfig === "undefined") {
+          delete json.passwordPolicyConfig;
+        }
+        if (typeof json.emailPrivacyConfig === "undefined") {
+          delete json.emailPrivacyConfig;
+        }
+        return json;
+      }
+    };
+    exports2.Tenant = Tenant2;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/identifier.js
+var require_identifier = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/identifier.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.isProviderIdentifier = exports2.isPhoneIdentifier = exports2.isEmailIdentifier = exports2.isUidIdentifier = void 0;
+    function isUidIdentifier(id) {
+      return id.uid !== void 0;
+    }
+    exports2.isUidIdentifier = isUidIdentifier;
+    function isEmailIdentifier(id) {
+      return id.email !== void 0;
+    }
+    exports2.isEmailIdentifier = isEmailIdentifier;
+    function isPhoneIdentifier(id) {
+      return id.phoneNumber !== void 0;
+    }
+    exports2.isPhoneIdentifier = isPhoneIdentifier;
+    function isProviderIdentifier(id) {
+      const pid = id;
+      return pid.providerId !== void 0 && pid.providerUid !== void 0;
+    }
+    exports2.isProviderIdentifier = isProviderIdentifier;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/project-config.js
+var require_project_config = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/project-config.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ProjectConfig = void 0;
+    var validator = require_validator();
+    var error_1 = require_error();
+    var auth_config_1 = require_auth_config();
+    var deep_copy_1 = require_deep_copy();
+    var ProjectConfig2 = class _ProjectConfig {
+      /**
+       * The multi-factor auth configuration.
+       */
+      get multiFactorConfig() {
+        return this.multiFactorConfig_;
+      }
+      /**
+       * Validates a project config options object. Throws an error on failure.
+       *
+       * @param request - The project config options object to validate.
+       */
+      static validate(request) {
+        if (!validator.isNonNullObject(request)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"UpdateProjectConfigRequest" must be a valid non-null object.');
+        }
+        const validKeys = {
+          smsRegionConfig: true,
+          multiFactorConfig: true,
+          recaptchaConfig: true,
+          passwordPolicyConfig: true,
+          emailPrivacyConfig: true
+        };
+        for (const key in request) {
+          if (!(key in validKeys)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `"${key}" is not a valid UpdateProjectConfigRequest parameter.`);
+          }
+        }
+        if (typeof request.smsRegionConfig !== "undefined") {
+          auth_config_1.SmsRegionsAuthConfig.validate(request.smsRegionConfig);
+        }
+        if (typeof request.multiFactorConfig !== "undefined") {
+          auth_config_1.MultiFactorAuthConfig.validate(request.multiFactorConfig);
+        }
+        if (typeof request.recaptchaConfig !== "undefined") {
+          auth_config_1.RecaptchaAuthConfig.validate(request.recaptchaConfig);
+        }
+        if (typeof request.passwordPolicyConfig !== "undefined") {
+          auth_config_1.PasswordPolicyAuthConfig.validate(request.passwordPolicyConfig);
+        }
+        if (typeof request.emailPrivacyConfig !== "undefined") {
+          auth_config_1.EmailPrivacyAuthConfig.validate(request.emailPrivacyConfig);
+        }
+      }
+      /**
+       * Build the corresponding server request for a UpdateProjectConfigRequest object.
+       * @param configOptions - The properties to convert to a server request.
+       * @returns  The equivalent server request.
+       *
+       * @internal
+       */
+      static buildServerRequest(configOptions) {
+        _ProjectConfig.validate(configOptions);
+        const request = {};
+        if (typeof configOptions.smsRegionConfig !== "undefined") {
+          request.smsRegionConfig = configOptions.smsRegionConfig;
+        }
+        if (typeof configOptions.multiFactorConfig !== "undefined") {
+          request.mfa = auth_config_1.MultiFactorAuthConfig.buildServerRequest(configOptions.multiFactorConfig);
+        }
+        if (typeof configOptions.recaptchaConfig !== "undefined") {
+          request.recaptchaConfig = configOptions.recaptchaConfig;
+        }
+        if (typeof configOptions.passwordPolicyConfig !== "undefined") {
+          request.passwordPolicyConfig = auth_config_1.PasswordPolicyAuthConfig.buildServerRequest(configOptions.passwordPolicyConfig);
+        }
+        if (typeof configOptions.emailPrivacyConfig !== "undefined") {
+          request.emailPrivacyConfig = configOptions.emailPrivacyConfig;
+        }
+        return request;
+      }
+      /**
+       * The reCAPTCHA configuration.
+       */
+      get recaptchaConfig() {
+        return this.recaptchaConfig_;
+      }
+      /**
+       * The Project Config object constructor.
+       *
+       * @param response - The server side response used to initialize the Project Config object.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        if (typeof response.smsRegionConfig !== "undefined") {
+          this.smsRegionConfig = response.smsRegionConfig;
+        }
+        if (typeof response.mfa !== "undefined") {
+          this.multiFactorConfig_ = new auth_config_1.MultiFactorAuthConfig(response.mfa);
+        }
+        if (typeof response.recaptchaConfig !== "undefined") {
+          this.recaptchaConfig_ = new auth_config_1.RecaptchaAuthConfig(response.recaptchaConfig);
+        }
+        if (typeof response.passwordPolicyConfig !== "undefined") {
+          this.passwordPolicyConfig = new auth_config_1.PasswordPolicyAuthConfig(response.passwordPolicyConfig);
+        }
+        if (typeof response.emailPrivacyConfig !== "undefined") {
+          this.emailPrivacyConfig = response.emailPrivacyConfig;
+        }
+      }
+      /**
+       * Returns a JSON-serializable representation of this object.
+       *
+       * @returns A JSON-serializable representation of this object.
+       */
+      toJSON() {
+        const json = {
+          smsRegionConfig: (0, deep_copy_1.deepCopy)(this.smsRegionConfig),
+          multiFactorConfig: (0, deep_copy_1.deepCopy)(this.multiFactorConfig),
+          recaptchaConfig: this.recaptchaConfig_?.toJSON(),
+          passwordPolicyConfig: (0, deep_copy_1.deepCopy)(this.passwordPolicyConfig),
+          emailPrivacyConfig: (0, deep_copy_1.deepCopy)(this.emailPrivacyConfig)
+        };
+        if (typeof json.smsRegionConfig === "undefined") {
+          delete json.smsRegionConfig;
+        }
+        if (typeof json.multiFactorConfig === "undefined") {
+          delete json.multiFactorConfig;
+        }
+        if (typeof json.recaptchaConfig === "undefined") {
+          delete json.recaptchaConfig;
+        }
+        if (typeof json.passwordPolicyConfig === "undefined") {
+          delete json.passwordPolicyConfig;
+        }
+        if (typeof json.emailPrivacyConfig === "undefined") {
+          delete json.emailPrivacyConfig;
+        }
+        return json;
+      }
+    };
+    exports2.ProjectConfig = ProjectConfig2;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/auth-api-request.js
+var require_auth_api_request = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/auth-api-request.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.useEmulator = exports2.TenantAwareAuthRequestHandler = exports2.AuthRequestHandler = exports2.AbstractAuthRequestHandler = exports2.FIREBASE_AUTH_SIGN_UP_NEW_USER = exports2.FIREBASE_AUTH_SET_ACCOUNT_INFO = exports2.FIREBASE_AUTH_BATCH_DELETE_ACCOUNTS = exports2.FIREBASE_AUTH_DELETE_ACCOUNT = exports2.FIREBASE_AUTH_GET_ACCOUNTS_INFO = exports2.FIREBASE_AUTH_GET_ACCOUNT_INFO = exports2.FIREBASE_AUTH_DOWNLOAD_ACCOUNT = exports2.FIREBASE_AUTH_UPLOAD_ACCOUNT = exports2.FIREBASE_AUTH_CREATE_SESSION_COOKIE = exports2.EMAIL_ACTION_REQUEST_TYPES = exports2.RESERVED_CLAIMS = void 0;
+    var validator = require_validator();
+    var deep_copy_1 = require_deep_copy();
+    var error_1 = require_error();
+    var api_request_1 = require_api_request();
+    var utils = require_utils3();
+    var user_import_builder_1 = require_user_import_builder();
+    var action_code_settings_builder_1 = require_action_code_settings_builder();
+    var tenant_1 = require_tenant();
+    var identifier_1 = require_identifier();
+    var auth_config_1 = require_auth_config();
+    var project_config_1 = require_project_config();
+    var FIREBASE_AUTH_HEADER = {
+      "X-Client-Version": `Node/Admin/${utils.getSdkVersion()}`
+    };
+    var FIREBASE_AUTH_TIMEOUT = 25e3;
+    exports2.RESERVED_CLAIMS = [
+      "acr",
+      "amr",
+      "at_hash",
+      "aud",
+      "auth_time",
+      "azp",
+      "cnf",
+      "c_hash",
+      "exp",
+      "iat",
+      "iss",
+      "jti",
+      "nbf",
+      "nonce",
+      "sub",
+      "firebase"
+    ];
+    exports2.EMAIL_ACTION_REQUEST_TYPES = [
+      "PASSWORD_RESET",
+      "VERIFY_EMAIL",
+      "EMAIL_SIGNIN",
+      "VERIFY_AND_CHANGE_EMAIL"
+    ];
+    var MAX_CLAIMS_PAYLOAD_SIZE = 1e3;
+    var MAX_DOWNLOAD_ACCOUNT_PAGE_SIZE = 1e3;
+    var MAX_UPLOAD_ACCOUNT_BATCH_SIZE = 1e3;
+    var MAX_GET_ACCOUNTS_BATCH_SIZE = 100;
+    var MAX_DELETE_ACCOUNTS_BATCH_SIZE = 1e3;
+    var MIN_SESSION_COOKIE_DURATION_SECS = 5 * 60;
+    var MAX_SESSION_COOKIE_DURATION_SECS = 14 * 24 * 60 * 60;
+    var MAX_LIST_PROVIDER_CONFIGURATION_PAGE_SIZE = 100;
+    var FIREBASE_AUTH_BASE_URL_FORMAT = "https://identitytoolkit.googleapis.com/{version}/projects/{projectId}{api}";
+    var FIREBASE_AUTH_EMULATOR_BASE_URL_FORMAT = "http://{host}/identitytoolkit.googleapis.com/{version}/projects/{projectId}{api}";
+    var FIREBASE_AUTH_TENANT_URL_FORMAT = FIREBASE_AUTH_BASE_URL_FORMAT.replace("projects/{projectId}", "projects/{projectId}/tenants/{tenantId}");
+    var FIREBASE_AUTH_EMULATOR_TENANT_URL_FORMAT = FIREBASE_AUTH_EMULATOR_BASE_URL_FORMAT.replace("projects/{projectId}", "projects/{projectId}/tenants/{tenantId}");
+    var MAX_LIST_TENANT_PAGE_SIZE = 1e3;
+    var WriteOperationType;
+    (function(WriteOperationType2) {
+      WriteOperationType2["Create"] = "create";
+      WriteOperationType2["Update"] = "update";
+      WriteOperationType2["Upload"] = "upload";
+    })(WriteOperationType || (WriteOperationType = {}));
+    var AuthResourceUrlBuilder = class {
+      /**
+       * The resource URL builder constructor.
+       *
+       * @param projectId - The resource project ID.
+       * @param version - The endpoint API version.
+       * @constructor
+       */
+      constructor(app, version2 = "v1") {
+        this.app = app;
+        this.version = version2;
+        if (useEmulator()) {
+          this.urlFormat = utils.formatString(FIREBASE_AUTH_EMULATOR_BASE_URL_FORMAT, {
+            host: emulatorHost()
+          });
+        } else {
+          this.urlFormat = FIREBASE_AUTH_BASE_URL_FORMAT;
+        }
+      }
+      /**
+       * Returns the resource URL corresponding to the provided parameters.
+       *
+       * @param api - The backend API name.
+       * @param params - The optional additional parameters to substitute in the
+       *     URL path.
+       * @returns The corresponding resource URL.
+       */
+      getUrl(api, params) {
+        return this.getProjectId().then((projectId) => {
+          const baseParams = {
+            version: this.version,
+            projectId,
+            api: api || ""
+          };
+          const baseUrl = utils.formatString(this.urlFormat, baseParams);
+          return utils.formatString(baseUrl, params || {});
+        });
+      }
+      getProjectId() {
+        if (this.projectId) {
+          return Promise.resolve(this.projectId);
+        }
+        return utils.findProjectId(this.app).then((projectId) => {
+          if (!validator.isNonEmptyString(projectId)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CREDENTIAL, "Failed to determine project ID for Auth. Initialize the SDK with service account credentials or set project ID as an app option. Alternatively set the GOOGLE_CLOUD_PROJECT environment variable.");
+          }
+          this.projectId = projectId;
+          return projectId;
+        });
+      }
+    };
+    var TenantAwareAuthResourceUrlBuilder = class extends AuthResourceUrlBuilder {
+      /**
+       * The tenant aware resource URL builder constructor.
+       *
+       * @param projectId - The resource project ID.
+       * @param version - The endpoint API version.
+       * @param tenantId - The tenant ID.
+       * @constructor
+       */
+      constructor(app, version2, tenantId) {
+        super(app, version2);
+        this.app = app;
+        this.version = version2;
+        this.tenantId = tenantId;
+        if (useEmulator()) {
+          this.urlFormat = utils.formatString(FIREBASE_AUTH_EMULATOR_TENANT_URL_FORMAT, {
+            host: emulatorHost()
+          });
+        } else {
+          this.urlFormat = FIREBASE_AUTH_TENANT_URL_FORMAT;
+        }
+      }
+      /**
+       * Returns the resource URL corresponding to the provided parameters.
+       *
+       * @param api - The backend API name.
+       * @param params - The optional additional parameters to substitute in the
+       *     URL path.
+       * @returns The corresponding resource URL.
+       */
+      getUrl(api, params) {
+        return super.getUrl(api, params).then((url) => {
+          return utils.formatString(url, { tenantId: this.tenantId });
+        });
+      }
+    };
+    var AuthHttpClient = class extends api_request_1.AuthorizedHttpClient {
+      getToken() {
+        if (useEmulator()) {
+          return Promise.resolve("owner");
+        }
+        return super.getToken();
+      }
+    };
+    function validateAuthFactorInfo(request) {
+      const validKeys = {
+        mfaEnrollmentId: true,
+        displayName: true,
+        phoneInfo: true,
+        enrolledAt: true
+      };
+      for (const key in request) {
+        if (!(key in validKeys)) {
+          delete request[key];
+        }
+      }
+      const authFactorInfoIdentifier = request.mfaEnrollmentId || request.phoneInfo || JSON.stringify(request);
+      if (typeof request.mfaEnrollmentId !== "undefined" && !validator.isNonEmptyString(request.mfaEnrollmentId)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID, 'The second factor "uid" must be a valid non-empty string.');
+      }
+      if (typeof request.displayName !== "undefined" && !validator.isString(request.displayName)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_DISPLAY_NAME, `The second factor "displayName" for "${authFactorInfoIdentifier}" must be a valid string.`);
+      }
+      if (typeof request.enrolledAt !== "undefined" && !validator.isISODateString(request.enrolledAt)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ENROLLMENT_TIME, `The second factor "enrollmentTime" for "${authFactorInfoIdentifier}" must be a valid UTC date string.`);
+      }
+      if (typeof request.phoneInfo !== "undefined") {
+        if (!validator.isPhoneNumber(request.phoneInfo)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PHONE_NUMBER, `The second factor "phoneNumber" for "${authFactorInfoIdentifier}" must be a non-empty E.164 standard compliant identifier string.`);
+        }
+      } else {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ENROLLED_FACTORS, "MFAInfo object provided is invalid.");
+      }
+    }
+    function validateProviderUserInfo(request) {
+      const validKeys = {
+        rawId: true,
+        providerId: true,
+        email: true,
+        displayName: true,
+        photoUrl: true
+      };
+      for (const key in request) {
+        if (!(key in validKeys)) {
+          delete request[key];
+        }
+      }
+      if (!validator.isNonEmptyString(request.providerId)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID);
+      }
+      if (typeof request.displayName !== "undefined" && typeof request.displayName !== "string") {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_DISPLAY_NAME, `The provider "displayName" for "${request.providerId}" must be a valid string.`);
+      }
+      if (!validator.isNonEmptyString(request.rawId)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID, `The provider "uid" for "${request.providerId}" must be a valid non-empty string.`);
+      }
+      if (typeof request.email !== "undefined" && !validator.isEmail(request.email)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_EMAIL, `The provider "email" for "${request.providerId}" must be a valid email string.`);
+      }
+      if (typeof request.photoUrl !== "undefined" && !validator.isURL(request.photoUrl)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PHOTO_URL, `The provider "photoURL" for "${request.providerId}" must be a valid URL string.`);
+      }
+    }
+    function validateCreateEditRequest(request, writeOperationType) {
+      const uploadAccountRequest = writeOperationType === WriteOperationType.Upload;
+      const validKeys = {
+        displayName: true,
+        localId: true,
+        email: true,
+        password: true,
+        rawPassword: true,
+        emailVerified: true,
+        photoUrl: true,
+        disabled: true,
+        disableUser: true,
+        deleteAttribute: true,
+        deleteProvider: true,
+        sanityCheck: true,
+        phoneNumber: true,
+        customAttributes: true,
+        validSince: true,
+        // Pass linkProviderUserInfo only for updates (i.e. not for uploads.)
+        linkProviderUserInfo: !uploadAccountRequest,
+        // Pass tenantId only for uploadAccount requests.
+        tenantId: uploadAccountRequest,
+        passwordHash: uploadAccountRequest,
+        salt: uploadAccountRequest,
+        createdAt: uploadAccountRequest,
+        lastLoginAt: uploadAccountRequest,
+        providerUserInfo: uploadAccountRequest,
+        mfaInfo: uploadAccountRequest,
+        // Only for non-uploadAccount requests.
+        mfa: !uploadAccountRequest
+      };
+      for (const key in request) {
+        if (!(key in validKeys)) {
+          delete request[key];
+        }
+      }
+      if (typeof request.tenantId !== "undefined" && !validator.isNonEmptyString(request.tenantId)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_TENANT_ID);
+      }
+      if (typeof request.displayName !== "undefined" && !validator.isString(request.displayName)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_DISPLAY_NAME);
+      }
+      if ((typeof request.localId !== "undefined" || uploadAccountRequest) && !validator.isUid(request.localId)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID);
+      }
+      if (typeof request.email !== "undefined" && !validator.isEmail(request.email)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_EMAIL);
+      }
+      if (typeof request.phoneNumber !== "undefined" && !validator.isPhoneNumber(request.phoneNumber)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PHONE_NUMBER);
+      }
+      if (typeof request.password !== "undefined" && !validator.isPassword(request.password)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PASSWORD);
+      }
+      if (typeof request.rawPassword !== "undefined" && !validator.isPassword(request.rawPassword)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PASSWORD);
+      }
+      if (typeof request.emailVerified !== "undefined" && typeof request.emailVerified !== "boolean") {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_EMAIL_VERIFIED);
+      }
+      if (typeof request.photoUrl !== "undefined" && !validator.isURL(request.photoUrl)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PHOTO_URL);
+      }
+      if (typeof request.disabled !== "undefined" && typeof request.disabled !== "boolean") {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_DISABLED_FIELD);
+      }
+      if (typeof request.validSince !== "undefined" && !validator.isNumber(request.validSince)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_TOKENS_VALID_AFTER_TIME);
+      }
+      if (typeof request.createdAt !== "undefined" && !validator.isNumber(request.createdAt)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CREATION_TIME);
+      }
+      if (typeof request.lastLoginAt !== "undefined" && !validator.isNumber(request.lastLoginAt)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_LAST_SIGN_IN_TIME);
+      }
+      if (typeof request.disableUser !== "undefined" && typeof request.disableUser !== "boolean") {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_DISABLED_FIELD);
+      }
+      if (typeof request.customAttributes !== "undefined") {
+        let developerClaims;
+        try {
+          developerClaims = JSON.parse(request.customAttributes);
+        } catch (error) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CLAIMS, error.message);
+        }
+        const invalidClaims = [];
+        exports2.RESERVED_CLAIMS.forEach((blacklistedClaim) => {
+          if (Object.prototype.hasOwnProperty.call(developerClaims, blacklistedClaim)) {
+            invalidClaims.push(blacklistedClaim);
+          }
+        });
+        if (invalidClaims.length > 0) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.FORBIDDEN_CLAIM, invalidClaims.length > 1 ? `Developer claims "${invalidClaims.join('", "')}" are reserved and cannot be specified.` : `Developer claim "${invalidClaims[0]}" is reserved and cannot be specified.`);
+        }
+        if (request.customAttributes.length > MAX_CLAIMS_PAYLOAD_SIZE) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.CLAIMS_TOO_LARGE, `Developer claims payload should not exceed ${MAX_CLAIMS_PAYLOAD_SIZE} characters.`);
+        }
+      }
+      if (typeof request.passwordHash !== "undefined" && !validator.isString(request.passwordHash)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PASSWORD_HASH);
+      }
+      if (typeof request.salt !== "undefined" && !validator.isString(request.salt)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PASSWORD_SALT);
+      }
+      if (typeof request.providerUserInfo !== "undefined" && !validator.isArray(request.providerUserInfo)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_DATA);
+      } else if (validator.isArray(request.providerUserInfo)) {
+        request.providerUserInfo.forEach((providerUserInfoEntry) => {
+          validateProviderUserInfo(providerUserInfoEntry);
+        });
+      }
+      if (typeof request.linkProviderUserInfo !== "undefined") {
+        validateProviderUserInfo(request.linkProviderUserInfo);
+      }
+      let enrollments = null;
+      if (request.mfaInfo) {
+        enrollments = request.mfaInfo;
+      } else if (request.mfa && request.mfa.enrollments) {
+        enrollments = request.mfa.enrollments;
+      }
+      if (enrollments) {
+        if (!validator.isArray(enrollments)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ENROLLED_FACTORS);
+        }
+        enrollments.forEach((authFactorInfoEntry) => {
+          validateAuthFactorInfo(authFactorInfoEntry);
+        });
+      }
+    }
+    exports2.FIREBASE_AUTH_CREATE_SESSION_COOKIE = new api_request_1.ApiSettings(":createSessionCookie", "POST").setRequestValidator((request) => {
+      if (!validator.isNonEmptyString(request.idToken)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ID_TOKEN);
+      }
+      if (!validator.isNumber(request.validDuration) || request.validDuration < MIN_SESSION_COOKIE_DURATION_SECS || request.validDuration > MAX_SESSION_COOKIE_DURATION_SECS) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_SESSION_COOKIE_DURATION);
+      }
+    }).setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.sessionCookie)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR);
+      }
+    });
+    exports2.FIREBASE_AUTH_UPLOAD_ACCOUNT = new api_request_1.ApiSettings("/accounts:batchCreate", "POST");
+    exports2.FIREBASE_AUTH_DOWNLOAD_ACCOUNT = new api_request_1.ApiSettings("/accounts:batchGet", "GET").setRequestValidator((request) => {
+      if (typeof request.nextPageToken !== "undefined" && !validator.isNonEmptyString(request.nextPageToken)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PAGE_TOKEN);
+      }
+      if (!validator.isNumber(request.maxResults) || request.maxResults <= 0 || request.maxResults > MAX_DOWNLOAD_ACCOUNT_PAGE_SIZE) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `Required "maxResults" must be a positive integer that does not exceed ${MAX_DOWNLOAD_ACCOUNT_PAGE_SIZE}.`);
+      }
+    });
+    exports2.FIREBASE_AUTH_GET_ACCOUNT_INFO = new api_request_1.ApiSettings("/accounts:lookup", "POST").setRequestValidator((request) => {
+      if (!request.localId && !request.email && !request.phoneNumber && !request.federatedUserId) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Server request is missing user identifier");
+      }
+    }).setResponseValidator((response) => {
+      if (!response.users || !response.users.length) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.USER_NOT_FOUND);
+      }
+    });
+    exports2.FIREBASE_AUTH_GET_ACCOUNTS_INFO = new api_request_1.ApiSettings("/accounts:lookup", "POST").setRequestValidator((request) => {
+      if (!request.localId && !request.email && !request.phoneNumber && !request.federatedUserId) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Server request is missing user identifier");
+      }
+    });
+    exports2.FIREBASE_AUTH_DELETE_ACCOUNT = new api_request_1.ApiSettings("/accounts:delete", "POST").setRequestValidator((request) => {
+      if (!request.localId) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Server request is missing user identifier");
+      }
+    });
+    exports2.FIREBASE_AUTH_BATCH_DELETE_ACCOUNTS = new api_request_1.ApiSettings("/accounts:batchDelete", "POST").setRequestValidator((request) => {
+      if (!request.localIds) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Server request is missing user identifiers");
+      }
+      if (typeof request.force === "undefined" || request.force !== true) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Server request is missing force=true field");
+      }
+    }).setResponseValidator((response) => {
+      const errors = response.errors || [];
+      errors.forEach((batchDeleteErrorInfo) => {
+        if (typeof batchDeleteErrorInfo.index === "undefined") {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Server BatchDeleteAccountResponse is missing an errors.index field");
+        }
+        if (!batchDeleteErrorInfo.localId) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Server BatchDeleteAccountResponse is missing an errors.localId field");
+        }
+      });
+    });
+    exports2.FIREBASE_AUTH_SET_ACCOUNT_INFO = new api_request_1.ApiSettings("/accounts:update", "POST").setRequestValidator((request) => {
+      if (typeof request.localId === "undefined") {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Server request is missing user identifier");
+      }
+      if (typeof request.tenantId !== "undefined") {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"tenantId" is an invalid "UpdateRequest" property.');
+      }
+      validateCreateEditRequest(request, WriteOperationType.Update);
+    }).setResponseValidator((response) => {
+      if (!response.localId) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.USER_NOT_FOUND);
+      }
+    });
+    exports2.FIREBASE_AUTH_SIGN_UP_NEW_USER = new api_request_1.ApiSettings("/accounts", "POST").setRequestValidator((request) => {
+      if (typeof request.customAttributes !== "undefined") {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"customAttributes" cannot be set when creating a new user.');
+      }
+      if (typeof request.validSince !== "undefined") {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"validSince" cannot be set when creating a new user.');
+      }
+      if (typeof request.tenantId !== "undefined") {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"tenantId" is an invalid "CreateRequest" property.');
+      }
+      validateCreateEditRequest(request, WriteOperationType.Create);
+    }).setResponseValidator((response) => {
+      if (!response.localId) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to create new user");
+      }
+    });
+    var FIREBASE_AUTH_GET_OOB_CODE = new api_request_1.ApiSettings("/accounts:sendOobCode", "POST").setRequestValidator((request) => {
+      if (!validator.isEmail(request.email)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_EMAIL);
+      }
+      if (typeof request.newEmail !== "undefined" && !validator.isEmail(request.newEmail)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_NEW_EMAIL);
+      }
+      if (exports2.EMAIL_ACTION_REQUEST_TYPES.indexOf(request.requestType) === -1) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `"${request.requestType}" is not a supported email action request type.`);
+      }
+    }).setResponseValidator((response) => {
+      if (!response.oobLink) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to create the email action link");
+      }
+    });
+    var GET_OAUTH_IDP_CONFIG = new api_request_1.ApiSettings("/oauthIdpConfigs/{providerId}", "GET").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to get OIDC configuration");
+      }
+    });
+    var DELETE_OAUTH_IDP_CONFIG = new api_request_1.ApiSettings("/oauthIdpConfigs/{providerId}", "DELETE");
+    var CREATE_OAUTH_IDP_CONFIG = new api_request_1.ApiSettings("/oauthIdpConfigs?oauthIdpConfigId={providerId}", "POST").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to create new OIDC configuration");
+      }
+    });
+    var UPDATE_OAUTH_IDP_CONFIG = new api_request_1.ApiSettings("/oauthIdpConfigs/{providerId}?updateMask={updateMask}", "PATCH").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to update OIDC configuration");
+      }
+    });
+    var LIST_OAUTH_IDP_CONFIGS = new api_request_1.ApiSettings("/oauthIdpConfigs", "GET").setRequestValidator((request) => {
+      if (typeof request.pageToken !== "undefined" && !validator.isNonEmptyString(request.pageToken)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PAGE_TOKEN);
+      }
+      if (!validator.isNumber(request.pageSize) || request.pageSize <= 0 || request.pageSize > MAX_LIST_PROVIDER_CONFIGURATION_PAGE_SIZE) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `Required "maxResults" must be a positive integer that does not exceed ${MAX_LIST_PROVIDER_CONFIGURATION_PAGE_SIZE}.`);
+      }
+    });
+    var GET_INBOUND_SAML_CONFIG = new api_request_1.ApiSettings("/inboundSamlConfigs/{providerId}", "GET").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to get SAML configuration");
+      }
+    });
+    var DELETE_INBOUND_SAML_CONFIG = new api_request_1.ApiSettings("/inboundSamlConfigs/{providerId}", "DELETE");
+    var CREATE_INBOUND_SAML_CONFIG = new api_request_1.ApiSettings("/inboundSamlConfigs?inboundSamlConfigId={providerId}", "POST").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to create new SAML configuration");
+      }
+    });
+    var UPDATE_INBOUND_SAML_CONFIG = new api_request_1.ApiSettings("/inboundSamlConfigs/{providerId}?updateMask={updateMask}", "PATCH").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to update SAML configuration");
+      }
+    });
+    var LIST_INBOUND_SAML_CONFIGS = new api_request_1.ApiSettings("/inboundSamlConfigs", "GET").setRequestValidator((request) => {
+      if (typeof request.pageToken !== "undefined" && !validator.isNonEmptyString(request.pageToken)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PAGE_TOKEN);
+      }
+      if (!validator.isNumber(request.pageSize) || request.pageSize <= 0 || request.pageSize > MAX_LIST_PROVIDER_CONFIGURATION_PAGE_SIZE) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `Required "maxResults" must be a positive integer that does not exceed ${MAX_LIST_PROVIDER_CONFIGURATION_PAGE_SIZE}.`);
+      }
+    });
+    var AbstractAuthRequestHandler = class _AbstractAuthRequestHandler {
+      /**
+       * @param response - The response to check for errors.
+       * @returns The error code if present; null otherwise.
+       */
+      static getErrorCode(response) {
+        return validator.isNonNullObject(response) && response.error && response.error.message || null;
+      }
+      static addUidToRequest(id, request) {
+        if (!validator.isUid(id.uid)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID);
+        }
+        request.localId ? request.localId.push(id.uid) : request.localId = [id.uid];
+        return request;
+      }
+      static addEmailToRequest(id, request) {
+        if (!validator.isEmail(id.email)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_EMAIL);
+        }
+        request.email ? request.email.push(id.email) : request.email = [id.email];
+        return request;
+      }
+      static addPhoneToRequest(id, request) {
+        if (!validator.isPhoneNumber(id.phoneNumber)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PHONE_NUMBER);
+        }
+        request.phoneNumber ? request.phoneNumber.push(id.phoneNumber) : request.phoneNumber = [id.phoneNumber];
+        return request;
+      }
+      static addProviderToRequest(id, request) {
+        if (!validator.isNonEmptyString(id.providerId)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID);
+        }
+        if (!validator.isNonEmptyString(id.providerUid)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_UID);
+        }
+        const federatedUserId = {
+          providerId: id.providerId,
+          rawId: id.providerUid
+        };
+        request.federatedUserId ? request.federatedUserId.push(federatedUserId) : request.federatedUserId = [federatedUserId];
+        return request;
+      }
+      /**
+       * @param app - The app used to fetch access tokens to sign API requests.
+       * @constructor
+       */
+      constructor(app) {
+        this.app = app;
+        if (typeof app !== "object" || app === null || !("options" in app)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "First argument passed to admin.auth() must be a valid Firebase app instance.");
+        }
+        this.httpClient = new AuthHttpClient(app);
+      }
+      /**
+       * Creates a new Firebase session cookie with the specified duration that can be used for
+       * session management (set as a server side session cookie with custom cookie policy).
+       * The session cookie JWT will have the same payload claims as the provided ID token.
+       *
+       * @param idToken - The Firebase ID token to exchange for a session cookie.
+       * @param expiresIn - The session cookie duration in milliseconds.
+       *
+       * @returns A promise that resolves on success with the created session cookie.
+       */
+      createSessionCookie(idToken, expiresIn) {
+        const request = {
+          idToken,
+          // Convert to seconds.
+          validDuration: expiresIn / 1e3
+        };
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_CREATE_SESSION_COOKIE, request).then((response) => response.sessionCookie);
+      }
+      /**
+       * Looks up a user by uid.
+       *
+       * @param uid - The uid of the user to lookup.
+       * @returns A promise that resolves with the user information.
+       */
+      getAccountInfoByUid(uid) {
+        if (!validator.isUid(uid)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID));
+        }
+        const request = {
+          localId: [uid]
+        };
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_GET_ACCOUNT_INFO, request);
+      }
+      /**
+       * Looks up a user by email.
+       *
+       * @param email - The email of the user to lookup.
+       * @returns A promise that resolves with the user information.
+       */
+      getAccountInfoByEmail(email) {
+        if (!validator.isEmail(email)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_EMAIL));
+        }
+        const request = {
+          email: [email]
+        };
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_GET_ACCOUNT_INFO, request);
+      }
+      /**
+       * Looks up a user by phone number.
+       *
+       * @param phoneNumber - The phone number of the user to lookup.
+       * @returns A promise that resolves with the user information.
+       */
+      getAccountInfoByPhoneNumber(phoneNumber) {
+        if (!validator.isPhoneNumber(phoneNumber)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PHONE_NUMBER));
+        }
+        const request = {
+          phoneNumber: [phoneNumber]
+        };
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_GET_ACCOUNT_INFO, request);
+      }
+      getAccountInfoByFederatedUid(providerId, rawId) {
+        if (!validator.isNonEmptyString(providerId) || !validator.isNonEmptyString(rawId)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID);
+        }
+        const request = {
+          federatedUserId: [{
+            providerId,
+            rawId
+          }]
+        };
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_GET_ACCOUNT_INFO, request);
+      }
+      /**
+       * Looks up multiple users by their identifiers (uid, email, etc).
+       *
+       * @param identifiers - The identifiers indicating the users
+       *     to be looked up. Must have <= 100 entries.
+       * @param A - promise that resolves with the set of successfully
+       *     looked up users. Possibly empty if no users were looked up.
+       */
+      getAccountInfoByIdentifiers(identifiers) {
+        if (identifiers.length === 0) {
+          return Promise.resolve({ users: [] });
+        } else if (identifiers.length > MAX_GET_ACCOUNTS_BATCH_SIZE) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MAXIMUM_USER_COUNT_EXCEEDED, "`identifiers` parameter must have <= " + MAX_GET_ACCOUNTS_BATCH_SIZE + " entries.");
+        }
+        let request = {};
+        for (const id of identifiers) {
+          if ((0, identifier_1.isUidIdentifier)(id)) {
+            request = _AbstractAuthRequestHandler.addUidToRequest(id, request);
+          } else if ((0, identifier_1.isEmailIdentifier)(id)) {
+            request = _AbstractAuthRequestHandler.addEmailToRequest(id, request);
+          } else if ((0, identifier_1.isPhoneIdentifier)(id)) {
+            request = _AbstractAuthRequestHandler.addPhoneToRequest(id, request);
+          } else if ((0, identifier_1.isProviderIdentifier)(id)) {
+            request = _AbstractAuthRequestHandler.addProviderToRequest(id, request);
+          } else {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "Unrecognized identifier: " + id);
+          }
+        }
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_GET_ACCOUNTS_INFO, request);
+      }
+      /**
+       * Exports the users (single batch only) with a size of maxResults and starting from
+       * the offset as specified by pageToken.
+       *
+       * @param maxResults - The page size, 1000 if undefined. This is also the maximum
+       *     allowed limit.
+       * @param pageToken - The next page token. If not specified, returns users starting
+       *     without any offset. Users are returned in the order they were created from oldest to
+       *     newest, relative to the page token offset.
+       * @returns A promise that resolves with the current batch of downloaded
+       *     users and the next page token if available. For the last page, an empty list of users
+       *     and no page token are returned.
+       */
+      downloadAccount(maxResults = MAX_DOWNLOAD_ACCOUNT_PAGE_SIZE, pageToken) {
+        const request = {
+          maxResults,
+          nextPageToken: pageToken
+        };
+        if (typeof request.nextPageToken === "undefined") {
+          delete request.nextPageToken;
+        }
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_DOWNLOAD_ACCOUNT, request).then((response) => {
+          if (!response.users) {
+            response.users = [];
+          }
+          return response;
+        });
+      }
+      /**
+       * Imports the list of users provided to Firebase Auth. This is useful when
+       * migrating from an external authentication system without having to use the Firebase CLI SDK.
+       * At most, 1000 users are allowed to be imported one at a time.
+       * When importing a list of password users, UserImportOptions are required to be specified.
+       *
+       * @param users - The list of user records to import to Firebase Auth.
+       * @param options - The user import options, required when the users provided
+       *     include password credentials.
+       * @returns A promise that resolves when the operation completes
+       *     with the result of the import. This includes the number of successful imports, the number
+       *     of failed uploads and their corresponding errors.
+       */
+      uploadAccount(users, options) {
+        const userImportBuilder = new user_import_builder_1.UserImportBuilder(users, options, (userRequest) => {
+          validateCreateEditRequest(userRequest, WriteOperationType.Upload);
+        });
+        const request = userImportBuilder.buildRequest();
+        if (validator.isArray(users) && users.length > MAX_UPLOAD_ACCOUNT_BATCH_SIZE) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MAXIMUM_USER_COUNT_EXCEEDED, `A maximum of ${MAX_UPLOAD_ACCOUNT_BATCH_SIZE} users can be imported at once.`);
+        }
+        if (!request.users || request.users.length === 0) {
+          return Promise.resolve(userImportBuilder.buildResponse([]));
+        }
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_UPLOAD_ACCOUNT, request).then((response) => {
+          const failedUploads = response.error || [];
+          return userImportBuilder.buildResponse(failedUploads);
+        });
+      }
+      /**
+       * Deletes an account identified by a uid.
+       *
+       * @param uid - The uid of the user to delete.
+       * @returns A promise that resolves when the user is deleted.
+       */
+      deleteAccount(uid) {
+        if (!validator.isUid(uid)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID));
+        }
+        const request = {
+          localId: uid
+        };
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_DELETE_ACCOUNT, request);
+      }
+      deleteAccounts(uids, force) {
+        if (uids.length === 0) {
+          return Promise.resolve({});
+        } else if (uids.length > MAX_DELETE_ACCOUNTS_BATCH_SIZE) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MAXIMUM_USER_COUNT_EXCEEDED, "`uids` parameter must have <= " + MAX_DELETE_ACCOUNTS_BATCH_SIZE + " entries.");
+        }
+        const request = {
+          localIds: [],
+          force
+        };
+        uids.forEach((uid) => {
+          if (!validator.isUid(uid)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID);
+          }
+          request.localIds.push(uid);
+        });
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_BATCH_DELETE_ACCOUNTS, request);
+      }
+      /**
+       * Sets additional developer claims on an existing user identified by provided UID.
+       *
+       * @param uid - The user to edit.
+       * @param customUserClaims - The developer claims to set.
+       * @returns A promise that resolves when the operation completes
+       *     with the user id that was edited.
+       */
+      setCustomUserClaims(uid, customUserClaims) {
+        if (!validator.isUid(uid)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID));
+        } else if (!validator.isObject(customUserClaims)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "CustomUserClaims argument must be an object or null."));
+        }
+        if (customUserClaims === null) {
+          customUserClaims = {};
+        }
+        const request = {
+          localId: uid,
+          customAttributes: JSON.stringify(customUserClaims)
+        };
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_SET_ACCOUNT_INFO, request).then((response) => {
+          return response.localId;
+        });
+      }
+      /**
+       * Edits an existing user.
+       *
+       * @param uid - The user to edit.
+       * @param properties - The properties to set on the user.
+       * @returns A promise that resolves when the operation completes
+       *     with the user id that was edited.
+       */
+      updateExistingAccount(uid, properties) {
+        if (!validator.isUid(uid)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID));
+        } else if (!validator.isNonNullObject(properties)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "Properties argument must be a non-null object."));
+        } else if (validator.isNonNullObject(properties.providerToLink)) {
+          if (!validator.isNonEmptyString(properties.providerToLink.providerId)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "providerToLink.providerId of properties argument must be a non-empty string.");
+          }
+          if (!validator.isNonEmptyString(properties.providerToLink.uid)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "providerToLink.uid of properties argument must be a non-empty string.");
+          }
+        } else if (typeof properties.providersToUnlink !== "undefined") {
+          if (!validator.isArray(properties.providersToUnlink)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "providersToUnlink of properties argument must be an array of strings.");
+          }
+          properties.providersToUnlink.forEach((providerId) => {
+            if (!validator.isNonEmptyString(providerId)) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "providersToUnlink of properties argument must be an array of strings.");
+            }
+          });
+        }
+        const request = (0, deep_copy_1.deepCopy)(properties);
+        request.localId = uid;
+        const deletableParams = {
+          displayName: "DISPLAY_NAME",
+          photoURL: "PHOTO_URL"
+        };
+        request.deleteAttribute = [];
+        for (const key in deletableParams) {
+          if (request[key] === null) {
+            request.deleteAttribute.push(deletableParams[key]);
+            delete request[key];
+          }
+        }
+        if (request.deleteAttribute.length === 0) {
+          delete request.deleteAttribute;
+        }
+        if (request.phoneNumber === null) {
+          request.deleteProvider ? request.deleteProvider.push("phone") : request.deleteProvider = ["phone"];
+          delete request.phoneNumber;
+        }
+        if (typeof request.providerToLink !== "undefined") {
+          request.linkProviderUserInfo = (0, deep_copy_1.deepCopy)(request.providerToLink);
+          delete request.providerToLink;
+          request.linkProviderUserInfo.rawId = request.linkProviderUserInfo.uid;
+          delete request.linkProviderUserInfo.uid;
+        }
+        if (typeof request.providersToUnlink !== "undefined") {
+          if (!validator.isArray(request.deleteProvider)) {
+            request.deleteProvider = [];
+          }
+          request.deleteProvider = request.deleteProvider.concat(request.providersToUnlink);
+          delete request.providersToUnlink;
+        }
+        if (typeof request.photoURL !== "undefined") {
+          request.photoUrl = request.photoURL;
+          delete request.photoURL;
+        }
+        if (typeof request.disabled !== "undefined") {
+          request.disableUser = request.disabled;
+          delete request.disabled;
+        }
+        if (validator.isNonNullObject(request.multiFactor)) {
+          if (request.multiFactor.enrolledFactors === null) {
+            request.mfa = {};
+          } else if (validator.isArray(request.multiFactor.enrolledFactors)) {
+            request.mfa = {
+              enrollments: []
+            };
+            try {
+              request.multiFactor.enrolledFactors.forEach((multiFactorInfo) => {
+                request.mfa.enrollments.push((0, user_import_builder_1.convertMultiFactorInfoToServerFormat)(multiFactorInfo));
+              });
+            } catch (e) {
+              return Promise.reject(e);
+            }
+            if (request.mfa.enrollments.length === 0) {
+              delete request.mfa.enrollments;
+            }
+          }
+          delete request.multiFactor;
+        }
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_SET_ACCOUNT_INFO, request).then((response) => {
+          return response.localId;
+        });
+      }
+      /**
+       * Revokes all refresh tokens for the specified user identified by the uid provided.
+       * In addition to revoking all refresh tokens for a user, all ID tokens issued
+       * before revocation will also be revoked on the Auth backend. Any request with an
+       * ID token generated before revocation will be rejected with a token expired error.
+       * Note that due to the fact that the timestamp is stored in seconds, any tokens minted in
+       * the same second as the revocation will still be valid. If there is a chance that a token
+       * was minted in the last second, delay for 1 second before revoking.
+       *
+       * @param uid - The user whose tokens are to be revoked.
+       * @returns A promise that resolves when the operation completes
+       *     successfully with the user id of the corresponding user.
+       */
+      revokeRefreshTokens(uid) {
+        if (!validator.isUid(uid)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_UID));
+        }
+        const request = {
+          localId: uid,
+          // validSince is in UTC seconds.
+          validSince: Math.floor((/* @__PURE__ */ new Date()).getTime() / 1e3)
+        };
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_SET_ACCOUNT_INFO, request).then((response) => {
+          return response.localId;
+        });
+      }
+      /**
+       * Create a new user with the properties supplied.
+       *
+       * @param properties - The properties to set on the user.
+       * @returns A promise that resolves when the operation completes
+       *     with the user id that was created.
+       */
+      createNewAccount(properties) {
+        if (!validator.isNonNullObject(properties)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "Properties argument must be a non-null object."));
+        }
+        const request = (0, deep_copy_1.deepCopy)(properties);
+        if (typeof request.photoURL !== "undefined") {
+          request.photoUrl = request.photoURL;
+          delete request.photoURL;
+        }
+        if (typeof request.uid !== "undefined") {
+          request.localId = request.uid;
+          delete request.uid;
+        }
+        if (validator.isNonNullObject(request.multiFactor)) {
+          if (validator.isNonEmptyArray(request.multiFactor.enrolledFactors)) {
+            const mfaInfo = [];
+            try {
+              request.multiFactor.enrolledFactors.forEach((multiFactorInfo) => {
+                if ("enrollmentTime" in multiFactorInfo) {
+                  throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"enrollmentTime" is not supported when adding second factors via "createUser()"');
+                } else if ("uid" in multiFactorInfo) {
+                  throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"uid" is not supported when adding second factors via "createUser()"');
+                }
+                mfaInfo.push((0, user_import_builder_1.convertMultiFactorInfoToServerFormat)(multiFactorInfo));
+              });
+            } catch (e) {
+              return Promise.reject(e);
+            }
+            request.mfaInfo = mfaInfo;
+          }
+          delete request.multiFactor;
+        }
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), exports2.FIREBASE_AUTH_SIGN_UP_NEW_USER, request).then((response) => {
+          return response.localId;
+        });
+      }
+      /**
+       * Generates the out of band email action link for the email specified using the action code settings provided.
+       * Returns a promise that resolves with the generated link.
+       *
+       * @param requestType - The request type. This could be either used for password reset,
+       *     email verification, email link sign-in.
+       * @param email - The email of the user the link is being sent to.
+       * @param actionCodeSettings - The optional action code setings which defines whether
+       *     the link is to be handled by a mobile app and the additional state information to be passed in the
+       *     deep link, etc. Required when requestType === 'EMAIL_SIGNIN'
+       * @param newEmail - The email address the account is being updated to.
+       *     Required only for VERIFY_AND_CHANGE_EMAIL requests.
+       * @returns A promise that resolves with the email action link.
+       */
+      getEmailActionLink(requestType, email, actionCodeSettings, newEmail) {
+        let request = {
+          requestType,
+          email,
+          returnOobLink: true,
+          ...typeof newEmail !== "undefined" && { newEmail }
+        };
+        if (typeof actionCodeSettings === "undefined" && requestType === "EMAIL_SIGNIN") {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "`actionCodeSettings` is required when `requestType` === 'EMAIL_SIGNIN'"));
+        }
+        if (typeof actionCodeSettings !== "undefined" || requestType === "EMAIL_SIGNIN") {
+          try {
+            const builder = new action_code_settings_builder_1.ActionCodeSettingsBuilder(actionCodeSettings);
+            request = (0, deep_copy_1.deepExtend)(request, builder.buildRequest());
+          } catch (e) {
+            return Promise.reject(e);
+          }
+        }
+        if (requestType === "VERIFY_AND_CHANGE_EMAIL" && typeof newEmail === "undefined") {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "`newEmail` is required when `requestType` === 'VERIFY_AND_CHANGE_EMAIL'"));
+        }
+        return this.invokeRequestHandler(this.getAuthUrlBuilder(), FIREBASE_AUTH_GET_OOB_CODE, request).then((response) => {
+          return response.oobLink;
+        });
+      }
+      /**
+       * Looks up an OIDC provider configuration by provider ID.
+       *
+       * @param providerId - The provider identifier of the configuration to lookup.
+       * @returns A promise that resolves with the provider configuration information.
+       */
+      getOAuthIdpConfig(providerId) {
+        if (!auth_config_1.OIDCConfig.isProviderId(providerId)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+        }
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), GET_OAUTH_IDP_CONFIG, {}, { providerId });
+      }
+      /**
+       * Lists the OIDC configurations (single batch only) with a size of maxResults and starting from
+       * the offset as specified by pageToken.
+       *
+       * @param maxResults - The page size, 100 if undefined. This is also the maximum
+       *     allowed limit.
+       * @param pageToken - The next page token. If not specified, returns OIDC configurations
+       *     without any offset. Configurations are returned in the order they were created from oldest to
+       *     newest, relative to the page token offset.
+       * @returns A promise that resolves with the current batch of downloaded
+       *     OIDC configurations and the next page token if available. For the last page, an empty list of provider
+       *     configuration and no page token are returned.
+       */
+      listOAuthIdpConfigs(maxResults = MAX_LIST_PROVIDER_CONFIGURATION_PAGE_SIZE, pageToken) {
+        const request = {
+          pageSize: maxResults
+        };
+        if (typeof pageToken !== "undefined") {
+          request.pageToken = pageToken;
+        }
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), LIST_OAUTH_IDP_CONFIGS, request).then((response) => {
+          if (!response.oauthIdpConfigs) {
+            response.oauthIdpConfigs = [];
+            delete response.nextPageToken;
+          }
+          return response;
+        });
+      }
+      /**
+       * Deletes an OIDC configuration identified by a providerId.
+       *
+       * @param providerId - The identifier of the OIDC configuration to delete.
+       * @returns A promise that resolves when the OIDC provider is deleted.
+       */
+      deleteOAuthIdpConfig(providerId) {
+        if (!auth_config_1.OIDCConfig.isProviderId(providerId)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+        }
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), DELETE_OAUTH_IDP_CONFIG, {}, { providerId }).then(() => {
+        });
+      }
+      /**
+       * Creates a new OIDC provider configuration with the properties provided.
+       *
+       * @param options - The properties to set on the new OIDC provider configuration to be created.
+       * @returns A promise that resolves with the newly created OIDC
+       *     configuration.
+       */
+      createOAuthIdpConfig(options) {
+        let request;
+        try {
+          request = auth_config_1.OIDCConfig.buildServerRequest(options) || {};
+        } catch (e) {
+          return Promise.reject(e);
+        }
+        const providerId = options.providerId;
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), CREATE_OAUTH_IDP_CONFIG, request, { providerId }).then((response) => {
+          if (!auth_config_1.OIDCConfig.getProviderIdFromResourceName(response.name)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to create new OIDC provider configuration");
+          }
+          return response;
+        });
+      }
+      /**
+       * Updates an existing OIDC provider configuration with the properties provided.
+       *
+       * @param providerId - The provider identifier of the OIDC configuration to update.
+       * @param options - The properties to update on the existing configuration.
+       * @returns A promise that resolves with the modified provider
+       *     configuration.
+       */
+      updateOAuthIdpConfig(providerId, options) {
+        if (!auth_config_1.OIDCConfig.isProviderId(providerId)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+        }
+        let request;
+        try {
+          request = auth_config_1.OIDCConfig.buildServerRequest(options, true) || {};
+        } catch (e) {
+          return Promise.reject(e);
+        }
+        const updateMask = utils.generateUpdateMask(request);
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), UPDATE_OAUTH_IDP_CONFIG, request, { providerId, updateMask: updateMask.join(",") }).then((response) => {
+          if (!auth_config_1.OIDCConfig.getProviderIdFromResourceName(response.name)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to update OIDC provider configuration");
+          }
+          return response;
+        });
+      }
+      /**
+       * Looks up an SAML provider configuration by provider ID.
+       *
+       * @param providerId - The provider identifier of the configuration to lookup.
+       * @returns A promise that resolves with the provider configuration information.
+       */
+      getInboundSamlConfig(providerId) {
+        if (!auth_config_1.SAMLConfig.isProviderId(providerId)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+        }
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), GET_INBOUND_SAML_CONFIG, {}, { providerId });
+      }
+      /**
+       * Lists the SAML configurations (single batch only) with a size of maxResults and starting from
+       * the offset as specified by pageToken.
+       *
+       * @param maxResults - The page size, 100 if undefined. This is also the maximum
+       *     allowed limit.
+       * @param pageToken - The next page token. If not specified, returns SAML configurations starting
+       *     without any offset. Configurations are returned in the order they were created from oldest to
+       *     newest, relative to the page token offset.
+       * @returns A promise that resolves with the current batch of downloaded
+       *     SAML configurations and the next page token if available. For the last page, an empty list of provider
+       *     configuration and no page token are returned.
+       */
+      listInboundSamlConfigs(maxResults = MAX_LIST_PROVIDER_CONFIGURATION_PAGE_SIZE, pageToken) {
+        const request = {
+          pageSize: maxResults
+        };
+        if (typeof pageToken !== "undefined") {
+          request.pageToken = pageToken;
+        }
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), LIST_INBOUND_SAML_CONFIGS, request).then((response) => {
+          if (!response.inboundSamlConfigs) {
+            response.inboundSamlConfigs = [];
+            delete response.nextPageToken;
+          }
+          return response;
+        });
+      }
+      /**
+       * Deletes a SAML configuration identified by a providerId.
+       *
+       * @param providerId - The identifier of the SAML configuration to delete.
+       * @returns A promise that resolves when the SAML provider is deleted.
+       */
+      deleteInboundSamlConfig(providerId) {
+        if (!auth_config_1.SAMLConfig.isProviderId(providerId)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+        }
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), DELETE_INBOUND_SAML_CONFIG, {}, { providerId }).then(() => {
+        });
+      }
+      /**
+       * Creates a new SAML provider configuration with the properties provided.
+       *
+       * @param options - The properties to set on the new SAML provider configuration to be created.
+       * @returns A promise that resolves with the newly created SAML
+       *     configuration.
+       */
+      createInboundSamlConfig(options) {
+        let request;
+        try {
+          request = auth_config_1.SAMLConfig.buildServerRequest(options) || {};
+        } catch (e) {
+          return Promise.reject(e);
+        }
+        const providerId = options.providerId;
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), CREATE_INBOUND_SAML_CONFIG, request, { providerId }).then((response) => {
+          if (!auth_config_1.SAMLConfig.getProviderIdFromResourceName(response.name)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to create new SAML provider configuration");
+          }
+          return response;
+        });
+      }
+      /**
+       * Updates an existing SAML provider configuration with the properties provided.
+       *
+       * @param providerId - The provider identifier of the SAML configuration to update.
+       * @param options - The properties to update on the existing configuration.
+       * @returns A promise that resolves with the modified provider
+       *     configuration.
+       */
+      updateInboundSamlConfig(providerId, options) {
+        if (!auth_config_1.SAMLConfig.isProviderId(providerId)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+        }
+        let request;
+        try {
+          request = auth_config_1.SAMLConfig.buildServerRequest(options, true) || {};
+        } catch (e) {
+          return Promise.reject(e);
+        }
+        const updateMask = utils.generateUpdateMask(request);
+        return this.invokeRequestHandler(this.getProjectConfigUrlBuilder(), UPDATE_INBOUND_SAML_CONFIG, request, { providerId, updateMask: updateMask.join(",") }).then((response) => {
+          if (!auth_config_1.SAMLConfig.getProviderIdFromResourceName(response.name)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to update SAML provider configuration");
+          }
+          return response;
+        });
+      }
+      /**
+       * Invokes the request handler based on the API settings object passed.
+       *
+       * @param urlBuilder - The URL builder for Auth endpoints.
+       * @param apiSettings - The API endpoint settings to apply to request and response.
+       * @param requestData - The request data.
+       * @param additionalResourceParams - Additional resource related params if needed.
+       * @returns A promise that resolves with the response.
+       */
+      invokeRequestHandler(urlBuilder, apiSettings, requestData, additionalResourceParams) {
+        return urlBuilder.getUrl(apiSettings.getEndpoint(), additionalResourceParams).then((url) => {
+          if (requestData) {
+            const requestValidator = apiSettings.getRequestValidator();
+            requestValidator(requestData);
+          }
+          const req = {
+            method: apiSettings.getHttpMethod(),
+            url,
+            headers: FIREBASE_AUTH_HEADER,
+            data: requestData,
+            timeout: FIREBASE_AUTH_TIMEOUT
+          };
+          return this.httpClient.send(req);
+        }).then((response) => {
+          const responseValidator = apiSettings.getResponseValidator();
+          responseValidator(response.data);
+          return response.data;
+        }).catch((err) => {
+          if (err instanceof api_request_1.HttpError) {
+            const error = err.response.data;
+            const errorCode = _AbstractAuthRequestHandler.getErrorCode(error);
+            if (!errorCode) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "Error returned from server: " + error + ". Additionally, an internal error occurred while attempting to extract the errorcode from the error.");
+            }
+            throw error_1.FirebaseAuthError.fromServerError(
+              errorCode,
+              /* message */
+              void 0,
+              error
+            );
+          }
+          throw err;
+        });
+      }
+      /**
+       * @returns The current Auth user management resource URL builder.
+       */
+      getAuthUrlBuilder() {
+        if (!this.authUrlBuilder) {
+          this.authUrlBuilder = this.newAuthUrlBuilder();
+        }
+        return this.authUrlBuilder;
+      }
+      /**
+       * @returns The current project config resource URL builder.
+       */
+      getProjectConfigUrlBuilder() {
+        if (!this.projectConfigUrlBuilder) {
+          this.projectConfigUrlBuilder = this.newProjectConfigUrlBuilder();
+        }
+        return this.projectConfigUrlBuilder;
+      }
+    };
+    exports2.AbstractAuthRequestHandler = AbstractAuthRequestHandler;
+    var GET_PROJECT_CONFIG = new api_request_1.ApiSettings("/config", "GET").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to get project config");
+      }
+    });
+    var UPDATE_PROJECT_CONFIG = new api_request_1.ApiSettings("/config?updateMask={updateMask}", "PATCH").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to update project config");
+      }
+    });
+    var GET_TENANT = new api_request_1.ApiSettings("/tenants/{tenantId}", "GET").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to get tenant");
+      }
+    });
+    var DELETE_TENANT = new api_request_1.ApiSettings("/tenants/{tenantId}", "DELETE");
+    var UPDATE_TENANT = new api_request_1.ApiSettings("/tenants/{tenantId}?updateMask={updateMask}", "PATCH").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name) || !tenant_1.Tenant.getTenantIdFromResourceName(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to update tenant");
+      }
+    });
+    var LIST_TENANTS = new api_request_1.ApiSettings("/tenants", "GET").setRequestValidator((request) => {
+      if (typeof request.pageToken !== "undefined" && !validator.isNonEmptyString(request.pageToken)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PAGE_TOKEN);
+      }
+      if (!validator.isNumber(request.pageSize) || request.pageSize <= 0 || request.pageSize > MAX_LIST_TENANT_PAGE_SIZE) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `Required "maxResults" must be a positive non-zero number that does not exceed the allowed ${MAX_LIST_TENANT_PAGE_SIZE}.`);
+      }
+    });
+    var CREATE_TENANT = new api_request_1.ApiSettings("/tenants", "POST").setResponseValidator((response) => {
+      if (!validator.isNonEmptyString(response.name) || !tenant_1.Tenant.getTenantIdFromResourceName(response.name)) {
+        throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Unable to create new tenant");
+      }
+    });
+    var AuthRequestHandler = class extends AbstractAuthRequestHandler {
+      /**
+       * The FirebaseAuthRequestHandler constructor used to initialize an instance using a FirebaseApp.
+       *
+       * @param app - The app used to fetch access tokens to sign API requests.
+       * @constructor
+       */
+      constructor(app) {
+        super(app);
+        this.authResourceUrlBuilder = new AuthResourceUrlBuilder(app, "v2");
+      }
+      /**
+       * @returns A new Auth user management resource URL builder instance.
+       */
+      newAuthUrlBuilder() {
+        return new AuthResourceUrlBuilder(this.app, "v1");
+      }
+      /**
+       * @returns A new project config resource URL builder instance.
+       */
+      newProjectConfigUrlBuilder() {
+        return new AuthResourceUrlBuilder(this.app, "v2");
+      }
+      /**
+       * Get the current project's config
+       * @returns A promise that resolves with the project config information.
+       */
+      getProjectConfig() {
+        return this.invokeRequestHandler(this.authResourceUrlBuilder, GET_PROJECT_CONFIG, {}, {}).then((response) => {
+          return response;
+        });
+      }
+      /**
+       * Update the current project's config.
+       * @returns A promise that resolves with the project config information.
+       */
+      updateProjectConfig(options) {
+        try {
+          const request = project_config_1.ProjectConfig.buildServerRequest(options);
+          const updateMask = utils.generateUpdateMask(request);
+          return this.invokeRequestHandler(this.authResourceUrlBuilder, UPDATE_PROJECT_CONFIG, request, { updateMask: updateMask.join(",") }).then((response) => {
+            return response;
+          });
+        } catch (e) {
+          return Promise.reject(e);
+        }
+      }
+      /**
+       * Looks up a tenant by tenant ID.
+       *
+       * @param tenantId - The tenant identifier of the tenant to lookup.
+       * @returns A promise that resolves with the tenant information.
+       */
+      getTenant(tenantId) {
+        if (!validator.isNonEmptyString(tenantId)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_TENANT_ID));
+        }
+        return this.invokeRequestHandler(this.authResourceUrlBuilder, GET_TENANT, {}, { tenantId }).then((response) => {
+          return response;
+        });
+      }
+      /**
+       * Exports the tenants (single batch only) with a size of maxResults and starting from
+       * the offset as specified by pageToken.
+       *
+       * @param maxResults - The page size, 1000 if undefined. This is also the maximum
+       *     allowed limit.
+       * @param pageToken - The next page token. If not specified, returns tenants starting
+       *     without any offset. Tenants are returned in the order they were created from oldest to
+       *     newest, relative to the page token offset.
+       * @returns A promise that resolves with the current batch of downloaded
+       *     tenants and the next page token if available. For the last page, an empty list of tenants
+       *     and no page token are returned.
+       */
+      listTenants(maxResults = MAX_LIST_TENANT_PAGE_SIZE, pageToken) {
+        const request = {
+          pageSize: maxResults,
+          pageToken
+        };
+        if (typeof request.pageToken === "undefined") {
+          delete request.pageToken;
+        }
+        return this.invokeRequestHandler(this.authResourceUrlBuilder, LIST_TENANTS, request).then((response) => {
+          if (!response.tenants) {
+            response.tenants = [];
+            delete response.nextPageToken;
+          }
+          return response;
+        });
+      }
+      /**
+       * Deletes a tenant identified by a tenantId.
+       *
+       * @param tenantId - The identifier of the tenant to delete.
+       * @returns A promise that resolves when the tenant is deleted.
+       */
+      deleteTenant(tenantId) {
+        if (!validator.isNonEmptyString(tenantId)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_TENANT_ID));
+        }
+        return this.invokeRequestHandler(this.authResourceUrlBuilder, DELETE_TENANT, void 0, { tenantId }).then(() => {
+        });
+      }
+      /**
+       * Creates a new tenant with the properties provided.
+       *
+       * @param tenantOptions - The properties to set on the new tenant to be created.
+       * @returns A promise that resolves with the newly created tenant object.
+       */
+      createTenant(tenantOptions) {
+        try {
+          const request = tenant_1.Tenant.buildServerRequest(tenantOptions, true);
+          return this.invokeRequestHandler(this.authResourceUrlBuilder, CREATE_TENANT, request).then((response) => {
+            return response;
+          });
+        } catch (e) {
+          return Promise.reject(e);
+        }
+      }
+      /**
+       * Updates an existing tenant with the properties provided.
+       *
+       * @param tenantId - The tenant identifier of the tenant to update.
+       * @param tenantOptions - The properties to update on the existing tenant.
+       * @returns A promise that resolves with the modified tenant object.
+       */
+      updateTenant(tenantId, tenantOptions) {
+        if (!validator.isNonEmptyString(tenantId)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_TENANT_ID));
+        }
+        try {
+          const request = tenant_1.Tenant.buildServerRequest(tenantOptions, false);
+          const updateMask = utils.generateUpdateMask(request, ["testPhoneNumbers"]);
+          return this.invokeRequestHandler(this.authResourceUrlBuilder, UPDATE_TENANT, request, { tenantId, updateMask: updateMask.join(",") }).then((response) => {
+            return response;
+          });
+        } catch (e) {
+          return Promise.reject(e);
+        }
+      }
+    };
+    exports2.AuthRequestHandler = AuthRequestHandler;
+    var TenantAwareAuthRequestHandler = class extends AbstractAuthRequestHandler {
+      /**
+       * The FirebaseTenantRequestHandler constructor used to initialize an instance using a
+       * FirebaseApp and a tenant ID.
+       *
+       * @param app - The app used to fetch access tokens to sign API requests.
+       * @param tenantId - The request handler's tenant ID.
+       * @constructor
+       */
+      constructor(app, tenantId) {
+        super(app);
+        this.tenantId = tenantId;
+      }
+      /**
+       * @returns A new Auth user management resource URL builder instance.
+       */
+      newAuthUrlBuilder() {
+        return new TenantAwareAuthResourceUrlBuilder(this.app, "v1", this.tenantId);
+      }
+      /**
+       * @returns A new project config resource URL builder instance.
+       */
+      newProjectConfigUrlBuilder() {
+        return new TenantAwareAuthResourceUrlBuilder(this.app, "v2", this.tenantId);
+      }
+      /**
+       * Imports the list of users provided to Firebase Auth. This is useful when
+       * migrating from an external authentication system without having to use the Firebase CLI SDK.
+       * At most, 1000 users are allowed to be imported one at a time.
+       * When importing a list of password users, UserImportOptions are required to be specified.
+       *
+       * Overrides the superclass methods by adding an additional check to match tenant IDs of
+       * imported user records if present.
+       *
+       * @param users - The list of user records to import to Firebase Auth.
+       * @param options - The user import options, required when the users provided
+       *     include password credentials.
+       * @returns A promise that resolves when the operation completes
+       *     with the result of the import. This includes the number of successful imports, the number
+       *     of failed uploads and their corresponding errors.
+       */
+      uploadAccount(users, options) {
+        users.forEach((user, index) => {
+          if (validator.isNonEmptyString(user.tenantId) && user.tenantId !== this.tenantId) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MISMATCHING_TENANT_ID, `UserRecord of index "${index}" has mismatching tenant ID "${user.tenantId}"`);
+          }
+        });
+        return super.uploadAccount(users, options);
+      }
+    };
+    exports2.TenantAwareAuthRequestHandler = TenantAwareAuthRequestHandler;
+    function emulatorHost() {
+      return process.env.FIREBASE_AUTH_EMULATOR_HOST;
+    }
+    function useEmulator() {
+      return !!emulatorHost();
+    }
+    exports2.useEmulator = useEmulator;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/utils/crypto-signer.js
+var require_crypto_signer = __commonJS({
+  "../../node_modules/firebase-admin/lib/utils/crypto-signer.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.CryptoSignerErrorCode = exports2.CryptoSignerError = exports2.cryptoSignerFromApp = exports2.IAMSigner = exports2.ServiceAccountSigner = void 0;
+    var credential_internal_1 = require_credential_internal();
+    var api_request_1 = require_api_request();
+    var validator = require_validator();
+    var ALGORITHM_RS256 = "RS256";
+    var ServiceAccountSigner = class {
+      /**
+       * Creates a new CryptoSigner instance from the given service account credential.
+       *
+       * @param credential - A service account credential.
+       */
+      constructor(credential) {
+        this.credential = credential;
+        this.algorithm = ALGORITHM_RS256;
+        if (!credential) {
+          throw new CryptoSignerError({
+            code: CryptoSignerErrorCode.INVALID_CREDENTIAL,
+            message: "INTERNAL ASSERT: Must provide a service account credential to initialize ServiceAccountSigner."
+          });
+        }
+      }
+      /**
+       * @inheritDoc
+       */
+      sign(buffer) {
+        const crypto6 = require("crypto");
+        const sign = crypto6.createSign("RSA-SHA256");
+        sign.update(buffer);
+        return Promise.resolve(sign.sign(this.credential.privateKey));
+      }
+      /**
+       * @inheritDoc
+       */
+      getAccountId() {
+        return Promise.resolve(this.credential.clientEmail);
+      }
+    };
+    exports2.ServiceAccountSigner = ServiceAccountSigner;
+    var IAMSigner = class {
+      constructor(httpClient, serviceAccountId) {
+        this.algorithm = ALGORITHM_RS256;
+        if (!httpClient) {
+          throw new CryptoSignerError({
+            code: CryptoSignerErrorCode.INVALID_ARGUMENT,
+            message: "INTERNAL ASSERT: Must provide a HTTP client to initialize IAMSigner."
+          });
+        }
+        if (typeof serviceAccountId !== "undefined" && !validator.isNonEmptyString(serviceAccountId)) {
+          throw new CryptoSignerError({
+            code: CryptoSignerErrorCode.INVALID_ARGUMENT,
+            message: "INTERNAL ASSERT: Service account ID must be undefined or a non-empty string."
+          });
+        }
+        this.httpClient = httpClient;
+        this.serviceAccountId = serviceAccountId;
+      }
+      /**
+       * @inheritDoc
+       */
+      sign(buffer) {
+        return this.getAccountId().then((serviceAccount) => {
+          const request = {
+            method: "POST",
+            url: `https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${serviceAccount}:signBlob`,
+            data: { payload: buffer.toString("base64") }
+          };
+          return this.httpClient.send(request);
+        }).then((response) => {
+          return Buffer.from(response.data.signedBlob, "base64");
+        }).catch((err) => {
+          if (err instanceof api_request_1.HttpError) {
+            throw new CryptoSignerError({
+              code: CryptoSignerErrorCode.SERVER_ERROR,
+              message: err.message,
+              cause: err
+            });
+          }
+          throw err;
+        });
+      }
+      /**
+       * @inheritDoc
+       */
+      getAccountId() {
+        if (validator.isNonEmptyString(this.serviceAccountId)) {
+          return Promise.resolve(this.serviceAccountId);
+        }
+        const request = {
+          method: "GET",
+          url: "http://metadata/computeMetadata/v1/instance/service-accounts/default/email",
+          headers: {
+            "Metadata-Flavor": "Google"
+          }
+        };
+        const client = new api_request_1.HttpClient();
+        return client.send(request).then((response) => {
+          if (!response.text) {
+            throw new CryptoSignerError({
+              code: CryptoSignerErrorCode.INTERNAL_ERROR,
+              message: "HTTP Response missing payload"
+            });
+          }
+          this.serviceAccountId = response.text;
+          return response.text;
+        }).catch((err) => {
+          throw new CryptoSignerError({
+            code: CryptoSignerErrorCode.INVALID_CREDENTIAL,
+            message: `Failed to determine service account. Make sure to initialize the SDK with a service account credential. Alternatively specify a service account with iam.serviceAccounts.signBlob permission. Original error: ${err}`
+          });
+        });
+      }
+    };
+    exports2.IAMSigner = IAMSigner;
+    function cryptoSignerFromApp(app) {
+      const credential = app.options.credential;
+      if (credential instanceof credential_internal_1.ServiceAccountCredential) {
+        return new ServiceAccountSigner(credential);
+      }
+      return new IAMSigner(new api_request_1.AuthorizedHttpClient(app), app.options.serviceAccountId);
+    }
+    exports2.cryptoSignerFromApp = cryptoSignerFromApp;
+    var CryptoSignerError = class _CryptoSignerError extends Error {
+      constructor(errorInfo) {
+        super(errorInfo.message);
+        this.errorInfo = errorInfo;
+        this.__proto__ = _CryptoSignerError.prototype;
+      }
+      /** @returns The error code. */
+      get code() {
+        return this.errorInfo.code;
+      }
+      /** @returns The error message. */
+      get message() {
+        return this.errorInfo.message;
+      }
+      /** @returns The error data. */
+      get cause() {
+        return this.errorInfo.cause;
+      }
+    };
+    exports2.CryptoSignerError = CryptoSignerError;
+    var CryptoSignerErrorCode = class {
+    };
+    exports2.CryptoSignerErrorCode = CryptoSignerErrorCode;
+    CryptoSignerErrorCode.INVALID_ARGUMENT = "invalid-argument";
+    CryptoSignerErrorCode.INTERNAL_ERROR = "internal-error";
+    CryptoSignerErrorCode.INVALID_CREDENTIAL = "invalid-credential";
+    CryptoSignerErrorCode.SERVER_ERROR = "server-error";
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/token-generator.js
+var require_token_generator = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/token-generator.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.handleCryptoSignerError = exports2.FirebaseTokenGenerator = exports2.EmulatedSigner = exports2.BLACKLISTED_CLAIMS = void 0;
+    var error_1 = require_error();
+    var crypto_signer_1 = require_crypto_signer();
+    var validator = require_validator();
+    var utils_1 = require_utils3();
+    var ALGORITHM_NONE = "none";
+    var ONE_HOUR_IN_SECONDS = 60 * 60;
+    exports2.BLACKLISTED_CLAIMS = [
+      "acr",
+      "amr",
+      "at_hash",
+      "aud",
+      "auth_time",
+      "azp",
+      "cnf",
+      "c_hash",
+      "exp",
+      "iat",
+      "iss",
+      "jti",
+      "nbf",
+      "nonce"
+    ];
+    var FIREBASE_AUDIENCE = "https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit";
+    var EmulatedSigner = class {
+      constructor() {
+        this.algorithm = ALGORITHM_NONE;
+      }
+      /**
+       * @inheritDoc
+       */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      sign(buffer) {
+        return Promise.resolve(Buffer.from(""));
+      }
+      /**
+       * @inheritDoc
+       */
+      getAccountId() {
+        return Promise.resolve("firebase-auth-emulator@example.com");
+      }
+    };
+    exports2.EmulatedSigner = EmulatedSigner;
+    var FirebaseTokenGenerator = class {
+      /**
+       * @param tenantId - The tenant ID to use for the generated Firebase Auth
+       *     Custom token. If absent, then no tenant ID claim will be set in the
+       *     resulting JWT.
+       */
+      constructor(signer, tenantId) {
+        this.tenantId = tenantId;
+        if (!validator.isNonNullObject(signer)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CREDENTIAL, "INTERNAL ASSERT: Must provide a CryptoSigner to use FirebaseTokenGenerator.");
+        }
+        if (typeof this.tenantId !== "undefined" && !validator.isNonEmptyString(this.tenantId)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "`tenantId` argument must be a non-empty string.");
+        }
+        this.signer = signer;
+      }
+      /**
+       * Creates a new Firebase Auth Custom token.
+       *
+       * @param uid - The user ID to use for the generated Firebase Auth Custom token.
+       * @param developerClaims - Optional developer claims to include in the generated Firebase
+       *     Auth Custom token.
+       * @returns A Promise fulfilled with a Firebase Auth Custom token signed with a
+       *     service account key and containing the provided payload.
+       */
+      createCustomToken(uid, developerClaims) {
+        let errorMessage;
+        if (!validator.isNonEmptyString(uid)) {
+          errorMessage = "`uid` argument must be a non-empty string uid.";
+        } else if (uid.length > 128) {
+          errorMessage = "`uid` argument must a uid with less than or equal to 128 characters.";
+        } else if (!this.isDeveloperClaimsValid_(developerClaims)) {
+          errorMessage = "`developerClaims` argument must be a valid, non-null object containing the developer claims.";
+        }
+        if (errorMessage) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, errorMessage);
+        }
+        const claims = {};
+        if (typeof developerClaims !== "undefined") {
+          for (const key in developerClaims) {
+            if (Object.prototype.hasOwnProperty.call(developerClaims, key)) {
+              if (exports2.BLACKLISTED_CLAIMS.indexOf(key) !== -1) {
+                throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `Developer claim "${key}" is reserved and cannot be specified.`);
+              }
+              claims[key] = developerClaims[key];
+            }
+          }
+        }
+        return this.signer.getAccountId().then((account) => {
+          const header = {
+            alg: this.signer.algorithm,
+            typ: "JWT"
+          };
+          const iat = Math.floor(Date.now() / 1e3);
+          const body = {
+            aud: FIREBASE_AUDIENCE,
+            iat,
+            exp: iat + ONE_HOUR_IN_SECONDS,
+            iss: account,
+            sub: account,
+            uid
+          };
+          if (this.tenantId) {
+            body.tenant_id = this.tenantId;
+          }
+          if (Object.keys(claims).length > 0) {
+            body.claims = claims;
+          }
+          const token = `${this.encodeSegment(header)}.${this.encodeSegment(body)}`;
+          const signPromise = this.signer.sign(Buffer.from(token));
+          return Promise.all([token, signPromise]);
+        }).then(([token, signature]) => {
+          return `${token}.${this.encodeSegment(signature)}`;
+        }).catch((err) => {
+          throw handleCryptoSignerError(err);
+        });
+      }
+      encodeSegment(segment) {
+        const buffer = segment instanceof Buffer ? segment : Buffer.from(JSON.stringify(segment));
+        return (0, utils_1.toWebSafeBase64)(buffer).replace(/=+$/, "");
+      }
+      /**
+       * Returns whether or not the provided developer claims are valid.
+       *
+       * @param developerClaims - Optional developer claims to validate.
+       * @returns True if the provided claims are valid; otherwise, false.
+       */
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      isDeveloperClaimsValid_(developerClaims) {
+        if (typeof developerClaims === "undefined") {
+          return true;
+        }
+        return validator.isNonNullObject(developerClaims);
+      }
+    };
+    exports2.FirebaseTokenGenerator = FirebaseTokenGenerator;
+    function handleCryptoSignerError(err) {
+      if (!(err instanceof crypto_signer_1.CryptoSignerError)) {
+        return err;
+      }
+      if (err.code === crypto_signer_1.CryptoSignerErrorCode.SERVER_ERROR && validator.isNonNullObject(err.cause)) {
+        const httpError = err.cause;
+        const errorResponse = httpError.response.data;
+        if (validator.isNonNullObject(errorResponse) && errorResponse.error) {
+          const errorCode = errorResponse.error.status;
+          const description = "Please refer to https://firebase.google.com/docs/auth/admin/create-custom-tokens for more details on how to use and troubleshoot this feature.";
+          const errorMsg = `${errorResponse.error.message}; ${description}`;
+          return error_1.FirebaseAuthError.fromServerError(errorCode, errorMsg, errorResponse);
+        }
+        return new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "Error returned from server: " + errorResponse + ". Additionally, an internal error occurred while attempting to extract the errorcode from the error.");
+      }
+      return new error_1.FirebaseAuthError(mapToAuthClientErrorCode(err.code), err.message);
+    }
+    exports2.handleCryptoSignerError = handleCryptoSignerError;
+    function mapToAuthClientErrorCode(code) {
+      switch (code) {
+        case crypto_signer_1.CryptoSignerErrorCode.INVALID_CREDENTIAL:
+          return error_1.AuthClientErrorCode.INVALID_CREDENTIAL;
+        case crypto_signer_1.CryptoSignerErrorCode.INVALID_ARGUMENT:
+          return error_1.AuthClientErrorCode.INVALID_ARGUMENT;
+        default:
+          return error_1.AuthClientErrorCode.INTERNAL_ERROR;
+      }
+    }
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/digest.js
+var require_digest = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/digest.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var digest = (algorithm, data) => (0, crypto_1.createHash)(algorithm).update(data).digest();
+    exports2.default = digest;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/buffer_utils.js
+var require_buffer_utils = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/buffer_utils.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.concatKdf = exports2.lengthAndInput = exports2.uint32be = exports2.uint64be = exports2.p2s = exports2.concat = exports2.decoder = exports2.encoder = void 0;
+    var digest_js_1 = require_digest();
+    exports2.encoder = new TextEncoder();
+    exports2.decoder = new TextDecoder();
+    var MAX_INT32 = 2 ** 32;
+    function concat(...buffers) {
+      const size = buffers.reduce((acc, { length }) => acc + length, 0);
+      const buf = new Uint8Array(size);
+      let i = 0;
+      buffers.forEach((buffer) => {
+        buf.set(buffer, i);
+        i += buffer.length;
+      });
+      return buf;
+    }
+    exports2.concat = concat;
+    function p2s(alg, p2sInput) {
+      return concat(exports2.encoder.encode(alg), new Uint8Array([0]), p2sInput);
+    }
+    exports2.p2s = p2s;
+    function writeUInt32BE(buf, value, offset) {
+      if (value < 0 || value >= MAX_INT32) {
+        throw new RangeError(`value must be >= 0 and <= ${MAX_INT32 - 1}. Received ${value}`);
+      }
+      buf.set([value >>> 24, value >>> 16, value >>> 8, value & 255], offset);
+    }
+    function uint64be(value) {
+      const high = Math.floor(value / MAX_INT32);
+      const low = value % MAX_INT32;
+      const buf = new Uint8Array(8);
+      writeUInt32BE(buf, high, 0);
+      writeUInt32BE(buf, low, 4);
+      return buf;
+    }
+    exports2.uint64be = uint64be;
+    function uint32be(value) {
+      const buf = new Uint8Array(4);
+      writeUInt32BE(buf, value);
+      return buf;
+    }
+    exports2.uint32be = uint32be;
+    function lengthAndInput(input) {
+      return concat(uint32be(input.length), input);
+    }
+    exports2.lengthAndInput = lengthAndInput;
+    async function concatKdf(secret, bits, value) {
+      const iterations = Math.ceil((bits >> 3) / 32);
+      const res = new Uint8Array(iterations * 32);
+      for (let iter = 0; iter < iterations; iter++) {
+        const buf = new Uint8Array(4 + secret.length + value.length);
+        buf.set(uint32be(iter + 1));
+        buf.set(secret, 4);
+        buf.set(value, 4 + secret.length);
+        res.set(await (0, digest_js_1.default)("sha256", buf), iter * 32);
+      }
+      return res.slice(0, bits >> 3);
+    }
+    exports2.concatKdf = concatKdf;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/base64url.js
+var require_base64url = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/base64url.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.decode = exports2.encode = exports2.encodeBase64 = exports2.decodeBase64 = void 0;
+    var buffer_1 = require("buffer");
+    var buffer_utils_js_1 = require_buffer_utils();
+    var encode;
+    function normalize(input) {
+      let encoded = input;
+      if (encoded instanceof Uint8Array) {
+        encoded = buffer_utils_js_1.decoder.decode(encoded);
+      }
+      return encoded;
+    }
+    if (buffer_1.Buffer.isEncoding("base64url")) {
+      exports2.encode = encode = (input) => buffer_1.Buffer.from(input).toString("base64url");
+    } else {
+      exports2.encode = encode = (input) => buffer_1.Buffer.from(input).toString("base64").replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+    }
+    var decodeBase64 = (input) => buffer_1.Buffer.from(input, "base64");
+    exports2.decodeBase64 = decodeBase64;
+    var encodeBase64 = (input) => buffer_1.Buffer.from(input).toString("base64");
+    exports2.encodeBase64 = encodeBase64;
+    var decode = (input) => buffer_1.Buffer.from(normalize(input), "base64");
+    exports2.decode = decode;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/util/errors.js
+var require_errors2 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/util/errors.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.JWSSignatureVerificationFailed = exports2.JWKSTimeout = exports2.JWKSMultipleMatchingKeys = exports2.JWKSNoMatchingKey = exports2.JWKSInvalid = exports2.JWKInvalid = exports2.JWTInvalid = exports2.JWSInvalid = exports2.JWEInvalid = exports2.JWEDecompressionFailed = exports2.JWEDecryptionFailed = exports2.JOSENotSupported = exports2.JOSEAlgNotAllowed = exports2.JWTExpired = exports2.JWTClaimValidationFailed = exports2.JOSEError = void 0;
+    var JOSEError = class extends Error {
+      static get code() {
+        return "ERR_JOSE_GENERIC";
+      }
+      constructor(message) {
+        var _a;
+        super(message);
+        this.code = "ERR_JOSE_GENERIC";
+        this.name = this.constructor.name;
+        (_a = Error.captureStackTrace) === null || _a === void 0 ? void 0 : _a.call(Error, this, this.constructor);
+      }
+    };
+    exports2.JOSEError = JOSEError;
+    var JWTClaimValidationFailed = class extends JOSEError {
+      static get code() {
+        return "ERR_JWT_CLAIM_VALIDATION_FAILED";
+      }
+      constructor(message, claim = "unspecified", reason = "unspecified") {
+        super(message);
+        this.code = "ERR_JWT_CLAIM_VALIDATION_FAILED";
+        this.claim = claim;
+        this.reason = reason;
+      }
+    };
+    exports2.JWTClaimValidationFailed = JWTClaimValidationFailed;
+    var JWTExpired = class extends JOSEError {
+      static get code() {
+        return "ERR_JWT_EXPIRED";
+      }
+      constructor(message, claim = "unspecified", reason = "unspecified") {
+        super(message);
+        this.code = "ERR_JWT_EXPIRED";
+        this.claim = claim;
+        this.reason = reason;
+      }
+    };
+    exports2.JWTExpired = JWTExpired;
+    var JOSEAlgNotAllowed = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JOSE_ALG_NOT_ALLOWED";
+      }
+      static get code() {
+        return "ERR_JOSE_ALG_NOT_ALLOWED";
+      }
+    };
+    exports2.JOSEAlgNotAllowed = JOSEAlgNotAllowed;
+    var JOSENotSupported = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JOSE_NOT_SUPPORTED";
+      }
+      static get code() {
+        return "ERR_JOSE_NOT_SUPPORTED";
+      }
+    };
+    exports2.JOSENotSupported = JOSENotSupported;
+    var JWEDecryptionFailed = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWE_DECRYPTION_FAILED";
+        this.message = "decryption operation failed";
+      }
+      static get code() {
+        return "ERR_JWE_DECRYPTION_FAILED";
+      }
+    };
+    exports2.JWEDecryptionFailed = JWEDecryptionFailed;
+    var JWEDecompressionFailed = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWE_DECOMPRESSION_FAILED";
+        this.message = "decompression operation failed";
+      }
+      static get code() {
+        return "ERR_JWE_DECOMPRESSION_FAILED";
+      }
+    };
+    exports2.JWEDecompressionFailed = JWEDecompressionFailed;
+    var JWEInvalid = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWE_INVALID";
+      }
+      static get code() {
+        return "ERR_JWE_INVALID";
+      }
+    };
+    exports2.JWEInvalid = JWEInvalid;
+    var JWSInvalid = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWS_INVALID";
+      }
+      static get code() {
+        return "ERR_JWS_INVALID";
+      }
+    };
+    exports2.JWSInvalid = JWSInvalid;
+    var JWTInvalid = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWT_INVALID";
+      }
+      static get code() {
+        return "ERR_JWT_INVALID";
+      }
+    };
+    exports2.JWTInvalid = JWTInvalid;
+    var JWKInvalid = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWK_INVALID";
+      }
+      static get code() {
+        return "ERR_JWK_INVALID";
+      }
+    };
+    exports2.JWKInvalid = JWKInvalid;
+    var JWKSInvalid = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWKS_INVALID";
+      }
+      static get code() {
+        return "ERR_JWKS_INVALID";
+      }
+    };
+    exports2.JWKSInvalid = JWKSInvalid;
+    var JWKSNoMatchingKey = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWKS_NO_MATCHING_KEY";
+        this.message = "no applicable key found in the JSON Web Key Set";
+      }
+      static get code() {
+        return "ERR_JWKS_NO_MATCHING_KEY";
+      }
+    };
+    exports2.JWKSNoMatchingKey = JWKSNoMatchingKey;
+    var JWKSMultipleMatchingKeys = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWKS_MULTIPLE_MATCHING_KEYS";
+        this.message = "multiple matching keys found in the JSON Web Key Set";
+      }
+      static get code() {
+        return "ERR_JWKS_MULTIPLE_MATCHING_KEYS";
+      }
+    };
+    exports2.JWKSMultipleMatchingKeys = JWKSMultipleMatchingKeys;
+    var JWKSTimeout = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWKS_TIMEOUT";
+        this.message = "request timed out";
+      }
+      static get code() {
+        return "ERR_JWKS_TIMEOUT";
+      }
+    };
+    exports2.JWKSTimeout = JWKSTimeout;
+    var JWSSignatureVerificationFailed = class extends JOSEError {
+      constructor() {
+        super(...arguments);
+        this.code = "ERR_JWS_SIGNATURE_VERIFICATION_FAILED";
+        this.message = "signature verification failed";
+      }
+      static get code() {
+        return "ERR_JWS_SIGNATURE_VERIFICATION_FAILED";
+      }
+    };
+    exports2.JWSSignatureVerificationFailed = JWSSignatureVerificationFailed;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/random.js
+var require_random2 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/random.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.default = void 0;
+    var crypto_1 = require("crypto");
+    Object.defineProperty(exports2, "default", { enumerable: true, get: function() {
+      return crypto_1.randomFillSync;
+    } });
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/iv.js
+var require_iv = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/iv.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.bitLength = void 0;
+    var errors_js_1 = require_errors2();
+    var random_js_1 = require_random2();
+    function bitLength(alg) {
+      switch (alg) {
+        case "A128GCM":
+        case "A128GCMKW":
+        case "A192GCM":
+        case "A192GCMKW":
+        case "A256GCM":
+        case "A256GCMKW":
+          return 96;
+        case "A128CBC-HS256":
+        case "A192CBC-HS384":
+        case "A256CBC-HS512":
+          return 128;
+        default:
+          throw new errors_js_1.JOSENotSupported(`Unsupported JWE Algorithm: ${alg}`);
+      }
+    }
+    exports2.bitLength = bitLength;
+    exports2.default = (alg) => (0, random_js_1.default)(new Uint8Array(bitLength(alg) >> 3));
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/check_iv_length.js
+var require_check_iv_length = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/check_iv_length.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var errors_js_1 = require_errors2();
+    var iv_js_1 = require_iv();
+    var checkIvLength = (enc, iv) => {
+      if (iv.length << 3 !== (0, iv_js_1.bitLength)(enc)) {
+        throw new errors_js_1.JWEInvalid("Invalid Initialization Vector length");
+      }
+    };
+    exports2.default = checkIvLength;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/is_key_object.js
+var require_is_key_object = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/is_key_object.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var util = require("util");
+    exports2.default = util.types.isKeyObject ? (obj) => util.types.isKeyObject(obj) : (obj) => obj != null && obj instanceof crypto_1.KeyObject;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/check_cek_length.js
+var require_check_cek_length = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/check_cek_length.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var errors_js_1 = require_errors2();
+    var is_key_object_js_1 = require_is_key_object();
+    var checkCekLength = (enc, cek) => {
+      let expected;
+      switch (enc) {
+        case "A128CBC-HS256":
+        case "A192CBC-HS384":
+        case "A256CBC-HS512":
+          expected = parseInt(enc.slice(-3), 10);
+          break;
+        case "A128GCM":
+        case "A192GCM":
+        case "A256GCM":
+          expected = parseInt(enc.slice(1, 4), 10);
+          break;
+        default:
+          throw new errors_js_1.JOSENotSupported(`Content Encryption Algorithm ${enc} is not supported either by JOSE or your javascript runtime`);
+      }
+      if (cek instanceof Uint8Array) {
+        const actual = cek.byteLength << 3;
+        if (actual !== expected) {
+          throw new errors_js_1.JWEInvalid(`Invalid Content Encryption Key length. Expected ${expected} bits, got ${actual} bits`);
+        }
+        return;
+      }
+      if ((0, is_key_object_js_1.default)(cek) && cek.type === "secret") {
+        const actual = cek.symmetricKeySize << 3;
+        if (actual !== expected) {
+          throw new errors_js_1.JWEInvalid(`Invalid Content Encryption Key length. Expected ${expected} bits, got ${actual} bits`);
+        }
+        return;
+      }
+      throw new TypeError("Invalid Content Encryption Key type");
+    };
+    exports2.default = checkCekLength;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/timing_safe_equal.js
+var require_timing_safe_equal = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/timing_safe_equal.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var timingSafeEqual = crypto_1.timingSafeEqual;
+    exports2.default = timingSafeEqual;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/cbc_tag.js
+var require_cbc_tag = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/cbc_tag.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var buffer_utils_js_1 = require_buffer_utils();
+    function cbcTag(aad, iv, ciphertext, macSize, macKey, keySize) {
+      const macData = (0, buffer_utils_js_1.concat)(aad, iv, ciphertext, (0, buffer_utils_js_1.uint64be)(aad.length << 3));
+      const hmac = (0, crypto_1.createHmac)(`sha${macSize}`, macKey);
+      hmac.update(macData);
+      return hmac.digest().slice(0, keySize >> 3);
+    }
+    exports2.default = cbcTag;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/webcrypto.js
+var require_webcrypto = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/webcrypto.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.isCryptoKey = void 0;
+    var crypto6 = require("crypto");
+    var util = require("util");
+    var webcrypto = crypto6.webcrypto;
+    exports2.default = webcrypto;
+    exports2.isCryptoKey = util.types.isCryptoKey ? (key) => util.types.isCryptoKey(key) : (key) => false;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/crypto_key.js
+var require_crypto_key = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/crypto_key.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.checkEncCryptoKey = exports2.checkSigCryptoKey = void 0;
+    function unusable(name, prop = "algorithm.name") {
+      return new TypeError(`CryptoKey does not support this operation, its ${prop} must be ${name}`);
+    }
+    function isAlgorithm(algorithm, name) {
+      return algorithm.name === name;
+    }
+    function getHashLength(hash) {
+      return parseInt(hash.name.slice(4), 10);
+    }
+    function getNamedCurve(alg) {
+      switch (alg) {
+        case "ES256":
+          return "P-256";
+        case "ES384":
+          return "P-384";
+        case "ES512":
+          return "P-521";
+        default:
+          throw new Error("unreachable");
+      }
+    }
+    function checkUsage(key, usages) {
+      if (usages.length && !usages.some((expected) => key.usages.includes(expected))) {
+        let msg = "CryptoKey does not support this operation, its usages must include ";
+        if (usages.length > 2) {
+          const last = usages.pop();
+          msg += `one of ${usages.join(", ")}, or ${last}.`;
+        } else if (usages.length === 2) {
+          msg += `one of ${usages[0]} or ${usages[1]}.`;
+        } else {
+          msg += `${usages[0]}.`;
+        }
+        throw new TypeError(msg);
+      }
+    }
+    function checkSigCryptoKey(key, alg, ...usages) {
+      switch (alg) {
+        case "HS256":
+        case "HS384":
+        case "HS512": {
+          if (!isAlgorithm(key.algorithm, "HMAC"))
+            throw unusable("HMAC");
+          const expected = parseInt(alg.slice(2), 10);
+          const actual = getHashLength(key.algorithm.hash);
+          if (actual !== expected)
+            throw unusable(`SHA-${expected}`, "algorithm.hash");
+          break;
+        }
+        case "RS256":
+        case "RS384":
+        case "RS512": {
+          if (!isAlgorithm(key.algorithm, "RSASSA-PKCS1-v1_5"))
+            throw unusable("RSASSA-PKCS1-v1_5");
+          const expected = parseInt(alg.slice(2), 10);
+          const actual = getHashLength(key.algorithm.hash);
+          if (actual !== expected)
+            throw unusable(`SHA-${expected}`, "algorithm.hash");
+          break;
+        }
+        case "PS256":
+        case "PS384":
+        case "PS512": {
+          if (!isAlgorithm(key.algorithm, "RSA-PSS"))
+            throw unusable("RSA-PSS");
+          const expected = parseInt(alg.slice(2), 10);
+          const actual = getHashLength(key.algorithm.hash);
+          if (actual !== expected)
+            throw unusable(`SHA-${expected}`, "algorithm.hash");
+          break;
+        }
+        case "EdDSA": {
+          if (key.algorithm.name !== "Ed25519" && key.algorithm.name !== "Ed448") {
+            throw unusable("Ed25519 or Ed448");
+          }
+          break;
+        }
+        case "ES256":
+        case "ES384":
+        case "ES512": {
+          if (!isAlgorithm(key.algorithm, "ECDSA"))
+            throw unusable("ECDSA");
+          const expected = getNamedCurve(alg);
+          const actual = key.algorithm.namedCurve;
+          if (actual !== expected)
+            throw unusable(expected, "algorithm.namedCurve");
+          break;
+        }
+        default:
+          throw new TypeError("CryptoKey does not support this operation");
+      }
+      checkUsage(key, usages);
+    }
+    exports2.checkSigCryptoKey = checkSigCryptoKey;
+    function checkEncCryptoKey(key, alg, ...usages) {
+      switch (alg) {
+        case "A128GCM":
+        case "A192GCM":
+        case "A256GCM": {
+          if (!isAlgorithm(key.algorithm, "AES-GCM"))
+            throw unusable("AES-GCM");
+          const expected = parseInt(alg.slice(1, 4), 10);
+          const actual = key.algorithm.length;
+          if (actual !== expected)
+            throw unusable(expected, "algorithm.length");
+          break;
+        }
+        case "A128KW":
+        case "A192KW":
+        case "A256KW": {
+          if (!isAlgorithm(key.algorithm, "AES-KW"))
+            throw unusable("AES-KW");
+          const expected = parseInt(alg.slice(1, 4), 10);
+          const actual = key.algorithm.length;
+          if (actual !== expected)
+            throw unusable(expected, "algorithm.length");
+          break;
+        }
+        case "ECDH": {
+          switch (key.algorithm.name) {
+            case "ECDH":
+            case "X25519":
+            case "X448":
+              break;
+            default:
+              throw unusable("ECDH, X25519, or X448");
+          }
+          break;
+        }
+        case "PBES2-HS256+A128KW":
+        case "PBES2-HS384+A192KW":
+        case "PBES2-HS512+A256KW":
+          if (!isAlgorithm(key.algorithm, "PBKDF2"))
+            throw unusable("PBKDF2");
+          break;
+        case "RSA-OAEP":
+        case "RSA-OAEP-256":
+        case "RSA-OAEP-384":
+        case "RSA-OAEP-512": {
+          if (!isAlgorithm(key.algorithm, "RSA-OAEP"))
+            throw unusable("RSA-OAEP");
+          const expected = parseInt(alg.slice(9), 10) || 1;
+          const actual = getHashLength(key.algorithm.hash);
+          if (actual !== expected)
+            throw unusable(`SHA-${expected}`, "algorithm.hash");
+          break;
+        }
+        default:
+          throw new TypeError("CryptoKey does not support this operation");
+      }
+      checkUsage(key, usages);
+    }
+    exports2.checkEncCryptoKey = checkEncCryptoKey;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/invalid_key_input.js
+var require_invalid_key_input = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/invalid_key_input.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.withAlg = void 0;
+    function message(msg, actual, ...types) {
+      if (types.length > 2) {
+        const last = types.pop();
+        msg += `one of type ${types.join(", ")}, or ${last}.`;
+      } else if (types.length === 2) {
+        msg += `one of type ${types[0]} or ${types[1]}.`;
+      } else {
+        msg += `of type ${types[0]}.`;
+      }
+      if (actual == null) {
+        msg += ` Received ${actual}`;
+      } else if (typeof actual === "function" && actual.name) {
+        msg += ` Received function ${actual.name}`;
+      } else if (typeof actual === "object" && actual != null) {
+        if (actual.constructor && actual.constructor.name) {
+          msg += ` Received an instance of ${actual.constructor.name}`;
+        }
+      }
+      return msg;
+    }
+    exports2.default = (actual, ...types) => {
+      return message("Key must be ", actual, ...types);
+    };
+    function withAlg(alg, actual, ...types) {
+      return message(`Key for the ${alg} algorithm must be `, actual, ...types);
+    }
+    exports2.withAlg = withAlg;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/ciphers.js
+var require_ciphers = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/ciphers.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var ciphers;
+    exports2.default = (algorithm) => {
+      ciphers || (ciphers = new Set((0, crypto_1.getCiphers)()));
+      return ciphers.has(algorithm);
+    };
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/is_key_like.js
+var require_is_key_like = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/is_key_like.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.types = void 0;
+    var webcrypto_js_1 = require_webcrypto();
+    var is_key_object_js_1 = require_is_key_object();
+    exports2.default = (key) => (0, is_key_object_js_1.default)(key) || (0, webcrypto_js_1.isCryptoKey)(key);
+    var types = ["KeyObject"];
+    exports2.types = types;
+    if (globalThis.CryptoKey || (webcrypto_js_1.default === null || webcrypto_js_1.default === void 0 ? void 0 : webcrypto_js_1.default.CryptoKey)) {
+      types.push("CryptoKey");
+    }
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/decrypt.js
+var require_decrypt = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/decrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var check_iv_length_js_1 = require_check_iv_length();
+    var check_cek_length_js_1 = require_check_cek_length();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var errors_js_1 = require_errors2();
+    var timing_safe_equal_js_1 = require_timing_safe_equal();
+    var cbc_tag_js_1 = require_cbc_tag();
+    var webcrypto_js_1 = require_webcrypto();
+    var crypto_key_js_1 = require_crypto_key();
+    var is_key_object_js_1 = require_is_key_object();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var ciphers_js_1 = require_ciphers();
+    var is_key_like_js_1 = require_is_key_like();
+    function cbcDecrypt(enc, cek, ciphertext, iv, tag, aad) {
+      const keySize = parseInt(enc.slice(1, 4), 10);
+      if ((0, is_key_object_js_1.default)(cek)) {
+        cek = cek.export();
+      }
+      const encKey = cek.subarray(keySize >> 3);
+      const macKey = cek.subarray(0, keySize >> 3);
+      const macSize = parseInt(enc.slice(-3), 10);
+      const algorithm = `aes-${keySize}-cbc`;
+      if (!(0, ciphers_js_1.default)(algorithm)) {
+        throw new errors_js_1.JOSENotSupported(`alg ${enc} is not supported by your javascript runtime`);
+      }
+      const expectedTag = (0, cbc_tag_js_1.default)(aad, iv, ciphertext, macSize, macKey, keySize);
+      let macCheckPassed;
+      try {
+        macCheckPassed = (0, timing_safe_equal_js_1.default)(tag, expectedTag);
+      } catch {
+      }
+      if (!macCheckPassed) {
+        throw new errors_js_1.JWEDecryptionFailed();
+      }
+      let plaintext;
+      try {
+        const decipher = (0, crypto_1.createDecipheriv)(algorithm, encKey, iv);
+        plaintext = (0, buffer_utils_js_1.concat)(decipher.update(ciphertext), decipher.final());
+      } catch {
+      }
+      if (!plaintext) {
+        throw new errors_js_1.JWEDecryptionFailed();
+      }
+      return plaintext;
+    }
+    function gcmDecrypt(enc, cek, ciphertext, iv, tag, aad) {
+      const keySize = parseInt(enc.slice(1, 4), 10);
+      const algorithm = `aes-${keySize}-gcm`;
+      if (!(0, ciphers_js_1.default)(algorithm)) {
+        throw new errors_js_1.JOSENotSupported(`alg ${enc} is not supported by your javascript runtime`);
+      }
+      try {
+        const decipher = (0, crypto_1.createDecipheriv)(algorithm, cek, iv, { authTagLength: 16 });
+        decipher.setAuthTag(tag);
+        if (aad.byteLength) {
+          decipher.setAAD(aad, { plaintextLength: ciphertext.length });
+        }
+        const plaintext = decipher.update(ciphertext);
+        decipher.final();
+        return plaintext;
+      } catch {
+        throw new errors_js_1.JWEDecryptionFailed();
+      }
+    }
+    var decrypt = (enc, cek, ciphertext, iv, tag, aad) => {
+      let key;
+      if ((0, webcrypto_js_1.isCryptoKey)(cek)) {
+        (0, crypto_key_js_1.checkEncCryptoKey)(cek, enc, "decrypt");
+        key = crypto_1.KeyObject.from(cek);
+      } else if (cek instanceof Uint8Array || (0, is_key_object_js_1.default)(cek)) {
+        key = cek;
+      } else {
+        throw new TypeError((0, invalid_key_input_js_1.default)(cek, ...is_key_like_js_1.types, "Uint8Array"));
+      }
+      (0, check_cek_length_js_1.default)(enc, key);
+      (0, check_iv_length_js_1.default)(enc, iv);
+      switch (enc) {
+        case "A128CBC-HS256":
+        case "A192CBC-HS384":
+        case "A256CBC-HS512":
+          return cbcDecrypt(enc, key, ciphertext, iv, tag, aad);
+        case "A128GCM":
+        case "A192GCM":
+        case "A256GCM":
+          return gcmDecrypt(enc, key, ciphertext, iv, tag, aad);
+        default:
+          throw new errors_js_1.JOSENotSupported("Unsupported JWE Content Encryption Algorithm");
+      }
+    };
+    exports2.default = decrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/zlib.js
+var require_zlib = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/zlib.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.deflate = exports2.inflate = void 0;
+    var util_1 = require("util");
+    var zlib_1 = require("zlib");
+    var errors_js_1 = require_errors2();
+    var inflateRaw = (0, util_1.promisify)(zlib_1.inflateRaw);
+    var deflateRaw = (0, util_1.promisify)(zlib_1.deflateRaw);
+    var inflate = (input) => inflateRaw(input, { maxOutputLength: 25e4 }).catch(() => {
+      throw new errors_js_1.JWEDecompressionFailed();
+    });
+    exports2.inflate = inflate;
+    var deflate = (input) => deflateRaw(input);
+    exports2.deflate = deflate;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/is_disjoint.js
+var require_is_disjoint = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/is_disjoint.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var isDisjoint = (...headers) => {
+      const sources = headers.filter(Boolean);
+      if (sources.length === 0 || sources.length === 1) {
+        return true;
+      }
+      let acc;
+      for (const header of sources) {
+        const parameters = Object.keys(header);
+        if (!acc || acc.size === 0) {
+          acc = new Set(parameters);
+          continue;
+        }
+        for (const parameter of parameters) {
+          if (acc.has(parameter)) {
+            return false;
+          }
+          acc.add(parameter);
+        }
+      }
+      return true;
+    };
+    exports2.default = isDisjoint;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/is_object.js
+var require_is_object = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/is_object.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    function isObjectLike(value) {
+      return typeof value === "object" && value !== null;
+    }
+    function isObject(input) {
+      if (!isObjectLike(input) || Object.prototype.toString.call(input) !== "[object Object]") {
+        return false;
+      }
+      if (Object.getPrototypeOf(input) === null) {
+        return true;
+      }
+      let proto = input;
+      while (Object.getPrototypeOf(proto) !== null) {
+        proto = Object.getPrototypeOf(proto);
+      }
+      return Object.getPrototypeOf(input) === proto;
+    }
+    exports2.default = isObject;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/aeskw.js
+var require_aeskw = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/aeskw.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.unwrap = exports2.wrap = void 0;
+    var buffer_1 = require("buffer");
+    var crypto_1 = require("crypto");
+    var errors_js_1 = require_errors2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var webcrypto_js_1 = require_webcrypto();
+    var crypto_key_js_1 = require_crypto_key();
+    var is_key_object_js_1 = require_is_key_object();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var ciphers_js_1 = require_ciphers();
+    var is_key_like_js_1 = require_is_key_like();
+    function checkKeySize(key, alg) {
+      if (key.symmetricKeySize << 3 !== parseInt(alg.slice(1, 4), 10)) {
+        throw new TypeError(`Invalid key size for alg: ${alg}`);
+      }
+    }
+    function ensureKeyObject(key, alg, usage) {
+      if ((0, is_key_object_js_1.default)(key)) {
+        return key;
+      }
+      if (key instanceof Uint8Array) {
+        return (0, crypto_1.createSecretKey)(key);
+      }
+      if ((0, webcrypto_js_1.isCryptoKey)(key)) {
+        (0, crypto_key_js_1.checkEncCryptoKey)(key, alg, usage);
+        return crypto_1.KeyObject.from(key);
+      }
+      throw new TypeError((0, invalid_key_input_js_1.default)(key, ...is_key_like_js_1.types, "Uint8Array"));
+    }
+    var wrap = (alg, key, cek) => {
+      const size = parseInt(alg.slice(1, 4), 10);
+      const algorithm = `aes${size}-wrap`;
+      if (!(0, ciphers_js_1.default)(algorithm)) {
+        throw new errors_js_1.JOSENotSupported(`alg ${alg} is not supported either by JOSE or your javascript runtime`);
+      }
+      const keyObject = ensureKeyObject(key, alg, "wrapKey");
+      checkKeySize(keyObject, alg);
+      const cipher = (0, crypto_1.createCipheriv)(algorithm, keyObject, buffer_1.Buffer.alloc(8, 166));
+      return (0, buffer_utils_js_1.concat)(cipher.update(cek), cipher.final());
+    };
+    exports2.wrap = wrap;
+    var unwrap = (alg, key, encryptedKey) => {
+      const size = parseInt(alg.slice(1, 4), 10);
+      const algorithm = `aes${size}-wrap`;
+      if (!(0, ciphers_js_1.default)(algorithm)) {
+        throw new errors_js_1.JOSENotSupported(`alg ${alg} is not supported either by JOSE or your javascript runtime`);
+      }
+      const keyObject = ensureKeyObject(key, alg, "unwrapKey");
+      checkKeySize(keyObject, alg);
+      const cipher = (0, crypto_1.createDecipheriv)(algorithm, keyObject, buffer_1.Buffer.alloc(8, 166));
+      return (0, buffer_utils_js_1.concat)(cipher.update(encryptedKey), cipher.final());
+    };
+    exports2.unwrap = unwrap;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/get_named_curve.js
+var require_get_named_curve = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/get_named_curve.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.setCurve = exports2.weakMap = void 0;
+    var buffer_1 = require("buffer");
+    var crypto_1 = require("crypto");
+    var errors_js_1 = require_errors2();
+    var webcrypto_js_1 = require_webcrypto();
+    var is_key_object_js_1 = require_is_key_object();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var is_key_like_js_1 = require_is_key_like();
+    var p256 = buffer_1.Buffer.from([42, 134, 72, 206, 61, 3, 1, 7]);
+    var p384 = buffer_1.Buffer.from([43, 129, 4, 0, 34]);
+    var p521 = buffer_1.Buffer.from([43, 129, 4, 0, 35]);
+    var secp256k1 = buffer_1.Buffer.from([43, 129, 4, 0, 10]);
+    exports2.weakMap = /* @__PURE__ */ new WeakMap();
+    var namedCurveToJOSE = (namedCurve) => {
+      switch (namedCurve) {
+        case "prime256v1":
+          return "P-256";
+        case "secp384r1":
+          return "P-384";
+        case "secp521r1":
+          return "P-521";
+        case "secp256k1":
+          return "secp256k1";
+        default:
+          throw new errors_js_1.JOSENotSupported("Unsupported key curve for this operation");
+      }
+    };
+    var getNamedCurve = (kee, raw) => {
+      var _a;
+      let key;
+      if ((0, webcrypto_js_1.isCryptoKey)(kee)) {
+        key = crypto_1.KeyObject.from(kee);
+      } else if ((0, is_key_object_js_1.default)(kee)) {
+        key = kee;
+      } else {
+        throw new TypeError((0, invalid_key_input_js_1.default)(kee, ...is_key_like_js_1.types));
+      }
+      if (key.type === "secret") {
+        throw new TypeError('only "private" or "public" type keys can be used for this operation');
+      }
+      switch (key.asymmetricKeyType) {
+        case "ed25519":
+        case "ed448":
+          return `Ed${key.asymmetricKeyType.slice(2)}`;
+        case "x25519":
+        case "x448":
+          return `X${key.asymmetricKeyType.slice(1)}`;
+        case "ec": {
+          if (exports2.weakMap.has(key)) {
+            return exports2.weakMap.get(key);
+          }
+          let namedCurve = (_a = key.asymmetricKeyDetails) === null || _a === void 0 ? void 0 : _a.namedCurve;
+          if (!namedCurve && key.type === "private") {
+            namedCurve = getNamedCurve((0, crypto_1.createPublicKey)(key), true);
+          } else if (!namedCurve) {
+            const buf = key.export({ format: "der", type: "spki" });
+            const i = buf[1] < 128 ? 14 : 15;
+            const len = buf[i];
+            const curveOid = buf.slice(i + 1, i + 1 + len);
+            if (curveOid.equals(p256)) {
+              namedCurve = "prime256v1";
+            } else if (curveOid.equals(p384)) {
+              namedCurve = "secp384r1";
+            } else if (curveOid.equals(p521)) {
+              namedCurve = "secp521r1";
+            } else if (curveOid.equals(secp256k1)) {
+              namedCurve = "secp256k1";
+            } else {
+              throw new errors_js_1.JOSENotSupported("Unsupported key curve for this operation");
+            }
+          }
+          if (raw)
+            return namedCurve;
+          const curve = namedCurveToJOSE(namedCurve);
+          exports2.weakMap.set(key, curve);
+          return curve;
+        }
+        default:
+          throw new TypeError("Invalid asymmetric key type for this operation");
+      }
+    };
+    function setCurve(keyObject, curve) {
+      exports2.weakMap.set(keyObject, curve);
+    }
+    exports2.setCurve = setCurve;
+    exports2.default = getNamedCurve;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/ecdhes.js
+var require_ecdhes = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/ecdhes.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ecdhAllowed = exports2.generateEpk = exports2.deriveKey = void 0;
+    var crypto_1 = require("crypto");
+    var util_1 = require("util");
+    var get_named_curve_js_1 = require_get_named_curve();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var errors_js_1 = require_errors2();
+    var webcrypto_js_1 = require_webcrypto();
+    var crypto_key_js_1 = require_crypto_key();
+    var is_key_object_js_1 = require_is_key_object();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var is_key_like_js_1 = require_is_key_like();
+    var generateKeyPair = (0, util_1.promisify)(crypto_1.generateKeyPair);
+    async function deriveKey(publicKee, privateKee, algorithm, keyLength, apu = new Uint8Array(0), apv = new Uint8Array(0)) {
+      let publicKey;
+      if ((0, webcrypto_js_1.isCryptoKey)(publicKee)) {
+        (0, crypto_key_js_1.checkEncCryptoKey)(publicKee, "ECDH");
+        publicKey = crypto_1.KeyObject.from(publicKee);
+      } else if ((0, is_key_object_js_1.default)(publicKee)) {
+        publicKey = publicKee;
+      } else {
+        throw new TypeError((0, invalid_key_input_js_1.default)(publicKee, ...is_key_like_js_1.types));
+      }
+      let privateKey;
+      if ((0, webcrypto_js_1.isCryptoKey)(privateKee)) {
+        (0, crypto_key_js_1.checkEncCryptoKey)(privateKee, "ECDH", "deriveBits");
+        privateKey = crypto_1.KeyObject.from(privateKee);
+      } else if ((0, is_key_object_js_1.default)(privateKee)) {
+        privateKey = privateKee;
+      } else {
+        throw new TypeError((0, invalid_key_input_js_1.default)(privateKee, ...is_key_like_js_1.types));
+      }
+      const value = (0, buffer_utils_js_1.concat)((0, buffer_utils_js_1.lengthAndInput)(buffer_utils_js_1.encoder.encode(algorithm)), (0, buffer_utils_js_1.lengthAndInput)(apu), (0, buffer_utils_js_1.lengthAndInput)(apv), (0, buffer_utils_js_1.uint32be)(keyLength));
+      const sharedSecret = (0, crypto_1.diffieHellman)({ privateKey, publicKey });
+      return (0, buffer_utils_js_1.concatKdf)(sharedSecret, keyLength, value);
+    }
+    exports2.deriveKey = deriveKey;
+    async function generateEpk(kee) {
+      let key;
+      if ((0, webcrypto_js_1.isCryptoKey)(kee)) {
+        key = crypto_1.KeyObject.from(kee);
+      } else if ((0, is_key_object_js_1.default)(kee)) {
+        key = kee;
+      } else {
+        throw new TypeError((0, invalid_key_input_js_1.default)(kee, ...is_key_like_js_1.types));
+      }
+      switch (key.asymmetricKeyType) {
+        case "x25519":
+          return generateKeyPair("x25519");
+        case "x448": {
+          return generateKeyPair("x448");
+        }
+        case "ec": {
+          const namedCurve = (0, get_named_curve_js_1.default)(key);
+          return generateKeyPair("ec", { namedCurve });
+        }
+        default:
+          throw new errors_js_1.JOSENotSupported("Invalid or unsupported EPK");
+      }
+    }
+    exports2.generateEpk = generateEpk;
+    var ecdhAllowed = (key) => ["P-256", "P-384", "P-521", "X25519", "X448"].includes((0, get_named_curve_js_1.default)(key));
+    exports2.ecdhAllowed = ecdhAllowed;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/check_p2s.js
+var require_check_p2s = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/check_p2s.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var errors_js_1 = require_errors2();
+    function checkP2s(p2s) {
+      if (!(p2s instanceof Uint8Array) || p2s.length < 8) {
+        throw new errors_js_1.JWEInvalid("PBES2 Salt Input must be 8 or more octets");
+      }
+    }
+    exports2.default = checkP2s;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/pbes2kw.js
+var require_pbes2kw = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/pbes2kw.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.decrypt = exports2.encrypt = void 0;
+    var util_1 = require("util");
+    var crypto_1 = require("crypto");
+    var random_js_1 = require_random2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var base64url_js_1 = require_base64url();
+    var aeskw_js_1 = require_aeskw();
+    var check_p2s_js_1 = require_check_p2s();
+    var webcrypto_js_1 = require_webcrypto();
+    var crypto_key_js_1 = require_crypto_key();
+    var is_key_object_js_1 = require_is_key_object();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var is_key_like_js_1 = require_is_key_like();
+    var pbkdf2 = (0, util_1.promisify)(crypto_1.pbkdf2);
+    function getPassword(key, alg) {
+      if ((0, is_key_object_js_1.default)(key)) {
+        return key.export();
+      }
+      if (key instanceof Uint8Array) {
+        return key;
+      }
+      if ((0, webcrypto_js_1.isCryptoKey)(key)) {
+        (0, crypto_key_js_1.checkEncCryptoKey)(key, alg, "deriveBits", "deriveKey");
+        return crypto_1.KeyObject.from(key).export();
+      }
+      throw new TypeError((0, invalid_key_input_js_1.default)(key, ...is_key_like_js_1.types, "Uint8Array"));
+    }
+    var encrypt = async (alg, key, cek, p2c = 2048, p2s = (0, random_js_1.default)(new Uint8Array(16))) => {
+      (0, check_p2s_js_1.default)(p2s);
+      const salt = (0, buffer_utils_js_1.p2s)(alg, p2s);
+      const keylen = parseInt(alg.slice(13, 16), 10) >> 3;
+      const password = getPassword(key, alg);
+      const derivedKey = await pbkdf2(password, salt, p2c, keylen, `sha${alg.slice(8, 11)}`);
+      const encryptedKey = await (0, aeskw_js_1.wrap)(alg.slice(-6), derivedKey, cek);
+      return { encryptedKey, p2c, p2s: (0, base64url_js_1.encode)(p2s) };
+    };
+    exports2.encrypt = encrypt;
+    var decrypt = async (alg, key, encryptedKey, p2c, p2s) => {
+      (0, check_p2s_js_1.default)(p2s);
+      const salt = (0, buffer_utils_js_1.p2s)(alg, p2s);
+      const keylen = parseInt(alg.slice(13, 16), 10) >> 3;
+      const password = getPassword(key, alg);
+      const derivedKey = await pbkdf2(password, salt, p2c, keylen, `sha${alg.slice(8, 11)}`);
+      return (0, aeskw_js_1.unwrap)(alg.slice(-6), derivedKey, encryptedKey);
+    };
+    exports2.decrypt = decrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/check_modulus_length.js
+var require_check_modulus_length = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/check_modulus_length.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.setModulusLength = exports2.weakMap = void 0;
+    exports2.weakMap = /* @__PURE__ */ new WeakMap();
+    var getLength = (buf, index) => {
+      let len = buf.readUInt8(1);
+      if ((len & 128) === 0) {
+        if (index === 0) {
+          return len;
+        }
+        return getLength(buf.subarray(2 + len), index - 1);
+      }
+      const num = len & 127;
+      len = 0;
+      for (let i = 0; i < num; i++) {
+        len <<= 8;
+        const j = buf.readUInt8(2 + i);
+        len |= j;
+      }
+      if (index === 0) {
+        return len;
+      }
+      return getLength(buf.subarray(2 + len), index - 1);
+    };
+    var getLengthOfSeqIndex = (sequence, index) => {
+      const len = sequence.readUInt8(1);
+      if ((len & 128) === 0) {
+        return getLength(sequence.subarray(2), index);
+      }
+      const num = len & 127;
+      return getLength(sequence.subarray(2 + num), index);
+    };
+    var getModulusLength = (key) => {
+      var _a, _b;
+      if (exports2.weakMap.has(key)) {
+        return exports2.weakMap.get(key);
+      }
+      const modulusLength = (_b = (_a = key.asymmetricKeyDetails) === null || _a === void 0 ? void 0 : _a.modulusLength) !== null && _b !== void 0 ? _b : getLengthOfSeqIndex(key.export({ format: "der", type: "pkcs1" }), key.type === "private" ? 1 : 0) - 1 << 3;
+      exports2.weakMap.set(key, modulusLength);
+      return modulusLength;
+    };
+    var setModulusLength = (keyObject, modulusLength) => {
+      exports2.weakMap.set(keyObject, modulusLength);
+    };
+    exports2.setModulusLength = setModulusLength;
+    exports2.default = (key, alg) => {
+      if (getModulusLength(key) < 2048) {
+        throw new TypeError(`${alg} requires key modulusLength to be 2048 bits or larger`);
+      }
+    };
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/rsaes.js
+var require_rsaes = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/rsaes.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.decrypt = exports2.encrypt = void 0;
+    var crypto_1 = require("crypto");
+    var check_modulus_length_js_1 = require_check_modulus_length();
+    var webcrypto_js_1 = require_webcrypto();
+    var crypto_key_js_1 = require_crypto_key();
+    var is_key_object_js_1 = require_is_key_object();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var is_key_like_js_1 = require_is_key_like();
+    var checkKey = (key, alg) => {
+      if (key.asymmetricKeyType !== "rsa") {
+        throw new TypeError("Invalid key for this operation, its asymmetricKeyType must be rsa");
+      }
+      (0, check_modulus_length_js_1.default)(key, alg);
+    };
+    var resolvePadding = (alg) => {
+      switch (alg) {
+        case "RSA-OAEP":
+        case "RSA-OAEP-256":
+        case "RSA-OAEP-384":
+        case "RSA-OAEP-512":
+          return crypto_1.constants.RSA_PKCS1_OAEP_PADDING;
+        case "RSA1_5":
+          return crypto_1.constants.RSA_PKCS1_PADDING;
+        default:
+          return void 0;
+      }
+    };
+    var resolveOaepHash = (alg) => {
+      switch (alg) {
+        case "RSA-OAEP":
+          return "sha1";
+        case "RSA-OAEP-256":
+          return "sha256";
+        case "RSA-OAEP-384":
+          return "sha384";
+        case "RSA-OAEP-512":
+          return "sha512";
+        default:
+          return void 0;
+      }
+    };
+    function ensureKeyObject(key, alg, ...usages) {
+      if ((0, is_key_object_js_1.default)(key)) {
+        return key;
+      }
+      if ((0, webcrypto_js_1.isCryptoKey)(key)) {
+        (0, crypto_key_js_1.checkEncCryptoKey)(key, alg, ...usages);
+        return crypto_1.KeyObject.from(key);
+      }
+      throw new TypeError((0, invalid_key_input_js_1.default)(key, ...is_key_like_js_1.types));
+    }
+    var encrypt = (alg, key, cek) => {
+      const padding = resolvePadding(alg);
+      const oaepHash = resolveOaepHash(alg);
+      const keyObject = ensureKeyObject(key, alg, "wrapKey", "encrypt");
+      checkKey(keyObject, alg);
+      return (0, crypto_1.publicEncrypt)({ key: keyObject, oaepHash, padding }, cek);
+    };
+    exports2.encrypt = encrypt;
+    var decrypt = (alg, key, encryptedKey) => {
+      const padding = resolvePadding(alg);
+      const oaepHash = resolveOaepHash(alg);
+      const keyObject = ensureKeyObject(key, alg, "unwrapKey", "decrypt");
+      checkKey(keyObject, alg);
+      return (0, crypto_1.privateDecrypt)({ key: keyObject, oaepHash, padding }, encryptedKey);
+    };
+    exports2.decrypt = decrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/cek.js
+var require_cek = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/cek.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.bitLength = void 0;
+    var errors_js_1 = require_errors2();
+    var random_js_1 = require_random2();
+    function bitLength(alg) {
+      switch (alg) {
+        case "A128GCM":
+          return 128;
+        case "A192GCM":
+          return 192;
+        case "A256GCM":
+        case "A128CBC-HS256":
+          return 256;
+        case "A192CBC-HS384":
+          return 384;
+        case "A256CBC-HS512":
+          return 512;
+        default:
+          throw new errors_js_1.JOSENotSupported(`Unsupported JWE Algorithm: ${alg}`);
+      }
+    }
+    exports2.bitLength = bitLength;
+    exports2.default = (alg) => (0, random_js_1.default)(new Uint8Array(bitLength(alg) >> 3));
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/asn1.js
+var require_asn12 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/asn1.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.fromX509 = exports2.fromSPKI = exports2.fromPKCS8 = exports2.toPKCS8 = exports2.toSPKI = void 0;
+    var crypto_1 = require("crypto");
+    var buffer_1 = require("buffer");
+    var webcrypto_js_1 = require_webcrypto();
+    var is_key_object_js_1 = require_is_key_object();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var is_key_like_js_1 = require_is_key_like();
+    var genericExport = (keyType, keyFormat, key) => {
+      let keyObject;
+      if ((0, webcrypto_js_1.isCryptoKey)(key)) {
+        if (!key.extractable) {
+          throw new TypeError("CryptoKey is not extractable");
+        }
+        keyObject = crypto_1.KeyObject.from(key);
+      } else if ((0, is_key_object_js_1.default)(key)) {
+        keyObject = key;
+      } else {
+        throw new TypeError((0, invalid_key_input_js_1.default)(key, ...is_key_like_js_1.types));
+      }
+      if (keyObject.type !== keyType) {
+        throw new TypeError(`key is not a ${keyType} key`);
+      }
+      return keyObject.export({ format: "pem", type: keyFormat });
+    };
+    var toSPKI = (key) => {
+      return genericExport("public", "spki", key);
+    };
+    exports2.toSPKI = toSPKI;
+    var toPKCS8 = (key) => {
+      return genericExport("private", "pkcs8", key);
+    };
+    exports2.toPKCS8 = toPKCS8;
+    var fromPKCS8 = (pem) => (0, crypto_1.createPrivateKey)({
+      key: buffer_1.Buffer.from(pem.replace(/(?:-----(?:BEGIN|END) PRIVATE KEY-----|\s)/g, ""), "base64"),
+      type: "pkcs8",
+      format: "der"
+    });
+    exports2.fromPKCS8 = fromPKCS8;
+    var fromSPKI = (pem) => (0, crypto_1.createPublicKey)({
+      key: buffer_1.Buffer.from(pem.replace(/(?:-----(?:BEGIN|END) PUBLIC KEY-----|\s)/g, ""), "base64"),
+      type: "spki",
+      format: "der"
+    });
+    exports2.fromSPKI = fromSPKI;
+    var fromX509 = (pem) => (0, crypto_1.createPublicKey)({
+      key: pem,
+      type: "spki",
+      format: "pem"
+    });
+    exports2.fromX509 = fromX509;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/asn1_sequence_encoder.js
+var require_asn1_sequence_encoder = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/asn1_sequence_encoder.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var buffer_1 = require("buffer");
+    var errors_js_1 = require_errors2();
+    var tagInteger = 2;
+    var tagBitStr = 3;
+    var tagOctStr = 4;
+    var tagSequence = 48;
+    var bZero = buffer_1.Buffer.from([0]);
+    var bTagInteger = buffer_1.Buffer.from([tagInteger]);
+    var bTagBitStr = buffer_1.Buffer.from([tagBitStr]);
+    var bTagSequence = buffer_1.Buffer.from([tagSequence]);
+    var bTagOctStr = buffer_1.Buffer.from([tagOctStr]);
+    var encodeLength = (len) => {
+      if (len < 128)
+        return buffer_1.Buffer.from([len]);
+      const buffer = buffer_1.Buffer.alloc(5);
+      buffer.writeUInt32BE(len, 1);
+      let offset = 1;
+      while (buffer[offset] === 0)
+        offset++;
+      buffer[offset - 1] = 128 | 5 - offset;
+      return buffer.slice(offset - 1);
+    };
+    var oids = /* @__PURE__ */ new Map([
+      ["P-256", buffer_1.Buffer.from("06 08 2A 86 48 CE 3D 03 01 07".replace(/ /g, ""), "hex")],
+      ["secp256k1", buffer_1.Buffer.from("06 05 2B 81 04 00 0A".replace(/ /g, ""), "hex")],
+      ["P-384", buffer_1.Buffer.from("06 05 2B 81 04 00 22".replace(/ /g, ""), "hex")],
+      ["P-521", buffer_1.Buffer.from("06 05 2B 81 04 00 23".replace(/ /g, ""), "hex")],
+      ["ecPublicKey", buffer_1.Buffer.from("06 07 2A 86 48 CE 3D 02 01".replace(/ /g, ""), "hex")],
+      ["X25519", buffer_1.Buffer.from("06 03 2B 65 6E".replace(/ /g, ""), "hex")],
+      ["X448", buffer_1.Buffer.from("06 03 2B 65 6F".replace(/ /g, ""), "hex")],
+      ["Ed25519", buffer_1.Buffer.from("06 03 2B 65 70".replace(/ /g, ""), "hex")],
+      ["Ed448", buffer_1.Buffer.from("06 03 2B 65 71".replace(/ /g, ""), "hex")]
+    ]);
+    var DumbAsn1Encoder = class {
+      constructor() {
+        this.length = 0;
+        this.elements = [];
+      }
+      oidFor(oid) {
+        const bOid = oids.get(oid);
+        if (!bOid) {
+          throw new errors_js_1.JOSENotSupported("Invalid or unsupported OID");
+        }
+        this.elements.push(bOid);
+        this.length += bOid.length;
+      }
+      zero() {
+        this.elements.push(bTagInteger, buffer_1.Buffer.from([1]), bZero);
+        this.length += 3;
+      }
+      one() {
+        this.elements.push(bTagInteger, buffer_1.Buffer.from([1]), buffer_1.Buffer.from([1]));
+        this.length += 3;
+      }
+      unsignedInteger(integer) {
+        if (integer[0] & 128) {
+          const len = encodeLength(integer.length + 1);
+          this.elements.push(bTagInteger, len, bZero, integer);
+          this.length += 2 + len.length + integer.length;
+        } else {
+          let i = 0;
+          while (integer[i] === 0 && (integer[i + 1] & 128) === 0)
+            i++;
+          const len = encodeLength(integer.length - i);
+          this.elements.push(bTagInteger, encodeLength(integer.length - i), integer.slice(i));
+          this.length += 1 + len.length + integer.length - i;
+        }
+      }
+      octStr(octStr) {
+        const len = encodeLength(octStr.length);
+        this.elements.push(bTagOctStr, encodeLength(octStr.length), octStr);
+        this.length += 1 + len.length + octStr.length;
+      }
+      bitStr(bitS) {
+        const len = encodeLength(bitS.length + 1);
+        this.elements.push(bTagBitStr, encodeLength(bitS.length + 1), bZero, bitS);
+        this.length += 1 + len.length + bitS.length + 1;
+      }
+      add(seq) {
+        this.elements.push(seq);
+        this.length += seq.length;
+      }
+      end(tag = bTagSequence) {
+        const len = encodeLength(this.length);
+        return buffer_1.Buffer.concat([tag, len, ...this.elements], 1 + len.length + this.length);
+      }
+    };
+    exports2.default = DumbAsn1Encoder;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/flags.js
+var require_flags = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/flags.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.jwkImport = exports2.jwkExport = exports2.rsaPssParams = exports2.oneShotCallback = void 0;
+    var [major, minor] = process.versions.node.split(".").map((str) => parseInt(str, 10));
+    exports2.oneShotCallback = major >= 16 || major === 15 && minor >= 13;
+    exports2.rsaPssParams = !("electron" in process.versions) && (major >= 17 || major === 16 && minor >= 9);
+    exports2.jwkExport = major >= 16 || major === 15 && minor >= 9;
+    exports2.jwkImport = major >= 16 || major === 15 && minor >= 12;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/jwk_to_key.js
+var require_jwk_to_key = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/jwk_to_key.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var buffer_1 = require("buffer");
+    var crypto_1 = require("crypto");
+    var base64url_js_1 = require_base64url();
+    var errors_js_1 = require_errors2();
+    var get_named_curve_js_1 = require_get_named_curve();
+    var check_modulus_length_js_1 = require_check_modulus_length();
+    var asn1_sequence_encoder_js_1 = require_asn1_sequence_encoder();
+    var flags_js_1 = require_flags();
+    var parse2 = (jwk) => {
+      if (flags_js_1.jwkImport && jwk.kty !== "oct") {
+        return jwk.d ? (0, crypto_1.createPrivateKey)({ format: "jwk", key: jwk }) : (0, crypto_1.createPublicKey)({ format: "jwk", key: jwk });
+      }
+      switch (jwk.kty) {
+        case "oct": {
+          return (0, crypto_1.createSecretKey)((0, base64url_js_1.decode)(jwk.k));
+        }
+        case "RSA": {
+          const enc = new asn1_sequence_encoder_js_1.default();
+          const isPrivate = jwk.d !== void 0;
+          const modulus = buffer_1.Buffer.from(jwk.n, "base64");
+          const exponent = buffer_1.Buffer.from(jwk.e, "base64");
+          if (isPrivate) {
+            enc.zero();
+            enc.unsignedInteger(modulus);
+            enc.unsignedInteger(exponent);
+            enc.unsignedInteger(buffer_1.Buffer.from(jwk.d, "base64"));
+            enc.unsignedInteger(buffer_1.Buffer.from(jwk.p, "base64"));
+            enc.unsignedInteger(buffer_1.Buffer.from(jwk.q, "base64"));
+            enc.unsignedInteger(buffer_1.Buffer.from(jwk.dp, "base64"));
+            enc.unsignedInteger(buffer_1.Buffer.from(jwk.dq, "base64"));
+            enc.unsignedInteger(buffer_1.Buffer.from(jwk.qi, "base64"));
+          } else {
+            enc.unsignedInteger(modulus);
+            enc.unsignedInteger(exponent);
+          }
+          const der = enc.end();
+          const createInput = {
+            key: der,
+            format: "der",
+            type: "pkcs1"
+          };
+          const keyObject = isPrivate ? (0, crypto_1.createPrivateKey)(createInput) : (0, crypto_1.createPublicKey)(createInput);
+          (0, check_modulus_length_js_1.setModulusLength)(keyObject, modulus.length << 3);
+          return keyObject;
+        }
+        case "EC": {
+          const enc = new asn1_sequence_encoder_js_1.default();
+          const isPrivate = jwk.d !== void 0;
+          const pub = buffer_1.Buffer.concat([
+            buffer_1.Buffer.alloc(1, 4),
+            buffer_1.Buffer.from(jwk.x, "base64"),
+            buffer_1.Buffer.from(jwk.y, "base64")
+          ]);
+          if (isPrivate) {
+            enc.zero();
+            const enc$12 = new asn1_sequence_encoder_js_1.default();
+            enc$12.oidFor("ecPublicKey");
+            enc$12.oidFor(jwk.crv);
+            enc.add(enc$12.end());
+            const enc$2 = new asn1_sequence_encoder_js_1.default();
+            enc$2.one();
+            enc$2.octStr(buffer_1.Buffer.from(jwk.d, "base64"));
+            const enc$3 = new asn1_sequence_encoder_js_1.default();
+            enc$3.bitStr(pub);
+            const f2 = enc$3.end(buffer_1.Buffer.from([161]));
+            enc$2.add(f2);
+            const f = enc$2.end();
+            const enc$4 = new asn1_sequence_encoder_js_1.default();
+            enc$4.add(f);
+            const f3 = enc$4.end(buffer_1.Buffer.from([4]));
+            enc.add(f3);
+            const der2 = enc.end();
+            const keyObject2 = (0, crypto_1.createPrivateKey)({ key: der2, format: "der", type: "pkcs8" });
+            (0, get_named_curve_js_1.setCurve)(keyObject2, jwk.crv);
+            return keyObject2;
+          }
+          const enc$1 = new asn1_sequence_encoder_js_1.default();
+          enc$1.oidFor("ecPublicKey");
+          enc$1.oidFor(jwk.crv);
+          enc.add(enc$1.end());
+          enc.bitStr(pub);
+          const der = enc.end();
+          const keyObject = (0, crypto_1.createPublicKey)({ key: der, format: "der", type: "spki" });
+          (0, get_named_curve_js_1.setCurve)(keyObject, jwk.crv);
+          return keyObject;
+        }
+        case "OKP": {
+          const enc = new asn1_sequence_encoder_js_1.default();
+          const isPrivate = jwk.d !== void 0;
+          if (isPrivate) {
+            enc.zero();
+            const enc$12 = new asn1_sequence_encoder_js_1.default();
+            enc$12.oidFor(jwk.crv);
+            enc.add(enc$12.end());
+            const enc$2 = new asn1_sequence_encoder_js_1.default();
+            enc$2.octStr(buffer_1.Buffer.from(jwk.d, "base64"));
+            const f = enc$2.end(buffer_1.Buffer.from([4]));
+            enc.add(f);
+            const der2 = enc.end();
+            return (0, crypto_1.createPrivateKey)({ key: der2, format: "der", type: "pkcs8" });
+          }
+          const enc$1 = new asn1_sequence_encoder_js_1.default();
+          enc$1.oidFor(jwk.crv);
+          enc.add(enc$1.end());
+          enc.bitStr(buffer_1.Buffer.from(jwk.x, "base64"));
+          const der = enc.end();
+          return (0, crypto_1.createPublicKey)({ key: der, format: "der", type: "spki" });
+        }
+        default:
+          throw new errors_js_1.JOSENotSupported('Invalid or unsupported JWK "kty" (Key Type) Parameter value');
+      }
+    };
+    exports2.default = parse2;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/key/import.js
+var require_import = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/key/import.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.importJWK = exports2.importPKCS8 = exports2.importX509 = exports2.importSPKI = void 0;
+    var base64url_js_1 = require_base64url();
+    var asn1_js_1 = require_asn12();
+    var jwk_to_key_js_1 = require_jwk_to_key();
+    var errors_js_1 = require_errors2();
+    var is_object_js_1 = require_is_object();
+    async function importSPKI(spki, alg, options) {
+      if (typeof spki !== "string" || spki.indexOf("-----BEGIN PUBLIC KEY-----") !== 0) {
+        throw new TypeError('"spki" must be SPKI formatted string');
+      }
+      return (0, asn1_js_1.fromSPKI)(spki, alg, options);
+    }
+    exports2.importSPKI = importSPKI;
+    async function importX509(x509, alg, options) {
+      if (typeof x509 !== "string" || x509.indexOf("-----BEGIN CERTIFICATE-----") !== 0) {
+        throw new TypeError('"x509" must be X.509 formatted string');
+      }
+      return (0, asn1_js_1.fromX509)(x509, alg, options);
+    }
+    exports2.importX509 = importX509;
+    async function importPKCS8(pkcs8, alg, options) {
+      if (typeof pkcs8 !== "string" || pkcs8.indexOf("-----BEGIN PRIVATE KEY-----") !== 0) {
+        throw new TypeError('"pkcs8" must be PKCS#8 formatted string');
+      }
+      return (0, asn1_js_1.fromPKCS8)(pkcs8, alg, options);
+    }
+    exports2.importPKCS8 = importPKCS8;
+    async function importJWK(jwk, alg, octAsKeyObject) {
+      var _a;
+      if (!(0, is_object_js_1.default)(jwk)) {
+        throw new TypeError("JWK must be an object");
+      }
+      alg || (alg = jwk.alg);
+      switch (jwk.kty) {
+        case "oct":
+          if (typeof jwk.k !== "string" || !jwk.k) {
+            throw new TypeError('missing "k" (Key Value) Parameter value');
+          }
+          octAsKeyObject !== null && octAsKeyObject !== void 0 ? octAsKeyObject : octAsKeyObject = jwk.ext !== true;
+          if (octAsKeyObject) {
+            return (0, jwk_to_key_js_1.default)({ ...jwk, alg, ext: (_a = jwk.ext) !== null && _a !== void 0 ? _a : false });
+          }
+          return (0, base64url_js_1.decode)(jwk.k);
+        case "RSA":
+          if (jwk.oth !== void 0) {
+            throw new errors_js_1.JOSENotSupported('RSA JWK "oth" (Other Primes Info) Parameter value is not supported');
+          }
+        case "EC":
+        case "OKP":
+          return (0, jwk_to_key_js_1.default)({ ...jwk, alg });
+        default:
+          throw new errors_js_1.JOSENotSupported('Unsupported "kty" (Key Type) Parameter value');
+      }
+    }
+    exports2.importJWK = importJWK;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/check_key_type.js
+var require_check_key_type = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/check_key_type.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var is_key_like_js_1 = require_is_key_like();
+    var symmetricTypeCheck = (alg, key) => {
+      if (key instanceof Uint8Array)
+        return;
+      if (!(0, is_key_like_js_1.default)(key)) {
+        throw new TypeError((0, invalid_key_input_js_1.withAlg)(alg, key, ...is_key_like_js_1.types, "Uint8Array"));
+      }
+      if (key.type !== "secret") {
+        throw new TypeError(`${is_key_like_js_1.types.join(" or ")} instances for symmetric algorithms must be of type "secret"`);
+      }
+    };
+    var asymmetricTypeCheck = (alg, key, usage) => {
+      if (!(0, is_key_like_js_1.default)(key)) {
+        throw new TypeError((0, invalid_key_input_js_1.withAlg)(alg, key, ...is_key_like_js_1.types));
+      }
+      if (key.type === "secret") {
+        throw new TypeError(`${is_key_like_js_1.types.join(" or ")} instances for asymmetric algorithms must not be of type "secret"`);
+      }
+      if (usage === "sign" && key.type === "public") {
+        throw new TypeError(`${is_key_like_js_1.types.join(" or ")} instances for asymmetric algorithm signing must be of type "private"`);
+      }
+      if (usage === "decrypt" && key.type === "public") {
+        throw new TypeError(`${is_key_like_js_1.types.join(" or ")} instances for asymmetric algorithm decryption must be of type "private"`);
+      }
+      if (key.algorithm && usage === "verify" && key.type === "private") {
+        throw new TypeError(`${is_key_like_js_1.types.join(" or ")} instances for asymmetric algorithm verifying must be of type "public"`);
+      }
+      if (key.algorithm && usage === "encrypt" && key.type === "private") {
+        throw new TypeError(`${is_key_like_js_1.types.join(" or ")} instances for asymmetric algorithm encryption must be of type "public"`);
+      }
+    };
+    var checkKeyType = (alg, key, usage) => {
+      const symmetric = alg.startsWith("HS") || alg === "dir" || alg.startsWith("PBES2") || /^A\d{3}(?:GCM)?KW$/.test(alg);
+      if (symmetric) {
+        symmetricTypeCheck(alg, key);
+      } else {
+        asymmetricTypeCheck(alg, key, usage);
+      }
+    };
+    exports2.default = checkKeyType;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/encrypt.js
+var require_encrypt = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/encrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var check_iv_length_js_1 = require_check_iv_length();
+    var check_cek_length_js_1 = require_check_cek_length();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var cbc_tag_js_1 = require_cbc_tag();
+    var webcrypto_js_1 = require_webcrypto();
+    var crypto_key_js_1 = require_crypto_key();
+    var is_key_object_js_1 = require_is_key_object();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var errors_js_1 = require_errors2();
+    var ciphers_js_1 = require_ciphers();
+    var is_key_like_js_1 = require_is_key_like();
+    function cbcEncrypt(enc, plaintext, cek, iv, aad) {
+      const keySize = parseInt(enc.slice(1, 4), 10);
+      if ((0, is_key_object_js_1.default)(cek)) {
+        cek = cek.export();
+      }
+      const encKey = cek.subarray(keySize >> 3);
+      const macKey = cek.subarray(0, keySize >> 3);
+      const algorithm = `aes-${keySize}-cbc`;
+      if (!(0, ciphers_js_1.default)(algorithm)) {
+        throw new errors_js_1.JOSENotSupported(`alg ${enc} is not supported by your javascript runtime`);
+      }
+      const cipher = (0, crypto_1.createCipheriv)(algorithm, encKey, iv);
+      const ciphertext = (0, buffer_utils_js_1.concat)(cipher.update(plaintext), cipher.final());
+      const macSize = parseInt(enc.slice(-3), 10);
+      const tag = (0, cbc_tag_js_1.default)(aad, iv, ciphertext, macSize, macKey, keySize);
+      return { ciphertext, tag };
+    }
+    function gcmEncrypt(enc, plaintext, cek, iv, aad) {
+      const keySize = parseInt(enc.slice(1, 4), 10);
+      const algorithm = `aes-${keySize}-gcm`;
+      if (!(0, ciphers_js_1.default)(algorithm)) {
+        throw new errors_js_1.JOSENotSupported(`alg ${enc} is not supported by your javascript runtime`);
+      }
+      const cipher = (0, crypto_1.createCipheriv)(algorithm, cek, iv, { authTagLength: 16 });
+      if (aad.byteLength) {
+        cipher.setAAD(aad, { plaintextLength: plaintext.length });
+      }
+      const ciphertext = cipher.update(plaintext);
+      cipher.final();
+      const tag = cipher.getAuthTag();
+      return { ciphertext, tag };
+    }
+    var encrypt = (enc, plaintext, cek, iv, aad) => {
+      let key;
+      if ((0, webcrypto_js_1.isCryptoKey)(cek)) {
+        (0, crypto_key_js_1.checkEncCryptoKey)(cek, enc, "encrypt");
+        key = crypto_1.KeyObject.from(cek);
+      } else if (cek instanceof Uint8Array || (0, is_key_object_js_1.default)(cek)) {
+        key = cek;
+      } else {
+        throw new TypeError((0, invalid_key_input_js_1.default)(cek, ...is_key_like_js_1.types, "Uint8Array"));
+      }
+      (0, check_cek_length_js_1.default)(enc, key);
+      (0, check_iv_length_js_1.default)(enc, iv);
+      switch (enc) {
+        case "A128CBC-HS256":
+        case "A192CBC-HS384":
+        case "A256CBC-HS512":
+          return cbcEncrypt(enc, plaintext, key, iv, aad);
+        case "A128GCM":
+        case "A192GCM":
+        case "A256GCM":
+          return gcmEncrypt(enc, plaintext, key, iv, aad);
+        default:
+          throw new errors_js_1.JOSENotSupported("Unsupported JWE Content Encryption Algorithm");
+      }
+    };
+    exports2.default = encrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/aesgcmkw.js
+var require_aesgcmkw = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/aesgcmkw.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.unwrap = exports2.wrap = void 0;
+    var encrypt_js_1 = require_encrypt();
+    var decrypt_js_1 = require_decrypt();
+    var iv_js_1 = require_iv();
+    var base64url_js_1 = require_base64url();
+    async function wrap(alg, key, cek, iv) {
+      const jweAlgorithm = alg.slice(0, 7);
+      iv || (iv = (0, iv_js_1.default)(jweAlgorithm));
+      const { ciphertext: encryptedKey, tag } = await (0, encrypt_js_1.default)(jweAlgorithm, cek, key, iv, new Uint8Array(0));
+      return { encryptedKey, iv: (0, base64url_js_1.encode)(iv), tag: (0, base64url_js_1.encode)(tag) };
+    }
+    exports2.wrap = wrap;
+    async function unwrap(alg, key, encryptedKey, iv, tag) {
+      const jweAlgorithm = alg.slice(0, 7);
+      return (0, decrypt_js_1.default)(jweAlgorithm, key, encryptedKey, iv, tag, new Uint8Array(0));
+    }
+    exports2.unwrap = unwrap;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/decrypt_key_management.js
+var require_decrypt_key_management = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/decrypt_key_management.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var aeskw_js_1 = require_aeskw();
+    var ECDH = require_ecdhes();
+    var pbes2kw_js_1 = require_pbes2kw();
+    var rsaes_js_1 = require_rsaes();
+    var base64url_js_1 = require_base64url();
+    var errors_js_1 = require_errors2();
+    var cek_js_1 = require_cek();
+    var import_js_1 = require_import();
+    var check_key_type_js_1 = require_check_key_type();
+    var is_object_js_1 = require_is_object();
+    var aesgcmkw_js_1 = require_aesgcmkw();
+    async function decryptKeyManagement(alg, key, encryptedKey, joseHeader, options) {
+      (0, check_key_type_js_1.default)(alg, key, "decrypt");
+      switch (alg) {
+        case "dir": {
+          if (encryptedKey !== void 0)
+            throw new errors_js_1.JWEInvalid("Encountered unexpected JWE Encrypted Key");
+          return key;
+        }
+        case "ECDH-ES":
+          if (encryptedKey !== void 0)
+            throw new errors_js_1.JWEInvalid("Encountered unexpected JWE Encrypted Key");
+        case "ECDH-ES+A128KW":
+        case "ECDH-ES+A192KW":
+        case "ECDH-ES+A256KW": {
+          if (!(0, is_object_js_1.default)(joseHeader.epk))
+            throw new errors_js_1.JWEInvalid(`JOSE Header "epk" (Ephemeral Public Key) missing or invalid`);
+          if (!ECDH.ecdhAllowed(key))
+            throw new errors_js_1.JOSENotSupported("ECDH with the provided key is not allowed or not supported by your javascript runtime");
+          const epk = await (0, import_js_1.importJWK)(joseHeader.epk, alg);
+          let partyUInfo;
+          let partyVInfo;
+          if (joseHeader.apu !== void 0) {
+            if (typeof joseHeader.apu !== "string")
+              throw new errors_js_1.JWEInvalid(`JOSE Header "apu" (Agreement PartyUInfo) invalid`);
+            try {
+              partyUInfo = (0, base64url_js_1.decode)(joseHeader.apu);
+            } catch {
+              throw new errors_js_1.JWEInvalid("Failed to base64url decode the apu");
+            }
+          }
+          if (joseHeader.apv !== void 0) {
+            if (typeof joseHeader.apv !== "string")
+              throw new errors_js_1.JWEInvalid(`JOSE Header "apv" (Agreement PartyVInfo) invalid`);
+            try {
+              partyVInfo = (0, base64url_js_1.decode)(joseHeader.apv);
+            } catch {
+              throw new errors_js_1.JWEInvalid("Failed to base64url decode the apv");
+            }
+          }
+          const sharedSecret = await ECDH.deriveKey(epk, key, alg === "ECDH-ES" ? joseHeader.enc : alg, alg === "ECDH-ES" ? (0, cek_js_1.bitLength)(joseHeader.enc) : parseInt(alg.slice(-5, -2), 10), partyUInfo, partyVInfo);
+          if (alg === "ECDH-ES")
+            return sharedSecret;
+          if (encryptedKey === void 0)
+            throw new errors_js_1.JWEInvalid("JWE Encrypted Key missing");
+          return (0, aeskw_js_1.unwrap)(alg.slice(-6), sharedSecret, encryptedKey);
+        }
+        case "RSA1_5":
+        case "RSA-OAEP":
+        case "RSA-OAEP-256":
+        case "RSA-OAEP-384":
+        case "RSA-OAEP-512": {
+          if (encryptedKey === void 0)
+            throw new errors_js_1.JWEInvalid("JWE Encrypted Key missing");
+          return (0, rsaes_js_1.decrypt)(alg, key, encryptedKey);
+        }
+        case "PBES2-HS256+A128KW":
+        case "PBES2-HS384+A192KW":
+        case "PBES2-HS512+A256KW": {
+          if (encryptedKey === void 0)
+            throw new errors_js_1.JWEInvalid("JWE Encrypted Key missing");
+          if (typeof joseHeader.p2c !== "number")
+            throw new errors_js_1.JWEInvalid(`JOSE Header "p2c" (PBES2 Count) missing or invalid`);
+          const p2cLimit = (options === null || options === void 0 ? void 0 : options.maxPBES2Count) || 1e4;
+          if (joseHeader.p2c > p2cLimit)
+            throw new errors_js_1.JWEInvalid(`JOSE Header "p2c" (PBES2 Count) out is of acceptable bounds`);
+          if (typeof joseHeader.p2s !== "string")
+            throw new errors_js_1.JWEInvalid(`JOSE Header "p2s" (PBES2 Salt) missing or invalid`);
+          let p2s;
+          try {
+            p2s = (0, base64url_js_1.decode)(joseHeader.p2s);
+          } catch {
+            throw new errors_js_1.JWEInvalid("Failed to base64url decode the p2s");
+          }
+          return (0, pbes2kw_js_1.decrypt)(alg, key, encryptedKey, joseHeader.p2c, p2s);
+        }
+        case "A128KW":
+        case "A192KW":
+        case "A256KW": {
+          if (encryptedKey === void 0)
+            throw new errors_js_1.JWEInvalid("JWE Encrypted Key missing");
+          return (0, aeskw_js_1.unwrap)(alg, key, encryptedKey);
+        }
+        case "A128GCMKW":
+        case "A192GCMKW":
+        case "A256GCMKW": {
+          if (encryptedKey === void 0)
+            throw new errors_js_1.JWEInvalid("JWE Encrypted Key missing");
+          if (typeof joseHeader.iv !== "string")
+            throw new errors_js_1.JWEInvalid(`JOSE Header "iv" (Initialization Vector) missing or invalid`);
+          if (typeof joseHeader.tag !== "string")
+            throw new errors_js_1.JWEInvalid(`JOSE Header "tag" (Authentication Tag) missing or invalid`);
+          let iv;
+          try {
+            iv = (0, base64url_js_1.decode)(joseHeader.iv);
+          } catch {
+            throw new errors_js_1.JWEInvalid("Failed to base64url decode the iv");
+          }
+          let tag;
+          try {
+            tag = (0, base64url_js_1.decode)(joseHeader.tag);
+          } catch {
+            throw new errors_js_1.JWEInvalid("Failed to base64url decode the tag");
+          }
+          return (0, aesgcmkw_js_1.unwrap)(alg, key, encryptedKey, iv, tag);
+        }
+        default: {
+          throw new errors_js_1.JOSENotSupported('Invalid or unsupported "alg" (JWE Algorithm) header value');
+        }
+      }
+    }
+    exports2.default = decryptKeyManagement;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/validate_crit.js
+var require_validate_crit = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/validate_crit.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var errors_js_1 = require_errors2();
+    function validateCrit(Err, recognizedDefault, recognizedOption, protectedHeader, joseHeader) {
+      if (joseHeader.crit !== void 0 && protectedHeader.crit === void 0) {
+        throw new Err('"crit" (Critical) Header Parameter MUST be integrity protected');
+      }
+      if (!protectedHeader || protectedHeader.crit === void 0) {
+        return /* @__PURE__ */ new Set();
+      }
+      if (!Array.isArray(protectedHeader.crit) || protectedHeader.crit.length === 0 || protectedHeader.crit.some((input) => typeof input !== "string" || input.length === 0)) {
+        throw new Err('"crit" (Critical) Header Parameter MUST be an array of non-empty strings when present');
+      }
+      let recognized;
+      if (recognizedOption !== void 0) {
+        recognized = new Map([...Object.entries(recognizedOption), ...recognizedDefault.entries()]);
+      } else {
+        recognized = recognizedDefault;
+      }
+      for (const parameter of protectedHeader.crit) {
+        if (!recognized.has(parameter)) {
+          throw new errors_js_1.JOSENotSupported(`Extension Header Parameter "${parameter}" is not recognized`);
+        }
+        if (joseHeader[parameter] === void 0) {
+          throw new Err(`Extension Header Parameter "${parameter}" is missing`);
+        } else if (recognized.get(parameter) && protectedHeader[parameter] === void 0) {
+          throw new Err(`Extension Header Parameter "${parameter}" MUST be integrity protected`);
+        }
+      }
+      return new Set(protectedHeader.crit);
+    }
+    exports2.default = validateCrit;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/validate_algorithms.js
+var require_validate_algorithms = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/validate_algorithms.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var validateAlgorithms = (option, algorithms) => {
+      if (algorithms !== void 0 && (!Array.isArray(algorithms) || algorithms.some((s) => typeof s !== "string"))) {
+        throw new TypeError(`"${option}" option must be an array of strings`);
+      }
+      if (!algorithms) {
+        return void 0;
+      }
+      return new Set(algorithms);
+    };
+    exports2.default = validateAlgorithms;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwe/flattened/decrypt.js
+var require_decrypt2 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwe/flattened/decrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.flattenedDecrypt = void 0;
+    var base64url_js_1 = require_base64url();
+    var decrypt_js_1 = require_decrypt();
+    var zlib_js_1 = require_zlib();
+    var errors_js_1 = require_errors2();
+    var is_disjoint_js_1 = require_is_disjoint();
+    var is_object_js_1 = require_is_object();
+    var decrypt_key_management_js_1 = require_decrypt_key_management();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var cek_js_1 = require_cek();
+    var validate_crit_js_1 = require_validate_crit();
+    var validate_algorithms_js_1 = require_validate_algorithms();
+    async function flattenedDecrypt(jwe, key, options) {
+      var _a;
+      if (!(0, is_object_js_1.default)(jwe)) {
+        throw new errors_js_1.JWEInvalid("Flattened JWE must be an object");
+      }
+      if (jwe.protected === void 0 && jwe.header === void 0 && jwe.unprotected === void 0) {
+        throw new errors_js_1.JWEInvalid("JOSE Header missing");
+      }
+      if (typeof jwe.iv !== "string") {
+        throw new errors_js_1.JWEInvalid("JWE Initialization Vector missing or incorrect type");
+      }
+      if (typeof jwe.ciphertext !== "string") {
+        throw new errors_js_1.JWEInvalid("JWE Ciphertext missing or incorrect type");
+      }
+      if (typeof jwe.tag !== "string") {
+        throw new errors_js_1.JWEInvalid("JWE Authentication Tag missing or incorrect type");
+      }
+      if (jwe.protected !== void 0 && typeof jwe.protected !== "string") {
+        throw new errors_js_1.JWEInvalid("JWE Protected Header incorrect type");
+      }
+      if (jwe.encrypted_key !== void 0 && typeof jwe.encrypted_key !== "string") {
+        throw new errors_js_1.JWEInvalid("JWE Encrypted Key incorrect type");
+      }
+      if (jwe.aad !== void 0 && typeof jwe.aad !== "string") {
+        throw new errors_js_1.JWEInvalid("JWE AAD incorrect type");
+      }
+      if (jwe.header !== void 0 && !(0, is_object_js_1.default)(jwe.header)) {
+        throw new errors_js_1.JWEInvalid("JWE Shared Unprotected Header incorrect type");
+      }
+      if (jwe.unprotected !== void 0 && !(0, is_object_js_1.default)(jwe.unprotected)) {
+        throw new errors_js_1.JWEInvalid("JWE Per-Recipient Unprotected Header incorrect type");
+      }
+      let parsedProt;
+      if (jwe.protected) {
+        try {
+          const protectedHeader2 = (0, base64url_js_1.decode)(jwe.protected);
+          parsedProt = JSON.parse(buffer_utils_js_1.decoder.decode(protectedHeader2));
+        } catch {
+          throw new errors_js_1.JWEInvalid("JWE Protected Header is invalid");
+        }
+      }
+      if (!(0, is_disjoint_js_1.default)(parsedProt, jwe.header, jwe.unprotected)) {
+        throw new errors_js_1.JWEInvalid("JWE Protected, JWE Unprotected Header, and JWE Per-Recipient Unprotected Header Parameter names must be disjoint");
+      }
+      const joseHeader = {
+        ...parsedProt,
+        ...jwe.header,
+        ...jwe.unprotected
+      };
+      (0, validate_crit_js_1.default)(errors_js_1.JWEInvalid, /* @__PURE__ */ new Map(), options === null || options === void 0 ? void 0 : options.crit, parsedProt, joseHeader);
+      if (joseHeader.zip !== void 0) {
+        if (!parsedProt || !parsedProt.zip) {
+          throw new errors_js_1.JWEInvalid('JWE "zip" (Compression Algorithm) Header MUST be integrity protected');
+        }
+        if (joseHeader.zip !== "DEF") {
+          throw new errors_js_1.JOSENotSupported('Unsupported JWE "zip" (Compression Algorithm) Header Parameter value');
+        }
+      }
+      const { alg, enc } = joseHeader;
+      if (typeof alg !== "string" || !alg) {
+        throw new errors_js_1.JWEInvalid("missing JWE Algorithm (alg) in JWE Header");
+      }
+      if (typeof enc !== "string" || !enc) {
+        throw new errors_js_1.JWEInvalid("missing JWE Encryption Algorithm (enc) in JWE Header");
+      }
+      const keyManagementAlgorithms = options && (0, validate_algorithms_js_1.default)("keyManagementAlgorithms", options.keyManagementAlgorithms);
+      const contentEncryptionAlgorithms = options && (0, validate_algorithms_js_1.default)("contentEncryptionAlgorithms", options.contentEncryptionAlgorithms);
+      if (keyManagementAlgorithms && !keyManagementAlgorithms.has(alg)) {
+        throw new errors_js_1.JOSEAlgNotAllowed('"alg" (Algorithm) Header Parameter not allowed');
+      }
+      if (contentEncryptionAlgorithms && !contentEncryptionAlgorithms.has(enc)) {
+        throw new errors_js_1.JOSEAlgNotAllowed('"enc" (Encryption Algorithm) Header Parameter not allowed');
+      }
+      let encryptedKey;
+      if (jwe.encrypted_key !== void 0) {
+        try {
+          encryptedKey = (0, base64url_js_1.decode)(jwe.encrypted_key);
+        } catch {
+          throw new errors_js_1.JWEInvalid("Failed to base64url decode the encrypted_key");
+        }
+      }
+      let resolvedKey = false;
+      if (typeof key === "function") {
+        key = await key(parsedProt, jwe);
+        resolvedKey = true;
+      }
+      let cek;
+      try {
+        cek = await (0, decrypt_key_management_js_1.default)(alg, key, encryptedKey, joseHeader, options);
+      } catch (err) {
+        if (err instanceof TypeError || err instanceof errors_js_1.JWEInvalid || err instanceof errors_js_1.JOSENotSupported) {
+          throw err;
+        }
+        cek = (0, cek_js_1.default)(enc);
+      }
+      let iv;
+      let tag;
+      try {
+        iv = (0, base64url_js_1.decode)(jwe.iv);
+      } catch {
+        throw new errors_js_1.JWEInvalid("Failed to base64url decode the iv");
+      }
+      try {
+        tag = (0, base64url_js_1.decode)(jwe.tag);
+      } catch {
+        throw new errors_js_1.JWEInvalid("Failed to base64url decode the tag");
+      }
+      const protectedHeader = buffer_utils_js_1.encoder.encode((_a = jwe.protected) !== null && _a !== void 0 ? _a : "");
+      let additionalData;
+      if (jwe.aad !== void 0) {
+        additionalData = (0, buffer_utils_js_1.concat)(protectedHeader, buffer_utils_js_1.encoder.encode("."), buffer_utils_js_1.encoder.encode(jwe.aad));
+      } else {
+        additionalData = protectedHeader;
+      }
+      let ciphertext;
+      try {
+        ciphertext = (0, base64url_js_1.decode)(jwe.ciphertext);
+      } catch {
+        throw new errors_js_1.JWEInvalid("Failed to base64url decode the ciphertext");
+      }
+      let plaintext = await (0, decrypt_js_1.default)(enc, cek, ciphertext, iv, tag, additionalData);
+      if (joseHeader.zip === "DEF") {
+        plaintext = await ((options === null || options === void 0 ? void 0 : options.inflateRaw) || zlib_js_1.inflate)(plaintext);
+      }
+      const result = { plaintext };
+      if (jwe.protected !== void 0) {
+        result.protectedHeader = parsedProt;
+      }
+      if (jwe.aad !== void 0) {
+        try {
+          result.additionalAuthenticatedData = (0, base64url_js_1.decode)(jwe.aad);
+        } catch {
+          throw new errors_js_1.JWEInvalid("Failed to base64url decode the aad");
+        }
+      }
+      if (jwe.unprotected !== void 0) {
+        result.sharedUnprotectedHeader = jwe.unprotected;
+      }
+      if (jwe.header !== void 0) {
+        result.unprotectedHeader = jwe.header;
+      }
+      if (resolvedKey) {
+        return { ...result, key };
+      }
+      return result;
+    }
+    exports2.flattenedDecrypt = flattenedDecrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwe/compact/decrypt.js
+var require_decrypt3 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwe/compact/decrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.compactDecrypt = void 0;
+    var decrypt_js_1 = require_decrypt2();
+    var errors_js_1 = require_errors2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    async function compactDecrypt(jwe, key, options) {
+      if (jwe instanceof Uint8Array) {
+        jwe = buffer_utils_js_1.decoder.decode(jwe);
+      }
+      if (typeof jwe !== "string") {
+        throw new errors_js_1.JWEInvalid("Compact JWE must be a string or Uint8Array");
+      }
+      const { 0: protectedHeader, 1: encryptedKey, 2: iv, 3: ciphertext, 4: tag, length } = jwe.split(".");
+      if (length !== 5) {
+        throw new errors_js_1.JWEInvalid("Invalid Compact JWE");
+      }
+      const decrypted = await (0, decrypt_js_1.flattenedDecrypt)({
+        ciphertext,
+        iv: iv || void 0,
+        protected: protectedHeader || void 0,
+        tag: tag || void 0,
+        encrypted_key: encryptedKey || void 0
+      }, key, options);
+      const result = { plaintext: decrypted.plaintext, protectedHeader: decrypted.protectedHeader };
+      if (typeof key === "function") {
+        return { ...result, key: decrypted.key };
+      }
+      return result;
+    }
+    exports2.compactDecrypt = compactDecrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwe/general/decrypt.js
+var require_decrypt4 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwe/general/decrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.generalDecrypt = void 0;
+    var decrypt_js_1 = require_decrypt2();
+    var errors_js_1 = require_errors2();
+    var is_object_js_1 = require_is_object();
+    async function generalDecrypt(jwe, key, options) {
+      if (!(0, is_object_js_1.default)(jwe)) {
+        throw new errors_js_1.JWEInvalid("General JWE must be an object");
+      }
+      if (!Array.isArray(jwe.recipients) || !jwe.recipients.every(is_object_js_1.default)) {
+        throw new errors_js_1.JWEInvalid("JWE Recipients missing or incorrect type");
+      }
+      if (!jwe.recipients.length) {
+        throw new errors_js_1.JWEInvalid("JWE Recipients has no members");
+      }
+      for (const recipient of jwe.recipients) {
+        try {
+          return await (0, decrypt_js_1.flattenedDecrypt)({
+            aad: jwe.aad,
+            ciphertext: jwe.ciphertext,
+            encrypted_key: recipient.encrypted_key,
+            header: recipient.header,
+            iv: jwe.iv,
+            protected: jwe.protected,
+            tag: jwe.tag,
+            unprotected: jwe.unprotected
+          }, key, options);
+        } catch {
+        }
+      }
+      throw new errors_js_1.JWEDecryptionFailed();
+    }
+    exports2.generalDecrypt = generalDecrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/asn1_sequence_decoder.js
+var require_asn1_sequence_decoder = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/asn1_sequence_decoder.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var tagInteger = 2;
+    var tagSequence = 48;
+    var Asn1SequenceDecoder = class {
+      constructor(buffer) {
+        if (buffer[0] !== tagSequence) {
+          throw new TypeError();
+        }
+        this.buffer = buffer;
+        this.offset = 1;
+        const len = this.decodeLength();
+        if (len !== buffer.length - this.offset) {
+          throw new TypeError();
+        }
+      }
+      decodeLength() {
+        let length = this.buffer[this.offset++];
+        if (length & 128) {
+          const nBytes = length & ~128;
+          length = 0;
+          for (let i = 0; i < nBytes; i++)
+            length = length << 8 | this.buffer[this.offset + i];
+          this.offset += nBytes;
+        }
+        return length;
+      }
+      unsignedInteger() {
+        if (this.buffer[this.offset++] !== tagInteger) {
+          throw new TypeError();
+        }
+        let length = this.decodeLength();
+        if (this.buffer[this.offset] === 0) {
+          this.offset++;
+          length--;
+        }
+        const result = this.buffer.slice(this.offset, this.offset + length);
+        this.offset += length;
+        return result;
+      }
+      end() {
+        if (this.offset !== this.buffer.length) {
+          throw new TypeError();
+        }
+      }
+    };
+    exports2.default = Asn1SequenceDecoder;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/key_to_jwk.js
+var require_key_to_jwk = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/key_to_jwk.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var base64url_js_1 = require_base64url();
+    var asn1_sequence_decoder_js_1 = require_asn1_sequence_decoder();
+    var errors_js_1 = require_errors2();
+    var get_named_curve_js_1 = require_get_named_curve();
+    var webcrypto_js_1 = require_webcrypto();
+    var is_key_object_js_1 = require_is_key_object();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var is_key_like_js_1 = require_is_key_like();
+    var flags_js_1 = require_flags();
+    var keyToJWK = (key) => {
+      let keyObject;
+      if ((0, webcrypto_js_1.isCryptoKey)(key)) {
+        if (!key.extractable) {
+          throw new TypeError("CryptoKey is not extractable");
+        }
+        keyObject = crypto_1.KeyObject.from(key);
+      } else if ((0, is_key_object_js_1.default)(key)) {
+        keyObject = key;
+      } else if (key instanceof Uint8Array) {
+        return {
+          kty: "oct",
+          k: (0, base64url_js_1.encode)(key)
+        };
+      } else {
+        throw new TypeError((0, invalid_key_input_js_1.default)(key, ...is_key_like_js_1.types, "Uint8Array"));
+      }
+      if (flags_js_1.jwkExport) {
+        if (keyObject.type !== "secret" && !["rsa", "ec", "ed25519", "x25519", "ed448", "x448"].includes(keyObject.asymmetricKeyType)) {
+          throw new errors_js_1.JOSENotSupported("Unsupported key asymmetricKeyType");
+        }
+        return keyObject.export({ format: "jwk" });
+      }
+      switch (keyObject.type) {
+        case "secret":
+          return {
+            kty: "oct",
+            k: (0, base64url_js_1.encode)(keyObject.export())
+          };
+        case "private":
+        case "public": {
+          switch (keyObject.asymmetricKeyType) {
+            case "rsa": {
+              const der = keyObject.export({ format: "der", type: "pkcs1" });
+              const dec = new asn1_sequence_decoder_js_1.default(der);
+              if (keyObject.type === "private") {
+                dec.unsignedInteger();
+              }
+              const n = (0, base64url_js_1.encode)(dec.unsignedInteger());
+              const e = (0, base64url_js_1.encode)(dec.unsignedInteger());
+              let jwk;
+              if (keyObject.type === "private") {
+                jwk = {
+                  d: (0, base64url_js_1.encode)(dec.unsignedInteger()),
+                  p: (0, base64url_js_1.encode)(dec.unsignedInteger()),
+                  q: (0, base64url_js_1.encode)(dec.unsignedInteger()),
+                  dp: (0, base64url_js_1.encode)(dec.unsignedInteger()),
+                  dq: (0, base64url_js_1.encode)(dec.unsignedInteger()),
+                  qi: (0, base64url_js_1.encode)(dec.unsignedInteger())
+                };
+              }
+              dec.end();
+              return { kty: "RSA", n, e, ...jwk };
+            }
+            case "ec": {
+              const crv = (0, get_named_curve_js_1.default)(keyObject);
+              let len;
+              let offset;
+              let correction;
+              switch (crv) {
+                case "secp256k1":
+                  len = 64;
+                  offset = 31 + 2;
+                  correction = -1;
+                  break;
+                case "P-256":
+                  len = 64;
+                  offset = 34 + 2;
+                  correction = -1;
+                  break;
+                case "P-384":
+                  len = 96;
+                  offset = 33 + 2;
+                  correction = -3;
+                  break;
+                case "P-521":
+                  len = 132;
+                  offset = 33 + 2;
+                  correction = -3;
+                  break;
+                default:
+                  throw new errors_js_1.JOSENotSupported("Unsupported curve");
+              }
+              if (keyObject.type === "public") {
+                const der2 = keyObject.export({ type: "spki", format: "der" });
+                return {
+                  kty: "EC",
+                  crv,
+                  x: (0, base64url_js_1.encode)(der2.subarray(-len, -len / 2)),
+                  y: (0, base64url_js_1.encode)(der2.subarray(-len / 2))
+                };
+              }
+              const der = keyObject.export({ type: "pkcs8", format: "der" });
+              if (der.length < 100) {
+                offset += correction;
+              }
+              return {
+                ...keyToJWK((0, crypto_1.createPublicKey)(keyObject)),
+                d: (0, base64url_js_1.encode)(der.subarray(offset, offset + len / 2))
+              };
+            }
+            case "ed25519":
+            case "x25519": {
+              const crv = (0, get_named_curve_js_1.default)(keyObject);
+              if (keyObject.type === "public") {
+                const der2 = keyObject.export({ type: "spki", format: "der" });
+                return {
+                  kty: "OKP",
+                  crv,
+                  x: (0, base64url_js_1.encode)(der2.subarray(-32))
+                };
+              }
+              const der = keyObject.export({ type: "pkcs8", format: "der" });
+              return {
+                ...keyToJWK((0, crypto_1.createPublicKey)(keyObject)),
+                d: (0, base64url_js_1.encode)(der.subarray(-32))
+              };
+            }
+            case "ed448":
+            case "x448": {
+              const crv = (0, get_named_curve_js_1.default)(keyObject);
+              if (keyObject.type === "public") {
+                const der2 = keyObject.export({ type: "spki", format: "der" });
+                return {
+                  kty: "OKP",
+                  crv,
+                  x: (0, base64url_js_1.encode)(der2.subarray(crv === "Ed448" ? -57 : -56))
+                };
+              }
+              const der = keyObject.export({ type: "pkcs8", format: "der" });
+              return {
+                ...keyToJWK((0, crypto_1.createPublicKey)(keyObject)),
+                d: (0, base64url_js_1.encode)(der.subarray(crv === "Ed448" ? -57 : -56))
+              };
+            }
+            default:
+              throw new errors_js_1.JOSENotSupported("Unsupported key asymmetricKeyType");
+          }
+        }
+        default:
+          throw new errors_js_1.JOSENotSupported("Unsupported key type");
+      }
+    };
+    exports2.default = keyToJWK;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/key/export.js
+var require_export = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/key/export.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.exportJWK = exports2.exportPKCS8 = exports2.exportSPKI = void 0;
+    var asn1_js_1 = require_asn12();
+    var asn1_js_2 = require_asn12();
+    var key_to_jwk_js_1 = require_key_to_jwk();
+    async function exportSPKI(key) {
+      return (0, asn1_js_1.toSPKI)(key);
+    }
+    exports2.exportSPKI = exportSPKI;
+    async function exportPKCS8(key) {
+      return (0, asn1_js_2.toPKCS8)(key);
+    }
+    exports2.exportPKCS8 = exportPKCS8;
+    async function exportJWK(key) {
+      return (0, key_to_jwk_js_1.default)(key);
+    }
+    exports2.exportJWK = exportJWK;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/encrypt_key_management.js
+var require_encrypt_key_management = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/encrypt_key_management.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var aeskw_js_1 = require_aeskw();
+    var ECDH = require_ecdhes();
+    var pbes2kw_js_1 = require_pbes2kw();
+    var rsaes_js_1 = require_rsaes();
+    var base64url_js_1 = require_base64url();
+    var cek_js_1 = require_cek();
+    var errors_js_1 = require_errors2();
+    var export_js_1 = require_export();
+    var check_key_type_js_1 = require_check_key_type();
+    var aesgcmkw_js_1 = require_aesgcmkw();
+    async function encryptKeyManagement(alg, enc, key, providedCek, providedParameters = {}) {
+      let encryptedKey;
+      let parameters;
+      let cek;
+      (0, check_key_type_js_1.default)(alg, key, "encrypt");
+      switch (alg) {
+        case "dir": {
+          cek = key;
+          break;
+        }
+        case "ECDH-ES":
+        case "ECDH-ES+A128KW":
+        case "ECDH-ES+A192KW":
+        case "ECDH-ES+A256KW": {
+          if (!ECDH.ecdhAllowed(key)) {
+            throw new errors_js_1.JOSENotSupported("ECDH with the provided key is not allowed or not supported by your javascript runtime");
+          }
+          const { apu, apv } = providedParameters;
+          let { epk: ephemeralKey } = providedParameters;
+          ephemeralKey || (ephemeralKey = (await ECDH.generateEpk(key)).privateKey);
+          const { x, y, crv, kty } = await (0, export_js_1.exportJWK)(ephemeralKey);
+          const sharedSecret = await ECDH.deriveKey(key, ephemeralKey, alg === "ECDH-ES" ? enc : alg, alg === "ECDH-ES" ? (0, cek_js_1.bitLength)(enc) : parseInt(alg.slice(-5, -2), 10), apu, apv);
+          parameters = { epk: { x, crv, kty } };
+          if (kty === "EC")
+            parameters.epk.y = y;
+          if (apu)
+            parameters.apu = (0, base64url_js_1.encode)(apu);
+          if (apv)
+            parameters.apv = (0, base64url_js_1.encode)(apv);
+          if (alg === "ECDH-ES") {
+            cek = sharedSecret;
+            break;
+          }
+          cek = providedCek || (0, cek_js_1.default)(enc);
+          const kwAlg = alg.slice(-6);
+          encryptedKey = await (0, aeskw_js_1.wrap)(kwAlg, sharedSecret, cek);
+          break;
+        }
+        case "RSA1_5":
+        case "RSA-OAEP":
+        case "RSA-OAEP-256":
+        case "RSA-OAEP-384":
+        case "RSA-OAEP-512": {
+          cek = providedCek || (0, cek_js_1.default)(enc);
+          encryptedKey = await (0, rsaes_js_1.encrypt)(alg, key, cek);
+          break;
+        }
+        case "PBES2-HS256+A128KW":
+        case "PBES2-HS384+A192KW":
+        case "PBES2-HS512+A256KW": {
+          cek = providedCek || (0, cek_js_1.default)(enc);
+          const { p2c, p2s } = providedParameters;
+          ({ encryptedKey, ...parameters } = await (0, pbes2kw_js_1.encrypt)(alg, key, cek, p2c, p2s));
+          break;
+        }
+        case "A128KW":
+        case "A192KW":
+        case "A256KW": {
+          cek = providedCek || (0, cek_js_1.default)(enc);
+          encryptedKey = await (0, aeskw_js_1.wrap)(alg, key, cek);
+          break;
+        }
+        case "A128GCMKW":
+        case "A192GCMKW":
+        case "A256GCMKW": {
+          cek = providedCek || (0, cek_js_1.default)(enc);
+          const { iv } = providedParameters;
+          ({ encryptedKey, ...parameters } = await (0, aesgcmkw_js_1.wrap)(alg, key, cek, iv));
+          break;
+        }
+        default: {
+          throw new errors_js_1.JOSENotSupported('Invalid or unsupported "alg" (JWE Algorithm) header value');
+        }
+      }
+      return { cek, encryptedKey, parameters };
+    }
+    exports2.default = encryptKeyManagement;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwe/flattened/encrypt.js
+var require_encrypt2 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwe/flattened/encrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.FlattenedEncrypt = exports2.unprotected = void 0;
+    var base64url_js_1 = require_base64url();
+    var encrypt_js_1 = require_encrypt();
+    var zlib_js_1 = require_zlib();
+    var iv_js_1 = require_iv();
+    var encrypt_key_management_js_1 = require_encrypt_key_management();
+    var errors_js_1 = require_errors2();
+    var is_disjoint_js_1 = require_is_disjoint();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var validate_crit_js_1 = require_validate_crit();
+    exports2.unprotected = Symbol();
+    var FlattenedEncrypt = class {
+      constructor(plaintext) {
+        if (!(plaintext instanceof Uint8Array)) {
+          throw new TypeError("plaintext must be an instance of Uint8Array");
+        }
+        this._plaintext = plaintext;
+      }
+      setKeyManagementParameters(parameters) {
+        if (this._keyManagementParameters) {
+          throw new TypeError("setKeyManagementParameters can only be called once");
+        }
+        this._keyManagementParameters = parameters;
+        return this;
+      }
+      setProtectedHeader(protectedHeader) {
+        if (this._protectedHeader) {
+          throw new TypeError("setProtectedHeader can only be called once");
+        }
+        this._protectedHeader = protectedHeader;
+        return this;
+      }
+      setSharedUnprotectedHeader(sharedUnprotectedHeader) {
+        if (this._sharedUnprotectedHeader) {
+          throw new TypeError("setSharedUnprotectedHeader can only be called once");
+        }
+        this._sharedUnprotectedHeader = sharedUnprotectedHeader;
+        return this;
+      }
+      setUnprotectedHeader(unprotectedHeader) {
+        if (this._unprotectedHeader) {
+          throw new TypeError("setUnprotectedHeader can only be called once");
+        }
+        this._unprotectedHeader = unprotectedHeader;
+        return this;
+      }
+      setAdditionalAuthenticatedData(aad) {
+        this._aad = aad;
+        return this;
+      }
+      setContentEncryptionKey(cek) {
+        if (this._cek) {
+          throw new TypeError("setContentEncryptionKey can only be called once");
+        }
+        this._cek = cek;
+        return this;
+      }
+      setInitializationVector(iv) {
+        if (this._iv) {
+          throw new TypeError("setInitializationVector can only be called once");
+        }
+        this._iv = iv;
+        return this;
+      }
+      async encrypt(key, options) {
+        if (!this._protectedHeader && !this._unprotectedHeader && !this._sharedUnprotectedHeader) {
+          throw new errors_js_1.JWEInvalid("either setProtectedHeader, setUnprotectedHeader, or sharedUnprotectedHeader must be called before #encrypt()");
+        }
+        if (!(0, is_disjoint_js_1.default)(this._protectedHeader, this._unprotectedHeader, this._sharedUnprotectedHeader)) {
+          throw new errors_js_1.JWEInvalid("JWE Protected, JWE Shared Unprotected and JWE Per-Recipient Header Parameter names must be disjoint");
+        }
+        const joseHeader = {
+          ...this._protectedHeader,
+          ...this._unprotectedHeader,
+          ...this._sharedUnprotectedHeader
+        };
+        (0, validate_crit_js_1.default)(errors_js_1.JWEInvalid, /* @__PURE__ */ new Map(), options === null || options === void 0 ? void 0 : options.crit, this._protectedHeader, joseHeader);
+        if (joseHeader.zip !== void 0) {
+          if (!this._protectedHeader || !this._protectedHeader.zip) {
+            throw new errors_js_1.JWEInvalid('JWE "zip" (Compression Algorithm) Header MUST be integrity protected');
+          }
+          if (joseHeader.zip !== "DEF") {
+            throw new errors_js_1.JOSENotSupported('Unsupported JWE "zip" (Compression Algorithm) Header Parameter value');
+          }
+        }
+        const { alg, enc } = joseHeader;
+        if (typeof alg !== "string" || !alg) {
+          throw new errors_js_1.JWEInvalid('JWE "alg" (Algorithm) Header Parameter missing or invalid');
+        }
+        if (typeof enc !== "string" || !enc) {
+          throw new errors_js_1.JWEInvalid('JWE "enc" (Encryption Algorithm) Header Parameter missing or invalid');
+        }
+        let encryptedKey;
+        if (alg === "dir") {
+          if (this._cek) {
+            throw new TypeError("setContentEncryptionKey cannot be called when using Direct Encryption");
+          }
+        } else if (alg === "ECDH-ES") {
+          if (this._cek) {
+            throw new TypeError("setContentEncryptionKey cannot be called when using Direct Key Agreement");
+          }
+        }
+        let cek;
+        {
+          let parameters;
+          ({ cek, encryptedKey, parameters } = await (0, encrypt_key_management_js_1.default)(alg, enc, key, this._cek, this._keyManagementParameters));
+          if (parameters) {
+            if (options && exports2.unprotected in options) {
+              if (!this._unprotectedHeader) {
+                this.setUnprotectedHeader(parameters);
+              } else {
+                this._unprotectedHeader = { ...this._unprotectedHeader, ...parameters };
+              }
+            } else {
+              if (!this._protectedHeader) {
+                this.setProtectedHeader(parameters);
+              } else {
+                this._protectedHeader = { ...this._protectedHeader, ...parameters };
+              }
+            }
+          }
+        }
+        this._iv || (this._iv = (0, iv_js_1.default)(enc));
+        let additionalData;
+        let protectedHeader;
+        let aadMember;
+        if (this._protectedHeader) {
+          protectedHeader = buffer_utils_js_1.encoder.encode((0, base64url_js_1.encode)(JSON.stringify(this._protectedHeader)));
+        } else {
+          protectedHeader = buffer_utils_js_1.encoder.encode("");
+        }
+        if (this._aad) {
+          aadMember = (0, base64url_js_1.encode)(this._aad);
+          additionalData = (0, buffer_utils_js_1.concat)(protectedHeader, buffer_utils_js_1.encoder.encode("."), buffer_utils_js_1.encoder.encode(aadMember));
+        } else {
+          additionalData = protectedHeader;
+        }
+        let ciphertext;
+        let tag;
+        if (joseHeader.zip === "DEF") {
+          const deflated = await ((options === null || options === void 0 ? void 0 : options.deflateRaw) || zlib_js_1.deflate)(this._plaintext);
+          ({ ciphertext, tag } = await (0, encrypt_js_1.default)(enc, deflated, cek, this._iv, additionalData));
+        } else {
+          ;
+          ({ ciphertext, tag } = await (0, encrypt_js_1.default)(enc, this._plaintext, cek, this._iv, additionalData));
+        }
+        const jwe = {
+          ciphertext: (0, base64url_js_1.encode)(ciphertext),
+          iv: (0, base64url_js_1.encode)(this._iv),
+          tag: (0, base64url_js_1.encode)(tag)
+        };
+        if (encryptedKey) {
+          jwe.encrypted_key = (0, base64url_js_1.encode)(encryptedKey);
+        }
+        if (aadMember) {
+          jwe.aad = aadMember;
+        }
+        if (this._protectedHeader) {
+          jwe.protected = buffer_utils_js_1.decoder.decode(protectedHeader);
+        }
+        if (this._sharedUnprotectedHeader) {
+          jwe.unprotected = this._sharedUnprotectedHeader;
+        }
+        if (this._unprotectedHeader) {
+          jwe.header = this._unprotectedHeader;
+        }
+        return jwe;
+      }
+    };
+    exports2.FlattenedEncrypt = FlattenedEncrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwe/general/encrypt.js
+var require_encrypt3 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwe/general/encrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GeneralEncrypt = void 0;
+    var encrypt_js_1 = require_encrypt2();
+    var errors_js_1 = require_errors2();
+    var cek_js_1 = require_cek();
+    var is_disjoint_js_1 = require_is_disjoint();
+    var encrypt_key_management_js_1 = require_encrypt_key_management();
+    var base64url_js_1 = require_base64url();
+    var validate_crit_js_1 = require_validate_crit();
+    var IndividualRecipient = class {
+      constructor(enc, key, options) {
+        this.parent = enc;
+        this.key = key;
+        this.options = options;
+      }
+      setUnprotectedHeader(unprotectedHeader) {
+        if (this.unprotectedHeader) {
+          throw new TypeError("setUnprotectedHeader can only be called once");
+        }
+        this.unprotectedHeader = unprotectedHeader;
+        return this;
+      }
+      addRecipient(...args) {
+        return this.parent.addRecipient(...args);
+      }
+      encrypt(...args) {
+        return this.parent.encrypt(...args);
+      }
+      done() {
+        return this.parent;
+      }
+    };
+    var GeneralEncrypt = class {
+      constructor(plaintext) {
+        this._recipients = [];
+        this._plaintext = plaintext;
+      }
+      addRecipient(key, options) {
+        const recipient = new IndividualRecipient(this, key, { crit: options === null || options === void 0 ? void 0 : options.crit });
+        this._recipients.push(recipient);
+        return recipient;
+      }
+      setProtectedHeader(protectedHeader) {
+        if (this._protectedHeader) {
+          throw new TypeError("setProtectedHeader can only be called once");
+        }
+        this._protectedHeader = protectedHeader;
+        return this;
+      }
+      setSharedUnprotectedHeader(sharedUnprotectedHeader) {
+        if (this._unprotectedHeader) {
+          throw new TypeError("setSharedUnprotectedHeader can only be called once");
+        }
+        this._unprotectedHeader = sharedUnprotectedHeader;
+        return this;
+      }
+      setAdditionalAuthenticatedData(aad) {
+        this._aad = aad;
+        return this;
+      }
+      async encrypt(options) {
+        var _a, _b, _c;
+        if (!this._recipients.length) {
+          throw new errors_js_1.JWEInvalid("at least one recipient must be added");
+        }
+        options = { deflateRaw: options === null || options === void 0 ? void 0 : options.deflateRaw };
+        if (this._recipients.length === 1) {
+          const [recipient] = this._recipients;
+          const flattened = await new encrypt_js_1.FlattenedEncrypt(this._plaintext).setAdditionalAuthenticatedData(this._aad).setProtectedHeader(this._protectedHeader).setSharedUnprotectedHeader(this._unprotectedHeader).setUnprotectedHeader(recipient.unprotectedHeader).encrypt(recipient.key, { ...recipient.options, ...options });
+          let jwe2 = {
+            ciphertext: flattened.ciphertext,
+            iv: flattened.iv,
+            recipients: [{}],
+            tag: flattened.tag
+          };
+          if (flattened.aad)
+            jwe2.aad = flattened.aad;
+          if (flattened.protected)
+            jwe2.protected = flattened.protected;
+          if (flattened.unprotected)
+            jwe2.unprotected = flattened.unprotected;
+          if (flattened.encrypted_key)
+            jwe2.recipients[0].encrypted_key = flattened.encrypted_key;
+          if (flattened.header)
+            jwe2.recipients[0].header = flattened.header;
+          return jwe2;
+        }
+        let enc;
+        for (let i = 0; i < this._recipients.length; i++) {
+          const recipient = this._recipients[i];
+          if (!(0, is_disjoint_js_1.default)(this._protectedHeader, this._unprotectedHeader, recipient.unprotectedHeader)) {
+            throw new errors_js_1.JWEInvalid("JWE Protected, JWE Shared Unprotected and JWE Per-Recipient Header Parameter names must be disjoint");
+          }
+          const joseHeader = {
+            ...this._protectedHeader,
+            ...this._unprotectedHeader,
+            ...recipient.unprotectedHeader
+          };
+          const { alg } = joseHeader;
+          if (typeof alg !== "string" || !alg) {
+            throw new errors_js_1.JWEInvalid('JWE "alg" (Algorithm) Header Parameter missing or invalid');
+          }
+          if (alg === "dir" || alg === "ECDH-ES") {
+            throw new errors_js_1.JWEInvalid('"dir" and "ECDH-ES" alg may only be used with a single recipient');
+          }
+          if (typeof joseHeader.enc !== "string" || !joseHeader.enc) {
+            throw new errors_js_1.JWEInvalid('JWE "enc" (Encryption Algorithm) Header Parameter missing or invalid');
+          }
+          if (!enc) {
+            enc = joseHeader.enc;
+          } else if (enc !== joseHeader.enc) {
+            throw new errors_js_1.JWEInvalid('JWE "enc" (Encryption Algorithm) Header Parameter must be the same for all recipients');
+          }
+          (0, validate_crit_js_1.default)(errors_js_1.JWEInvalid, /* @__PURE__ */ new Map(), recipient.options.crit, this._protectedHeader, joseHeader);
+          if (joseHeader.zip !== void 0) {
+            if (!this._protectedHeader || !this._protectedHeader.zip) {
+              throw new errors_js_1.JWEInvalid('JWE "zip" (Compression Algorithm) Header MUST be integrity protected');
+            }
+          }
+        }
+        const cek = (0, cek_js_1.default)(enc);
+        let jwe = {
+          ciphertext: "",
+          iv: "",
+          recipients: [],
+          tag: ""
+        };
+        for (let i = 0; i < this._recipients.length; i++) {
+          const recipient = this._recipients[i];
+          const target = {};
+          jwe.recipients.push(target);
+          const joseHeader = {
+            ...this._protectedHeader,
+            ...this._unprotectedHeader,
+            ...recipient.unprotectedHeader
+          };
+          const p2c = joseHeader.alg.startsWith("PBES2") ? 2048 + i : void 0;
+          if (i === 0) {
+            const flattened = await new encrypt_js_1.FlattenedEncrypt(this._plaintext).setAdditionalAuthenticatedData(this._aad).setContentEncryptionKey(cek).setProtectedHeader(this._protectedHeader).setSharedUnprotectedHeader(this._unprotectedHeader).setUnprotectedHeader(recipient.unprotectedHeader).setKeyManagementParameters({ p2c }).encrypt(recipient.key, {
+              ...recipient.options,
+              ...options,
+              [encrypt_js_1.unprotected]: true
+            });
+            jwe.ciphertext = flattened.ciphertext;
+            jwe.iv = flattened.iv;
+            jwe.tag = flattened.tag;
+            if (flattened.aad)
+              jwe.aad = flattened.aad;
+            if (flattened.protected)
+              jwe.protected = flattened.protected;
+            if (flattened.unprotected)
+              jwe.unprotected = flattened.unprotected;
+            target.encrypted_key = flattened.encrypted_key;
+            if (flattened.header)
+              target.header = flattened.header;
+            continue;
+          }
+          const { encryptedKey, parameters } = await (0, encrypt_key_management_js_1.default)(((_a = recipient.unprotectedHeader) === null || _a === void 0 ? void 0 : _a.alg) || ((_b = this._protectedHeader) === null || _b === void 0 ? void 0 : _b.alg) || ((_c = this._unprotectedHeader) === null || _c === void 0 ? void 0 : _c.alg), enc, recipient.key, cek, { p2c });
+          target.encrypted_key = (0, base64url_js_1.encode)(encryptedKey);
+          if (recipient.unprotectedHeader || parameters)
+            target.header = { ...recipient.unprotectedHeader, ...parameters };
+        }
+        return jwe;
+      }
+    };
+    exports2.GeneralEncrypt = GeneralEncrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/dsa_digest.js
+var require_dsa_digest = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/dsa_digest.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var errors_js_1 = require_errors2();
+    function dsaDigest(alg) {
+      switch (alg) {
+        case "PS256":
+        case "RS256":
+        case "ES256":
+        case "ES256K":
+          return "sha256";
+        case "PS384":
+        case "RS384":
+        case "ES384":
+          return "sha384";
+        case "PS512":
+        case "RS512":
+        case "ES512":
+          return "sha512";
+        case "EdDSA":
+          return void 0;
+        default:
+          throw new errors_js_1.JOSENotSupported(`alg ${alg} is not supported either by JOSE or your javascript runtime`);
+      }
+    }
+    exports2.default = dsaDigest;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/node_key.js
+var require_node_key = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/node_key.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var get_named_curve_js_1 = require_get_named_curve();
+    var errors_js_1 = require_errors2();
+    var check_modulus_length_js_1 = require_check_modulus_length();
+    var flags_js_1 = require_flags();
+    var PSS = {
+      padding: crypto_1.constants.RSA_PKCS1_PSS_PADDING,
+      saltLength: crypto_1.constants.RSA_PSS_SALTLEN_DIGEST
+    };
+    var ecCurveAlgMap = /* @__PURE__ */ new Map([
+      ["ES256", "P-256"],
+      ["ES256K", "secp256k1"],
+      ["ES384", "P-384"],
+      ["ES512", "P-521"]
+    ]);
+    function keyForCrypto(alg, key) {
+      switch (alg) {
+        case "EdDSA":
+          if (!["ed25519", "ed448"].includes(key.asymmetricKeyType)) {
+            throw new TypeError("Invalid key for this operation, its asymmetricKeyType must be ed25519 or ed448");
+          }
+          return key;
+        case "RS256":
+        case "RS384":
+        case "RS512":
+          if (key.asymmetricKeyType !== "rsa") {
+            throw new TypeError("Invalid key for this operation, its asymmetricKeyType must be rsa");
+          }
+          (0, check_modulus_length_js_1.default)(key, alg);
+          return key;
+        case (flags_js_1.rsaPssParams && "PS256"):
+        case (flags_js_1.rsaPssParams && "PS384"):
+        case (flags_js_1.rsaPssParams && "PS512"):
+          if (key.asymmetricKeyType === "rsa-pss") {
+            const { hashAlgorithm, mgf1HashAlgorithm, saltLength } = key.asymmetricKeyDetails;
+            const length = parseInt(alg.slice(-3), 10);
+            if (hashAlgorithm !== void 0 && (hashAlgorithm !== `sha${length}` || mgf1HashAlgorithm !== hashAlgorithm)) {
+              throw new TypeError(`Invalid key for this operation, its RSA-PSS parameters do not meet the requirements of "alg" ${alg}`);
+            }
+            if (saltLength !== void 0 && saltLength > length >> 3) {
+              throw new TypeError(`Invalid key for this operation, its RSA-PSS parameter saltLength does not meet the requirements of "alg" ${alg}`);
+            }
+          } else if (key.asymmetricKeyType !== "rsa") {
+            throw new TypeError("Invalid key for this operation, its asymmetricKeyType must be rsa or rsa-pss");
+          }
+          (0, check_modulus_length_js_1.default)(key, alg);
+          return { key, ...PSS };
+        case (!flags_js_1.rsaPssParams && "PS256"):
+        case (!flags_js_1.rsaPssParams && "PS384"):
+        case (!flags_js_1.rsaPssParams && "PS512"):
+          if (key.asymmetricKeyType !== "rsa") {
+            throw new TypeError("Invalid key for this operation, its asymmetricKeyType must be rsa");
+          }
+          (0, check_modulus_length_js_1.default)(key, alg);
+          return { key, ...PSS };
+        case "ES256":
+        case "ES256K":
+        case "ES384":
+        case "ES512": {
+          if (key.asymmetricKeyType !== "ec") {
+            throw new TypeError("Invalid key for this operation, its asymmetricKeyType must be ec");
+          }
+          const actual = (0, get_named_curve_js_1.default)(key);
+          const expected = ecCurveAlgMap.get(alg);
+          if (actual !== expected) {
+            throw new TypeError(`Invalid key curve for the algorithm, its curve must be ${expected}, got ${actual}`);
+          }
+          return { dsaEncoding: "ieee-p1363", key };
+        }
+        default:
+          throw new errors_js_1.JOSENotSupported(`alg ${alg} is not supported either by JOSE or your javascript runtime`);
+      }
+    }
+    exports2.default = keyForCrypto;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/hmac_digest.js
+var require_hmac_digest = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/hmac_digest.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var errors_js_1 = require_errors2();
+    function hmacDigest(alg) {
+      switch (alg) {
+        case "HS256":
+          return "sha256";
+        case "HS384":
+          return "sha384";
+        case "HS512":
+          return "sha512";
+        default:
+          throw new errors_js_1.JOSENotSupported(`alg ${alg} is not supported either by JOSE or your javascript runtime`);
+      }
+    }
+    exports2.default = hmacDigest;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/get_sign_verify_key.js
+var require_get_sign_verify_key = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/get_sign_verify_key.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto_1 = require("crypto");
+    var webcrypto_js_1 = require_webcrypto();
+    var crypto_key_js_1 = require_crypto_key();
+    var invalid_key_input_js_1 = require_invalid_key_input();
+    var is_key_like_js_1 = require_is_key_like();
+    function getSignVerifyKey(alg, key, usage) {
+      if (key instanceof Uint8Array) {
+        if (!alg.startsWith("HS")) {
+          throw new TypeError((0, invalid_key_input_js_1.default)(key, ...is_key_like_js_1.types));
+        }
+        return (0, crypto_1.createSecretKey)(key);
+      }
+      if (key instanceof crypto_1.KeyObject) {
+        return key;
+      }
+      if ((0, webcrypto_js_1.isCryptoKey)(key)) {
+        (0, crypto_key_js_1.checkSigCryptoKey)(key, alg, usage);
+        return crypto_1.KeyObject.from(key);
+      }
+      throw new TypeError((0, invalid_key_input_js_1.default)(key, ...is_key_like_js_1.types, "Uint8Array"));
+    }
+    exports2.default = getSignVerifyKey;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/sign.js
+var require_sign2 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/sign.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto6 = require("crypto");
+    var util_1 = require("util");
+    var dsa_digest_js_1 = require_dsa_digest();
+    var hmac_digest_js_1 = require_hmac_digest();
+    var node_key_js_1 = require_node_key();
+    var get_sign_verify_key_js_1 = require_get_sign_verify_key();
+    var oneShotSign;
+    if (crypto6.sign.length > 3) {
+      oneShotSign = (0, util_1.promisify)(crypto6.sign);
+    } else {
+      oneShotSign = crypto6.sign;
+    }
+    var sign = async (alg, key, data) => {
+      const keyObject = (0, get_sign_verify_key_js_1.default)(alg, key, "sign");
+      if (alg.startsWith("HS")) {
+        const hmac = crypto6.createHmac((0, hmac_digest_js_1.default)(alg), keyObject);
+        hmac.update(data);
+        return hmac.digest();
+      }
+      return oneShotSign((0, dsa_digest_js_1.default)(alg), data, (0, node_key_js_1.default)(alg, keyObject));
+    };
+    exports2.default = sign;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/verify.js
+var require_verify2 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/verify.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var crypto6 = require("crypto");
+    var util_1 = require("util");
+    var dsa_digest_js_1 = require_dsa_digest();
+    var node_key_js_1 = require_node_key();
+    var sign_js_1 = require_sign2();
+    var get_sign_verify_key_js_1 = require_get_sign_verify_key();
+    var flags_js_1 = require_flags();
+    var oneShotVerify;
+    if (crypto6.verify.length > 4 && flags_js_1.oneShotCallback) {
+      oneShotVerify = (0, util_1.promisify)(crypto6.verify);
+    } else {
+      oneShotVerify = crypto6.verify;
+    }
+    var verify = async (alg, key, signature, data) => {
+      const keyObject = (0, get_sign_verify_key_js_1.default)(alg, key, "verify");
+      if (alg.startsWith("HS")) {
+        const expected = await (0, sign_js_1.default)(alg, keyObject, data);
+        const actual = signature;
+        try {
+          return crypto6.timingSafeEqual(actual, expected);
+        } catch {
+          return false;
+        }
+      }
+      const algorithm = (0, dsa_digest_js_1.default)(alg);
+      const keyInput = (0, node_key_js_1.default)(alg, keyObject);
+      try {
+        return await oneShotVerify(algorithm, data, keyInput, signature);
+      } catch {
+        return false;
+      }
+    };
+    exports2.default = verify;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jws/flattened/verify.js
+var require_verify3 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jws/flattened/verify.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.flattenedVerify = void 0;
+    var base64url_js_1 = require_base64url();
+    var verify_js_1 = require_verify2();
+    var errors_js_1 = require_errors2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var is_disjoint_js_1 = require_is_disjoint();
+    var is_object_js_1 = require_is_object();
+    var check_key_type_js_1 = require_check_key_type();
+    var validate_crit_js_1 = require_validate_crit();
+    var validate_algorithms_js_1 = require_validate_algorithms();
+    async function flattenedVerify(jws, key, options) {
+      var _a;
+      if (!(0, is_object_js_1.default)(jws)) {
+        throw new errors_js_1.JWSInvalid("Flattened JWS must be an object");
+      }
+      if (jws.protected === void 0 && jws.header === void 0) {
+        throw new errors_js_1.JWSInvalid('Flattened JWS must have either of the "protected" or "header" members');
+      }
+      if (jws.protected !== void 0 && typeof jws.protected !== "string") {
+        throw new errors_js_1.JWSInvalid("JWS Protected Header incorrect type");
+      }
+      if (jws.payload === void 0) {
+        throw new errors_js_1.JWSInvalid("JWS Payload missing");
+      }
+      if (typeof jws.signature !== "string") {
+        throw new errors_js_1.JWSInvalid("JWS Signature missing or incorrect type");
+      }
+      if (jws.header !== void 0 && !(0, is_object_js_1.default)(jws.header)) {
+        throw new errors_js_1.JWSInvalid("JWS Unprotected Header incorrect type");
+      }
+      let parsedProt = {};
+      if (jws.protected) {
+        try {
+          const protectedHeader = (0, base64url_js_1.decode)(jws.protected);
+          parsedProt = JSON.parse(buffer_utils_js_1.decoder.decode(protectedHeader));
+        } catch {
+          throw new errors_js_1.JWSInvalid("JWS Protected Header is invalid");
+        }
+      }
+      if (!(0, is_disjoint_js_1.default)(parsedProt, jws.header)) {
+        throw new errors_js_1.JWSInvalid("JWS Protected and JWS Unprotected Header Parameter names must be disjoint");
+      }
+      const joseHeader = {
+        ...parsedProt,
+        ...jws.header
+      };
+      const extensions = (0, validate_crit_js_1.default)(errors_js_1.JWSInvalid, /* @__PURE__ */ new Map([["b64", true]]), options === null || options === void 0 ? void 0 : options.crit, parsedProt, joseHeader);
+      let b64 = true;
+      if (extensions.has("b64")) {
+        b64 = parsedProt.b64;
+        if (typeof b64 !== "boolean") {
+          throw new errors_js_1.JWSInvalid('The "b64" (base64url-encode payload) Header Parameter must be a boolean');
+        }
+      }
+      const { alg } = joseHeader;
+      if (typeof alg !== "string" || !alg) {
+        throw new errors_js_1.JWSInvalid('JWS "alg" (Algorithm) Header Parameter missing or invalid');
+      }
+      const algorithms = options && (0, validate_algorithms_js_1.default)("algorithms", options.algorithms);
+      if (algorithms && !algorithms.has(alg)) {
+        throw new errors_js_1.JOSEAlgNotAllowed('"alg" (Algorithm) Header Parameter not allowed');
+      }
+      if (b64) {
+        if (typeof jws.payload !== "string") {
+          throw new errors_js_1.JWSInvalid("JWS Payload must be a string");
+        }
+      } else if (typeof jws.payload !== "string" && !(jws.payload instanceof Uint8Array)) {
+        throw new errors_js_1.JWSInvalid("JWS Payload must be a string or an Uint8Array instance");
+      }
+      let resolvedKey = false;
+      if (typeof key === "function") {
+        key = await key(parsedProt, jws);
+        resolvedKey = true;
+      }
+      (0, check_key_type_js_1.default)(alg, key, "verify");
+      const data = (0, buffer_utils_js_1.concat)(buffer_utils_js_1.encoder.encode((_a = jws.protected) !== null && _a !== void 0 ? _a : ""), buffer_utils_js_1.encoder.encode("."), typeof jws.payload === "string" ? buffer_utils_js_1.encoder.encode(jws.payload) : jws.payload);
+      let signature;
+      try {
+        signature = (0, base64url_js_1.decode)(jws.signature);
+      } catch {
+        throw new errors_js_1.JWSInvalid("Failed to base64url decode the signature");
+      }
+      const verified = await (0, verify_js_1.default)(alg, key, signature, data);
+      if (!verified) {
+        throw new errors_js_1.JWSSignatureVerificationFailed();
+      }
+      let payload;
+      if (b64) {
+        try {
+          payload = (0, base64url_js_1.decode)(jws.payload);
+        } catch {
+          throw new errors_js_1.JWSInvalid("Failed to base64url decode the payload");
+        }
+      } else if (typeof jws.payload === "string") {
+        payload = buffer_utils_js_1.encoder.encode(jws.payload);
+      } else {
+        payload = jws.payload;
+      }
+      const result = { payload };
+      if (jws.protected !== void 0) {
+        result.protectedHeader = parsedProt;
+      }
+      if (jws.header !== void 0) {
+        result.unprotectedHeader = jws.header;
+      }
+      if (resolvedKey) {
+        return { ...result, key };
+      }
+      return result;
+    }
+    exports2.flattenedVerify = flattenedVerify;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jws/compact/verify.js
+var require_verify4 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jws/compact/verify.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.compactVerify = void 0;
+    var verify_js_1 = require_verify3();
+    var errors_js_1 = require_errors2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    async function compactVerify(jws, key, options) {
+      if (jws instanceof Uint8Array) {
+        jws = buffer_utils_js_1.decoder.decode(jws);
+      }
+      if (typeof jws !== "string") {
+        throw new errors_js_1.JWSInvalid("Compact JWS must be a string or Uint8Array");
+      }
+      const { 0: protectedHeader, 1: payload, 2: signature, length } = jws.split(".");
+      if (length !== 3) {
+        throw new errors_js_1.JWSInvalid("Invalid Compact JWS");
+      }
+      const verified = await (0, verify_js_1.flattenedVerify)({ payload, protected: protectedHeader, signature }, key, options);
+      const result = { payload: verified.payload, protectedHeader: verified.protectedHeader };
+      if (typeof key === "function") {
+        return { ...result, key: verified.key };
+      }
+      return result;
+    }
+    exports2.compactVerify = compactVerify;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jws/general/verify.js
+var require_verify5 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jws/general/verify.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.generalVerify = void 0;
+    var verify_js_1 = require_verify3();
+    var errors_js_1 = require_errors2();
+    var is_object_js_1 = require_is_object();
+    async function generalVerify(jws, key, options) {
+      if (!(0, is_object_js_1.default)(jws)) {
+        throw new errors_js_1.JWSInvalid("General JWS must be an object");
+      }
+      if (!Array.isArray(jws.signatures) || !jws.signatures.every(is_object_js_1.default)) {
+        throw new errors_js_1.JWSInvalid("JWS Signatures missing or incorrect type");
+      }
+      for (const signature of jws.signatures) {
+        try {
+          return await (0, verify_js_1.flattenedVerify)({
+            header: signature.header,
+            payload: jws.payload,
+            protected: signature.protected,
+            signature: signature.signature
+          }, key, options);
+        } catch {
+        }
+      }
+      throw new errors_js_1.JWSSignatureVerificationFailed();
+    }
+    exports2.generalVerify = generalVerify;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/epoch.js
+var require_epoch = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/epoch.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.default = (date) => Math.floor(date.getTime() / 1e3);
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/secs.js
+var require_secs = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/secs.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var minute = 60;
+    var hour = minute * 60;
+    var day = hour * 24;
+    var week = day * 7;
+    var year = day * 365.25;
+    var REGEX = /^(\d+|\d+\.\d+) ?(seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)$/i;
+    exports2.default = (str) => {
+      const matched = REGEX.exec(str);
+      if (!matched) {
+        throw new TypeError("Invalid time period format");
+      }
+      const value = parseFloat(matched[1]);
+      const unit = matched[2].toLowerCase();
+      switch (unit) {
+        case "sec":
+        case "secs":
+        case "second":
+        case "seconds":
+        case "s":
+          return Math.round(value);
+        case "minute":
+        case "minutes":
+        case "min":
+        case "mins":
+        case "m":
+          return Math.round(value * minute);
+        case "hour":
+        case "hours":
+        case "hr":
+        case "hrs":
+        case "h":
+          return Math.round(value * hour);
+        case "day":
+        case "days":
+        case "d":
+          return Math.round(value * day);
+        case "week":
+        case "weeks":
+        case "w":
+          return Math.round(value * week);
+        default:
+          return Math.round(value * year);
+      }
+    };
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/lib/jwt_claims_set.js
+var require_jwt_claims_set = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/lib/jwt_claims_set.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var errors_js_1 = require_errors2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var epoch_js_1 = require_epoch();
+    var secs_js_1 = require_secs();
+    var is_object_js_1 = require_is_object();
+    var normalizeTyp = (value) => value.toLowerCase().replace(/^application\//, "");
+    var checkAudiencePresence = (audPayload, audOption) => {
+      if (typeof audPayload === "string") {
+        return audOption.includes(audPayload);
+      }
+      if (Array.isArray(audPayload)) {
+        return audOption.some(Set.prototype.has.bind(new Set(audPayload)));
+      }
+      return false;
+    };
+    exports2.default = (protectedHeader, encodedPayload, options = {}) => {
+      const { typ } = options;
+      if (typ && (typeof protectedHeader.typ !== "string" || normalizeTyp(protectedHeader.typ) !== normalizeTyp(typ))) {
+        throw new errors_js_1.JWTClaimValidationFailed('unexpected "typ" JWT header value', "typ", "check_failed");
+      }
+      let payload;
+      try {
+        payload = JSON.parse(buffer_utils_js_1.decoder.decode(encodedPayload));
+      } catch {
+      }
+      if (!(0, is_object_js_1.default)(payload)) {
+        throw new errors_js_1.JWTInvalid("JWT Claims Set must be a top-level JSON object");
+      }
+      const { requiredClaims = [], issuer, subject, audience, maxTokenAge } = options;
+      if (maxTokenAge !== void 0)
+        requiredClaims.push("iat");
+      if (audience !== void 0)
+        requiredClaims.push("aud");
+      if (subject !== void 0)
+        requiredClaims.push("sub");
+      if (issuer !== void 0)
+        requiredClaims.push("iss");
+      for (const claim of new Set(requiredClaims.reverse())) {
+        if (!(claim in payload)) {
+          throw new errors_js_1.JWTClaimValidationFailed(`missing required "${claim}" claim`, claim, "missing");
+        }
+      }
+      if (issuer && !(Array.isArray(issuer) ? issuer : [issuer]).includes(payload.iss)) {
+        throw new errors_js_1.JWTClaimValidationFailed('unexpected "iss" claim value', "iss", "check_failed");
+      }
+      if (subject && payload.sub !== subject) {
+        throw new errors_js_1.JWTClaimValidationFailed('unexpected "sub" claim value', "sub", "check_failed");
+      }
+      if (audience && !checkAudiencePresence(payload.aud, typeof audience === "string" ? [audience] : audience)) {
+        throw new errors_js_1.JWTClaimValidationFailed('unexpected "aud" claim value', "aud", "check_failed");
+      }
+      let tolerance;
+      switch (typeof options.clockTolerance) {
+        case "string":
+          tolerance = (0, secs_js_1.default)(options.clockTolerance);
+          break;
+        case "number":
+          tolerance = options.clockTolerance;
+          break;
+        case "undefined":
+          tolerance = 0;
+          break;
+        default:
+          throw new TypeError("Invalid clockTolerance option type");
+      }
+      const { currentDate } = options;
+      const now = (0, epoch_js_1.default)(currentDate || /* @__PURE__ */ new Date());
+      if ((payload.iat !== void 0 || maxTokenAge) && typeof payload.iat !== "number") {
+        throw new errors_js_1.JWTClaimValidationFailed('"iat" claim must be a number', "iat", "invalid");
+      }
+      if (payload.nbf !== void 0) {
+        if (typeof payload.nbf !== "number") {
+          throw new errors_js_1.JWTClaimValidationFailed('"nbf" claim must be a number', "nbf", "invalid");
+        }
+        if (payload.nbf > now + tolerance) {
+          throw new errors_js_1.JWTClaimValidationFailed('"nbf" claim timestamp check failed', "nbf", "check_failed");
+        }
+      }
+      if (payload.exp !== void 0) {
+        if (typeof payload.exp !== "number") {
+          throw new errors_js_1.JWTClaimValidationFailed('"exp" claim must be a number', "exp", "invalid");
+        }
+        if (payload.exp <= now - tolerance) {
+          throw new errors_js_1.JWTExpired('"exp" claim timestamp check failed', "exp", "check_failed");
+        }
+      }
+      if (maxTokenAge) {
+        const age = now - payload.iat;
+        const max = typeof maxTokenAge === "number" ? maxTokenAge : (0, secs_js_1.default)(maxTokenAge);
+        if (age - tolerance > max) {
+          throw new errors_js_1.JWTExpired('"iat" claim timestamp check failed (too far in the past)', "iat", "check_failed");
+        }
+        if (age < 0 - tolerance) {
+          throw new errors_js_1.JWTClaimValidationFailed('"iat" claim timestamp check failed (it should be in the past)', "iat", "check_failed");
+        }
+      }
+      return payload;
+    };
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwt/verify.js
+var require_verify6 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwt/verify.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.jwtVerify = void 0;
+    var verify_js_1 = require_verify4();
+    var jwt_claims_set_js_1 = require_jwt_claims_set();
+    var errors_js_1 = require_errors2();
+    async function jwtVerify(jwt, key, options) {
+      var _a;
+      const verified = await (0, verify_js_1.compactVerify)(jwt, key, options);
+      if (((_a = verified.protectedHeader.crit) === null || _a === void 0 ? void 0 : _a.includes("b64")) && verified.protectedHeader.b64 === false) {
+        throw new errors_js_1.JWTInvalid("JWTs MUST NOT use unencoded payload");
+      }
+      const payload = (0, jwt_claims_set_js_1.default)(verified.protectedHeader, verified.payload, options);
+      const result = { payload, protectedHeader: verified.protectedHeader };
+      if (typeof key === "function") {
+        return { ...result, key: verified.key };
+      }
+      return result;
+    }
+    exports2.jwtVerify = jwtVerify;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwt/decrypt.js
+var require_decrypt5 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwt/decrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.jwtDecrypt = void 0;
+    var decrypt_js_1 = require_decrypt3();
+    var jwt_claims_set_js_1 = require_jwt_claims_set();
+    var errors_js_1 = require_errors2();
+    async function jwtDecrypt(jwt, key, options) {
+      const decrypted = await (0, decrypt_js_1.compactDecrypt)(jwt, key, options);
+      const payload = (0, jwt_claims_set_js_1.default)(decrypted.protectedHeader, decrypted.plaintext, options);
+      const { protectedHeader } = decrypted;
+      if (protectedHeader.iss !== void 0 && protectedHeader.iss !== payload.iss) {
+        throw new errors_js_1.JWTClaimValidationFailed('replicated "iss" claim header parameter mismatch', "iss", "mismatch");
+      }
+      if (protectedHeader.sub !== void 0 && protectedHeader.sub !== payload.sub) {
+        throw new errors_js_1.JWTClaimValidationFailed('replicated "sub" claim header parameter mismatch', "sub", "mismatch");
+      }
+      if (protectedHeader.aud !== void 0 && JSON.stringify(protectedHeader.aud) !== JSON.stringify(payload.aud)) {
+        throw new errors_js_1.JWTClaimValidationFailed('replicated "aud" claim header parameter mismatch', "aud", "mismatch");
+      }
+      const result = { payload, protectedHeader };
+      if (typeof key === "function") {
+        return { ...result, key: decrypted.key };
+      }
+      return result;
+    }
+    exports2.jwtDecrypt = jwtDecrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwe/compact/encrypt.js
+var require_encrypt4 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwe/compact/encrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.CompactEncrypt = void 0;
+    var encrypt_js_1 = require_encrypt2();
+    var CompactEncrypt = class {
+      constructor(plaintext) {
+        this._flattened = new encrypt_js_1.FlattenedEncrypt(plaintext);
+      }
+      setContentEncryptionKey(cek) {
+        this._flattened.setContentEncryptionKey(cek);
+        return this;
+      }
+      setInitializationVector(iv) {
+        this._flattened.setInitializationVector(iv);
+        return this;
+      }
+      setProtectedHeader(protectedHeader) {
+        this._flattened.setProtectedHeader(protectedHeader);
+        return this;
+      }
+      setKeyManagementParameters(parameters) {
+        this._flattened.setKeyManagementParameters(parameters);
+        return this;
+      }
+      async encrypt(key, options) {
+        const jwe = await this._flattened.encrypt(key, options);
+        return [jwe.protected, jwe.encrypted_key, jwe.iv, jwe.ciphertext, jwe.tag].join(".");
+      }
+    };
+    exports2.CompactEncrypt = CompactEncrypt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jws/flattened/sign.js
+var require_sign3 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jws/flattened/sign.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.FlattenedSign = void 0;
+    var base64url_js_1 = require_base64url();
+    var sign_js_1 = require_sign2();
+    var is_disjoint_js_1 = require_is_disjoint();
+    var errors_js_1 = require_errors2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var check_key_type_js_1 = require_check_key_type();
+    var validate_crit_js_1 = require_validate_crit();
+    var FlattenedSign = class {
+      constructor(payload) {
+        if (!(payload instanceof Uint8Array)) {
+          throw new TypeError("payload must be an instance of Uint8Array");
+        }
+        this._payload = payload;
+      }
+      setProtectedHeader(protectedHeader) {
+        if (this._protectedHeader) {
+          throw new TypeError("setProtectedHeader can only be called once");
+        }
+        this._protectedHeader = protectedHeader;
+        return this;
+      }
+      setUnprotectedHeader(unprotectedHeader) {
+        if (this._unprotectedHeader) {
+          throw new TypeError("setUnprotectedHeader can only be called once");
+        }
+        this._unprotectedHeader = unprotectedHeader;
+        return this;
+      }
+      async sign(key, options) {
+        if (!this._protectedHeader && !this._unprotectedHeader) {
+          throw new errors_js_1.JWSInvalid("either setProtectedHeader or setUnprotectedHeader must be called before #sign()");
+        }
+        if (!(0, is_disjoint_js_1.default)(this._protectedHeader, this._unprotectedHeader)) {
+          throw new errors_js_1.JWSInvalid("JWS Protected and JWS Unprotected Header Parameter names must be disjoint");
+        }
+        const joseHeader = {
+          ...this._protectedHeader,
+          ...this._unprotectedHeader
+        };
+        const extensions = (0, validate_crit_js_1.default)(errors_js_1.JWSInvalid, /* @__PURE__ */ new Map([["b64", true]]), options === null || options === void 0 ? void 0 : options.crit, this._protectedHeader, joseHeader);
+        let b64 = true;
+        if (extensions.has("b64")) {
+          b64 = this._protectedHeader.b64;
+          if (typeof b64 !== "boolean") {
+            throw new errors_js_1.JWSInvalid('The "b64" (base64url-encode payload) Header Parameter must be a boolean');
+          }
+        }
+        const { alg } = joseHeader;
+        if (typeof alg !== "string" || !alg) {
+          throw new errors_js_1.JWSInvalid('JWS "alg" (Algorithm) Header Parameter missing or invalid');
+        }
+        (0, check_key_type_js_1.default)(alg, key, "sign");
+        let payload = this._payload;
+        if (b64) {
+          payload = buffer_utils_js_1.encoder.encode((0, base64url_js_1.encode)(payload));
+        }
+        let protectedHeader;
+        if (this._protectedHeader) {
+          protectedHeader = buffer_utils_js_1.encoder.encode((0, base64url_js_1.encode)(JSON.stringify(this._protectedHeader)));
+        } else {
+          protectedHeader = buffer_utils_js_1.encoder.encode("");
+        }
+        const data = (0, buffer_utils_js_1.concat)(protectedHeader, buffer_utils_js_1.encoder.encode("."), payload);
+        const signature = await (0, sign_js_1.default)(alg, key, data);
+        const jws = {
+          signature: (0, base64url_js_1.encode)(signature),
+          payload: ""
+        };
+        if (b64) {
+          jws.payload = buffer_utils_js_1.decoder.decode(payload);
+        }
+        if (this._unprotectedHeader) {
+          jws.header = this._unprotectedHeader;
+        }
+        if (this._protectedHeader) {
+          jws.protected = buffer_utils_js_1.decoder.decode(protectedHeader);
+        }
+        return jws;
+      }
+    };
+    exports2.FlattenedSign = FlattenedSign;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jws/compact/sign.js
+var require_sign4 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jws/compact/sign.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.CompactSign = void 0;
+    var sign_js_1 = require_sign3();
+    var CompactSign = class {
+      constructor(payload) {
+        this._flattened = new sign_js_1.FlattenedSign(payload);
+      }
+      setProtectedHeader(protectedHeader) {
+        this._flattened.setProtectedHeader(protectedHeader);
+        return this;
+      }
+      async sign(key, options) {
+        const jws = await this._flattened.sign(key, options);
+        if (jws.payload === void 0) {
+          throw new TypeError("use the flattened module for creating JWS with b64: false");
+        }
+        return `${jws.protected}.${jws.payload}.${jws.signature}`;
+      }
+    };
+    exports2.CompactSign = CompactSign;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jws/general/sign.js
+var require_sign5 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jws/general/sign.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GeneralSign = void 0;
+    var sign_js_1 = require_sign3();
+    var errors_js_1 = require_errors2();
+    var IndividualSignature = class {
+      constructor(sig, key, options) {
+        this.parent = sig;
+        this.key = key;
+        this.options = options;
+      }
+      setProtectedHeader(protectedHeader) {
+        if (this.protectedHeader) {
+          throw new TypeError("setProtectedHeader can only be called once");
+        }
+        this.protectedHeader = protectedHeader;
+        return this;
+      }
+      setUnprotectedHeader(unprotectedHeader) {
+        if (this.unprotectedHeader) {
+          throw new TypeError("setUnprotectedHeader can only be called once");
+        }
+        this.unprotectedHeader = unprotectedHeader;
+        return this;
+      }
+      addSignature(...args) {
+        return this.parent.addSignature(...args);
+      }
+      sign(...args) {
+        return this.parent.sign(...args);
+      }
+      done() {
+        return this.parent;
+      }
+    };
+    var GeneralSign = class {
+      constructor(payload) {
+        this._signatures = [];
+        this._payload = payload;
+      }
+      addSignature(key, options) {
+        const signature = new IndividualSignature(this, key, options);
+        this._signatures.push(signature);
+        return signature;
+      }
+      async sign() {
+        if (!this._signatures.length) {
+          throw new errors_js_1.JWSInvalid("at least one signature must be added");
+        }
+        const jws = {
+          signatures: [],
+          payload: ""
+        };
+        for (let i = 0; i < this._signatures.length; i++) {
+          const signature = this._signatures[i];
+          const flattened = new sign_js_1.FlattenedSign(this._payload);
+          flattened.setProtectedHeader(signature.protectedHeader);
+          flattened.setUnprotectedHeader(signature.unprotectedHeader);
+          const { payload, ...rest } = await flattened.sign(signature.key, signature.options);
+          if (i === 0) {
+            jws.payload = payload;
+          } else if (jws.payload !== payload) {
+            throw new errors_js_1.JWSInvalid("inconsistent use of JWS Unencoded Payload (RFC7797)");
+          }
+          jws.signatures.push(rest);
+        }
+        return jws;
+      }
+    };
+    exports2.GeneralSign = GeneralSign;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwt/produce.js
+var require_produce = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwt/produce.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ProduceJWT = void 0;
+    var epoch_js_1 = require_epoch();
+    var is_object_js_1 = require_is_object();
+    var secs_js_1 = require_secs();
+    var ProduceJWT = class {
+      constructor(payload) {
+        if (!(0, is_object_js_1.default)(payload)) {
+          throw new TypeError("JWT Claims Set MUST be an object");
+        }
+        this._payload = payload;
+      }
+      setIssuer(issuer) {
+        this._payload = { ...this._payload, iss: issuer };
+        return this;
+      }
+      setSubject(subject) {
+        this._payload = { ...this._payload, sub: subject };
+        return this;
+      }
+      setAudience(audience) {
+        this._payload = { ...this._payload, aud: audience };
+        return this;
+      }
+      setJti(jwtId) {
+        this._payload = { ...this._payload, jti: jwtId };
+        return this;
+      }
+      setNotBefore(input) {
+        if (typeof input === "number") {
+          this._payload = { ...this._payload, nbf: input };
+        } else {
+          this._payload = { ...this._payload, nbf: (0, epoch_js_1.default)(/* @__PURE__ */ new Date()) + (0, secs_js_1.default)(input) };
+        }
+        return this;
+      }
+      setExpirationTime(input) {
+        if (typeof input === "number") {
+          this._payload = { ...this._payload, exp: input };
+        } else {
+          this._payload = { ...this._payload, exp: (0, epoch_js_1.default)(/* @__PURE__ */ new Date()) + (0, secs_js_1.default)(input) };
+        }
+        return this;
+      }
+      setIssuedAt(input) {
+        if (typeof input === "undefined") {
+          this._payload = { ...this._payload, iat: (0, epoch_js_1.default)(/* @__PURE__ */ new Date()) };
+        } else {
+          this._payload = { ...this._payload, iat: input };
+        }
+        return this;
+      }
+    };
+    exports2.ProduceJWT = ProduceJWT;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwt/sign.js
+var require_sign6 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwt/sign.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.SignJWT = void 0;
+    var sign_js_1 = require_sign4();
+    var errors_js_1 = require_errors2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var produce_js_1 = require_produce();
+    var SignJWT = class extends produce_js_1.ProduceJWT {
+      setProtectedHeader(protectedHeader) {
+        this._protectedHeader = protectedHeader;
+        return this;
+      }
+      async sign(key, options) {
+        var _a;
+        const sig = new sign_js_1.CompactSign(buffer_utils_js_1.encoder.encode(JSON.stringify(this._payload)));
+        sig.setProtectedHeader(this._protectedHeader);
+        if (Array.isArray((_a = this._protectedHeader) === null || _a === void 0 ? void 0 : _a.crit) && this._protectedHeader.crit.includes("b64") && this._protectedHeader.b64 === false) {
+          throw new errors_js_1.JWTInvalid("JWTs MUST NOT use unencoded payload");
+        }
+        return sig.sign(key, options);
+      }
+    };
+    exports2.SignJWT = SignJWT;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwt/encrypt.js
+var require_encrypt5 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwt/encrypt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.EncryptJWT = void 0;
+    var encrypt_js_1 = require_encrypt4();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var produce_js_1 = require_produce();
+    var EncryptJWT = class extends produce_js_1.ProduceJWT {
+      setProtectedHeader(protectedHeader) {
+        if (this._protectedHeader) {
+          throw new TypeError("setProtectedHeader can only be called once");
+        }
+        this._protectedHeader = protectedHeader;
+        return this;
+      }
+      setKeyManagementParameters(parameters) {
+        if (this._keyManagementParameters) {
+          throw new TypeError("setKeyManagementParameters can only be called once");
+        }
+        this._keyManagementParameters = parameters;
+        return this;
+      }
+      setContentEncryptionKey(cek) {
+        if (this._cek) {
+          throw new TypeError("setContentEncryptionKey can only be called once");
+        }
+        this._cek = cek;
+        return this;
+      }
+      setInitializationVector(iv) {
+        if (this._iv) {
+          throw new TypeError("setInitializationVector can only be called once");
+        }
+        this._iv = iv;
+        return this;
+      }
+      replicateIssuerAsHeader() {
+        this._replicateIssuerAsHeader = true;
+        return this;
+      }
+      replicateSubjectAsHeader() {
+        this._replicateSubjectAsHeader = true;
+        return this;
+      }
+      replicateAudienceAsHeader() {
+        this._replicateAudienceAsHeader = true;
+        return this;
+      }
+      async encrypt(key, options) {
+        const enc = new encrypt_js_1.CompactEncrypt(buffer_utils_js_1.encoder.encode(JSON.stringify(this._payload)));
+        if (this._replicateIssuerAsHeader) {
+          this._protectedHeader = { ...this._protectedHeader, iss: this._payload.iss };
+        }
+        if (this._replicateSubjectAsHeader) {
+          this._protectedHeader = { ...this._protectedHeader, sub: this._payload.sub };
+        }
+        if (this._replicateAudienceAsHeader) {
+          this._protectedHeader = { ...this._protectedHeader, aud: this._payload.aud };
+        }
+        enc.setProtectedHeader(this._protectedHeader);
+        if (this._iv) {
+          enc.setInitializationVector(this._iv);
+        }
+        if (this._cek) {
+          enc.setContentEncryptionKey(this._cek);
+        }
+        if (this._keyManagementParameters) {
+          enc.setKeyManagementParameters(this._keyManagementParameters);
+        }
+        return enc.encrypt(key, options);
+      }
+    };
+    exports2.EncryptJWT = EncryptJWT;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwk/thumbprint.js
+var require_thumbprint = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwk/thumbprint.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.calculateJwkThumbprintUri = exports2.calculateJwkThumbprint = void 0;
+    var digest_js_1 = require_digest();
+    var base64url_js_1 = require_base64url();
+    var errors_js_1 = require_errors2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var is_object_js_1 = require_is_object();
+    var check = (value, description) => {
+      if (typeof value !== "string" || !value) {
+        throw new errors_js_1.JWKInvalid(`${description} missing or invalid`);
+      }
+    };
+    async function calculateJwkThumbprint(jwk, digestAlgorithm) {
+      if (!(0, is_object_js_1.default)(jwk)) {
+        throw new TypeError("JWK must be an object");
+      }
+      digestAlgorithm !== null && digestAlgorithm !== void 0 ? digestAlgorithm : digestAlgorithm = "sha256";
+      if (digestAlgorithm !== "sha256" && digestAlgorithm !== "sha384" && digestAlgorithm !== "sha512") {
+        throw new TypeError('digestAlgorithm must one of "sha256", "sha384", or "sha512"');
+      }
+      let components;
+      switch (jwk.kty) {
+        case "EC":
+          check(jwk.crv, '"crv" (Curve) Parameter');
+          check(jwk.x, '"x" (X Coordinate) Parameter');
+          check(jwk.y, '"y" (Y Coordinate) Parameter');
+          components = { crv: jwk.crv, kty: jwk.kty, x: jwk.x, y: jwk.y };
+          break;
+        case "OKP":
+          check(jwk.crv, '"crv" (Subtype of Key Pair) Parameter');
+          check(jwk.x, '"x" (Public Key) Parameter');
+          components = { crv: jwk.crv, kty: jwk.kty, x: jwk.x };
+          break;
+        case "RSA":
+          check(jwk.e, '"e" (Exponent) Parameter');
+          check(jwk.n, '"n" (Modulus) Parameter');
+          components = { e: jwk.e, kty: jwk.kty, n: jwk.n };
+          break;
+        case "oct":
+          check(jwk.k, '"k" (Key Value) Parameter');
+          components = { k: jwk.k, kty: jwk.kty };
+          break;
+        default:
+          throw new errors_js_1.JOSENotSupported('"kty" (Key Type) Parameter missing or unsupported');
+      }
+      const data = buffer_utils_js_1.encoder.encode(JSON.stringify(components));
+      return (0, base64url_js_1.encode)(await (0, digest_js_1.default)(digestAlgorithm, data));
+    }
+    exports2.calculateJwkThumbprint = calculateJwkThumbprint;
+    async function calculateJwkThumbprintUri(jwk, digestAlgorithm) {
+      digestAlgorithm !== null && digestAlgorithm !== void 0 ? digestAlgorithm : digestAlgorithm = "sha256";
+      const thumbprint = await calculateJwkThumbprint(jwk, digestAlgorithm);
+      return `urn:ietf:params:oauth:jwk-thumbprint:sha-${digestAlgorithm.slice(-3)}:${thumbprint}`;
+    }
+    exports2.calculateJwkThumbprintUri = calculateJwkThumbprintUri;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwk/embedded.js
+var require_embedded = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwk/embedded.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.EmbeddedJWK = void 0;
+    var import_js_1 = require_import();
+    var is_object_js_1 = require_is_object();
+    var errors_js_1 = require_errors2();
+    async function EmbeddedJWK(protectedHeader, token) {
+      const joseHeader = {
+        ...protectedHeader,
+        ...token === null || token === void 0 ? void 0 : token.header
+      };
+      if (!(0, is_object_js_1.default)(joseHeader.jwk)) {
+        throw new errors_js_1.JWSInvalid('"jwk" (JSON Web Key) Header Parameter must be a JSON object');
+      }
+      const key = await (0, import_js_1.importJWK)({ ...joseHeader.jwk, ext: true }, joseHeader.alg, true);
+      if (key instanceof Uint8Array || key.type !== "public") {
+        throw new errors_js_1.JWSInvalid('"jwk" (JSON Web Key) Header Parameter must be a public key');
+      }
+      return key;
+    }
+    exports2.EmbeddedJWK = EmbeddedJWK;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwks/local.js
+var require_local = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwks/local.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.createLocalJWKSet = exports2.LocalJWKSet = exports2.isJWKSLike = void 0;
+    var import_js_1 = require_import();
+    var errors_js_1 = require_errors2();
+    var is_object_js_1 = require_is_object();
+    function getKtyFromAlg(alg) {
+      switch (typeof alg === "string" && alg.slice(0, 2)) {
+        case "RS":
+        case "PS":
+          return "RSA";
+        case "ES":
+          return "EC";
+        case "Ed":
+          return "OKP";
+        default:
+          throw new errors_js_1.JOSENotSupported('Unsupported "alg" value for a JSON Web Key Set');
+      }
+    }
+    function isJWKSLike(jwks) {
+      return jwks && typeof jwks === "object" && Array.isArray(jwks.keys) && jwks.keys.every(isJWKLike);
+    }
+    exports2.isJWKSLike = isJWKSLike;
+    function isJWKLike(key) {
+      return (0, is_object_js_1.default)(key);
+    }
+    function clone(obj) {
+      if (typeof structuredClone === "function") {
+        return structuredClone(obj);
+      }
+      return JSON.parse(JSON.stringify(obj));
+    }
+    var LocalJWKSet = class {
+      constructor(jwks) {
+        this._cached = /* @__PURE__ */ new WeakMap();
+        if (!isJWKSLike(jwks)) {
+          throw new errors_js_1.JWKSInvalid("JSON Web Key Set malformed");
+        }
+        this._jwks = clone(jwks);
+      }
+      async getKey(protectedHeader, token) {
+        const { alg, kid } = { ...protectedHeader, ...token === null || token === void 0 ? void 0 : token.header };
+        const kty = getKtyFromAlg(alg);
+        const candidates = this._jwks.keys.filter((jwk2) => {
+          let candidate = kty === jwk2.kty;
+          if (candidate && typeof kid === "string") {
+            candidate = kid === jwk2.kid;
+          }
+          if (candidate && typeof jwk2.alg === "string") {
+            candidate = alg === jwk2.alg;
+          }
+          if (candidate && typeof jwk2.use === "string") {
+            candidate = jwk2.use === "sig";
+          }
+          if (candidate && Array.isArray(jwk2.key_ops)) {
+            candidate = jwk2.key_ops.includes("verify");
+          }
+          if (candidate && alg === "EdDSA") {
+            candidate = jwk2.crv === "Ed25519" || jwk2.crv === "Ed448";
+          }
+          if (candidate) {
+            switch (alg) {
+              case "ES256":
+                candidate = jwk2.crv === "P-256";
+                break;
+              case "ES256K":
+                candidate = jwk2.crv === "secp256k1";
+                break;
+              case "ES384":
+                candidate = jwk2.crv === "P-384";
+                break;
+              case "ES512":
+                candidate = jwk2.crv === "P-521";
+                break;
+            }
+          }
+          return candidate;
+        });
+        const { 0: jwk, length } = candidates;
+        if (length === 0) {
+          throw new errors_js_1.JWKSNoMatchingKey();
+        } else if (length !== 1) {
+          const error = new errors_js_1.JWKSMultipleMatchingKeys();
+          const { _cached } = this;
+          error[Symbol.asyncIterator] = async function* () {
+            for (const jwk2 of candidates) {
+              try {
+                yield await importWithAlgCache(_cached, jwk2, alg);
+              } catch {
+                continue;
+              }
+            }
+          };
+          throw error;
+        }
+        return importWithAlgCache(this._cached, jwk, alg);
+      }
+    };
+    exports2.LocalJWKSet = LocalJWKSet;
+    async function importWithAlgCache(cache, jwk, alg) {
+      const cached = cache.get(jwk) || cache.set(jwk, {}).get(jwk);
+      if (cached[alg] === void 0) {
+        const key = await (0, import_js_1.importJWK)({ ...jwk, ext: true }, alg);
+        if (key instanceof Uint8Array || key.type !== "public") {
+          throw new errors_js_1.JWKSInvalid("JSON Web Key Set members must be public keys");
+        }
+        cached[alg] = key;
+      }
+      return cached[alg];
+    }
+    function createLocalJWKSet(jwks) {
+      const set = new LocalJWKSet(jwks);
+      return async function(protectedHeader, token) {
+        return set.getKey(protectedHeader, token);
+      };
+    }
+    exports2.createLocalJWKSet = createLocalJWKSet;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/fetch_jwks.js
+var require_fetch_jwks = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/fetch_jwks.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var http = require("http");
+    var https = require("https");
+    var events_1 = require("events");
+    var errors_js_1 = require_errors2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var fetchJwks = async (url, timeout, options) => {
+      let get;
+      switch (url.protocol) {
+        case "https:":
+          get = https.get;
+          break;
+        case "http:":
+          get = http.get;
+          break;
+        default:
+          throw new TypeError("Unsupported URL protocol.");
+      }
+      const { agent, headers } = options;
+      const req = get(url.href, {
+        agent,
+        timeout,
+        headers
+      });
+      const [response] = await Promise.race([(0, events_1.once)(req, "response"), (0, events_1.once)(req, "timeout")]);
+      if (!response) {
+        req.destroy();
+        throw new errors_js_1.JWKSTimeout();
+      }
+      if (response.statusCode !== 200) {
+        throw new errors_js_1.JOSEError("Expected 200 OK from the JSON Web Key Set HTTP response");
+      }
+      const parts = [];
+      for await (const part of response) {
+        parts.push(part);
+      }
+      try {
+        return JSON.parse(buffer_utils_js_1.decoder.decode((0, buffer_utils_js_1.concat)(...parts)));
+      } catch {
+        throw new errors_js_1.JOSEError("Failed to parse the JSON Web Key Set HTTP response as JSON");
+      }
+    };
+    exports2.default = fetchJwks;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwks/remote.js
+var require_remote = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwks/remote.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.createRemoteJWKSet = void 0;
+    var fetch_jwks_js_1 = require_fetch_jwks();
+    var errors_js_1 = require_errors2();
+    var local_js_1 = require_local();
+    function isCloudflareWorkers() {
+      return typeof WebSocketPair !== "undefined" || typeof navigator !== "undefined" && navigator.userAgent === "Cloudflare-Workers" || typeof EdgeRuntime !== "undefined" && EdgeRuntime === "vercel";
+    }
+    var RemoteJWKSet = class extends local_js_1.LocalJWKSet {
+      constructor(url, options) {
+        super({ keys: [] });
+        this._jwks = void 0;
+        if (!(url instanceof URL)) {
+          throw new TypeError("url must be an instance of URL");
+        }
+        this._url = new URL(url.href);
+        this._options = { agent: options === null || options === void 0 ? void 0 : options.agent, headers: options === null || options === void 0 ? void 0 : options.headers };
+        this._timeoutDuration = typeof (options === null || options === void 0 ? void 0 : options.timeoutDuration) === "number" ? options === null || options === void 0 ? void 0 : options.timeoutDuration : 5e3;
+        this._cooldownDuration = typeof (options === null || options === void 0 ? void 0 : options.cooldownDuration) === "number" ? options === null || options === void 0 ? void 0 : options.cooldownDuration : 3e4;
+        this._cacheMaxAge = typeof (options === null || options === void 0 ? void 0 : options.cacheMaxAge) === "number" ? options === null || options === void 0 ? void 0 : options.cacheMaxAge : 6e5;
+      }
+      coolingDown() {
+        return typeof this._jwksTimestamp === "number" ? Date.now() < this._jwksTimestamp + this._cooldownDuration : false;
+      }
+      fresh() {
+        return typeof this._jwksTimestamp === "number" ? Date.now() < this._jwksTimestamp + this._cacheMaxAge : false;
+      }
+      async getKey(protectedHeader, token) {
+        if (!this._jwks || !this.fresh()) {
+          await this.reload();
+        }
+        try {
+          return await super.getKey(protectedHeader, token);
+        } catch (err) {
+          if (err instanceof errors_js_1.JWKSNoMatchingKey) {
+            if (this.coolingDown() === false) {
+              await this.reload();
+              return super.getKey(protectedHeader, token);
+            }
+          }
+          throw err;
+        }
+      }
+      async reload() {
+        if (this._pendingFetch && isCloudflareWorkers()) {
+          this._pendingFetch = void 0;
+        }
+        this._pendingFetch || (this._pendingFetch = (0, fetch_jwks_js_1.default)(this._url, this._timeoutDuration, this._options).then((json) => {
+          if (!(0, local_js_1.isJWKSLike)(json)) {
+            throw new errors_js_1.JWKSInvalid("JSON Web Key Set malformed");
+          }
+          this._jwks = { keys: json.keys };
+          this._jwksTimestamp = Date.now();
+          this._pendingFetch = void 0;
+        }).catch((err) => {
+          this._pendingFetch = void 0;
+          throw err;
+        }));
+        await this._pendingFetch;
+      }
+    };
+    function createRemoteJWKSet(url, options) {
+      const set = new RemoteJWKSet(url, options);
+      return async function(protectedHeader, token) {
+        return set.getKey(protectedHeader, token);
+      };
+    }
+    exports2.createRemoteJWKSet = createRemoteJWKSet;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/jwt/unsecured.js
+var require_unsecured = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/jwt/unsecured.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.UnsecuredJWT = void 0;
+    var base64url = require_base64url();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var errors_js_1 = require_errors2();
+    var jwt_claims_set_js_1 = require_jwt_claims_set();
+    var produce_js_1 = require_produce();
+    var UnsecuredJWT = class extends produce_js_1.ProduceJWT {
+      encode() {
+        const header = base64url.encode(JSON.stringify({ alg: "none" }));
+        const payload = base64url.encode(JSON.stringify(this._payload));
+        return `${header}.${payload}.`;
+      }
+      static decode(jwt, options) {
+        if (typeof jwt !== "string") {
+          throw new errors_js_1.JWTInvalid("Unsecured JWT must be a string");
+        }
+        const { 0: encodedHeader, 1: encodedPayload, 2: signature, length } = jwt.split(".");
+        if (length !== 3 || signature !== "") {
+          throw new errors_js_1.JWTInvalid("Invalid Unsecured JWT");
+        }
+        let header;
+        try {
+          header = JSON.parse(buffer_utils_js_1.decoder.decode(base64url.decode(encodedHeader)));
+          if (header.alg !== "none")
+            throw new Error();
+        } catch {
+          throw new errors_js_1.JWTInvalid("Invalid Unsecured JWT");
+        }
+        const payload = (0, jwt_claims_set_js_1.default)(header, base64url.decode(encodedPayload), options);
+        return { payload, header };
+      }
+    };
+    exports2.UnsecuredJWT = UnsecuredJWT;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/util/base64url.js
+var require_base64url2 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/util/base64url.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.decode = exports2.encode = void 0;
+    var base64url = require_base64url();
+    exports2.encode = base64url.encode;
+    exports2.decode = base64url.decode;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/util/decode_protected_header.js
+var require_decode_protected_header = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/util/decode_protected_header.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.decodeProtectedHeader = void 0;
+    var base64url_js_1 = require_base64url2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var is_object_js_1 = require_is_object();
+    function decodeProtectedHeader(token) {
+      let protectedB64u;
+      if (typeof token === "string") {
+        const parts = token.split(".");
+        if (parts.length === 3 || parts.length === 5) {
+          ;
+          [protectedB64u] = parts;
+        }
+      } else if (typeof token === "object" && token) {
+        if ("protected" in token) {
+          protectedB64u = token.protected;
+        } else {
+          throw new TypeError("Token does not contain a Protected Header");
+        }
+      }
+      try {
+        if (typeof protectedB64u !== "string" || !protectedB64u) {
+          throw new Error();
+        }
+        const result = JSON.parse(buffer_utils_js_1.decoder.decode((0, base64url_js_1.decode)(protectedB64u)));
+        if (!(0, is_object_js_1.default)(result)) {
+          throw new Error();
+        }
+        return result;
+      } catch {
+        throw new TypeError("Invalid Token or Protected Header formatting");
+      }
+    }
+    exports2.decodeProtectedHeader = decodeProtectedHeader;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/util/decode_jwt.js
+var require_decode_jwt = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/util/decode_jwt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.decodeJwt = void 0;
+    var base64url_js_1 = require_base64url2();
+    var buffer_utils_js_1 = require_buffer_utils();
+    var is_object_js_1 = require_is_object();
+    var errors_js_1 = require_errors2();
+    function decodeJwt(jwt) {
+      if (typeof jwt !== "string")
+        throw new errors_js_1.JWTInvalid("JWTs must use Compact JWS serialization, JWT must be a string");
+      const { 1: payload, length } = jwt.split(".");
+      if (length === 5)
+        throw new errors_js_1.JWTInvalid("Only JWTs using Compact JWS serialization can be decoded");
+      if (length !== 3)
+        throw new errors_js_1.JWTInvalid("Invalid JWT");
+      if (!payload)
+        throw new errors_js_1.JWTInvalid("JWTs must contain a payload");
+      let decoded;
+      try {
+        decoded = (0, base64url_js_1.decode)(payload);
+      } catch {
+        throw new errors_js_1.JWTInvalid("Failed to base64url decode the payload");
+      }
+      let result;
+      try {
+        result = JSON.parse(buffer_utils_js_1.decoder.decode(decoded));
+      } catch {
+        throw new errors_js_1.JWTInvalid("Failed to parse the decoded payload as JSON");
+      }
+      if (!(0, is_object_js_1.default)(result))
+        throw new errors_js_1.JWTInvalid("Invalid JWT Claims Set");
+      return result;
+    }
+    exports2.decodeJwt = decodeJwt;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/generate.js
+var require_generate = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/generate.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.generateKeyPair = exports2.generateSecret = void 0;
+    var crypto_1 = require("crypto");
+    var util_1 = require("util");
+    var random_js_1 = require_random2();
+    var check_modulus_length_js_1 = require_check_modulus_length();
+    var errors_js_1 = require_errors2();
+    var generate = (0, util_1.promisify)(crypto_1.generateKeyPair);
+    async function generateSecret(alg, options) {
+      let length;
+      switch (alg) {
+        case "HS256":
+        case "HS384":
+        case "HS512":
+        case "A128CBC-HS256":
+        case "A192CBC-HS384":
+        case "A256CBC-HS512":
+          length = parseInt(alg.slice(-3), 10);
+          break;
+        case "A128KW":
+        case "A192KW":
+        case "A256KW":
+        case "A128GCMKW":
+        case "A192GCMKW":
+        case "A256GCMKW":
+        case "A128GCM":
+        case "A192GCM":
+        case "A256GCM":
+          length = parseInt(alg.slice(1, 4), 10);
+          break;
+        default:
+          throw new errors_js_1.JOSENotSupported('Invalid or unsupported JWK "alg" (Algorithm) Parameter value');
+      }
+      return (0, crypto_1.createSecretKey)((0, random_js_1.default)(new Uint8Array(length >> 3)));
+    }
+    exports2.generateSecret = generateSecret;
+    async function generateKeyPair(alg, options) {
+      var _a, _b;
+      switch (alg) {
+        case "RS256":
+        case "RS384":
+        case "RS512":
+        case "PS256":
+        case "PS384":
+        case "PS512":
+        case "RSA-OAEP":
+        case "RSA-OAEP-256":
+        case "RSA-OAEP-384":
+        case "RSA-OAEP-512":
+        case "RSA1_5": {
+          const modulusLength = (_a = options === null || options === void 0 ? void 0 : options.modulusLength) !== null && _a !== void 0 ? _a : 2048;
+          if (typeof modulusLength !== "number" || modulusLength < 2048) {
+            throw new errors_js_1.JOSENotSupported("Invalid or unsupported modulusLength option provided, 2048 bits or larger keys must be used");
+          }
+          const keypair = await generate("rsa", {
+            modulusLength,
+            publicExponent: 65537
+          });
+          (0, check_modulus_length_js_1.setModulusLength)(keypair.privateKey, modulusLength);
+          (0, check_modulus_length_js_1.setModulusLength)(keypair.publicKey, modulusLength);
+          return keypair;
+        }
+        case "ES256":
+          return generate("ec", { namedCurve: "P-256" });
+        case "ES256K":
+          return generate("ec", { namedCurve: "secp256k1" });
+        case "ES384":
+          return generate("ec", { namedCurve: "P-384" });
+        case "ES512":
+          return generate("ec", { namedCurve: "P-521" });
+        case "EdDSA": {
+          switch (options === null || options === void 0 ? void 0 : options.crv) {
+            case void 0:
+            case "Ed25519":
+              return generate("ed25519");
+            case "Ed448":
+              return generate("ed448");
+            default:
+              throw new errors_js_1.JOSENotSupported("Invalid or unsupported crv option provided, supported values are Ed25519 and Ed448");
+          }
+        }
+        case "ECDH-ES":
+        case "ECDH-ES+A128KW":
+        case "ECDH-ES+A192KW":
+        case "ECDH-ES+A256KW":
+          const crv = (_b = options === null || options === void 0 ? void 0 : options.crv) !== null && _b !== void 0 ? _b : "P-256";
+          switch (crv) {
+            case void 0:
+            case "P-256":
+            case "P-384":
+            case "P-521":
+              return generate("ec", { namedCurve: crv });
+            case "X25519":
+              return generate("x25519");
+            case "X448":
+              return generate("x448");
+            default:
+              throw new errors_js_1.JOSENotSupported("Invalid or unsupported crv option provided, supported values are P-256, P-384, P-521, X25519, and X448");
+          }
+        default:
+          throw new errors_js_1.JOSENotSupported('Invalid or unsupported JWK "alg" (Algorithm) Parameter value');
+      }
+    }
+    exports2.generateKeyPair = generateKeyPair;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/key/generate_key_pair.js
+var require_generate_key_pair = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/key/generate_key_pair.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.generateKeyPair = void 0;
+    var generate_js_1 = require_generate();
+    async function generateKeyPair(alg, options) {
+      return (0, generate_js_1.generateKeyPair)(alg, options);
+    }
+    exports2.generateKeyPair = generateKeyPair;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/key/generate_secret.js
+var require_generate_secret = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/key/generate_secret.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.generateSecret = void 0;
+    var generate_js_1 = require_generate();
+    async function generateSecret(alg, options) {
+      return (0, generate_js_1.generateSecret)(alg, options);
+    }
+    exports2.generateSecret = generateSecret;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/runtime/runtime.js
+var require_runtime = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/runtime/runtime.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.default = "node:crypto";
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/util/runtime.js
+var require_runtime2 = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/util/runtime.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var runtime_js_1 = require_runtime();
+    exports2.default = runtime_js_1.default;
+  }
+});
+
+// ../../node_modules/jose/dist/node/cjs/index.js
+var require_cjs = __commonJS({
+  "../../node_modules/jose/dist/node/cjs/index.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.cryptoRuntime = exports2.base64url = exports2.generateSecret = exports2.generateKeyPair = exports2.errors = exports2.decodeJwt = exports2.decodeProtectedHeader = exports2.importJWK = exports2.importX509 = exports2.importPKCS8 = exports2.importSPKI = exports2.exportJWK = exports2.exportSPKI = exports2.exportPKCS8 = exports2.UnsecuredJWT = exports2.createRemoteJWKSet = exports2.createLocalJWKSet = exports2.EmbeddedJWK = exports2.calculateJwkThumbprintUri = exports2.calculateJwkThumbprint = exports2.EncryptJWT = exports2.SignJWT = exports2.GeneralSign = exports2.FlattenedSign = exports2.CompactSign = exports2.FlattenedEncrypt = exports2.CompactEncrypt = exports2.jwtDecrypt = exports2.jwtVerify = exports2.generalVerify = exports2.flattenedVerify = exports2.compactVerify = exports2.GeneralEncrypt = exports2.generalDecrypt = exports2.flattenedDecrypt = exports2.compactDecrypt = void 0;
+    var decrypt_js_1 = require_decrypt3();
+    Object.defineProperty(exports2, "compactDecrypt", { enumerable: true, get: function() {
+      return decrypt_js_1.compactDecrypt;
+    } });
+    var decrypt_js_2 = require_decrypt2();
+    Object.defineProperty(exports2, "flattenedDecrypt", { enumerable: true, get: function() {
+      return decrypt_js_2.flattenedDecrypt;
+    } });
+    var decrypt_js_3 = require_decrypt4();
+    Object.defineProperty(exports2, "generalDecrypt", { enumerable: true, get: function() {
+      return decrypt_js_3.generalDecrypt;
+    } });
+    var encrypt_js_1 = require_encrypt3();
+    Object.defineProperty(exports2, "GeneralEncrypt", { enumerable: true, get: function() {
+      return encrypt_js_1.GeneralEncrypt;
+    } });
+    var verify_js_1 = require_verify4();
+    Object.defineProperty(exports2, "compactVerify", { enumerable: true, get: function() {
+      return verify_js_1.compactVerify;
+    } });
+    var verify_js_2 = require_verify3();
+    Object.defineProperty(exports2, "flattenedVerify", { enumerable: true, get: function() {
+      return verify_js_2.flattenedVerify;
+    } });
+    var verify_js_3 = require_verify5();
+    Object.defineProperty(exports2, "generalVerify", { enumerable: true, get: function() {
+      return verify_js_3.generalVerify;
+    } });
+    var verify_js_4 = require_verify6();
+    Object.defineProperty(exports2, "jwtVerify", { enumerable: true, get: function() {
+      return verify_js_4.jwtVerify;
+    } });
+    var decrypt_js_4 = require_decrypt5();
+    Object.defineProperty(exports2, "jwtDecrypt", { enumerable: true, get: function() {
+      return decrypt_js_4.jwtDecrypt;
+    } });
+    var encrypt_js_2 = require_encrypt4();
+    Object.defineProperty(exports2, "CompactEncrypt", { enumerable: true, get: function() {
+      return encrypt_js_2.CompactEncrypt;
+    } });
+    var encrypt_js_3 = require_encrypt2();
+    Object.defineProperty(exports2, "FlattenedEncrypt", { enumerable: true, get: function() {
+      return encrypt_js_3.FlattenedEncrypt;
+    } });
+    var sign_js_1 = require_sign4();
+    Object.defineProperty(exports2, "CompactSign", { enumerable: true, get: function() {
+      return sign_js_1.CompactSign;
+    } });
+    var sign_js_2 = require_sign3();
+    Object.defineProperty(exports2, "FlattenedSign", { enumerable: true, get: function() {
+      return sign_js_2.FlattenedSign;
+    } });
+    var sign_js_3 = require_sign5();
+    Object.defineProperty(exports2, "GeneralSign", { enumerable: true, get: function() {
+      return sign_js_3.GeneralSign;
+    } });
+    var sign_js_4 = require_sign6();
+    Object.defineProperty(exports2, "SignJWT", { enumerable: true, get: function() {
+      return sign_js_4.SignJWT;
+    } });
+    var encrypt_js_4 = require_encrypt5();
+    Object.defineProperty(exports2, "EncryptJWT", { enumerable: true, get: function() {
+      return encrypt_js_4.EncryptJWT;
+    } });
+    var thumbprint_js_1 = require_thumbprint();
+    Object.defineProperty(exports2, "calculateJwkThumbprint", { enumerable: true, get: function() {
+      return thumbprint_js_1.calculateJwkThumbprint;
+    } });
+    Object.defineProperty(exports2, "calculateJwkThumbprintUri", { enumerable: true, get: function() {
+      return thumbprint_js_1.calculateJwkThumbprintUri;
+    } });
+    var embedded_js_1 = require_embedded();
+    Object.defineProperty(exports2, "EmbeddedJWK", { enumerable: true, get: function() {
+      return embedded_js_1.EmbeddedJWK;
+    } });
+    var local_js_1 = require_local();
+    Object.defineProperty(exports2, "createLocalJWKSet", { enumerable: true, get: function() {
+      return local_js_1.createLocalJWKSet;
+    } });
+    var remote_js_1 = require_remote();
+    Object.defineProperty(exports2, "createRemoteJWKSet", { enumerable: true, get: function() {
+      return remote_js_1.createRemoteJWKSet;
+    } });
+    var unsecured_js_1 = require_unsecured();
+    Object.defineProperty(exports2, "UnsecuredJWT", { enumerable: true, get: function() {
+      return unsecured_js_1.UnsecuredJWT;
+    } });
+    var export_js_1 = require_export();
+    Object.defineProperty(exports2, "exportPKCS8", { enumerable: true, get: function() {
+      return export_js_1.exportPKCS8;
+    } });
+    Object.defineProperty(exports2, "exportSPKI", { enumerable: true, get: function() {
+      return export_js_1.exportSPKI;
+    } });
+    Object.defineProperty(exports2, "exportJWK", { enumerable: true, get: function() {
+      return export_js_1.exportJWK;
+    } });
+    var import_js_1 = require_import();
+    Object.defineProperty(exports2, "importSPKI", { enumerable: true, get: function() {
+      return import_js_1.importSPKI;
+    } });
+    Object.defineProperty(exports2, "importPKCS8", { enumerable: true, get: function() {
+      return import_js_1.importPKCS8;
+    } });
+    Object.defineProperty(exports2, "importX509", { enumerable: true, get: function() {
+      return import_js_1.importX509;
+    } });
+    Object.defineProperty(exports2, "importJWK", { enumerable: true, get: function() {
+      return import_js_1.importJWK;
+    } });
+    var decode_protected_header_js_1 = require_decode_protected_header();
+    Object.defineProperty(exports2, "decodeProtectedHeader", { enumerable: true, get: function() {
+      return decode_protected_header_js_1.decodeProtectedHeader;
+    } });
+    var decode_jwt_js_1 = require_decode_jwt();
+    Object.defineProperty(exports2, "decodeJwt", { enumerable: true, get: function() {
+      return decode_jwt_js_1.decodeJwt;
+    } });
+    exports2.errors = require_errors2();
+    var generate_key_pair_js_1 = require_generate_key_pair();
+    Object.defineProperty(exports2, "generateKeyPair", { enumerable: true, get: function() {
+      return generate_key_pair_js_1.generateKeyPair;
+    } });
+    var generate_secret_js_1 = require_generate_secret();
+    Object.defineProperty(exports2, "generateSecret", { enumerable: true, get: function() {
+      return generate_secret_js_1.generateSecret;
+    } });
+    exports2.base64url = require_base64url2();
+    var runtime_js_1 = require_runtime2();
+    Object.defineProperty(exports2, "cryptoRuntime", { enumerable: true, get: function() {
+      return runtime_js_1.default;
+    } });
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/errors/JwksError.js
+var require_JwksError = __commonJS({
+  "../../node_modules/jwks-rsa/src/errors/JwksError.js"(exports2, module2) {
+    function JwksError(message) {
+      Error.call(this, message);
+      Error.captureStackTrace(this, this.constructor);
+      this.name = "JwksError";
+      this.message = message;
+    }
+    JwksError.prototype = Object.create(Error.prototype);
+    JwksError.prototype.constructor = JwksError;
+    module2.exports = JwksError;
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/utils.js
+var require_utils4 = __commonJS({
+  "../../node_modules/jwks-rsa/src/utils.js"(exports2, module2) {
+    var jose = require_cjs();
+    var JwksError = require_JwksError();
+    function resolveAlg(jwk) {
+      if (jwk.alg) {
+        return jwk.alg;
+      }
+      if (jwk.kty === "RSA") {
+        return "RS256";
+      }
+      if (jwk.kty === "EC") {
+        switch (jwk.crv) {
+          case "P-256":
+            return "ES256";
+          case "secp256k1":
+            return "ES256K";
+          case "P-384":
+            return "ES384";
+          case "P-521":
+            return "ES512";
+        }
+      }
+      if (jwk.kty === "OKP") {
+        switch (jwk.crv) {
+          case "Ed25519":
+          case "Ed448":
+            return "EdDSA";
+        }
+      }
+      throw new JwksError("Unsupported JWK");
+    }
+    async function retrieveSigningKeys(jwks) {
+      const results = [];
+      jwks = jwks.filter(({ use }) => use === "sig" || use === void 0).filter(({ kty }) => kty === "RSA" || kty === "EC" || kty === "OKP");
+      for (const jwk of jwks) {
+        try {
+          const key = await jose.importJWK({ ...jwk, ext: true }, resolveAlg(jwk));
+          if (key.type !== "public") {
+            continue;
+          }
+          let getSpki;
+          switch (key[Symbol.toStringTag]) {
+            case "CryptoKey": {
+              const spki = await jose.exportSPKI(key);
+              getSpki = () => spki;
+              break;
+            }
+            case "KeyObject":
+            default:
+              getSpki = () => key.export({ format: "pem", type: "spki" });
+          }
+          results.push({
+            get publicKey() {
+              return getSpki();
+            },
+            get rsaPublicKey() {
+              return getSpki();
+            },
+            getPublicKey() {
+              return getSpki();
+            },
+            ...typeof jwk.kid === "string" && jwk.kid ? { kid: jwk.kid } : void 0,
+            ...typeof jwk.alg === "string" && jwk.alg ? { alg: jwk.alg } : void 0
+          });
+        } catch (err) {
+          continue;
+        }
+      }
+      return results;
+    }
+    module2.exports = {
+      retrieveSigningKeys
+    };
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/errors/ArgumentError.js
+var require_ArgumentError = __commonJS({
+  "../../node_modules/jwks-rsa/src/errors/ArgumentError.js"(exports2, module2) {
+    function ArgumentError(message) {
+      Error.call(this, message);
+      Error.captureStackTrace(this, this.constructor);
+      this.name = "ArgumentError";
+      this.message = message;
+    }
+    ArgumentError.prototype = Object.create(Error.prototype);
+    ArgumentError.prototype.constructor = ArgumentError;
+    module2.exports = ArgumentError;
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/wrappers/request.js
+var require_request = __commonJS({
+  "../../node_modules/jwks-rsa/src/wrappers/request.js"(exports2, module2) {
+    var http = require("http");
+    var https = require("https");
+    var ArgumentError = require_ArgumentError();
+    module2.exports.default = (options) => {
+      if (options.fetcher) {
+        return options.fetcher(options.uri);
+      }
+      return new Promise((resolve, reject) => {
+        let url;
+        try {
+          url = new URL(options.uri);
+        } catch (err) {
+          throw new ArgumentError("Invalid JWKS URI: The provided URI is not a valid URL.");
+        }
+        const { hostname, port, protocol, pathname, search } = url;
+        const path4 = pathname + search;
+        const requestOptions = {
+          hostname,
+          path: path4,
+          port,
+          method: "GET",
+          ...options.headers && { headers: { ...options.headers } },
+          ...options.timeout && { timeout: options.timeout },
+          ...options.agent && { agent: options.agent }
+        };
+        const httpRequestLib = protocol === "https:" ? https : http;
+        const httpRequest = httpRequestLib.request(requestOptions, (res) => {
+          let rawData = "";
+          res.setEncoding("utf8");
+          res.on("data", (chunk) => {
+            rawData += chunk;
+          });
+          res.on("end", () => {
+            if (res.statusCode < 200 || res.statusCode >= 300) {
+              const errorMsg = res.body && (res.body.message || res.body) || res.statusMessage || `Http Error ${res.statusCode}`;
+              reject({ errorMsg });
+            } else {
+              try {
+                resolve(rawData && JSON.parse(rawData));
+              } catch (error) {
+                reject(error);
+              }
+            }
+          });
+        });
+        httpRequest.on("timeout", () => httpRequest.destroy()).on("error", (e) => reject(e)).end();
+      });
+    };
+  }
+});
+
+// ../../node_modules/lru-memoizer/node_modules/yallist/iterator.js
+var require_iterator2 = __commonJS({
+  "../../node_modules/lru-memoizer/node_modules/yallist/iterator.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function(Yallist) {
+      Yallist.prototype[Symbol.iterator] = function* () {
+        for (let walker = this.head; walker; walker = walker.next) {
+          yield walker.value;
+        }
+      };
+    };
+  }
+});
+
+// ../../node_modules/lru-memoizer/node_modules/yallist/yallist.js
+var require_yallist2 = __commonJS({
+  "../../node_modules/lru-memoizer/node_modules/yallist/yallist.js"(exports2, module2) {
+    "use strict";
+    module2.exports = Yallist;
+    Yallist.Node = Node;
+    Yallist.create = Yallist;
+    function Yallist(list) {
+      var self2 = this;
+      if (!(self2 instanceof Yallist)) {
+        self2 = new Yallist();
+      }
+      self2.tail = null;
+      self2.head = null;
+      self2.length = 0;
+      if (list && typeof list.forEach === "function") {
+        list.forEach(function(item) {
+          self2.push(item);
+        });
+      } else if (arguments.length > 0) {
+        for (var i = 0, l = arguments.length; i < l; i++) {
+          self2.push(arguments[i]);
+        }
+      }
+      return self2;
+    }
+    Yallist.prototype.removeNode = function(node) {
+      if (node.list !== this) {
+        throw new Error("removing node which does not belong to this list");
+      }
+      var next = node.next;
+      var prev = node.prev;
+      if (next) {
+        next.prev = prev;
+      }
+      if (prev) {
+        prev.next = next;
+      }
+      if (node === this.head) {
+        this.head = next;
+      }
+      if (node === this.tail) {
+        this.tail = prev;
+      }
+      node.list.length--;
+      node.next = null;
+      node.prev = null;
+      node.list = null;
+      return next;
+    };
+    Yallist.prototype.unshiftNode = function(node) {
+      if (node === this.head) {
+        return;
+      }
+      if (node.list) {
+        node.list.removeNode(node);
+      }
+      var head = this.head;
+      node.list = this;
+      node.next = head;
+      if (head) {
+        head.prev = node;
+      }
+      this.head = node;
+      if (!this.tail) {
+        this.tail = node;
+      }
+      this.length++;
+    };
+    Yallist.prototype.pushNode = function(node) {
+      if (node === this.tail) {
+        return;
+      }
+      if (node.list) {
+        node.list.removeNode(node);
+      }
+      var tail = this.tail;
+      node.list = this;
+      node.prev = tail;
+      if (tail) {
+        tail.next = node;
+      }
+      this.tail = node;
+      if (!this.head) {
+        this.head = node;
+      }
+      this.length++;
+    };
+    Yallist.prototype.push = function() {
+      for (var i = 0, l = arguments.length; i < l; i++) {
+        push(this, arguments[i]);
+      }
+      return this.length;
+    };
+    Yallist.prototype.unshift = function() {
+      for (var i = 0, l = arguments.length; i < l; i++) {
+        unshift(this, arguments[i]);
+      }
+      return this.length;
+    };
+    Yallist.prototype.pop = function() {
+      if (!this.tail) {
+        return void 0;
+      }
+      var res = this.tail.value;
+      this.tail = this.tail.prev;
+      if (this.tail) {
+        this.tail.next = null;
+      } else {
+        this.head = null;
+      }
+      this.length--;
+      return res;
+    };
+    Yallist.prototype.shift = function() {
+      if (!this.head) {
+        return void 0;
+      }
+      var res = this.head.value;
+      this.head = this.head.next;
+      if (this.head) {
+        this.head.prev = null;
+      } else {
+        this.tail = null;
+      }
+      this.length--;
+      return res;
+    };
+    Yallist.prototype.forEach = function(fn, thisp) {
+      thisp = thisp || this;
+      for (var walker = this.head, i = 0; walker !== null; i++) {
+        fn.call(thisp, walker.value, i, this);
+        walker = walker.next;
+      }
+    };
+    Yallist.prototype.forEachReverse = function(fn, thisp) {
+      thisp = thisp || this;
+      for (var walker = this.tail, i = this.length - 1; walker !== null; i--) {
+        fn.call(thisp, walker.value, i, this);
+        walker = walker.prev;
+      }
+    };
+    Yallist.prototype.get = function(n) {
+      for (var i = 0, walker = this.head; walker !== null && i < n; i++) {
+        walker = walker.next;
+      }
+      if (i === n && walker !== null) {
+        return walker.value;
+      }
+    };
+    Yallist.prototype.getReverse = function(n) {
+      for (var i = 0, walker = this.tail; walker !== null && i < n; i++) {
+        walker = walker.prev;
+      }
+      if (i === n && walker !== null) {
+        return walker.value;
+      }
+    };
+    Yallist.prototype.map = function(fn, thisp) {
+      thisp = thisp || this;
+      var res = new Yallist();
+      for (var walker = this.head; walker !== null; ) {
+        res.push(fn.call(thisp, walker.value, this));
+        walker = walker.next;
+      }
+      return res;
+    };
+    Yallist.prototype.mapReverse = function(fn, thisp) {
+      thisp = thisp || this;
+      var res = new Yallist();
+      for (var walker = this.tail; walker !== null; ) {
+        res.push(fn.call(thisp, walker.value, this));
+        walker = walker.prev;
+      }
+      return res;
+    };
+    Yallist.prototype.reduce = function(fn, initial) {
+      var acc;
+      var walker = this.head;
+      if (arguments.length > 1) {
+        acc = initial;
+      } else if (this.head) {
+        walker = this.head.next;
+        acc = this.head.value;
+      } else {
+        throw new TypeError("Reduce of empty list with no initial value");
+      }
+      for (var i = 0; walker !== null; i++) {
+        acc = fn(acc, walker.value, i);
+        walker = walker.next;
+      }
+      return acc;
+    };
+    Yallist.prototype.reduceReverse = function(fn, initial) {
+      var acc;
+      var walker = this.tail;
+      if (arguments.length > 1) {
+        acc = initial;
+      } else if (this.tail) {
+        walker = this.tail.prev;
+        acc = this.tail.value;
+      } else {
+        throw new TypeError("Reduce of empty list with no initial value");
+      }
+      for (var i = this.length - 1; walker !== null; i--) {
+        acc = fn(acc, walker.value, i);
+        walker = walker.prev;
+      }
+      return acc;
+    };
+    Yallist.prototype.toArray = function() {
+      var arr = new Array(this.length);
+      for (var i = 0, walker = this.head; walker !== null; i++) {
+        arr[i] = walker.value;
+        walker = walker.next;
+      }
+      return arr;
+    };
+    Yallist.prototype.toArrayReverse = function() {
+      var arr = new Array(this.length);
+      for (var i = 0, walker = this.tail; walker !== null; i++) {
+        arr[i] = walker.value;
+        walker = walker.prev;
+      }
+      return arr;
+    };
+    Yallist.prototype.slice = function(from, to) {
+      to = to || this.length;
+      if (to < 0) {
+        to += this.length;
+      }
+      from = from || 0;
+      if (from < 0) {
+        from += this.length;
+      }
+      var ret = new Yallist();
+      if (to < from || to < 0) {
+        return ret;
+      }
+      if (from < 0) {
+        from = 0;
+      }
+      if (to > this.length) {
+        to = this.length;
+      }
+      for (var i = 0, walker = this.head; walker !== null && i < from; i++) {
+        walker = walker.next;
+      }
+      for (; walker !== null && i < to; i++, walker = walker.next) {
+        ret.push(walker.value);
+      }
+      return ret;
+    };
+    Yallist.prototype.sliceReverse = function(from, to) {
+      to = to || this.length;
+      if (to < 0) {
+        to += this.length;
+      }
+      from = from || 0;
+      if (from < 0) {
+        from += this.length;
+      }
+      var ret = new Yallist();
+      if (to < from || to < 0) {
+        return ret;
+      }
+      if (from < 0) {
+        from = 0;
+      }
+      if (to > this.length) {
+        to = this.length;
+      }
+      for (var i = this.length, walker = this.tail; walker !== null && i > to; i--) {
+        walker = walker.prev;
+      }
+      for (; walker !== null && i > from; i--, walker = walker.prev) {
+        ret.push(walker.value);
+      }
+      return ret;
+    };
+    Yallist.prototype.splice = function(start, deleteCount, ...nodes) {
+      if (start > this.length) {
+        start = this.length - 1;
+      }
+      if (start < 0) {
+        start = this.length + start;
+      }
+      for (var i = 0, walker = this.head; walker !== null && i < start; i++) {
+        walker = walker.next;
+      }
+      var ret = [];
+      for (var i = 0; walker && i < deleteCount; i++) {
+        ret.push(walker.value);
+        walker = this.removeNode(walker);
+      }
+      if (walker === null) {
+        walker = this.tail;
+      }
+      if (walker !== this.head && walker !== this.tail) {
+        walker = walker.prev;
+      }
+      for (var i = 0; i < nodes.length; i++) {
+        walker = insert(this, walker, nodes[i]);
+      }
+      return ret;
+    };
+    Yallist.prototype.reverse = function() {
+      var head = this.head;
+      var tail = this.tail;
+      for (var walker = head; walker !== null; walker = walker.prev) {
+        var p = walker.prev;
+        walker.prev = walker.next;
+        walker.next = p;
+      }
+      this.head = tail;
+      this.tail = head;
+      return this;
+    };
+    function insert(self2, node, value) {
+      var inserted = node === self2.head ? new Node(value, null, node, self2) : new Node(value, node, node.next, self2);
+      if (inserted.next === null) {
+        self2.tail = inserted;
+      }
+      if (inserted.prev === null) {
+        self2.head = inserted;
+      }
+      self2.length++;
+      return inserted;
+    }
+    function push(self2, item) {
+      self2.tail = new Node(item, self2.tail, null, self2);
+      if (!self2.head) {
+        self2.head = self2.tail;
+      }
+      self2.length++;
+    }
+    function unshift(self2, item) {
+      self2.head = new Node(item, null, self2.head, self2);
+      if (!self2.tail) {
+        self2.tail = self2.head;
+      }
+      self2.length++;
+    }
+    function Node(value, prev, next, list) {
+      if (!(this instanceof Node)) {
+        return new Node(value, prev, next, list);
+      }
+      this.list = list;
+      this.value = value;
+      if (prev) {
+        prev.next = this;
+        this.prev = prev;
+      } else {
+        this.prev = null;
+      }
+      if (next) {
+        next.prev = this;
+        this.next = next;
+      } else {
+        this.next = null;
+      }
+    }
+    try {
+      require_iterator2()(Yallist);
+    } catch (er) {
+    }
+  }
+});
+
+// ../../node_modules/lru-memoizer/node_modules/lru-cache/index.js
+var require_lru_cache2 = __commonJS({
+  "../../node_modules/lru-memoizer/node_modules/lru-cache/index.js"(exports2, module2) {
+    "use strict";
+    var Yallist = require_yallist2();
+    var MAX = Symbol("max");
+    var LENGTH = Symbol("length");
+    var LENGTH_CALCULATOR = Symbol("lengthCalculator");
+    var ALLOW_STALE = Symbol("allowStale");
+    var MAX_AGE = Symbol("maxAge");
+    var DISPOSE = Symbol("dispose");
+    var NO_DISPOSE_ON_SET = Symbol("noDisposeOnSet");
+    var LRU_LIST = Symbol("lruList");
+    var CACHE = Symbol("cache");
+    var UPDATE_AGE_ON_GET = Symbol("updateAgeOnGet");
+    var naiveLength = () => 1;
+    var LRUCache = class {
+      constructor(options) {
+        if (typeof options === "number")
+          options = { max: options };
+        if (!options)
+          options = {};
+        if (options.max && (typeof options.max !== "number" || options.max < 0))
+          throw new TypeError("max must be a non-negative number");
+        const max = this[MAX] = options.max || Infinity;
+        const lc = options.length || naiveLength;
+        this[LENGTH_CALCULATOR] = typeof lc !== "function" ? naiveLength : lc;
+        this[ALLOW_STALE] = options.stale || false;
+        if (options.maxAge && typeof options.maxAge !== "number")
+          throw new TypeError("maxAge must be a number");
+        this[MAX_AGE] = options.maxAge || 0;
+        this[DISPOSE] = options.dispose;
+        this[NO_DISPOSE_ON_SET] = options.noDisposeOnSet || false;
+        this[UPDATE_AGE_ON_GET] = options.updateAgeOnGet || false;
+        this.reset();
+      }
+      // resize the cache when the max changes.
+      set max(mL) {
+        if (typeof mL !== "number" || mL < 0)
+          throw new TypeError("max must be a non-negative number");
+        this[MAX] = mL || Infinity;
+        trim(this);
+      }
+      get max() {
+        return this[MAX];
+      }
+      set allowStale(allowStale) {
+        this[ALLOW_STALE] = !!allowStale;
+      }
+      get allowStale() {
+        return this[ALLOW_STALE];
+      }
+      set maxAge(mA) {
+        if (typeof mA !== "number")
+          throw new TypeError("maxAge must be a non-negative number");
+        this[MAX_AGE] = mA;
+        trim(this);
+      }
+      get maxAge() {
+        return this[MAX_AGE];
+      }
+      // resize the cache when the lengthCalculator changes.
+      set lengthCalculator(lC) {
+        if (typeof lC !== "function")
+          lC = naiveLength;
+        if (lC !== this[LENGTH_CALCULATOR]) {
+          this[LENGTH_CALCULATOR] = lC;
+          this[LENGTH] = 0;
+          this[LRU_LIST].forEach((hit) => {
+            hit.length = this[LENGTH_CALCULATOR](hit.value, hit.key);
+            this[LENGTH] += hit.length;
+          });
+        }
+        trim(this);
+      }
+      get lengthCalculator() {
+        return this[LENGTH_CALCULATOR];
+      }
+      get length() {
+        return this[LENGTH];
+      }
+      get itemCount() {
+        return this[LRU_LIST].length;
+      }
+      rforEach(fn, thisp) {
+        thisp = thisp || this;
+        for (let walker = this[LRU_LIST].tail; walker !== null; ) {
+          const prev = walker.prev;
+          forEachStep(this, fn, walker, thisp);
+          walker = prev;
+        }
+      }
+      forEach(fn, thisp) {
+        thisp = thisp || this;
+        for (let walker = this[LRU_LIST].head; walker !== null; ) {
+          const next = walker.next;
+          forEachStep(this, fn, walker, thisp);
+          walker = next;
+        }
+      }
+      keys() {
+        return this[LRU_LIST].toArray().map((k) => k.key);
+      }
+      values() {
+        return this[LRU_LIST].toArray().map((k) => k.value);
+      }
+      reset() {
+        if (this[DISPOSE] && this[LRU_LIST] && this[LRU_LIST].length) {
+          this[LRU_LIST].forEach((hit) => this[DISPOSE](hit.key, hit.value));
+        }
+        this[CACHE] = /* @__PURE__ */ new Map();
+        this[LRU_LIST] = new Yallist();
+        this[LENGTH] = 0;
+      }
+      dump() {
+        return this[LRU_LIST].map((hit) => isStale(this, hit) ? false : {
+          k: hit.key,
+          v: hit.value,
+          e: hit.now + (hit.maxAge || 0)
+        }).toArray().filter((h) => h);
+      }
+      dumpLru() {
+        return this[LRU_LIST];
+      }
+      set(key, value, maxAge) {
+        maxAge = maxAge || this[MAX_AGE];
+        if (maxAge && typeof maxAge !== "number")
+          throw new TypeError("maxAge must be a number");
+        const now = maxAge ? Date.now() : 0;
+        const len = this[LENGTH_CALCULATOR](value, key);
+        if (this[CACHE].has(key)) {
+          if (len > this[MAX]) {
+            del(this, this[CACHE].get(key));
+            return false;
+          }
+          const node = this[CACHE].get(key);
+          const item = node.value;
+          if (this[DISPOSE]) {
+            if (!this[NO_DISPOSE_ON_SET])
+              this[DISPOSE](key, item.value);
+          }
+          item.now = now;
+          item.maxAge = maxAge;
+          item.value = value;
+          this[LENGTH] += len - item.length;
+          item.length = len;
+          this.get(key);
+          trim(this);
+          return true;
+        }
+        const hit = new Entry(key, value, len, now, maxAge);
+        if (hit.length > this[MAX]) {
+          if (this[DISPOSE])
+            this[DISPOSE](key, value);
+          return false;
+        }
+        this[LENGTH] += hit.length;
+        this[LRU_LIST].unshift(hit);
+        this[CACHE].set(key, this[LRU_LIST].head);
+        trim(this);
+        return true;
+      }
+      has(key) {
+        if (!this[CACHE].has(key)) return false;
+        const hit = this[CACHE].get(key).value;
+        return !isStale(this, hit);
+      }
+      get(key) {
+        return get(this, key, true);
+      }
+      peek(key) {
+        return get(this, key, false);
+      }
+      pop() {
+        const node = this[LRU_LIST].tail;
+        if (!node)
+          return null;
+        del(this, node);
+        return node.value;
+      }
+      del(key) {
+        del(this, this[CACHE].get(key));
+      }
+      load(arr) {
+        this.reset();
+        const now = Date.now();
+        for (let l = arr.length - 1; l >= 0; l--) {
+          const hit = arr[l];
+          const expiresAt = hit.e || 0;
+          if (expiresAt === 0)
+            this.set(hit.k, hit.v);
+          else {
+            const maxAge = expiresAt - now;
+            if (maxAge > 0) {
+              this.set(hit.k, hit.v, maxAge);
+            }
+          }
+        }
+      }
+      prune() {
+        this[CACHE].forEach((value, key) => get(this, key, false));
+      }
+    };
+    var get = (self2, key, doUse) => {
+      const node = self2[CACHE].get(key);
+      if (node) {
+        const hit = node.value;
+        if (isStale(self2, hit)) {
+          del(self2, node);
+          if (!self2[ALLOW_STALE])
+            return void 0;
+        } else {
+          if (doUse) {
+            if (self2[UPDATE_AGE_ON_GET])
+              node.value.now = Date.now();
+            self2[LRU_LIST].unshiftNode(node);
+          }
+        }
+        return hit.value;
+      }
+    };
+    var isStale = (self2, hit) => {
+      if (!hit || !hit.maxAge && !self2[MAX_AGE])
+        return false;
+      const diff = Date.now() - hit.now;
+      return hit.maxAge ? diff > hit.maxAge : self2[MAX_AGE] && diff > self2[MAX_AGE];
+    };
+    var trim = (self2) => {
+      if (self2[LENGTH] > self2[MAX]) {
+        for (let walker = self2[LRU_LIST].tail; self2[LENGTH] > self2[MAX] && walker !== null; ) {
+          const prev = walker.prev;
+          del(self2, walker);
+          walker = prev;
+        }
+      }
+    };
+    var del = (self2, node) => {
+      if (node) {
+        const hit = node.value;
+        if (self2[DISPOSE])
+          self2[DISPOSE](hit.key, hit.value);
+        self2[LENGTH] -= hit.length;
+        self2[CACHE].delete(hit.key);
+        self2[LRU_LIST].removeNode(node);
+      }
+    };
+    var Entry = class {
+      constructor(key, value, length, now, maxAge) {
+        this.key = key;
+        this.value = value;
+        this.length = length;
+        this.now = now;
+        this.maxAge = maxAge || 0;
+      }
+    };
+    var forEachStep = (self2, fn, node, thisp) => {
+      let hit = node.value;
+      if (isStale(self2, hit)) {
+        del(self2, node);
+        if (!self2[ALLOW_STALE])
+          hit = void 0;
+      }
+      if (hit)
+        fn.call(thisp, hit.value, hit.key, self2);
+    };
+    module2.exports = LRUCache;
+  }
+});
+
+// ../../node_modules/lodash.clonedeep/index.js
+var require_lodash9 = __commonJS({
+  "../../node_modules/lodash.clonedeep/index.js"(exports2, module2) {
+    var LARGE_ARRAY_SIZE = 200;
+    var HASH_UNDEFINED = "__lodash_hash_undefined__";
+    var MAX_SAFE_INTEGER = 9007199254740991;
+    var argsTag = "[object Arguments]";
+    var arrayTag = "[object Array]";
+    var boolTag = "[object Boolean]";
+    var dateTag = "[object Date]";
+    var errorTag = "[object Error]";
+    var funcTag = "[object Function]";
+    var genTag = "[object GeneratorFunction]";
+    var mapTag = "[object Map]";
+    var numberTag = "[object Number]";
+    var objectTag = "[object Object]";
+    var promiseTag = "[object Promise]";
+    var regexpTag = "[object RegExp]";
+    var setTag = "[object Set]";
+    var stringTag = "[object String]";
+    var symbolTag = "[object Symbol]";
+    var weakMapTag = "[object WeakMap]";
+    var arrayBufferTag = "[object ArrayBuffer]";
+    var dataViewTag = "[object DataView]";
+    var float32Tag = "[object Float32Array]";
+    var float64Tag = "[object Float64Array]";
+    var int8Tag = "[object Int8Array]";
+    var int16Tag = "[object Int16Array]";
+    var int32Tag = "[object Int32Array]";
+    var uint8Tag = "[object Uint8Array]";
+    var uint8ClampedTag = "[object Uint8ClampedArray]";
+    var uint16Tag = "[object Uint16Array]";
+    var uint32Tag = "[object Uint32Array]";
+    var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+    var reFlags = /\w*$/;
+    var reIsHostCtor = /^\[object .+?Constructor\]$/;
+    var reIsUint = /^(?:0|[1-9]\d*)$/;
+    var cloneableTags = {};
+    cloneableTags[argsTag] = cloneableTags[arrayTag] = cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] = cloneableTags[boolTag] = cloneableTags[dateTag] = cloneableTags[float32Tag] = cloneableTags[float64Tag] = cloneableTags[int8Tag] = cloneableTags[int16Tag] = cloneableTags[int32Tag] = cloneableTags[mapTag] = cloneableTags[numberTag] = cloneableTags[objectTag] = cloneableTags[regexpTag] = cloneableTags[setTag] = cloneableTags[stringTag] = cloneableTags[symbolTag] = cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] = cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+    cloneableTags[errorTag] = cloneableTags[funcTag] = cloneableTags[weakMapTag] = false;
+    var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
+    var freeSelf = typeof self == "object" && self && self.Object === Object && self;
+    var root = freeGlobal || freeSelf || Function("return this")();
+    var freeExports = typeof exports2 == "object" && exports2 && !exports2.nodeType && exports2;
+    var freeModule = freeExports && typeof module2 == "object" && module2 && !module2.nodeType && module2;
+    var moduleExports = freeModule && freeModule.exports === freeExports;
+    function addMapEntry(map, pair) {
+      map.set(pair[0], pair[1]);
+      return map;
+    }
+    function addSetEntry(set, value) {
+      set.add(value);
+      return set;
+    }
+    function arrayEach(array, iteratee) {
+      var index = -1, length = array ? array.length : 0;
+      while (++index < length) {
+        if (iteratee(array[index], index, array) === false) {
+          break;
+        }
+      }
+      return array;
+    }
+    function arrayPush(array, values) {
+      var index = -1, length = values.length, offset = array.length;
+      while (++index < length) {
+        array[offset + index] = values[index];
+      }
+      return array;
+    }
+    function arrayReduce(array, iteratee, accumulator, initAccum) {
+      var index = -1, length = array ? array.length : 0;
+      if (initAccum && length) {
+        accumulator = array[++index];
+      }
+      while (++index < length) {
+        accumulator = iteratee(accumulator, array[index], index, array);
+      }
+      return accumulator;
+    }
+    function baseTimes(n, iteratee) {
+      var index = -1, result = Array(n);
+      while (++index < n) {
+        result[index] = iteratee(index);
+      }
+      return result;
+    }
+    function getValue(object, key) {
+      return object == null ? void 0 : object[key];
+    }
+    function isHostObject(value) {
+      var result = false;
+      if (value != null && typeof value.toString != "function") {
+        try {
+          result = !!(value + "");
+        } catch (e) {
+        }
+      }
+      return result;
+    }
+    function mapToArray(map) {
+      var index = -1, result = Array(map.size);
+      map.forEach(function(value, key) {
+        result[++index] = [key, value];
+      });
+      return result;
+    }
+    function overArg(func, transform) {
+      return function(arg) {
+        return func(transform(arg));
+      };
+    }
+    function setToArray(set) {
+      var index = -1, result = Array(set.size);
+      set.forEach(function(value) {
+        result[++index] = value;
+      });
+      return result;
+    }
+    var arrayProto = Array.prototype;
+    var funcProto = Function.prototype;
+    var objectProto = Object.prototype;
+    var coreJsData = root["__core-js_shared__"];
+    var maskSrcKey = function() {
+      var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
+      return uid ? "Symbol(src)_1." + uid : "";
+    }();
+    var funcToString = funcProto.toString;
+    var hasOwnProperty = objectProto.hasOwnProperty;
+    var objectToString = objectProto.toString;
+    var reIsNative = RegExp(
+      "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
+    );
+    var Buffer2 = moduleExports ? root.Buffer : void 0;
+    var Symbol2 = root.Symbol;
+    var Uint8Array2 = root.Uint8Array;
+    var getPrototype = overArg(Object.getPrototypeOf, Object);
+    var objectCreate = Object.create;
+    var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+    var splice = arrayProto.splice;
+    var nativeGetSymbols = Object.getOwnPropertySymbols;
+    var nativeIsBuffer = Buffer2 ? Buffer2.isBuffer : void 0;
+    var nativeKeys = overArg(Object.keys, Object);
+    var DataView2 = getNative(root, "DataView");
+    var Map2 = getNative(root, "Map");
+    var Promise2 = getNative(root, "Promise");
+    var Set2 = getNative(root, "Set");
+    var WeakMap2 = getNative(root, "WeakMap");
+    var nativeCreate = getNative(Object, "create");
+    var dataViewCtorString = toSource(DataView2);
+    var mapCtorString = toSource(Map2);
+    var promiseCtorString = toSource(Promise2);
+    var setCtorString = toSource(Set2);
+    var weakMapCtorString = toSource(WeakMap2);
+    var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
+    var symbolValueOf = symbolProto ? symbolProto.valueOf : void 0;
+    function Hash(entries) {
+      var index = -1, length = entries ? entries.length : 0;
+      this.clear();
+      while (++index < length) {
+        var entry = entries[index];
+        this.set(entry[0], entry[1]);
+      }
+    }
+    function hashClear() {
+      this.__data__ = nativeCreate ? nativeCreate(null) : {};
+    }
+    function hashDelete(key) {
+      return this.has(key) && delete this.__data__[key];
+    }
+    function hashGet(key) {
+      var data = this.__data__;
+      if (nativeCreate) {
+        var result = data[key];
+        return result === HASH_UNDEFINED ? void 0 : result;
+      }
+      return hasOwnProperty.call(data, key) ? data[key] : void 0;
+    }
+    function hashHas(key) {
+      var data = this.__data__;
+      return nativeCreate ? data[key] !== void 0 : hasOwnProperty.call(data, key);
+    }
+    function hashSet(key, value) {
+      var data = this.__data__;
+      data[key] = nativeCreate && value === void 0 ? HASH_UNDEFINED : value;
+      return this;
+    }
+    Hash.prototype.clear = hashClear;
+    Hash.prototype["delete"] = hashDelete;
+    Hash.prototype.get = hashGet;
+    Hash.prototype.has = hashHas;
+    Hash.prototype.set = hashSet;
+    function ListCache(entries) {
+      var index = -1, length = entries ? entries.length : 0;
+      this.clear();
+      while (++index < length) {
+        var entry = entries[index];
+        this.set(entry[0], entry[1]);
+      }
+    }
+    function listCacheClear() {
+      this.__data__ = [];
+    }
+    function listCacheDelete(key) {
+      var data = this.__data__, index = assocIndexOf(data, key);
+      if (index < 0) {
+        return false;
+      }
+      var lastIndex = data.length - 1;
+      if (index == lastIndex) {
+        data.pop();
+      } else {
+        splice.call(data, index, 1);
+      }
+      return true;
+    }
+    function listCacheGet(key) {
+      var data = this.__data__, index = assocIndexOf(data, key);
+      return index < 0 ? void 0 : data[index][1];
+    }
+    function listCacheHas(key) {
+      return assocIndexOf(this.__data__, key) > -1;
+    }
+    function listCacheSet(key, value) {
+      var data = this.__data__, index = assocIndexOf(data, key);
+      if (index < 0) {
+        data.push([key, value]);
+      } else {
+        data[index][1] = value;
+      }
+      return this;
+    }
+    ListCache.prototype.clear = listCacheClear;
+    ListCache.prototype["delete"] = listCacheDelete;
+    ListCache.prototype.get = listCacheGet;
+    ListCache.prototype.has = listCacheHas;
+    ListCache.prototype.set = listCacheSet;
+    function MapCache(entries) {
+      var index = -1, length = entries ? entries.length : 0;
+      this.clear();
+      while (++index < length) {
+        var entry = entries[index];
+        this.set(entry[0], entry[1]);
+      }
+    }
+    function mapCacheClear() {
+      this.__data__ = {
+        "hash": new Hash(),
+        "map": new (Map2 || ListCache)(),
+        "string": new Hash()
+      };
+    }
+    function mapCacheDelete(key) {
+      return getMapData(this, key)["delete"](key);
+    }
+    function mapCacheGet(key) {
+      return getMapData(this, key).get(key);
+    }
+    function mapCacheHas(key) {
+      return getMapData(this, key).has(key);
+    }
+    function mapCacheSet(key, value) {
+      getMapData(this, key).set(key, value);
+      return this;
+    }
+    MapCache.prototype.clear = mapCacheClear;
+    MapCache.prototype["delete"] = mapCacheDelete;
+    MapCache.prototype.get = mapCacheGet;
+    MapCache.prototype.has = mapCacheHas;
+    MapCache.prototype.set = mapCacheSet;
+    function Stack(entries) {
+      this.__data__ = new ListCache(entries);
+    }
+    function stackClear() {
+      this.__data__ = new ListCache();
+    }
+    function stackDelete(key) {
+      return this.__data__["delete"](key);
+    }
+    function stackGet(key) {
+      return this.__data__.get(key);
+    }
+    function stackHas(key) {
+      return this.__data__.has(key);
+    }
+    function stackSet(key, value) {
+      var cache = this.__data__;
+      if (cache instanceof ListCache) {
+        var pairs = cache.__data__;
+        if (!Map2 || pairs.length < LARGE_ARRAY_SIZE - 1) {
+          pairs.push([key, value]);
+          return this;
+        }
+        cache = this.__data__ = new MapCache(pairs);
+      }
+      cache.set(key, value);
+      return this;
+    }
+    Stack.prototype.clear = stackClear;
+    Stack.prototype["delete"] = stackDelete;
+    Stack.prototype.get = stackGet;
+    Stack.prototype.has = stackHas;
+    Stack.prototype.set = stackSet;
+    function arrayLikeKeys(value, inherited) {
+      var result = isArray(value) || isArguments(value) ? baseTimes(value.length, String) : [];
+      var length = result.length, skipIndexes = !!length;
+      for (var key in value) {
+        if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && (key == "length" || isIndex(key, length)))) {
+          result.push(key);
+        }
+      }
+      return result;
+    }
+    function assignValue(object, key, value) {
+      var objValue = object[key];
+      if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) || value === void 0 && !(key in object)) {
+        object[key] = value;
+      }
+    }
+    function assocIndexOf(array, key) {
+      var length = array.length;
+      while (length--) {
+        if (eq(array[length][0], key)) {
+          return length;
+        }
+      }
+      return -1;
+    }
+    function baseAssign(object, source) {
+      return object && copyObject(source, keys(source), object);
+    }
+    function baseClone(value, isDeep, isFull, customizer, key, object, stack) {
+      var result;
+      if (customizer) {
+        result = object ? customizer(value, key, object, stack) : customizer(value);
+      }
+      if (result !== void 0) {
+        return result;
+      }
+      if (!isObject(value)) {
+        return value;
+      }
+      var isArr = isArray(value);
+      if (isArr) {
+        result = initCloneArray(value);
+        if (!isDeep) {
+          return copyArray(value, result);
+        }
+      } else {
+        var tag = getTag(value), isFunc = tag == funcTag || tag == genTag;
+        if (isBuffer(value)) {
+          return cloneBuffer(value, isDeep);
+        }
+        if (tag == objectTag || tag == argsTag || isFunc && !object) {
+          if (isHostObject(value)) {
+            return object ? value : {};
+          }
+          result = initCloneObject(isFunc ? {} : value);
+          if (!isDeep) {
+            return copySymbols(value, baseAssign(result, value));
+          }
+        } else {
+          if (!cloneableTags[tag]) {
+            return object ? value : {};
+          }
+          result = initCloneByTag(value, tag, baseClone, isDeep);
+        }
+      }
+      stack || (stack = new Stack());
+      var stacked = stack.get(value);
+      if (stacked) {
+        return stacked;
+      }
+      stack.set(value, result);
+      if (!isArr) {
+        var props = isFull ? getAllKeys(value) : keys(value);
+      }
+      arrayEach(props || value, function(subValue, key2) {
+        if (props) {
+          key2 = subValue;
+          subValue = value[key2];
+        }
+        assignValue(result, key2, baseClone(subValue, isDeep, isFull, customizer, key2, value, stack));
+      });
+      return result;
+    }
+    function baseCreate(proto) {
+      return isObject(proto) ? objectCreate(proto) : {};
+    }
+    function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+      var result = keysFunc(object);
+      return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+    }
+    function baseGetTag(value) {
+      return objectToString.call(value);
+    }
+    function baseIsNative(value) {
+      if (!isObject(value) || isMasked(value)) {
+        return false;
+      }
+      var pattern = isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor;
+      return pattern.test(toSource(value));
+    }
+    function baseKeys(object) {
+      if (!isPrototype(object)) {
+        return nativeKeys(object);
+      }
+      var result = [];
+      for (var key in Object(object)) {
+        if (hasOwnProperty.call(object, key) && key != "constructor") {
+          result.push(key);
+        }
+      }
+      return result;
+    }
+    function cloneBuffer(buffer, isDeep) {
+      if (isDeep) {
+        return buffer.slice();
+      }
+      var result = new buffer.constructor(buffer.length);
+      buffer.copy(result);
+      return result;
+    }
+    function cloneArrayBuffer(arrayBuffer) {
+      var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+      new Uint8Array2(result).set(new Uint8Array2(arrayBuffer));
+      return result;
+    }
+    function cloneDataView(dataView, isDeep) {
+      var buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer;
+      return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
+    }
+    function cloneMap(map, isDeep, cloneFunc) {
+      var array = isDeep ? cloneFunc(mapToArray(map), true) : mapToArray(map);
+      return arrayReduce(array, addMapEntry, new map.constructor());
+    }
+    function cloneRegExp(regexp) {
+      var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+      result.lastIndex = regexp.lastIndex;
+      return result;
+    }
+    function cloneSet(set, isDeep, cloneFunc) {
+      var array = isDeep ? cloneFunc(setToArray(set), true) : setToArray(set);
+      return arrayReduce(array, addSetEntry, new set.constructor());
+    }
+    function cloneSymbol(symbol) {
+      return symbolValueOf ? Object(symbolValueOf.call(symbol)) : {};
+    }
+    function cloneTypedArray(typedArray, isDeep) {
+      var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+      return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+    }
+    function copyArray(source, array) {
+      var index = -1, length = source.length;
+      array || (array = Array(length));
+      while (++index < length) {
+        array[index] = source[index];
+      }
+      return array;
+    }
+    function copyObject(source, props, object, customizer) {
+      object || (object = {});
+      var index = -1, length = props.length;
+      while (++index < length) {
+        var key = props[index];
+        var newValue = customizer ? customizer(object[key], source[key], key, object, source) : void 0;
+        assignValue(object, key, newValue === void 0 ? source[key] : newValue);
+      }
+      return object;
+    }
+    function copySymbols(source, object) {
+      return copyObject(source, getSymbols(source), object);
+    }
+    function getAllKeys(object) {
+      return baseGetAllKeys(object, keys, getSymbols);
+    }
+    function getMapData(map, key) {
+      var data = map.__data__;
+      return isKeyable(key) ? data[typeof key == "string" ? "string" : "hash"] : data.map;
+    }
+    function getNative(object, key) {
+      var value = getValue(object, key);
+      return baseIsNative(value) ? value : void 0;
+    }
+    var getSymbols = nativeGetSymbols ? overArg(nativeGetSymbols, Object) : stubArray;
+    var getTag = baseGetTag;
+    if (DataView2 && getTag(new DataView2(new ArrayBuffer(1))) != dataViewTag || Map2 && getTag(new Map2()) != mapTag || Promise2 && getTag(Promise2.resolve()) != promiseTag || Set2 && getTag(new Set2()) != setTag || WeakMap2 && getTag(new WeakMap2()) != weakMapTag) {
+      getTag = function(value) {
+        var result = objectToString.call(value), Ctor = result == objectTag ? value.constructor : void 0, ctorString = Ctor ? toSource(Ctor) : void 0;
+        if (ctorString) {
+          switch (ctorString) {
+            case dataViewCtorString:
+              return dataViewTag;
+            case mapCtorString:
+              return mapTag;
+            case promiseCtorString:
+              return promiseTag;
+            case setCtorString:
+              return setTag;
+            case weakMapCtorString:
+              return weakMapTag;
+          }
+        }
+        return result;
+      };
+    }
+    function initCloneArray(array) {
+      var length = array.length, result = array.constructor(length);
+      if (length && typeof array[0] == "string" && hasOwnProperty.call(array, "index")) {
+        result.index = array.index;
+        result.input = array.input;
+      }
+      return result;
+    }
+    function initCloneObject(object) {
+      return typeof object.constructor == "function" && !isPrototype(object) ? baseCreate(getPrototype(object)) : {};
+    }
+    function initCloneByTag(object, tag, cloneFunc, isDeep) {
+      var Ctor = object.constructor;
+      switch (tag) {
+        case arrayBufferTag:
+          return cloneArrayBuffer(object);
+        case boolTag:
+        case dateTag:
+          return new Ctor(+object);
+        case dataViewTag:
+          return cloneDataView(object, isDeep);
+        case float32Tag:
+        case float64Tag:
+        case int8Tag:
+        case int16Tag:
+        case int32Tag:
+        case uint8Tag:
+        case uint8ClampedTag:
+        case uint16Tag:
+        case uint32Tag:
+          return cloneTypedArray(object, isDeep);
+        case mapTag:
+          return cloneMap(object, isDeep, cloneFunc);
+        case numberTag:
+        case stringTag:
+          return new Ctor(object);
+        case regexpTag:
+          return cloneRegExp(object);
+        case setTag:
+          return cloneSet(object, isDeep, cloneFunc);
+        case symbolTag:
+          return cloneSymbol(object);
+      }
+    }
+    function isIndex(value, length) {
+      length = length == null ? MAX_SAFE_INTEGER : length;
+      return !!length && (typeof value == "number" || reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
+    }
+    function isKeyable(value) {
+      var type = typeof value;
+      return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
+    }
+    function isMasked(func) {
+      return !!maskSrcKey && maskSrcKey in func;
+    }
+    function isPrototype(value) {
+      var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
+      return value === proto;
+    }
+    function toSource(func) {
+      if (func != null) {
+        try {
+          return funcToString.call(func);
+        } catch (e) {
+        }
+        try {
+          return func + "";
+        } catch (e) {
+        }
+      }
+      return "";
+    }
+    function cloneDeep(value) {
+      return baseClone(value, true, true);
+    }
+    function eq(value, other) {
+      return value === other || value !== value && other !== other;
+    }
+    function isArguments(value) {
+      return isArrayLikeObject(value) && hasOwnProperty.call(value, "callee") && (!propertyIsEnumerable.call(value, "callee") || objectToString.call(value) == argsTag);
+    }
+    var isArray = Array.isArray;
+    function isArrayLike(value) {
+      return value != null && isLength(value.length) && !isFunction(value);
+    }
+    function isArrayLikeObject(value) {
+      return isObjectLike(value) && isArrayLike(value);
+    }
+    var isBuffer = nativeIsBuffer || stubFalse;
+    function isFunction(value) {
+      var tag = isObject(value) ? objectToString.call(value) : "";
+      return tag == funcTag || tag == genTag;
+    }
+    function isLength(value) {
+      return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+    }
+    function isObject(value) {
+      var type = typeof value;
+      return !!value && (type == "object" || type == "function");
+    }
+    function isObjectLike(value) {
+      return !!value && typeof value == "object";
+    }
+    function keys(object) {
+      return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+    }
+    function stubArray() {
+      return [];
+    }
+    function stubFalse() {
+      return false;
+    }
+    module2.exports = cloneDeep;
+  }
+});
+
+// ../../node_modules/lru-memoizer/lib/freeze.js
+var require_freeze = __commonJS({
+  "../../node_modules/lru-memoizer/lib/freeze.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.deepFreeze = void 0;
+    function deepFreeze(o) {
+      if (o) {
+        Object.freeze(o);
+        Object.getOwnPropertyNames(o).forEach(function(prop) {
+          if (o.hasOwnProperty(prop) && o[prop] !== null && (typeof o[prop] === "object" || typeof o[prop] === "function") && o[prop].constructor !== Buffer && !Object.isFrozen(o[prop])) {
+            deepFreeze(o[prop]);
+          }
+        });
+      }
+      return o;
+    }
+    exports2.deepFreeze = deepFreeze;
+  }
+});
+
+// ../../node_modules/lru-memoizer/lib/sync.js
+var require_sync = __commonJS({
+  "../../node_modules/lru-memoizer/lib/sync.js"(exports2) {
+    "use strict";
+    var __read = exports2 && exports2.__read || function(o, n) {
+      var m = typeof Symbol === "function" && o[Symbol.iterator];
+      if (!m) return o;
+      var i = m.call(o), r, ar = [], e;
+      try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+      } catch (error) {
+        e = { error };
+      } finally {
+        try {
+          if (r && !r.done && (m = i["return"])) m.call(i);
+        } finally {
+          if (e) throw e.error;
+        }
+      }
+      return ar;
+    };
+    var __spread = exports2 && exports2.__spread || function() {
+      for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+      return ar;
+    };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.syncMemoizer = void 0;
+    var lru_cache_1 = __importDefault(require_lru_cache2());
+    var events_1 = require("events");
+    var lodash_clonedeep_1 = __importDefault(require_lodash9());
+    var freeze_1 = require_freeze();
+    function syncMemoizer(options) {
+      var cache = new lru_cache_1.default(options);
+      var load = options.load;
+      var hash = options.hash;
+      var bypass = options.bypass;
+      var itemMaxAge = options.itemMaxAge;
+      var freeze = options.freeze;
+      var clone = options.clone;
+      var emitter = new events_1.EventEmitter();
+      var defaultResult = Object.assign({
+        del,
+        reset: function() {
+          return cache.reset();
+        },
+        keys: cache.keys.bind(cache),
+        on: emitter.on.bind(emitter),
+        once: emitter.once.bind(emitter)
+      }, options);
+      if (options.disable) {
+        return Object.assign(load, defaultResult);
+      }
+      function del() {
+        var key = hash.apply(void 0, __spread(arguments));
+        cache.del(key);
+      }
+      function emit(event) {
+        var parameters = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+          parameters[_i - 1] = arguments[_i];
+        }
+        emitter.emit.apply(emitter, __spread([event], parameters));
+      }
+      function isPromise(result2) {
+        return result2 && result2.then && typeof result2.then === "function";
+      }
+      function processResult(result2) {
+        var res = result2;
+        if (clone) {
+          if (isPromise(res)) {
+            res = res.then(lodash_clonedeep_1.default);
+          } else {
+            res = lodash_clonedeep_1.default(res);
+          }
+        }
+        if (freeze) {
+          if (isPromise(res)) {
+            res = res.then(freeze_1.deepFreeze);
+          } else {
+            freeze_1.deepFreeze(res);
+          }
+        }
+        return res;
+      }
+      var result = function() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+        if (bypass && bypass.apply(void 0, __spread(args))) {
+          emit.apply(void 0, __spread(["miss"], args));
+          return load.apply(void 0, __spread(args));
+        }
+        var key = hash.apply(void 0, __spread(args));
+        var fromCache = cache.get(key);
+        if (fromCache) {
+          emit.apply(void 0, __spread(["hit"], args));
+          return processResult(fromCache);
+        }
+        emit.apply(void 0, __spread(["miss"], args));
+        var result2 = load.apply(void 0, __spread(args));
+        if (itemMaxAge) {
+          cache.set(key, result2, itemMaxAge.apply(void 0, __spread(args.concat([result2]))));
+        } else {
+          cache.set(key, result2);
+        }
+        return processResult(result2);
+      };
+      return Object.assign(result, defaultResult);
+    }
+    exports2.syncMemoizer = syncMemoizer;
+  }
+});
+
+// ../../node_modules/lru-memoizer/lib/async.js
+var require_async = __commonJS({
+  "../../node_modules/lru-memoizer/lib/async.js"(exports2) {
+    "use strict";
+    var __read = exports2 && exports2.__read || function(o, n) {
+      var m = typeof Symbol === "function" && o[Symbol.iterator];
+      if (!m) return o;
+      var i = m.call(o), r, ar = [], e;
+      try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+      } catch (error) {
+        e = { error };
+      } finally {
+        try {
+          if (r && !r.done && (m = i["return"])) m.call(i);
+        } finally {
+          if (e) throw e.error;
+        }
+      }
+      return ar;
+    };
+    var __spread = exports2 && exports2.__spread || function() {
+      for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+      return ar;
+    };
+    var __values = exports2 && exports2.__values || function(o) {
+      var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+      if (m) return m.call(o);
+      if (o && typeof o.length === "number") return {
+        next: function() {
+          if (o && i >= o.length) o = void 0;
+          return { value: o && o[i++], done: !o };
+        }
+      };
+      throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+    };
+    var __importDefault = exports2 && exports2.__importDefault || function(mod4) {
+      return mod4 && mod4.__esModule ? mod4 : { "default": mod4 };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.asyncMemoizer = void 0;
+    var lru_cache_1 = __importDefault(require_lru_cache2());
+    var events_1 = require("events");
+    var lodash_clonedeep_1 = __importDefault(require_lodash9());
+    var freeze_1 = require_freeze();
+    var sync_1 = require_sync();
+    function asyncMemoizer(options) {
+      var cache = new lru_cache_1.default(options);
+      var load = options.load;
+      var hash = options.hash;
+      var bypass = options.bypass;
+      var itemMaxAge = options.itemMaxAge;
+      var freeze = options.freeze;
+      var clone = options.clone;
+      var queueMaxAge = options.queueMaxAge || 1e3;
+      var loading = /* @__PURE__ */ new Map();
+      var emitter = new events_1.EventEmitter();
+      var memoizerMethods = Object.assign({
+        del,
+        reset: function() {
+          return cache.reset();
+        },
+        keys: cache.keys.bind(cache),
+        on: emitter.on.bind(emitter),
+        once: emitter.once.bind(emitter)
+      }, options);
+      if (options.disable) {
+        return Object.assign(load, memoizerMethods);
+      }
+      function del() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+        var key = hash.apply(void 0, __spread(args));
+        cache.del(key);
+      }
+      function add(key, parameters, result) {
+        if (freeze) {
+          result.forEach(freeze_1.deepFreeze);
+        }
+        if (itemMaxAge) {
+          cache.set(key, result, itemMaxAge.apply(void 0, __spread(parameters.concat(result))));
+        } else {
+          cache.set(key, result);
+        }
+      }
+      function runCallbacks(callbacks, args) {
+        var e_1, _a;
+        try {
+          for (var callbacks_1 = __values(callbacks), callbacks_1_1 = callbacks_1.next(); !callbacks_1_1.done; callbacks_1_1 = callbacks_1.next()) {
+            var callback = callbacks_1_1.value;
+            if (clone) {
+              setImmediate.apply(void 0, __spread([callback], args.map(lodash_clonedeep_1.default)));
+            } else {
+              setImmediate.apply(void 0, __spread([callback], args));
+            }
+          }
+        } catch (e_1_1) {
+          e_1 = { error: e_1_1 };
+        } finally {
+          try {
+            if (callbacks_1_1 && !callbacks_1_1.done && (_a = callbacks_1.return)) _a.call(callbacks_1);
+          } finally {
+            if (e_1) throw e_1.error;
+          }
+        }
+      }
+      function emit(event) {
+        var parameters = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+          parameters[_i - 1] = arguments[_i];
+        }
+        emitter.emit.apply(emitter, __spread([event], parameters));
+      }
+      function memoizedFunction() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+        var parameters = args.slice(0, -1);
+        var callback = args.slice(-1).pop();
+        var key;
+        if (bypass && bypass.apply(void 0, __spread(parameters))) {
+          emit.apply(void 0, __spread(["miss"], parameters));
+          return load.apply(void 0, __spread(args));
+        }
+        if (parameters.length === 0 && !hash) {
+          key = "_";
+        } else {
+          key = hash.apply(void 0, __spread(parameters));
+        }
+        var fromCache = cache.get(key);
+        if (fromCache) {
+          emit.apply(void 0, __spread(["hit"], parameters));
+          return runCallbacks([callback], [null].concat(fromCache));
+        }
+        var pendingLoad = loading.get(key);
+        if (pendingLoad && pendingLoad.expiresAt > Date.now()) {
+          pendingLoad.queue.push(callback);
+          emit.apply(void 0, __spread(["queue"], parameters));
+          return;
+        }
+        emit.apply(void 0, __spread(["miss"], parameters));
+        var started = Date.now();
+        var queue = [callback];
+        loading.set(key, {
+          queue,
+          expiresAt: started + queueMaxAge
+        });
+        var loadHandler = function() {
+          var args2 = [];
+          for (var _i2 = 0; _i2 < arguments.length; _i2++) {
+            args2[_i2] = arguments[_i2];
+          }
+          var err = args2[0];
+          if (!err) {
+            add(key, parameters, args2.slice(1));
+          }
+          loading.delete(key);
+          emit.apply(void 0, __spread(["loaded", Date.now() - started], parameters));
+          runCallbacks(queue, args2);
+        };
+        load.apply(void 0, __spread(parameters, [loadHandler]));
+      }
+      ;
+      return Object.assign(memoizedFunction, memoizerMethods);
+    }
+    exports2.asyncMemoizer = asyncMemoizer;
+    asyncMemoizer.sync = sync_1.syncMemoizer;
+  }
+});
+
+// ../../node_modules/lru-memoizer/lib/index.js
+var require_lib5 = __commonJS({
+  "../../node_modules/lru-memoizer/lib/index.js"(exports2, module2) {
+    "use strict";
+    var async_1 = require_async();
+    module2.exports = async_1.asyncMemoizer;
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/wrappers/cache.js
+var require_cache = __commonJS({
+  "../../node_modules/jwks-rsa/src/wrappers/cache.js"(exports2, module2) {
+    var logger2 = require_src()("jwks");
+    var memoizer = require_lib5();
+    var { promisify, callbackify } = require("util");
+    function cacheWrapper(client, { cacheMaxEntries = 5, cacheMaxAge = 6e5 }) {
+      logger2(`Configured caching of signing keys. Max: ${cacheMaxEntries} / Age: ${cacheMaxAge}`);
+      return promisify(memoizer({
+        hash: (kid) => kid,
+        load: callbackify(client.getSigningKey.bind(client)),
+        maxAge: cacheMaxAge,
+        max: cacheMaxEntries
+      }));
+    }
+    module2.exports.default = cacheWrapper;
+  }
+});
+
+// ../../node_modules/limiter/lib/tokenBucket.js
+var require_tokenBucket = __commonJS({
+  "../../node_modules/limiter/lib/tokenBucket.js"(exports2, module2) {
+    var TokenBucket = function(bucketSize, tokensPerInterval, interval, parentBucket) {
+      this.bucketSize = bucketSize;
+      this.tokensPerInterval = tokensPerInterval;
+      if (typeof interval === "string") {
+        switch (interval) {
+          case "sec":
+          case "second":
+            this.interval = 1e3;
+            break;
+          case "min":
+          case "minute":
+            this.interval = 1e3 * 60;
+            break;
+          case "hr":
+          case "hour":
+            this.interval = 1e3 * 60 * 60;
+            break;
+          case "day":
+            this.interval = 1e3 * 60 * 60 * 24;
+            break;
+          default:
+            throw new Error("Invaid interval " + interval);
+        }
+      } else {
+        this.interval = interval;
+      }
+      this.parentBucket = parentBucket;
+      this.content = 0;
+      this.lastDrip = +/* @__PURE__ */ new Date();
+    };
+    TokenBucket.prototype = {
+      bucketSize: 1,
+      tokensPerInterval: 1,
+      interval: 1e3,
+      parentBucket: null,
+      content: 0,
+      lastDrip: 0,
+      /**
+       * Remove the requested number of tokens and fire the given callback. If the
+       * bucket (and any parent buckets) contains enough tokens this will happen
+       * immediately. Otherwise, the removal and callback will happen when enough
+       * tokens become available.
+       * @param {Number} count The number of tokens to remove.
+       * @param {Function} callback(err, remainingTokens)
+       * @returns {Boolean} True if the callback was fired immediately, otherwise
+       *  false.
+       */
+      removeTokens: function(count, callback) {
+        var self2 = this;
+        if (!this.bucketSize) {
+          process.nextTick(callback.bind(null, null, count, Number.POSITIVE_INFINITY));
+          return true;
+        }
+        if (count > this.bucketSize) {
+          process.nextTick(callback.bind(null, "Requested tokens " + count + " exceeds bucket size " + this.bucketSize, null));
+          return false;
+        }
+        this.drip();
+        if (count > this.content)
+          return comeBackLater();
+        if (this.parentBucket) {
+          return this.parentBucket.removeTokens(count, function(err, remainingTokens) {
+            if (err) return callback(err, null);
+            if (count > self2.content)
+              return comeBackLater();
+            self2.content -= count;
+            callback(null, Math.min(remainingTokens, self2.content));
+          });
+        } else {
+          this.content -= count;
+          process.nextTick(callback.bind(null, null, this.content));
+          return true;
+        }
+        function comeBackLater() {
+          var waitInterval = Math.ceil(
+            (count - self2.content) * (self2.interval / self2.tokensPerInterval)
+          );
+          setTimeout(function() {
+            self2.removeTokens(count, callback);
+          }, waitInterval);
+          return false;
+        }
+      },
+      /**
+       * Attempt to remove the requested number of tokens and return immediately.
+       * If the bucket (and any parent buckets) contains enough tokens this will
+       * return true, otherwise false is returned.
+       * @param {Number} count The number of tokens to remove.
+       * @param {Boolean} True if the tokens were successfully removed, otherwise
+       *  false.
+       */
+      tryRemoveTokens: function(count) {
+        if (!this.bucketSize)
+          return true;
+        if (count > this.bucketSize)
+          return false;
+        this.drip();
+        if (count > this.content)
+          return false;
+        if (this.parentBucket && !this.parentBucket.tryRemoveTokens(count))
+          return false;
+        this.content -= count;
+        return true;
+      },
+      /**
+       * Add any new tokens to the bucket since the last drip.
+       * @returns {Boolean} True if new tokens were added, otherwise false.
+       */
+      drip: function() {
+        if (!this.tokensPerInterval) {
+          this.content = this.bucketSize;
+          return;
+        }
+        var now = +/* @__PURE__ */ new Date();
+        var deltaMS = Math.max(now - this.lastDrip, 0);
+        this.lastDrip = now;
+        var dripAmount = deltaMS * (this.tokensPerInterval / this.interval);
+        this.content = Math.min(this.content + dripAmount, this.bucketSize);
+      }
+    };
+    module2.exports = TokenBucket;
+  }
+});
+
+// ../../node_modules/limiter/lib/clock.js
+var require_clock = __commonJS({
+  "../../node_modules/limiter/lib/clock.js"(exports2, module2) {
+    var getMilliseconds = function() {
+      if (typeof process !== "undefined" && process.hrtime) {
+        var hrtime = process.hrtime();
+        var seconds = hrtime[0];
+        var nanoseconds = hrtime[1];
+        return seconds * 1e3 + Math.floor(nanoseconds / 1e6);
+      }
+      return (/* @__PURE__ */ new Date()).getTime();
+    };
+    module2.exports = getMilliseconds;
+  }
+});
+
+// ../../node_modules/limiter/lib/rateLimiter.js
+var require_rateLimiter = __commonJS({
+  "../../node_modules/limiter/lib/rateLimiter.js"(exports2, module2) {
+    var TokenBucket = require_tokenBucket();
+    var getMilliseconds = require_clock();
+    var RateLimiter = function(tokensPerInterval, interval, fireImmediately) {
+      this.tokenBucket = new TokenBucket(
+        tokensPerInterval,
+        tokensPerInterval,
+        interval,
+        null
+      );
+      this.tokenBucket.content = tokensPerInterval;
+      this.curIntervalStart = getMilliseconds();
+      this.tokensThisInterval = 0;
+      this.fireImmediately = fireImmediately;
+    };
+    RateLimiter.prototype = {
+      tokenBucket: null,
+      curIntervalStart: 0,
+      tokensThisInterval: 0,
+      fireImmediately: false,
+      /**
+       * Remove the requested number of tokens and fire the given callback. If the
+       * rate limiter contains enough tokens and we haven't spent too many tokens
+       * in this interval already, this will happen immediately. Otherwise, the
+       * removal and callback will happen when enough tokens become available.
+       * @param {Number} count The number of tokens to remove.
+       * @param {Function} callback(err, remainingTokens)
+       * @returns {Boolean} True if the callback was fired immediately, otherwise
+       *  false.
+       */
+      removeTokens: function(count, callback) {
+        if (count > this.tokenBucket.bucketSize) {
+          process.nextTick(callback.bind(
+            null,
+            "Requested tokens " + count + " exceeds maximum tokens per interval " + this.tokenBucket.bucketSize,
+            null
+          ));
+          return false;
+        }
+        var self2 = this;
+        var now = getMilliseconds();
+        if (now < this.curIntervalStart || now - this.curIntervalStart >= this.tokenBucket.interval) {
+          this.curIntervalStart = now;
+          this.tokensThisInterval = 0;
+        }
+        if (count > this.tokenBucket.tokensPerInterval - this.tokensThisInterval) {
+          if (this.fireImmediately) {
+            process.nextTick(callback.bind(null, null, -1));
+          } else {
+            var waitInterval = Math.ceil(
+              this.curIntervalStart + this.tokenBucket.interval - now
+            );
+            setTimeout(function() {
+              self2.tokenBucket.removeTokens(count, afterTokensRemoved);
+            }, waitInterval);
+          }
+          return false;
+        }
+        return this.tokenBucket.removeTokens(count, afterTokensRemoved);
+        function afterTokensRemoved(err, tokensRemaining) {
+          if (err) return callback(err, null);
+          self2.tokensThisInterval += count;
+          callback(null, tokensRemaining);
+        }
+      },
+      /**
+       * Attempt to remove the requested number of tokens and return immediately.
+       * If the bucket (and any parent buckets) contains enough tokens and we
+       * haven't spent too many tokens in this interval already, this will return
+       * true. Otherwise, false is returned.
+       * @param {Number} count The number of tokens to remove.
+       * @param {Boolean} True if the tokens were successfully removed, otherwise
+       *  false.
+       */
+      tryRemoveTokens: function(count) {
+        if (count > this.tokenBucket.bucketSize)
+          return false;
+        var now = getMilliseconds();
+        if (now < this.curIntervalStart || now - this.curIntervalStart >= this.tokenBucket.interval) {
+          this.curIntervalStart = now;
+          this.tokensThisInterval = 0;
+        }
+        if (count > this.tokenBucket.tokensPerInterval - this.tokensThisInterval)
+          return false;
+        var removed = this.tokenBucket.tryRemoveTokens(count);
+        if (removed) {
+          this.tokensThisInterval += count;
+        }
+        return removed;
+      },
+      /**
+       * Returns the number of tokens remaining in the TokenBucket.
+       * @returns {Number} The number of tokens remaining.
+       */
+      getTokensRemaining: function() {
+        this.tokenBucket.drip();
+        return this.tokenBucket.content;
+      }
+    };
+    module2.exports = RateLimiter;
+  }
+});
+
+// ../../node_modules/limiter/index.js
+var require_limiter = __commonJS({
+  "../../node_modules/limiter/index.js"(exports2) {
+    exports2.RateLimiter = require_rateLimiter();
+    exports2.TokenBucket = require_tokenBucket();
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/errors/JwksRateLimitError.js
+var require_JwksRateLimitError = __commonJS({
+  "../../node_modules/jwks-rsa/src/errors/JwksRateLimitError.js"(exports2, module2) {
+    function JwksRateLimitError(message) {
+      Error.call(this, message);
+      Error.captureStackTrace(this, this.constructor);
+      this.name = "JwksRateLimitError";
+      this.message = message;
+    }
+    JwksRateLimitError.prototype = Object.create(Error.prototype);
+    JwksRateLimitError.prototype.constructor = JwksRateLimitError;
+    module2.exports = JwksRateLimitError;
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/wrappers/rateLimit.js
+var require_rateLimit = __commonJS({
+  "../../node_modules/jwks-rsa/src/wrappers/rateLimit.js"(exports2, module2) {
+    var logger2 = require_src()("jwks");
+    var { RateLimiter } = require_limiter();
+    var JwksRateLimitError = require_JwksRateLimitError();
+    function rateLimitWrapper(client, { jwksRequestsPerMinute = 10 }) {
+      const getSigningKey = client.getSigningKey.bind(client);
+      const limiter = new RateLimiter(jwksRequestsPerMinute, "minute", true);
+      logger2(`Configured rate limiting to JWKS endpoint at ${jwksRequestsPerMinute}/minute`);
+      return async (kid) => await new Promise((resolve, reject) => {
+        limiter.removeTokens(1, async (err, remaining) => {
+          if (err) {
+            reject(err);
+          }
+          logger2("Requests to the JWKS endpoint available for the next minute:", remaining);
+          if (remaining < 0) {
+            logger2("Too many requests to the JWKS endpoint");
+            reject(new JwksRateLimitError("Too many requests to the JWKS endpoint"));
+          } else {
+            try {
+              const key = await getSigningKey(kid);
+              resolve(key);
+            } catch (error) {
+              reject(error);
+            }
+          }
+        });
+      });
+    }
+    module2.exports.default = rateLimitWrapper;
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/wrappers/interceptor.js
+var require_interceptor4 = __commonJS({
+  "../../node_modules/jwks-rsa/src/wrappers/interceptor.js"(exports2, module2) {
+    var retrieveSigningKeys = require_utils4().retrieveSigningKeys;
+    function getKeysInterceptor(client, { getKeysInterceptor: getKeysInterceptor2 }) {
+      const getSigningKey = client.getSigningKey.bind(client);
+      return async (kid) => {
+        const keys = await getKeysInterceptor2();
+        let signingKeys;
+        if (keys && keys.length) {
+          signingKeys = await retrieveSigningKeys(keys);
+        }
+        if (signingKeys && signingKeys.length) {
+          const key = signingKeys.find((k) => !kid || k.kid === kid);
+          if (key) {
+            return key;
+          }
+        }
+        return getSigningKey(kid);
+      };
+    }
+    module2.exports.default = getKeysInterceptor;
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/wrappers/callbackSupport.js
+var require_callbackSupport = __commonJS({
+  "../../node_modules/jwks-rsa/src/wrappers/callbackSupport.js"(exports2, module2) {
+    var { callbackify } = require("util");
+    var callbackSupport = (client) => {
+      const getSigningKey = client.getSigningKey.bind(client);
+      return (kid, cb) => {
+        if (cb) {
+          const callbackFunc = callbackify(getSigningKey);
+          return callbackFunc(kid, cb);
+        }
+        return getSigningKey(kid);
+      };
+    };
+    module2.exports.default = callbackSupport;
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/wrappers/index.js
+var require_wrappers4 = __commonJS({
+  "../../node_modules/jwks-rsa/src/wrappers/index.js"(exports2, module2) {
+    module2.exports = {
+      request: require_request().default,
+      cacheSigningKey: require_cache().default,
+      rateLimitSigningKey: require_rateLimit().default,
+      getKeysInterceptor: require_interceptor4().default,
+      callbackSupport: require_callbackSupport().default
+    };
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/errors/SigningKeyNotFoundError.js
+var require_SigningKeyNotFoundError = __commonJS({
+  "../../node_modules/jwks-rsa/src/errors/SigningKeyNotFoundError.js"(exports2, module2) {
+    function SigningKeyNotFoundError(message) {
+      Error.call(this, message);
+      Error.captureStackTrace(this, this.constructor);
+      this.name = "SigningKeyNotFoundError";
+      this.message = message;
+    }
+    SigningKeyNotFoundError.prototype = Object.create(Error.prototype);
+    SigningKeyNotFoundError.prototype.constructor = SigningKeyNotFoundError;
+    module2.exports = SigningKeyNotFoundError;
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/JwksClient.js
+var require_JwksClient = __commonJS({
+  "../../node_modules/jwks-rsa/src/JwksClient.js"(exports2, module2) {
+    var logger2 = require_src()("jwks");
+    var { retrieveSigningKeys } = require_utils4();
+    var { request, cacheSigningKey, rateLimitSigningKey, getKeysInterceptor, callbackSupport } = require_wrappers4();
+    var JwksError = require_JwksError();
+    var SigningKeyNotFoundError = require_SigningKeyNotFoundError();
+    var JwksClient = class {
+      constructor(options) {
+        this.options = {
+          rateLimit: false,
+          cache: true,
+          timeout: 3e4,
+          ...options
+        };
+        if (this.options.getKeysInterceptor) {
+          this.getSigningKey = getKeysInterceptor(this, options);
+        }
+        if (this.options.rateLimit) {
+          this.getSigningKey = rateLimitSigningKey(this, options);
+        }
+        if (this.options.cache) {
+          this.getSigningKey = cacheSigningKey(this, options);
+        }
+        this.getSigningKey = callbackSupport(this, options);
+      }
+      async getKeys() {
+        logger2(`Fetching keys from '${this.options.jwksUri}'`);
+        try {
+          const res = await request({
+            uri: this.options.jwksUri,
+            headers: this.options.requestHeaders,
+            agent: this.options.requestAgent,
+            timeout: this.options.timeout,
+            fetcher: this.options.fetcher
+          });
+          logger2("Keys:", res.keys);
+          return res.keys;
+        } catch (err) {
+          const { errorMsg } = err;
+          logger2("Failure:", errorMsg || err);
+          throw errorMsg ? new JwksError(errorMsg) : err;
+        }
+      }
+      async getSigningKeys() {
+        const keys = await this.getKeys();
+        if (!keys || !keys.length) {
+          throw new JwksError("The JWKS endpoint did not contain any keys");
+        }
+        const signingKeys = await retrieveSigningKeys(keys);
+        if (!signingKeys.length) {
+          throw new JwksError("The JWKS endpoint did not contain any signing keys");
+        }
+        logger2("Signing Keys:", signingKeys);
+        return signingKeys;
+      }
+      async getSigningKey(kid) {
+        logger2(`Fetching signing key for '${kid}'`);
+        const keys = await this.getSigningKeys();
+        const kidDefined = kid !== void 0 && kid !== null;
+        if (!kidDefined && keys.length > 1) {
+          logger2("No KID specified and JWKS endpoint returned more than 1 key");
+          throw new SigningKeyNotFoundError("No KID specified and JWKS endpoint returned more than 1 key");
+        }
+        const key = keys.find((k) => !kidDefined || k.kid === kid);
+        if (key) {
+          return key;
+        } else {
+          logger2(`Unable to find a signing key that matches '${kid}'`);
+          throw new SigningKeyNotFoundError(`Unable to find a signing key that matches '${kid}'`);
+        }
+      }
+    };
+    module2.exports = {
+      JwksClient
+    };
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/errors/index.js
+var require_errors3 = __commonJS({
+  "../../node_modules/jwks-rsa/src/errors/index.js"(exports2, module2) {
+    module2.exports = {
+      ArgumentError: require_ArgumentError(),
+      JwksError: require_JwksError(),
+      JwksRateLimitError: require_JwksRateLimitError(),
+      SigningKeyNotFoundError: require_SigningKeyNotFoundError()
+    };
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/integrations/config.js
+var require_config = __commonJS({
+  "../../node_modules/jwks-rsa/src/integrations/config.js"(exports2, module2) {
+    var allowedSignatureAlg = [
+      "RS256",
+      "RS384",
+      "RS512",
+      "PS256",
+      "PS384",
+      "PS512",
+      "ES256",
+      "ES256K",
+      "ES384",
+      "ES512",
+      "EdDSA"
+    ];
+    module2.exports = allowedSignatureAlg;
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/integrations/hapi.js
+var require_hapi = __commonJS({
+  "../../node_modules/jwks-rsa/src/integrations/hapi.js"(exports2, module2) {
+    var { ArgumentError } = require_errors3();
+    var { JwksClient } = require_JwksClient();
+    var supportedAlg = require_config();
+    var handleSigningKeyError = (err, cb) => {
+      if (err && err.name === "SigningKeyNotFoundError") {
+        return cb(err, null, null);
+      }
+      if (err) {
+        return cb(err, null, null);
+      }
+    };
+    module2.exports.hapiJwt2KeyAsync = (options) => {
+      const secretProvider = module2.exports.hapiJwt2Key(options);
+      return function(decoded) {
+        return new Promise((resolve, reject) => {
+          const cb = (err, key) => {
+            !key || err ? reject(err) : resolve({ key });
+          };
+          secretProvider(decoded, cb);
+        });
+      };
+    };
+    module2.exports.hapiJwt2Key = function(options) {
+      if (options === null || options === void 0) {
+        throw new ArgumentError("An options object must be provided when initializing hapiJwt2Key");
+      }
+      const client = new JwksClient(options);
+      const onError = options.handleSigningKeyError || handleSigningKeyError;
+      return function secretProvider(decoded, cb) {
+        if (!decoded || !decoded.header) {
+          return cb(new Error("Cannot find a signing certificate if there is no header"), null, null);
+        }
+        if (!supportedAlg.includes(decoded.header.alg)) {
+          return cb(new Error("Unsupported algorithm " + decoded.header.alg + " supplied."), null, null);
+        }
+        client.getSigningKey(decoded.header.kid).then((key) => {
+          return cb(null, key.publicKey || key.rsaPublicKey, key);
+        }).catch((err) => {
+          return onError(err, (newError) => cb(newError, null, null));
+        });
+      };
+    };
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/integrations/express.js
+var require_express = __commonJS({
+  "../../node_modules/jwks-rsa/src/integrations/express.js"(exports2, module2) {
+    var { ArgumentError } = require_errors3();
+    var { JwksClient } = require_JwksClient();
+    var supportedAlg = require_config();
+    var handleSigningKeyError = (err, cb) => {
+      if (err && err.name === "SigningKeyNotFoundError") {
+        return cb(null);
+      }
+      if (err) {
+        return cb(err);
+      }
+    };
+    module2.exports.expressJwtSecret = function(options) {
+      if (options === null || options === void 0) {
+        throw new ArgumentError("An options object must be provided when initializing expressJwtSecret");
+      }
+      const client = new JwksClient(options);
+      const onError = options.handleSigningKeyError || handleSigningKeyError;
+      const expressJwt7Provider = async (req, token) => {
+        if (!token) {
+          return;
+        }
+        const header = token.header;
+        if (!header || !supportedAlg.includes(header.alg)) {
+          return;
+        }
+        try {
+          const key = await client.getSigningKey(header.kid);
+          return key.publicKey || key.rsaPublicKey;
+        } catch (err) {
+          return new Promise((resolve, reject) => {
+            onError(err, (newError) => {
+              if (!newError) {
+                return resolve();
+              }
+              reject(newError);
+            });
+          });
+        }
+      };
+      return function secretProvider(req, header, payload, cb) {
+        if (arguments.length === 4) {
+          expressJwt7Provider(req, { header }).then((key) => {
+            setImmediate(cb, null, key);
+          }).catch((err) => {
+            setImmediate(cb, err);
+          });
+          return;
+        }
+        return expressJwt7Provider(req, arguments[1]);
+      };
+    };
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/integrations/koa.js
+var require_koa = __commonJS({
+  "../../node_modules/jwks-rsa/src/integrations/koa.js"(exports2, module2) {
+    var { ArgumentError } = require_errors3();
+    var { JwksClient } = require_JwksClient();
+    var supportedAlg = require_config();
+    module2.exports.koaJwtSecret = function(options = {}) {
+      if (!options.jwksUri) {
+        throw new ArgumentError("No JWKS provided. Please provide a jwksUri");
+      }
+      const client = new JwksClient(options);
+      return function secretProvider({ alg, kid } = {}) {
+        return new Promise((resolve, reject) => {
+          if (!supportedAlg.includes(alg)) {
+            return reject(new Error("Missing / invalid token algorithm"));
+          }
+          client.getSigningKey(kid).then((key) => {
+            resolve(key.publicKey || key.rsaPublicKey);
+          }).catch((err) => {
+            if (options.handleSigningKeyError) {
+              return options.handleSigningKeyError(err).then(reject);
+            }
+            return reject(err);
+          });
+        });
+      };
+    };
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/integrations/passport.js
+var require_passport = __commonJS({
+  "../../node_modules/jwks-rsa/src/integrations/passport.js"(exports2, module2) {
+    var jose = require_cjs();
+    var { ArgumentError } = require_errors3();
+    var { JwksClient } = require_JwksClient();
+    var supportedAlg = require_config();
+    var handleSigningKeyError = (err, cb) => {
+      if (err && err.name === "SigningKeyNotFoundError") {
+        return cb(null);
+      }
+      if (err) {
+        return cb(err);
+      }
+    };
+    module2.exports.passportJwtSecret = function(options) {
+      if (options === null || options === void 0) {
+        throw new ArgumentError("An options object must be provided when initializing passportJwtSecret");
+      }
+      if (!options.jwksUri) {
+        throw new ArgumentError("No JWKS provided. Please provide a jwksUri");
+      }
+      const client = new JwksClient(options);
+      const onError = options.handleSigningKeyError || handleSigningKeyError;
+      return function secretProvider(req, rawJwtToken, cb) {
+        let decoded;
+        try {
+          decoded = {
+            payload: jose.decodeJwt(rawJwtToken),
+            header: jose.decodeProtectedHeader(rawJwtToken)
+          };
+        } catch (err) {
+          decoded = null;
+        }
+        if (!decoded || !supportedAlg.includes(decoded.header.alg)) {
+          return cb(null, null);
+        }
+        client.getSigningKey(decoded.header.kid).then((key) => {
+          cb(null, key.publicKey || key.rsaPublicKey);
+        }).catch((err) => {
+          onError(err, (newError) => cb(newError, null));
+        });
+      };
+    };
+  }
+});
+
+// ../../node_modules/jwks-rsa/src/index.js
+var require_src22 = __commonJS({
+  "../../node_modules/jwks-rsa/src/index.js"(exports2, module2) {
+    var { JwksClient } = require_JwksClient();
+    var errors = require_errors3();
+    var { hapiJwt2Key, hapiJwt2KeyAsync } = require_hapi();
+    var { expressJwtSecret } = require_express();
+    var { koaJwtSecret } = require_koa();
+    var { passportJwtSecret } = require_passport();
+    module2.exports = (options) => {
+      return new JwksClient(options);
+    };
+    module2.exports.JwksClient = JwksClient;
+    module2.exports.ArgumentError = errors.ArgumentError;
+    module2.exports.JwksError = errors.JwksError;
+    module2.exports.JwksRateLimitError = errors.JwksRateLimitError;
+    module2.exports.SigningKeyNotFoundError = errors.SigningKeyNotFoundError;
+    module2.exports.expressJwtSecret = expressJwtSecret;
+    module2.exports.hapiJwt2Key = hapiJwt2Key;
+    module2.exports.hapiJwt2KeyAsync = hapiJwt2KeyAsync;
+    module2.exports.koaJwtSecret = koaJwtSecret;
+    module2.exports.passportJwtSecret = passportJwtSecret;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/utils/jwt.js
+var require_jwt = __commonJS({
+  "../../node_modules/firebase-admin/lib/utils/jwt.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.JwtErrorCode = exports2.JwtError = exports2.decodeJwt = exports2.verifyJwtSignature = exports2.EmulatorSignatureVerifier = exports2.PublicKeySignatureVerifier = exports2.UrlKeyFetcher = exports2.JwksFetcher = exports2.ALGORITHM_RS256 = void 0;
+    var validator = require_validator();
+    var jwt = require_jsonwebtoken();
+    var jwks = require_src22();
+    var api_request_1 = require_api_request();
+    exports2.ALGORITHM_RS256 = "RS256";
+    var JWT_CALLBACK_ERROR_PREFIX = "error in secret or public key callback: ";
+    var NO_MATCHING_KID_ERROR_MESSAGE = "no-matching-kid-error";
+    var NO_KID_IN_HEADER_ERROR_MESSAGE = "no-kid-in-header-error";
+    var HOUR_IN_SECONDS = 3600;
+    var JwksFetcher = class {
+      constructor(jwksUrl) {
+        this.publicKeysExpireAt = 0;
+        if (!validator.isURL(jwksUrl)) {
+          throw new Error("The provided JWKS URL is not a valid URL.");
+        }
+        this.client = jwks({
+          jwksUri: jwksUrl,
+          cache: false
+          // disable jwks-rsa LRU cache as the keys are always cached for 6 hours.
+        });
+      }
+      fetchPublicKeys() {
+        if (this.shouldRefresh()) {
+          return this.refresh();
+        }
+        return Promise.resolve(this.publicKeys);
+      }
+      shouldRefresh() {
+        return !this.publicKeys || this.publicKeysExpireAt <= Date.now();
+      }
+      refresh() {
+        return this.client.getSigningKeys().then((signingKeys) => {
+          this.publicKeysExpireAt = 0;
+          const newKeys = signingKeys.reduce((map, signingKey) => {
+            map[signingKey.kid] = signingKey.getPublicKey();
+            return map;
+          }, {});
+          this.publicKeysExpireAt = Date.now() + HOUR_IN_SECONDS * 6 * 1e3;
+          this.publicKeys = newKeys;
+          return newKeys;
+        }).catch((err) => {
+          throw new Error(`Error fetching Json Web Keys: ${err.message}`);
+        });
+      }
+    };
+    exports2.JwksFetcher = JwksFetcher;
+    var UrlKeyFetcher = class {
+      constructor(clientCertUrl, httpAgent) {
+        this.clientCertUrl = clientCertUrl;
+        this.httpAgent = httpAgent;
+        this.publicKeysExpireAt = 0;
+        if (!validator.isURL(clientCertUrl)) {
+          throw new Error("The provided public client certificate URL is not a valid URL.");
+        }
+      }
+      /**
+       * Fetches the public keys for the Google certs.
+       *
+       * @returns A promise fulfilled with public keys for the Google certs.
+       */
+      fetchPublicKeys() {
+        if (this.shouldRefresh()) {
+          return this.refresh();
+        }
+        return Promise.resolve(this.publicKeys);
+      }
+      /**
+       * Checks if the cached public keys need to be refreshed.
+       *
+       * @returns Whether the keys should be fetched from the client certs url or not.
+       */
+      shouldRefresh() {
+        return !this.publicKeys || this.publicKeysExpireAt <= Date.now();
+      }
+      refresh() {
+        const client = new api_request_1.HttpClient();
+        const request = {
+          method: "GET",
+          url: this.clientCertUrl,
+          httpAgent: this.httpAgent
+        };
+        return client.send(request).then((resp) => {
+          if (!resp.isJson() || resp.data.error) {
+            throw new api_request_1.HttpError(resp);
+          }
+          this.publicKeysExpireAt = 0;
+          if (Object.prototype.hasOwnProperty.call(resp.headers, "cache-control")) {
+            const cacheControlHeader = resp.headers["cache-control"];
+            const parts = cacheControlHeader.split(",");
+            parts.forEach((part) => {
+              const subParts = part.trim().split("=");
+              if (subParts[0] === "max-age") {
+                const maxAge = +subParts[1];
+                this.publicKeysExpireAt = Date.now() + maxAge * 1e3;
+              }
+            });
+          }
+          this.publicKeys = resp.data;
+          return resp.data;
+        }).catch((err) => {
+          if (err instanceof api_request_1.HttpError) {
+            let errorMessage = "Error fetching public keys for Google certs: ";
+            const resp = err.response;
+            if (resp.isJson() && resp.data.error) {
+              errorMessage += `${resp.data.error}`;
+              if (resp.data.error_description) {
+                errorMessage += " (" + resp.data.error_description + ")";
+              }
+            } else {
+              errorMessage += `${resp.text}`;
+            }
+            throw new Error(errorMessage);
+          }
+          throw err;
+        });
+      }
+    };
+    exports2.UrlKeyFetcher = UrlKeyFetcher;
+    var PublicKeySignatureVerifier = class _PublicKeySignatureVerifier {
+      constructor(keyFetcher) {
+        this.keyFetcher = keyFetcher;
+        if (!validator.isNonNullObject(keyFetcher)) {
+          throw new Error("The provided key fetcher is not an object or null.");
+        }
+      }
+      static withCertificateUrl(clientCertUrl, httpAgent) {
+        return new _PublicKeySignatureVerifier(new UrlKeyFetcher(clientCertUrl, httpAgent));
+      }
+      static withJwksUrl(jwksUrl) {
+        return new _PublicKeySignatureVerifier(new JwksFetcher(jwksUrl));
+      }
+      verify(token) {
+        if (!validator.isString(token)) {
+          return Promise.reject(new JwtError(JwtErrorCode.INVALID_ARGUMENT, "The provided token must be a string."));
+        }
+        return verifyJwtSignature(token, getKeyCallback(this.keyFetcher), { algorithms: [exports2.ALGORITHM_RS256] }).catch((error) => {
+          if (error.code === JwtErrorCode.NO_KID_IN_HEADER) {
+            return this.verifyWithoutKid(token);
+          }
+          throw error;
+        });
+      }
+      verifyWithoutKid(token) {
+        return this.keyFetcher.fetchPublicKeys().then((publicKeys) => this.verifyWithAllKeys(token, publicKeys));
+      }
+      verifyWithAllKeys(token, keys) {
+        const promises = [];
+        Object.values(keys).forEach((key) => {
+          const result = verifyJwtSignature(token, key).then(() => true).catch((error) => {
+            if (error.code === JwtErrorCode.TOKEN_EXPIRED) {
+              throw error;
+            }
+            return false;
+          });
+          promises.push(result);
+        });
+        return Promise.all(promises).then((result) => {
+          if (result.every((r) => r === false)) {
+            throw new JwtError(JwtErrorCode.INVALID_SIGNATURE, "Invalid token signature.");
+          }
+        });
+      }
+    };
+    exports2.PublicKeySignatureVerifier = PublicKeySignatureVerifier;
+    var EmulatorSignatureVerifier = class {
+      verify(token) {
+        return verifyJwtSignature(token, void 0, { algorithms: ["none"] });
+      }
+    };
+    exports2.EmulatorSignatureVerifier = EmulatorSignatureVerifier;
+    function getKeyCallback(fetcher) {
+      return (header, callback) => {
+        if (!header.kid) {
+          callback(new Error(NO_KID_IN_HEADER_ERROR_MESSAGE));
+        }
+        const kid = header.kid || "";
+        fetcher.fetchPublicKeys().then((publicKeys) => {
+          if (!Object.prototype.hasOwnProperty.call(publicKeys, kid)) {
+            callback(new Error(NO_MATCHING_KID_ERROR_MESSAGE));
+          } else {
+            callback(null, publicKeys[kid]);
+          }
+        }).catch((error) => {
+          callback(error);
+        });
+      };
+    }
+    function verifyJwtSignature(token, secretOrPublicKey, options) {
+      if (!validator.isString(token)) {
+        return Promise.reject(new JwtError(JwtErrorCode.INVALID_ARGUMENT, "The provided token must be a string."));
+      }
+      return new Promise((resolve, reject) => {
+        jwt.verify(token, secretOrPublicKey, options, (error) => {
+          if (!error) {
+            return resolve();
+          }
+          if (error.name === "TokenExpiredError") {
+            return reject(new JwtError(JwtErrorCode.TOKEN_EXPIRED, "The provided token has expired. Get a fresh token from your client app and try again."));
+          } else if (error.name === "JsonWebTokenError") {
+            if (error.message && error.message.includes(JWT_CALLBACK_ERROR_PREFIX)) {
+              const message = error.message.split(JWT_CALLBACK_ERROR_PREFIX).pop() || "Error fetching public keys.";
+              let code = JwtErrorCode.KEY_FETCH_ERROR;
+              if (message === NO_MATCHING_KID_ERROR_MESSAGE) {
+                code = JwtErrorCode.NO_MATCHING_KID;
+              } else if (message === NO_KID_IN_HEADER_ERROR_MESSAGE) {
+                code = JwtErrorCode.NO_KID_IN_HEADER;
+              }
+              return reject(new JwtError(code, message));
+            }
+          }
+          return reject(new JwtError(JwtErrorCode.INVALID_SIGNATURE, error.message));
+        });
+      });
+    }
+    exports2.verifyJwtSignature = verifyJwtSignature;
+    function decodeJwt(jwtToken) {
+      if (!validator.isString(jwtToken)) {
+        return Promise.reject(new JwtError(JwtErrorCode.INVALID_ARGUMENT, "The provided token must be a string."));
+      }
+      const fullDecodedToken = jwt.decode(jwtToken, {
+        complete: true
+      });
+      if (!fullDecodedToken) {
+        return Promise.reject(new JwtError(JwtErrorCode.INVALID_ARGUMENT, "Decoding token failed."));
+      }
+      const header = fullDecodedToken?.header;
+      const payload = fullDecodedToken?.payload;
+      return Promise.resolve({ header, payload });
+    }
+    exports2.decodeJwt = decodeJwt;
+    var JwtError = class _JwtError extends Error {
+      constructor(code, message) {
+        super(message);
+        this.code = code;
+        this.message = message;
+        this.__proto__ = _JwtError.prototype;
+      }
+    };
+    exports2.JwtError = JwtError;
+    var JwtErrorCode;
+    (function(JwtErrorCode2) {
+      JwtErrorCode2["INVALID_ARGUMENT"] = "invalid-argument";
+      JwtErrorCode2["INVALID_CREDENTIAL"] = "invalid-credential";
+      JwtErrorCode2["TOKEN_EXPIRED"] = "token-expired";
+      JwtErrorCode2["INVALID_SIGNATURE"] = "invalid-token";
+      JwtErrorCode2["NO_MATCHING_KID"] = "no-matching-kid-error";
+      JwtErrorCode2["NO_KID_IN_HEADER"] = "no-kid-error";
+      JwtErrorCode2["KEY_FETCH_ERROR"] = "key-fetch-error";
+    })(JwtErrorCode = exports2.JwtErrorCode || (exports2.JwtErrorCode = {}));
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/token-verifier.js
+var require_token_verifier = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/token-verifier.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.createSessionCookieVerifier = exports2.createAuthBlockingTokenVerifier = exports2.createIdTokenVerifier = exports2.FirebaseTokenVerifier = exports2.SESSION_COOKIE_INFO = exports2.AUTH_BLOCKING_TOKEN_INFO = exports2.ID_TOKEN_INFO = void 0;
+    var error_1 = require_error();
+    var util = require_utils3();
+    var validator = require_validator();
+    var jwt_1 = require_jwt();
+    var FIREBASE_AUDIENCE = "https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit";
+    var CLIENT_CERT_URL = "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com";
+    var SESSION_COOKIE_CERT_URL = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys";
+    var EMULATOR_VERIFIER = new jwt_1.EmulatorSignatureVerifier();
+    exports2.ID_TOKEN_INFO = {
+      url: "https://firebase.google.com/docs/auth/admin/verify-id-tokens",
+      verifyApiName: "verifyIdToken()",
+      jwtName: "Firebase ID token",
+      shortName: "ID token",
+      expiredErrorCode: error_1.AuthClientErrorCode.ID_TOKEN_EXPIRED
+    };
+    exports2.AUTH_BLOCKING_TOKEN_INFO = {
+      url: "https://cloud.google.com/identity-platform/docs/blocking-functions",
+      verifyApiName: "_verifyAuthBlockingToken()",
+      jwtName: "Firebase Auth Blocking token",
+      shortName: "Auth Blocking token",
+      expiredErrorCode: error_1.AuthClientErrorCode.AUTH_BLOCKING_TOKEN_EXPIRED
+    };
+    exports2.SESSION_COOKIE_INFO = {
+      url: "https://firebase.google.com/docs/auth/admin/manage-cookies",
+      verifyApiName: "verifySessionCookie()",
+      jwtName: "Firebase session cookie",
+      shortName: "session cookie",
+      expiredErrorCode: error_1.AuthClientErrorCode.SESSION_COOKIE_EXPIRED
+    };
+    var FirebaseTokenVerifier = class {
+      constructor(clientCertUrl, issuer, tokenInfo, app) {
+        this.issuer = issuer;
+        this.tokenInfo = tokenInfo;
+        this.app = app;
+        if (!validator.isURL(clientCertUrl)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "The provided public client certificate URL is an invalid URL.");
+        } else if (!validator.isURL(issuer)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "The provided JWT issuer is an invalid URL.");
+        } else if (!validator.isNonNullObject(tokenInfo)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "The provided JWT information is not an object or null.");
+        } else if (!validator.isURL(tokenInfo.url)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "The provided JWT verification documentation URL is invalid.");
+        } else if (!validator.isNonEmptyString(tokenInfo.verifyApiName)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "The JWT verify API name must be a non-empty string.");
+        } else if (!validator.isNonEmptyString(tokenInfo.jwtName)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "The JWT public full name must be a non-empty string.");
+        } else if (!validator.isNonEmptyString(tokenInfo.shortName)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "The JWT public short name must be a non-empty string.");
+        } else if (!validator.isNonNullObject(tokenInfo.expiredErrorCode) || !("code" in tokenInfo.expiredErrorCode)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "The JWT expiration error code must be a non-null ErrorInfo object.");
+        }
+        this.shortNameArticle = tokenInfo.shortName.charAt(0).match(/[aeiou]/i) ? "an" : "a";
+        this.signatureVerifier = jwt_1.PublicKeySignatureVerifier.withCertificateUrl(clientCertUrl, app.options.httpAgent);
+      }
+      /**
+       * Verifies the format and signature of a Firebase Auth JWT token.
+       *
+       * @param jwtToken - The Firebase Auth JWT token to verify.
+       * @param isEmulator - Whether to accept Auth Emulator tokens.
+       * @returns A promise fulfilled with the decoded claims of the Firebase Auth ID token.
+       */
+      verifyJWT(jwtToken, isEmulator = false) {
+        if (!validator.isString(jwtToken)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `First argument to ${this.tokenInfo.verifyApiName} must be a ${this.tokenInfo.jwtName} string.`);
+        }
+        return this.ensureProjectId().then((projectId) => {
+          return this.decodeAndVerify(jwtToken, projectId, isEmulator);
+        }).then((decoded) => {
+          const decodedIdToken = decoded.payload;
+          decodedIdToken.uid = decodedIdToken.sub;
+          return decodedIdToken;
+        });
+      }
+      /** @alpha */
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      _verifyAuthBlockingToken(jwtToken, isEmulator, audience) {
+        if (!validator.isString(jwtToken)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, `First argument to ${this.tokenInfo.verifyApiName} must be a ${this.tokenInfo.jwtName} string.`);
+        }
+        return this.ensureProjectId().then((projectId) => {
+          if (typeof audience === "undefined") {
+            audience = `${projectId}.cloudfunctions.net/`;
+          }
+          return this.decodeAndVerify(jwtToken, projectId, isEmulator, audience);
+        }).then((decoded) => {
+          const decodedAuthBlockingToken = decoded.payload;
+          decodedAuthBlockingToken.uid = decodedAuthBlockingToken.sub;
+          return decodedAuthBlockingToken;
+        });
+      }
+      ensureProjectId() {
+        return util.findProjectId(this.app).then((projectId) => {
+          if (!validator.isNonEmptyString(projectId)) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CREDENTIAL, `Must initialize app with a cert credential or set your Firebase project ID as the GOOGLE_CLOUD_PROJECT environment variable to call ${this.tokenInfo.verifyApiName}.`);
+          }
+          return Promise.resolve(projectId);
+        });
+      }
+      decodeAndVerify(token, projectId, isEmulator, audience) {
+        return this.safeDecode(token).then((decodedToken) => {
+          this.verifyContent(decodedToken, projectId, isEmulator, audience);
+          return this.verifySignature(token, isEmulator).then(() => decodedToken);
+        });
+      }
+      safeDecode(jwtToken) {
+        return (0, jwt_1.decodeJwt)(jwtToken).catch((err) => {
+          if (err.code === jwt_1.JwtErrorCode.INVALID_ARGUMENT) {
+            const verifyJwtTokenDocsMessage = ` See ${this.tokenInfo.url} for details on how to retrieve ${this.shortNameArticle} ${this.tokenInfo.shortName}.`;
+            const errorMessage = `Decoding ${this.tokenInfo.jwtName} failed. Make sure you passed the entire string JWT which represents ${this.shortNameArticle} ${this.tokenInfo.shortName}.` + verifyJwtTokenDocsMessage;
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, errorMessage);
+          }
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, err.message);
+        });
+      }
+      /**
+       * Verifies the content of a Firebase Auth JWT.
+       *
+       * @param fullDecodedToken - The decoded JWT.
+       * @param projectId - The Firebase Project Id.
+       * @param isEmulator - Whether the token is an Emulator token.
+       */
+      verifyContent(fullDecodedToken, projectId, isEmulator, audience) {
+        const header = fullDecodedToken && fullDecodedToken.header;
+        const payload = fullDecodedToken && fullDecodedToken.payload;
+        const projectIdMatchMessage = ` Make sure the ${this.tokenInfo.shortName} comes from the same Firebase project as the service account used to authenticate this SDK.`;
+        const verifyJwtTokenDocsMessage = ` See ${this.tokenInfo.url} for details on how to retrieve ${this.shortNameArticle} ${this.tokenInfo.shortName}.`;
+        let errorMessage;
+        if (!isEmulator && typeof header.kid === "undefined") {
+          const isCustomToken = payload.aud === FIREBASE_AUDIENCE;
+          const isLegacyCustomToken = header.alg === "HS256" && payload.v === 0 && "d" in payload && "uid" in payload.d;
+          if (isCustomToken) {
+            errorMessage = `${this.tokenInfo.verifyApiName} expects ${this.shortNameArticle} ${this.tokenInfo.shortName}, but was given a custom token.`;
+          } else if (isLegacyCustomToken) {
+            errorMessage = `${this.tokenInfo.verifyApiName} expects ${this.shortNameArticle} ${this.tokenInfo.shortName}, but was given a legacy custom token.`;
+          } else {
+            errorMessage = `${this.tokenInfo.jwtName} has no "kid" claim.`;
+          }
+          errorMessage += verifyJwtTokenDocsMessage;
+        } else if (!isEmulator && header.alg !== jwt_1.ALGORITHM_RS256) {
+          errorMessage = `${this.tokenInfo.jwtName} has incorrect algorithm. Expected "` + jwt_1.ALGORITHM_RS256 + '" but got "' + header.alg + '".' + verifyJwtTokenDocsMessage;
+        } else if (typeof audience !== "undefined" && !payload.aud.includes(audience)) {
+          errorMessage = `${this.tokenInfo.jwtName} has incorrect "aud" (audience) claim. Expected "` + audience + '" but got "' + payload.aud + '".' + verifyJwtTokenDocsMessage;
+        } else if (typeof audience === "undefined" && payload.aud !== projectId) {
+          errorMessage = `${this.tokenInfo.jwtName} has incorrect "aud" (audience) claim. Expected "` + projectId + '" but got "' + payload.aud + '".' + projectIdMatchMessage + verifyJwtTokenDocsMessage;
+        } else if (payload.iss !== this.issuer + projectId) {
+          errorMessage = `${this.tokenInfo.jwtName} has incorrect "iss" (issuer) claim. Expected "${this.issuer}` + projectId + '" but got "' + payload.iss + '".' + projectIdMatchMessage + verifyJwtTokenDocsMessage;
+        } else if (typeof payload.sub !== "string") {
+          errorMessage = `${this.tokenInfo.jwtName} has no "sub" (subject) claim.` + verifyJwtTokenDocsMessage;
+        } else if (payload.sub === "") {
+          errorMessage = `${this.tokenInfo.jwtName} has an empty string "sub" (subject) claim.` + verifyJwtTokenDocsMessage;
+        } else if (payload.sub.length > 128) {
+          errorMessage = `${this.tokenInfo.jwtName} has "sub" (subject) claim longer than 128 characters.` + verifyJwtTokenDocsMessage;
+        }
+        if (errorMessage) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, errorMessage);
+        }
+      }
+      verifySignature(jwtToken, isEmulator) {
+        const verifier = isEmulator ? EMULATOR_VERIFIER : this.signatureVerifier;
+        return verifier.verify(jwtToken).catch((error) => {
+          throw this.mapJwtErrorToAuthError(error);
+        });
+      }
+      /**
+       * Maps JwtError to FirebaseAuthError
+       *
+       * @param error - JwtError to be mapped.
+       * @returns FirebaseAuthError or Error instance.
+       */
+      mapJwtErrorToAuthError(error) {
+        const verifyJwtTokenDocsMessage = ` See ${this.tokenInfo.url} for details on how to retrieve ${this.shortNameArticle} ${this.tokenInfo.shortName}.`;
+        if (error.code === jwt_1.JwtErrorCode.TOKEN_EXPIRED) {
+          const errorMessage = `${this.tokenInfo.jwtName} has expired. Get a fresh ${this.tokenInfo.shortName} from your client app and try again (auth/${this.tokenInfo.expiredErrorCode.code}).` + verifyJwtTokenDocsMessage;
+          return new error_1.FirebaseAuthError(this.tokenInfo.expiredErrorCode, errorMessage);
+        } else if (error.code === jwt_1.JwtErrorCode.INVALID_SIGNATURE) {
+          const errorMessage = `${this.tokenInfo.jwtName} has invalid signature.` + verifyJwtTokenDocsMessage;
+          return new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, errorMessage);
+        } else if (error.code === jwt_1.JwtErrorCode.NO_MATCHING_KID) {
+          const errorMessage = `${this.tokenInfo.jwtName} has "kid" claim which does not correspond to a known public key. Most likely the ${this.tokenInfo.shortName} is expired, so get a fresh token from your client app and try again.`;
+          return new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, errorMessage);
+        }
+        return new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, error.message);
+      }
+    };
+    exports2.FirebaseTokenVerifier = FirebaseTokenVerifier;
+    function createIdTokenVerifier(app) {
+      return new FirebaseTokenVerifier(CLIENT_CERT_URL, "https://securetoken.google.com/", exports2.ID_TOKEN_INFO, app);
+    }
+    exports2.createIdTokenVerifier = createIdTokenVerifier;
+    function createAuthBlockingTokenVerifier(app) {
+      return new FirebaseTokenVerifier(CLIENT_CERT_URL, "https://securetoken.google.com/", exports2.AUTH_BLOCKING_TOKEN_INFO, app);
+    }
+    exports2.createAuthBlockingTokenVerifier = createAuthBlockingTokenVerifier;
+    function createSessionCookieVerifier(app) {
+      return new FirebaseTokenVerifier(SESSION_COOKIE_CERT_URL, "https://session.firebase.google.com/", exports2.SESSION_COOKIE_INFO, app);
+    }
+    exports2.createSessionCookieVerifier = createSessionCookieVerifier;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/user-record.js
+var require_user_record = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/user-record.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.UserRecord = exports2.UserInfo = exports2.UserMetadata = exports2.MultiFactorSettings = exports2.TotpMultiFactorInfo = exports2.TotpInfo = exports2.PhoneMultiFactorInfo = exports2.MultiFactorInfo = void 0;
+    var deep_copy_1 = require_deep_copy();
+    var validator_1 = require_validator();
+    var utils = require_utils3();
+    var error_1 = require_error();
+    var B64_REDACTED = Buffer.from("REDACTED").toString("base64");
+    function parseDate(time) {
+      try {
+        const date = new Date(parseInt(time, 10));
+        if (!isNaN(date.getTime())) {
+          return date.toUTCString();
+        }
+      } catch (e) {
+      }
+      return null;
+    }
+    var MultiFactorId;
+    (function(MultiFactorId2) {
+      MultiFactorId2["Phone"] = "phone";
+      MultiFactorId2["Totp"] = "totp";
+    })(MultiFactorId || (MultiFactorId = {}));
+    var MultiFactorInfo2 = class {
+      /**
+       * Initializes the MultiFactorInfo associated subclass using the server side.
+       * If no MultiFactorInfo is associated with the response, null is returned.
+       *
+       * @param response - The server side response.
+       * @internal
+       */
+      static initMultiFactorInfo(response) {
+        let multiFactorInfo = null;
+        try {
+          if (response.phoneInfo !== void 0) {
+            multiFactorInfo = new PhoneMultiFactorInfo2(response);
+          } else if (response.totpInfo !== void 0) {
+            multiFactorInfo = new TotpMultiFactorInfo(response);
+          } else {
+          }
+        } catch (e) {
+        }
+        return multiFactorInfo;
+      }
+      /**
+       * Initializes the MultiFactorInfo object using the server side response.
+       *
+       * @param response - The server side response.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        this.initFromServerResponse(response);
+      }
+      /**
+       * Returns a JSON-serializable representation of this object.
+       *
+       * @returns A JSON-serializable representation of this object.
+       */
+      toJSON() {
+        return {
+          uid: this.uid,
+          displayName: this.displayName,
+          factorId: this.factorId,
+          enrollmentTime: this.enrollmentTime
+        };
+      }
+      /**
+       * Initializes the MultiFactorInfo object using the provided server response.
+       *
+       * @param response - The server side response.
+       */
+      initFromServerResponse(response) {
+        const factorId = response && this.getFactorId(response);
+        if (!factorId || !response || !response.mfaEnrollmentId) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid multi-factor info response");
+        }
+        utils.addReadonlyGetter(this, "uid", response.mfaEnrollmentId);
+        utils.addReadonlyGetter(this, "factorId", factorId);
+        utils.addReadonlyGetter(this, "displayName", response.displayName);
+        if (response.enrolledAt) {
+          utils.addReadonlyGetter(this, "enrollmentTime", new Date(response.enrolledAt).toUTCString());
+        } else {
+          utils.addReadonlyGetter(this, "enrollmentTime", null);
+        }
+      }
+    };
+    exports2.MultiFactorInfo = MultiFactorInfo2;
+    var PhoneMultiFactorInfo2 = class extends MultiFactorInfo2 {
+      /**
+       * Initializes the PhoneMultiFactorInfo object using the server side response.
+       *
+       * @param response - The server side response.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        super(response);
+        utils.addReadonlyGetter(this, "phoneNumber", response.phoneInfo);
+      }
+      /**
+       * {@inheritdoc MultiFactorInfo.toJSON}
+       */
+      toJSON() {
+        return Object.assign(super.toJSON(), {
+          phoneNumber: this.phoneNumber
+        });
+      }
+      /**
+       * Returns the factor ID based on the response provided.
+       *
+       * @param response - The server side response.
+       * @returns The multi-factor ID associated with the provided response. If the response is
+       *     not associated with any known multi-factor ID, null is returned.
+       *
+       * @internal
+       */
+      getFactorId(response) {
+        return response && response.phoneInfo ? MultiFactorId.Phone : null;
+      }
+    };
+    exports2.PhoneMultiFactorInfo = PhoneMultiFactorInfo2;
+    var TotpInfo = class {
+    };
+    exports2.TotpInfo = TotpInfo;
+    var TotpMultiFactorInfo = class extends MultiFactorInfo2 {
+      /**
+       * Initializes the `TotpMultiFactorInfo` object using the server side response.
+       *
+       * @param response - The server side response.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        super(response);
+        utils.addReadonlyGetter(this, "totpInfo", response.totpInfo);
+      }
+      /**
+       * {@inheritdoc MultiFactorInfo.toJSON}
+       */
+      toJSON() {
+        return Object.assign(super.toJSON(), {
+          totpInfo: this.totpInfo
+        });
+      }
+      /**
+       * Returns the factor ID based on the response provided.
+       *
+       * @param response - The server side response.
+       * @returns The multi-factor ID associated with the provided response. If the response is
+       *     not associated with any known multi-factor ID, `null` is returned.
+       *
+       * @internal
+       */
+      getFactorId(response) {
+        return response && response.totpInfo ? MultiFactorId.Totp : null;
+      }
+    };
+    exports2.TotpMultiFactorInfo = TotpMultiFactorInfo;
+    var MultiFactorSettings2 = class {
+      /**
+       * Initializes the `MultiFactor` object using the server side or JWT format response.
+       *
+       * @param response - The server side response.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        const parsedEnrolledFactors = [];
+        if (!(0, validator_1.isNonNullObject)(response)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid multi-factor response");
+        } else if (response.mfaInfo) {
+          response.mfaInfo.forEach((factorResponse) => {
+            const multiFactorInfo = MultiFactorInfo2.initMultiFactorInfo(factorResponse);
+            if (multiFactorInfo) {
+              parsedEnrolledFactors.push(multiFactorInfo);
+            }
+          });
+        }
+        utils.addReadonlyGetter(this, "enrolledFactors", Object.freeze(parsedEnrolledFactors));
+      }
+      /**
+       * Returns a JSON-serializable representation of this multi-factor object.
+       *
+       * @returns A JSON-serializable representation of this multi-factor object.
+       */
+      toJSON() {
+        return {
+          enrolledFactors: this.enrolledFactors.map((info) => info.toJSON())
+        };
+      }
+    };
+    exports2.MultiFactorSettings = MultiFactorSettings2;
+    var UserMetadata2 = class {
+      /**
+       * @param response - The server side response returned from the `getAccountInfo`
+       *     endpoint.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        utils.addReadonlyGetter(this, "creationTime", parseDate(response.createdAt));
+        utils.addReadonlyGetter(this, "lastSignInTime", parseDate(response.lastLoginAt));
+        const lastRefreshAt = response.lastRefreshAt ? new Date(response.lastRefreshAt).toUTCString() : null;
+        utils.addReadonlyGetter(this, "lastRefreshTime", lastRefreshAt);
+      }
+      /**
+       * Returns a JSON-serializable representation of this object.
+       *
+       * @returns A JSON-serializable representation of this object.
+       */
+      toJSON() {
+        return {
+          lastSignInTime: this.lastSignInTime,
+          creationTime: this.creationTime,
+          lastRefreshTime: this.lastRefreshTime
+        };
+      }
+    };
+    exports2.UserMetadata = UserMetadata2;
+    var UserInfo2 = class {
+      /**
+       * @param response - The server side response returned from the `getAccountInfo`
+       *     endpoint.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        if (!response.rawId || !response.providerId) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid user info response");
+        }
+        utils.addReadonlyGetter(this, "uid", response.rawId);
+        utils.addReadonlyGetter(this, "displayName", response.displayName);
+        utils.addReadonlyGetter(this, "email", response.email);
+        utils.addReadonlyGetter(this, "photoURL", response.photoUrl);
+        utils.addReadonlyGetter(this, "providerId", response.providerId);
+        utils.addReadonlyGetter(this, "phoneNumber", response.phoneNumber);
+      }
+      /**
+       * Returns a JSON-serializable representation of this object.
+       *
+       * @returns A JSON-serializable representation of this object.
+       */
+      toJSON() {
+        return {
+          uid: this.uid,
+          displayName: this.displayName,
+          email: this.email,
+          photoURL: this.photoURL,
+          providerId: this.providerId,
+          phoneNumber: this.phoneNumber
+        };
+      }
+    };
+    exports2.UserInfo = UserInfo2;
+    var UserRecord2 = class {
+      /**
+       * @param response - The server side response returned from the getAccountInfo
+       *     endpoint.
+       * @constructor
+       * @internal
+       */
+      constructor(response) {
+        if (!response.localId) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "INTERNAL ASSERT FAILED: Invalid user response");
+        }
+        utils.addReadonlyGetter(this, "uid", response.localId);
+        utils.addReadonlyGetter(this, "email", response.email);
+        utils.addReadonlyGetter(this, "emailVerified", !!response.emailVerified);
+        utils.addReadonlyGetter(this, "displayName", response.displayName);
+        utils.addReadonlyGetter(this, "photoURL", response.photoUrl);
+        utils.addReadonlyGetter(this, "phoneNumber", response.phoneNumber);
+        utils.addReadonlyGetter(this, "disabled", response.disabled || false);
+        utils.addReadonlyGetter(this, "metadata", new UserMetadata2(response));
+        const providerData = [];
+        for (const entry of response.providerUserInfo || []) {
+          providerData.push(new UserInfo2(entry));
+        }
+        utils.addReadonlyGetter(this, "providerData", providerData);
+        if (response.passwordHash === B64_REDACTED) {
+          utils.addReadonlyGetter(this, "passwordHash", void 0);
+        } else {
+          utils.addReadonlyGetter(this, "passwordHash", response.passwordHash);
+        }
+        utils.addReadonlyGetter(this, "passwordSalt", response.salt);
+        if (response.customAttributes) {
+          utils.addReadonlyGetter(this, "customClaims", JSON.parse(response.customAttributes));
+        }
+        let validAfterTime = null;
+        if (typeof response.validSince !== "undefined") {
+          validAfterTime = parseDate(parseInt(response.validSince, 10) * 1e3);
+        }
+        utils.addReadonlyGetter(this, "tokensValidAfterTime", validAfterTime || void 0);
+        utils.addReadonlyGetter(this, "tenantId", response.tenantId);
+        const multiFactor = new MultiFactorSettings2(response);
+        if (multiFactor.enrolledFactors.length > 0) {
+          utils.addReadonlyGetter(this, "multiFactor", multiFactor);
+        }
+      }
+      /**
+       * Returns a JSON-serializable representation of this object.
+       *
+       * @returns A JSON-serializable representation of this object.
+       */
+      toJSON() {
+        const json = {
+          uid: this.uid,
+          email: this.email,
+          emailVerified: this.emailVerified,
+          displayName: this.displayName,
+          photoURL: this.photoURL,
+          phoneNumber: this.phoneNumber,
+          disabled: this.disabled,
+          // Convert metadata to json.
+          metadata: this.metadata.toJSON(),
+          passwordHash: this.passwordHash,
+          passwordSalt: this.passwordSalt,
+          customClaims: (0, deep_copy_1.deepCopy)(this.customClaims),
+          tokensValidAfterTime: this.tokensValidAfterTime,
+          tenantId: this.tenantId
+        };
+        if (this.multiFactor) {
+          json.multiFactor = this.multiFactor.toJSON();
+        }
+        json.providerData = [];
+        for (const entry of this.providerData) {
+          json.providerData.push(entry.toJSON());
+        }
+        return json;
+      }
+    };
+    exports2.UserRecord = UserRecord2;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/base-auth.js
+var require_base_auth = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/base-auth.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.BaseAuth = exports2.createFirebaseTokenGenerator = void 0;
+    var error_1 = require_error();
+    var deep_copy_1 = require_deep_copy();
+    var validator = require_validator();
+    var auth_api_request_1 = require_auth_api_request();
+    var token_generator_1 = require_token_generator();
+    var token_verifier_1 = require_token_verifier();
+    var auth_config_1 = require_auth_config();
+    var user_record_1 = require_user_record();
+    var identifier_1 = require_identifier();
+    var crypto_signer_1 = require_crypto_signer();
+    function createFirebaseTokenGenerator(app, tenantId) {
+      try {
+        const signer = (0, auth_api_request_1.useEmulator)() ? new token_generator_1.EmulatedSigner() : (0, crypto_signer_1.cryptoSignerFromApp)(app);
+        return new token_generator_1.FirebaseTokenGenerator(signer, tenantId);
+      } catch (err) {
+        throw (0, token_generator_1.handleCryptoSignerError)(err);
+      }
+    }
+    exports2.createFirebaseTokenGenerator = createFirebaseTokenGenerator;
+    var BaseAuth2 = class {
+      /**
+       * The BaseAuth class constructor.
+       *
+       * @param app - The FirebaseApp to associate with this Auth instance.
+       * @param authRequestHandler - The RPC request handler for this instance.
+       * @param tokenGenerator - Optional token generator. If not specified, a
+       *     (non-tenant-aware) instance will be created. Use this paramter to
+       *     specify a tenant-aware tokenGenerator.
+       * @constructor
+       * @internal
+       */
+      constructor(app, authRequestHandler, tokenGenerator) {
+        this.authRequestHandler = authRequestHandler;
+        if (tokenGenerator) {
+          this.tokenGenerator = tokenGenerator;
+        } else {
+          this.tokenGenerator = createFirebaseTokenGenerator(app);
+        }
+        this.sessionCookieVerifier = (0, token_verifier_1.createSessionCookieVerifier)(app);
+        this.idTokenVerifier = (0, token_verifier_1.createIdTokenVerifier)(app);
+        this.authBlockingTokenVerifier = (0, token_verifier_1.createAuthBlockingTokenVerifier)(app);
+      }
+      /**
+       * Creates a new Firebase custom token (JWT) that can be sent back to a client
+       * device to use to sign in with the client SDKs' `signInWithCustomToken()`
+       * methods. (Tenant-aware instances will also embed the tenant ID in the
+       * token.)
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/create-custom-tokens | Create Custom Tokens}
+       * for code samples and detailed documentation.
+       *
+       * @param uid - The `uid` to use as the custom token's subject.
+       * @param developerClaims - Optional additional claims to include
+       *   in the custom token's payload.
+       *
+       * @returns A promise fulfilled with a custom token for the
+       *   provided `uid` and payload.
+       */
+      createCustomToken(uid, developerClaims) {
+        return this.tokenGenerator.createCustomToken(uid, developerClaims);
+      }
+      /**
+       * Verifies a Firebase ID token (JWT). If the token is valid, the promise is
+       * fulfilled with the token's decoded claims; otherwise, the promise is
+       * rejected.
+       *
+       * If `checkRevoked` is set to true, first verifies whether the corresponding
+       * user is disabled. If yes, an `auth/user-disabled` error is thrown. If no,
+       * verifies if the session corresponding to the ID token was revoked. If the
+       * corresponding user's session was invalidated, an `auth/id-token-revoked`
+       * error is thrown. If not specified the check is not applied.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/verify-id-tokens | Verify ID Tokens}
+       * for code samples and detailed documentation.
+       *
+       * @param idToken - The ID token to verify.
+       * @param checkRevoked - Whether to check if the ID token was revoked.
+       *   This requires an extra request to the Firebase Auth backend to check
+       *   the `tokensValidAfterTime` time for the corresponding user.
+       *   When not specified, this additional check is not applied.
+       *
+       * @returns A promise fulfilled with the
+       *   token's decoded claims if the ID token is valid; otherwise, a rejected
+       *   promise.
+       */
+      verifyIdToken(idToken, checkRevoked = false) {
+        const isEmulator = (0, auth_api_request_1.useEmulator)();
+        return this.idTokenVerifier.verifyJWT(idToken, isEmulator).then((decodedIdToken) => {
+          if (checkRevoked || isEmulator) {
+            return this.verifyDecodedJWTNotRevokedOrDisabled(decodedIdToken, error_1.AuthClientErrorCode.ID_TOKEN_REVOKED);
+          }
+          return decodedIdToken;
+        });
+      }
+      /**
+       * Gets the user data for the user corresponding to a given `uid`.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-users#retrieve_user_data | Retrieve user data}
+       * for code samples and detailed documentation.
+       *
+       * @param uid - The `uid` corresponding to the user whose data to fetch.
+       *
+       * @returns A promise fulfilled with the user
+       *   data corresponding to the provided `uid`.
+       */
+      getUser(uid) {
+        return this.authRequestHandler.getAccountInfoByUid(uid).then((response) => {
+          return new user_record_1.UserRecord(response.users[0]);
+        });
+      }
+      /**
+       * Gets the user data for the user corresponding to a given email.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-users#retrieve_user_data | Retrieve user data}
+       * for code samples and detailed documentation.
+       *
+       * @param email - The email corresponding to the user whose data to
+       *   fetch.
+       *
+       * @returns A promise fulfilled with the user
+       *   data corresponding to the provided email.
+       */
+      getUserByEmail(email) {
+        return this.authRequestHandler.getAccountInfoByEmail(email).then((response) => {
+          return new user_record_1.UserRecord(response.users[0]);
+        });
+      }
+      /**
+       * Gets the user data for the user corresponding to a given phone number. The
+       * phone number has to conform to the E.164 specification.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-users#retrieve_user_data | Retrieve user data}
+       * for code samples and detailed documentation.
+       *
+       * @param phoneNumber - The phone number corresponding to the user whose
+       *   data to fetch.
+       *
+       * @returns A promise fulfilled with the user
+       *   data corresponding to the provided phone number.
+       */
+      getUserByPhoneNumber(phoneNumber) {
+        return this.authRequestHandler.getAccountInfoByPhoneNumber(phoneNumber).then((response) => {
+          return new user_record_1.UserRecord(response.users[0]);
+        });
+      }
+      /**
+       * Gets the user data for the user corresponding to a given provider id.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-users#retrieve_user_data | Retrieve user data}
+       * for code samples and detailed documentation.
+       *
+       * @param providerId - The provider ID, for example, "google.com" for the
+       *   Google provider.
+       * @param uid - The user identifier for the given provider.
+       *
+       * @returns A promise fulfilled with the user data corresponding to the
+       *   given provider id.
+       */
+      getUserByProviderUid(providerId, uid) {
+        if (providerId === "phone") {
+          return this.getUserByPhoneNumber(uid);
+        } else if (providerId === "email") {
+          return this.getUserByEmail(uid);
+        }
+        return this.authRequestHandler.getAccountInfoByFederatedUid(providerId, uid).then((response) => {
+          return new user_record_1.UserRecord(response.users[0]);
+        });
+      }
+      /**
+       * Gets the user data corresponding to the specified identifiers.
+       *
+       * There are no ordering guarantees; in particular, the nth entry in the result list is not
+       * guaranteed to correspond to the nth entry in the input parameters list.
+       *
+       * Only a maximum of 100 identifiers may be supplied. If more than 100 identifiers are supplied,
+       * this method throws a FirebaseAuthError.
+       *
+       * @param identifiers - The identifiers used to indicate which user records should be returned.
+       *     Must not have more than 100 entries.
+       * @returns A promise that resolves to the corresponding user records.
+       * @throws FirebaseAuthError If any of the identifiers are invalid or if more than 100
+       *     identifiers are specified.
+       */
+      getUsers(identifiers) {
+        if (!validator.isArray(identifiers)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "`identifiers` parameter must be an array");
+        }
+        return this.authRequestHandler.getAccountInfoByIdentifiers(identifiers).then((response) => {
+          const isUserFound = (id, userRecords) => {
+            return !!userRecords.find((userRecord) => {
+              if ((0, identifier_1.isUidIdentifier)(id)) {
+                return id.uid === userRecord.uid;
+              } else if ((0, identifier_1.isEmailIdentifier)(id)) {
+                return id.email === userRecord.email;
+              } else if ((0, identifier_1.isPhoneIdentifier)(id)) {
+                return id.phoneNumber === userRecord.phoneNumber;
+              } else if ((0, identifier_1.isProviderIdentifier)(id)) {
+                const matchingUserInfo = userRecord.providerData.find((userInfo) => {
+                  return id.providerId === userInfo.providerId;
+                });
+                return !!matchingUserInfo && id.providerUid === matchingUserInfo.uid;
+              } else {
+                throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "Unhandled identifier type");
+              }
+            });
+          };
+          const users = response.users ? response.users.map((user) => new user_record_1.UserRecord(user)) : [];
+          const notFound = identifiers.filter((id) => !isUserFound(id, users));
+          return { users, notFound };
+        });
+      }
+      /**
+       * Retrieves a list of users (single batch only) with a size of `maxResults`
+       * starting from the offset as specified by `pageToken`. This is used to
+       * retrieve all the users of a specified project in batches.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-users#list_all_users | List all users}
+       * for code samples and detailed documentation.
+       *
+       * @param maxResults - The page size, 1000 if undefined. This is also
+       *   the maximum allowed limit.
+       * @param pageToken - The next page token. If not specified, returns
+       *   users starting without any offset.
+       * @returns A promise that resolves with
+       *   the current batch of downloaded users and the next page token.
+       */
+      listUsers(maxResults, pageToken) {
+        return this.authRequestHandler.downloadAccount(maxResults, pageToken).then((response) => {
+          const users = [];
+          response.users.forEach((userResponse) => {
+            users.push(new user_record_1.UserRecord(userResponse));
+          });
+          const result = {
+            users,
+            pageToken: response.nextPageToken
+          };
+          if (typeof result.pageToken === "undefined") {
+            delete result.pageToken;
+          }
+          return result;
+        });
+      }
+      /**
+       * Creates a new user.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-users#create_a_user | Create a user}
+       * for code samples and detailed documentation.
+       *
+       * @param properties - The properties to set on the
+       *   new user record to be created.
+       *
+       * @returns A promise fulfilled with the user
+       *   data corresponding to the newly created user.
+       */
+      createUser(properties) {
+        return this.authRequestHandler.createNewAccount(properties).then((uid) => {
+          return this.getUser(uid);
+        }).catch((error) => {
+          if (error.code === "auth/user-not-found") {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "Unable to create the user record provided.");
+          }
+          throw error;
+        });
+      }
+      /**
+       * Deletes an existing user.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-users#delete_a_user | Delete a user}
+       * for code samples and detailed documentation.
+       *
+       * @param uid - The `uid` corresponding to the user to delete.
+       *
+       * @returns An empty promise fulfilled once the user has been
+       *   deleted.
+       */
+      deleteUser(uid) {
+        return this.authRequestHandler.deleteAccount(uid).then(() => {
+        });
+      }
+      /**
+       * Deletes the users specified by the given uids.
+       *
+       * Deleting a non-existing user won't generate an error (i.e. this method
+       * is idempotent.) Non-existing users are considered to be successfully
+       * deleted, and are therefore counted in the
+       * `DeleteUsersResult.successCount` value.
+       *
+       * Only a maximum of 1000 identifiers may be supplied. If more than 1000
+       * identifiers are supplied, this method throws a FirebaseAuthError.
+       *
+       * This API is currently rate limited at the server to 1 QPS. If you exceed
+       * this, you may get a quota exceeded error. Therefore, if you want to
+       * delete more than 1000 users, you may need to add a delay to ensure you
+       * don't go over this limit.
+       *
+       * @param uids - The `uids` corresponding to the users to delete.
+       *
+       * @returns A Promise that resolves to the total number of successful/failed
+       *     deletions, as well as the array of errors that corresponds to the
+       *     failed deletions.
+       */
+      deleteUsers(uids) {
+        if (!validator.isArray(uids)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "`uids` parameter must be an array");
+        }
+        return this.authRequestHandler.deleteAccounts(
+          uids,
+          /*force=*/
+          true
+        ).then((batchDeleteAccountsResponse) => {
+          const result = {
+            failureCount: 0,
+            successCount: uids.length,
+            errors: []
+          };
+          if (!validator.isNonEmptyArray(batchDeleteAccountsResponse.errors)) {
+            return result;
+          }
+          result.failureCount = batchDeleteAccountsResponse.errors.length;
+          result.successCount = uids.length - batchDeleteAccountsResponse.errors.length;
+          result.errors = batchDeleteAccountsResponse.errors.map((batchDeleteErrorInfo) => {
+            if (batchDeleteErrorInfo.index === void 0) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INTERNAL_ERROR, "Corrupt BatchDeleteAccountsResponse detected");
+            }
+            const errMsgToError = (msg) => {
+              const code = msg && msg.startsWith("NOT_DISABLED") ? error_1.AuthClientErrorCode.USER_NOT_DISABLED : error_1.AuthClientErrorCode.INTERNAL_ERROR;
+              return new error_1.FirebaseAuthError(code, batchDeleteErrorInfo.message);
+            };
+            return {
+              index: batchDeleteErrorInfo.index,
+              error: errMsgToError(batchDeleteErrorInfo.message)
+            };
+          });
+          return result;
+        });
+      }
+      /**
+       * Updates an existing user.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-users#update_a_user | Update a user}
+       * for code samples and detailed documentation.
+       *
+       * @param uid - The `uid` corresponding to the user to update.
+       * @param properties - The properties to update on
+       *   the provided user.
+       *
+       * @returns A promise fulfilled with the
+       *   updated user data.
+       */
+      updateUser(uid, properties) {
+        properties = (0, deep_copy_1.deepCopy)(properties);
+        if (properties?.providerToLink) {
+          if (properties.providerToLink.providerId === "email") {
+            if (typeof properties.email !== "undefined") {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "Both UpdateRequest.email and UpdateRequest.providerToLink.providerId='email' were set. To link to the email/password provider, only specify the UpdateRequest.email field.");
+            }
+            properties.email = properties.providerToLink.uid;
+            delete properties.providerToLink;
+          } else if (properties.providerToLink.providerId === "phone") {
+            if (typeof properties.phoneNumber !== "undefined") {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "Both UpdateRequest.phoneNumber and UpdateRequest.providerToLink.providerId='phone' were set. To link to a phone provider, only specify the UpdateRequest.phoneNumber field.");
+            }
+            properties.phoneNumber = properties.providerToLink.uid;
+            delete properties.providerToLink;
+          }
+        }
+        if (properties?.providersToUnlink) {
+          if (properties.providersToUnlink.indexOf("phone") !== -1) {
+            if (properties.phoneNumber === null) {
+              throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, "Both UpdateRequest.phoneNumber=null and UpdateRequest.providersToUnlink=['phone'] were set. To unlink from a phone provider, only specify the UpdateRequest.phoneNumber=null field.");
+            }
+          }
+        }
+        return this.authRequestHandler.updateExistingAccount(uid, properties).then((existingUid) => {
+          return this.getUser(existingUid);
+        });
+      }
+      /**
+       * Sets additional developer claims on an existing user identified by the
+       * provided `uid`, typically used to define user roles and levels of
+       * access. These claims should propagate to all devices where the user is
+       * already signed in (after token expiration or when token refresh is forced)
+       * and the next time the user signs in. If a reserved OIDC claim name
+       * is used (sub, iat, iss, etc), an error is thrown. They are set on the
+       * authenticated user's ID token JWT.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/custom-claims |
+       * Defining user roles and access levels}
+       * for code samples and detailed documentation.
+       *
+       * @param uid - The `uid` of the user to edit.
+       * @param customUserClaims - The developer claims to set. If null is
+       *   passed, existing custom claims are deleted. Passing a custom claims payload
+       *   larger than 1000 bytes will throw an error. Custom claims are added to the
+       *   user's ID token which is transmitted on every authenticated request.
+       *   For profile non-access related user attributes, use database or other
+       *   separate storage systems.
+       * @returns A promise that resolves when the operation completes
+       *   successfully.
+       */
+      setCustomUserClaims(uid, customUserClaims) {
+        return this.authRequestHandler.setCustomUserClaims(uid, customUserClaims).then(() => {
+        });
+      }
+      /**
+       * Revokes all refresh tokens for an existing user.
+       *
+       * This API will update the user's {@link UserRecord.tokensValidAfterTime} to
+       * the current UTC. It is important that the server on which this is called has
+       * its clock set correctly and synchronized.
+       *
+       * While this will revoke all sessions for a specified user and disable any
+       * new ID tokens for existing sessions from getting minted, existing ID tokens
+       * may remain active until their natural expiration (one hour). To verify that
+       * ID tokens are revoked, use {@link BaseAuth.verifyIdToken}
+       * where `checkRevoked` is set to true.
+       *
+       * @param uid - The `uid` corresponding to the user whose refresh tokens
+       *   are to be revoked.
+       *
+       * @returns An empty promise fulfilled once the user's refresh
+       *   tokens have been revoked.
+       */
+      revokeRefreshTokens(uid) {
+        return this.authRequestHandler.revokeRefreshTokens(uid).then(() => {
+        });
+      }
+      /**
+       * Imports the provided list of users into Firebase Auth.
+       * A maximum of 1000 users are allowed to be imported one at a time.
+       * When importing users with passwords,
+       * {@link UserImportOptions} are required to be
+       * specified.
+       * This operation is optimized for bulk imports and will ignore checks on `uid`,
+       * `email` and other identifier uniqueness which could result in duplications.
+       *
+       * @param users - The list of user records to import to Firebase Auth.
+       * @param options - The user import options, required when the users provided include
+       *   password credentials.
+       * @returns A promise that resolves when
+       *   the operation completes with the result of the import. This includes the
+       *   number of successful imports, the number of failed imports and their
+       *   corresponding errors.
+      */
+      importUsers(users, options) {
+        return this.authRequestHandler.uploadAccount(users, options);
+      }
+      /**
+       * Creates a new Firebase session cookie with the specified options. The created
+       * JWT string can be set as a server-side session cookie with a custom cookie
+       * policy, and be used for session management. The session cookie JWT will have
+       * the same payload claims as the provided ID token.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-cookies | Manage Session Cookies}
+       * for code samples and detailed documentation.
+       *
+       * @param idToken - The Firebase ID token to exchange for a session
+       *   cookie.
+       * @param sessionCookieOptions - The session
+       *   cookie options which includes custom session duration.
+       *
+       * @returns A promise that resolves on success with the
+       *   created session cookie.
+       */
+      createSessionCookie(idToken, sessionCookieOptions) {
+        if (!validator.isNonNullObject(sessionCookieOptions) || !validator.isNumber(sessionCookieOptions.expiresIn)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_SESSION_COOKIE_DURATION));
+        }
+        return this.authRequestHandler.createSessionCookie(idToken, sessionCookieOptions.expiresIn);
+      }
+      /**
+       * Verifies a Firebase session cookie. Returns a Promise with the cookie claims.
+       * Rejects the promise if the cookie could not be verified.
+       *
+       * If `checkRevoked` is set to true, first verifies whether the corresponding
+       * user is disabled: If yes, an `auth/user-disabled` error is thrown. If no,
+       * verifies if the session corresponding to the session cookie was revoked.
+       * If the corresponding user's session was invalidated, an
+       * `auth/session-cookie-revoked` error is thrown. If not specified the check
+       * is not performed.
+       *
+       * See {@link https://firebase.google.com/docs/auth/admin/manage-cookies#verify_session_cookie_and_check_permissions |
+       * Verify Session Cookies}
+       * for code samples and detailed documentation
+       *
+       * @param sessionCookie - The session cookie to verify.
+       * @param checkForRevocation -  Whether to check if the session cookie was
+       *   revoked. This requires an extra request to the Firebase Auth backend to
+       *   check the `tokensValidAfterTime` time for the corresponding user.
+       *   When not specified, this additional check is not performed.
+       *
+       * @returns A promise fulfilled with the
+       *   session cookie's decoded claims if the session cookie is valid; otherwise,
+       *   a rejected promise.
+       */
+      verifySessionCookie(sessionCookie, checkRevoked = false) {
+        const isEmulator = (0, auth_api_request_1.useEmulator)();
+        return this.sessionCookieVerifier.verifyJWT(sessionCookie, isEmulator).then((decodedIdToken) => {
+          if (checkRevoked || isEmulator) {
+            return this.verifyDecodedJWTNotRevokedOrDisabled(decodedIdToken, error_1.AuthClientErrorCode.SESSION_COOKIE_REVOKED);
+          }
+          return decodedIdToken;
+        });
+      }
+      /**
+       * Generates the out of band email action link to reset a user's password.
+       * The link is generated for the user with the specified email address. The
+       * optional  {@link ActionCodeSettings} object
+       * defines whether the link is to be handled by a mobile app or browser and the
+       * additional state information to be passed in the deep link, etc.
+       *
+       * @example
+       * ```javascript
+       * var actionCodeSettings = {
+       *   url: 'https://www.example.com/?email=user@example.com',
+       *   iOS: {
+       *     bundleId: 'com.example.ios'
+       *   },
+       *   android: {
+       *     packageName: 'com.example.android',
+       *     installApp: true,
+       *     minimumVersion: '12'
+       *   },
+       *   handleCodeInApp: true,
+       *   dynamicLinkDomain: 'custom.page.link'
+       * };
+       * admin.auth()
+       *     .generatePasswordResetLink('user@example.com', actionCodeSettings)
+       *     .then(function(link) {
+       *       // The link was successfully generated.
+       *     })
+       *     .catch(function(error) {
+       *       // Some error occurred, you can inspect the code: error.code
+       *     });
+       * ```
+       *
+       * @param email - The email address of the user whose password is to be
+       *   reset.
+       * @param actionCodeSettings - The action
+       *     code settings. If specified, the state/continue URL is set as the
+       *     "continueUrl" parameter in the password reset link. The default password
+       *     reset landing page will use this to display a link to go back to the app
+       *     if it is installed.
+       *     If the actionCodeSettings is not specified, no URL is appended to the
+       *     action URL.
+       *     The state URL provided must belong to a domain that is whitelisted by the
+       *     developer in the console. Otherwise an error is thrown.
+       *     Mobile app redirects are only applicable if the developer configures
+       *     and accepts the Firebase Dynamic Links terms of service.
+       *     The Android package name and iOS bundle ID are respected only if they
+       *     are configured in the same Firebase Auth project.
+       * @returns A promise that resolves with the generated link.
+       */
+      generatePasswordResetLink(email, actionCodeSettings) {
+        return this.authRequestHandler.getEmailActionLink("PASSWORD_RESET", email, actionCodeSettings);
+      }
+      /**
+       * Generates the out of band email action link to verify the user's ownership
+       * of the specified email. The {@link ActionCodeSettings} object provided
+       * as an argument to this method defines whether the link is to be handled by a
+       * mobile app or browser along with additional state information to be passed in
+       * the deep link, etc.
+       *
+       * @example
+       * ```javascript
+       * var actionCodeSettings = {
+       *   url: 'https://www.example.com/cart?email=user@example.com&cartId=123',
+       *   iOS: {
+       *     bundleId: 'com.example.ios'
+       *   },
+       *   android: {
+       *     packageName: 'com.example.android',
+       *     installApp: true,
+       *     minimumVersion: '12'
+       *   },
+       *   handleCodeInApp: true,
+       *   dynamicLinkDomain: 'custom.page.link'
+       * };
+       * admin.auth()
+       *     .generateEmailVerificationLink('user@example.com', actionCodeSettings)
+       *     .then(function(link) {
+       *       // The link was successfully generated.
+       *     })
+       *     .catch(function(error) {
+       *       // Some error occurred, you can inspect the code: error.code
+       *     });
+       * ```
+       *
+       * @param email - The email account to verify.
+       * @param actionCodeSettings - The action
+       *     code settings. If specified, the state/continue URL is set as the
+       *     "continueUrl" parameter in the email verification link. The default email
+       *     verification landing page will use this to display a link to go back to
+       *     the app if it is installed.
+       *     If the actionCodeSettings is not specified, no URL is appended to the
+       *     action URL.
+       *     The state URL provided must belong to a domain that is whitelisted by the
+       *     developer in the console. Otherwise an error is thrown.
+       *     Mobile app redirects are only applicable if the developer configures
+       *     and accepts the Firebase Dynamic Links terms of service.
+       *     The Android package name and iOS bundle ID are respected only if they
+       *     are configured in the same Firebase Auth project.
+       * @returns A promise that resolves with the generated link.
+       */
+      generateEmailVerificationLink(email, actionCodeSettings) {
+        return this.authRequestHandler.getEmailActionLink("VERIFY_EMAIL", email, actionCodeSettings);
+      }
+      /**
+       * Generates an out-of-band email action link to verify the user's ownership
+       * of the specified email. The {@link ActionCodeSettings} object provided
+       * as an argument to this method defines whether the link is to be handled by a
+       * mobile app or browser along with additional state information to be passed in
+       * the deep link, etc.
+       *
+       * @param email - The current email account.
+       * @param newEmail - The email address the account is being updated to.
+       * @param actionCodeSettings - The action
+       *     code settings. If specified, the state/continue URL is set as the
+       *     "continueUrl" parameter in the email verification link. The default email
+       *     verification landing page will use this to display a link to go back to
+       *     the app if it is installed.
+       *     If the actionCodeSettings is not specified, no URL is appended to the
+       *     action URL.
+       *     The state URL provided must belong to a domain that is authorized
+       *     in the console, or an error will be thrown.
+       *     Mobile app redirects are only applicable if the developer configures
+       *     and accepts the Firebase Dynamic Links terms of service.
+       *     The Android package name and iOS bundle ID are respected only if they
+       *     are configured in the same Firebase Auth project.
+       * @returns A promise that resolves with the generated link.
+       */
+      generateVerifyAndChangeEmailLink(email, newEmail, actionCodeSettings) {
+        return this.authRequestHandler.getEmailActionLink("VERIFY_AND_CHANGE_EMAIL", email, actionCodeSettings, newEmail);
+      }
+      /**
+       * Generates the out of band email action link to verify the user's ownership
+       * of the specified email. The {@link ActionCodeSettings} object provided
+       * as an argument to this method defines whether the link is to be handled by a
+       * mobile app or browser along with additional state information to be passed in
+       * the deep link, etc.
+       *
+       * @example
+       * ```javascript
+       * var actionCodeSettings = {
+       *   url: 'https://www.example.com/cart?email=user@example.com&cartId=123',
+       *   iOS: {
+       *     bundleId: 'com.example.ios'
+       *   },
+       *   android: {
+       *     packageName: 'com.example.android',
+       *     installApp: true,
+       *     minimumVersion: '12'
+       *   },
+       *   handleCodeInApp: true,
+       *   dynamicLinkDomain: 'custom.page.link'
+       * };
+       * admin.auth()
+       *     .generateEmailVerificationLink('user@example.com', actionCodeSettings)
+       *     .then(function(link) {
+       *       // The link was successfully generated.
+       *     })
+       *     .catch(function(error) {
+       *       // Some error occurred, you can inspect the code: error.code
+       *     });
+       * ```
+       *
+       * @param email - The email account to verify.
+       * @param actionCodeSettings - The action
+       *     code settings. If specified, the state/continue URL is set as the
+       *     "continueUrl" parameter in the email verification link. The default email
+       *     verification landing page will use this to display a link to go back to
+       *     the app if it is installed.
+       *     If the actionCodeSettings is not specified, no URL is appended to the
+       *     action URL.
+       *     The state URL provided must belong to a domain that is whitelisted by the
+       *     developer in the console. Otherwise an error is thrown.
+       *     Mobile app redirects are only applicable if the developer configures
+       *     and accepts the Firebase Dynamic Links terms of service.
+       *     The Android package name and iOS bundle ID are respected only if they
+       *     are configured in the same Firebase Auth project.
+       * @returns A promise that resolves with the generated link.
+       */
+      generateSignInWithEmailLink(email, actionCodeSettings) {
+        return this.authRequestHandler.getEmailActionLink("EMAIL_SIGNIN", email, actionCodeSettings);
+      }
+      /**
+       * Returns the list of existing provider configurations matching the filter
+       * provided. At most, 100 provider configs can be listed at a time.
+       *
+       * SAML and OIDC provider support requires Google Cloud's Identity Platform
+       * (GCIP). To learn more about GCIP, including pricing and features,
+       * see the {@link https://cloud.google.com/identity-platform | GCIP documentation}.
+       *
+       * @param options - The provider config filter to apply.
+       * @returns A promise that resolves with the list of provider configs meeting the
+       *   filter requirements.
+       */
+      listProviderConfigs(options) {
+        const processResponse = (response, providerConfigs) => {
+          const result = {
+            providerConfigs
+          };
+          if (Object.prototype.hasOwnProperty.call(response, "nextPageToken")) {
+            result.pageToken = response.nextPageToken;
+          }
+          return result;
+        };
+        if (options && options.type === "oidc") {
+          return this.authRequestHandler.listOAuthIdpConfigs(options.maxResults, options.pageToken).then((response) => {
+            const providerConfigs = [];
+            response.oauthIdpConfigs.forEach((configResponse) => {
+              providerConfigs.push(new auth_config_1.OIDCConfig(configResponse));
+            });
+            return processResponse(response, providerConfigs);
+          });
+        } else if (options && options.type === "saml") {
+          return this.authRequestHandler.listInboundSamlConfigs(options.maxResults, options.pageToken).then((response) => {
+            const providerConfigs = [];
+            response.inboundSamlConfigs.forEach((configResponse) => {
+              providerConfigs.push(new auth_config_1.SAMLConfig(configResponse));
+            });
+            return processResponse(response, providerConfigs);
+          });
+        }
+        return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ARGUMENT, '"AuthProviderConfigFilter.type" must be either "saml" or "oidc"'));
+      }
+      /**
+       * Looks up an Auth provider configuration by the provided ID.
+       * Returns a promise that resolves with the provider configuration
+       * corresponding to the provider ID specified. If the specified ID does not
+       * exist, an `auth/configuration-not-found` error is thrown.
+       *
+       * SAML and OIDC provider support requires Google Cloud's Identity Platform
+       * (GCIP). To learn more about GCIP, including pricing and features,
+       * see the {@link https://cloud.google.com/identity-platform | GCIP documentation}.
+       *
+       * @param providerId - The provider ID corresponding to the provider
+       *     config to return.
+       * @returns A promise that resolves
+       *     with the configuration corresponding to the provided ID.
+       */
+      getProviderConfig(providerId) {
+        if (auth_config_1.OIDCConfig.isProviderId(providerId)) {
+          return this.authRequestHandler.getOAuthIdpConfig(providerId).then((response) => {
+            return new auth_config_1.OIDCConfig(response);
+          });
+        } else if (auth_config_1.SAMLConfig.isProviderId(providerId)) {
+          return this.authRequestHandler.getInboundSamlConfig(providerId).then((response) => {
+            return new auth_config_1.SAMLConfig(response);
+          });
+        }
+        return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+      }
+      /**
+       * Deletes the provider configuration corresponding to the provider ID passed.
+       * If the specified ID does not exist, an `auth/configuration-not-found` error
+       * is thrown.
+       *
+       * SAML and OIDC provider support requires Google Cloud's Identity Platform
+       * (GCIP). To learn more about GCIP, including pricing and features,
+       * see the {@link https://cloud.google.com/identity-platform | GCIP documentation}.
+       *
+       * @param providerId - The provider ID corresponding to the provider
+       *     config to delete.
+       * @returns A promise that resolves on completion.
+       */
+      deleteProviderConfig(providerId) {
+        if (auth_config_1.OIDCConfig.isProviderId(providerId)) {
+          return this.authRequestHandler.deleteOAuthIdpConfig(providerId);
+        } else if (auth_config_1.SAMLConfig.isProviderId(providerId)) {
+          return this.authRequestHandler.deleteInboundSamlConfig(providerId);
+        }
+        return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+      }
+      /**
+       * Returns a promise that resolves with the updated `AuthProviderConfig`
+       * corresponding to the provider ID specified.
+       * If the specified ID does not exist, an `auth/configuration-not-found` error
+       * is thrown.
+       *
+       * SAML and OIDC provider support requires Google Cloud's Identity Platform
+       * (GCIP). To learn more about GCIP, including pricing and features,
+       * see the {@link https://cloud.google.com/identity-platform | GCIP documentation}.
+       *
+       * @param providerId - The provider ID corresponding to the provider
+       *     config to update.
+       * @param updatedConfig - The updated configuration.
+       * @returns A promise that resolves with the updated provider configuration.
+       */
+      updateProviderConfig(providerId, updatedConfig) {
+        if (!validator.isNonNullObject(updatedConfig)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, 'Request is missing "UpdateAuthProviderRequest" configuration.'));
+        }
+        if (auth_config_1.OIDCConfig.isProviderId(providerId)) {
+          return this.authRequestHandler.updateOAuthIdpConfig(providerId, updatedConfig).then((response) => {
+            return new auth_config_1.OIDCConfig(response);
+          });
+        } else if (auth_config_1.SAMLConfig.isProviderId(providerId)) {
+          return this.authRequestHandler.updateInboundSamlConfig(providerId, updatedConfig).then((response) => {
+            return new auth_config_1.SAMLConfig(response);
+          });
+        }
+        return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+      }
+      /**
+       * Returns a promise that resolves with the newly created `AuthProviderConfig`
+       * when the new provider configuration is created.
+       *
+       * SAML and OIDC provider support requires Google Cloud's Identity Platform
+       * (GCIP). To learn more about GCIP, including pricing and features,
+       * see the {@link https://cloud.google.com/identity-platform | GCIP documentation}.
+       *
+       * @param config - The provider configuration to create.
+       * @returns A promise that resolves with the created provider configuration.
+       */
+      createProviderConfig(config) {
+        if (!validator.isNonNullObject(config)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_CONFIG, 'Request is missing "AuthProviderConfig" configuration.'));
+        }
+        if (auth_config_1.OIDCConfig.isProviderId(config.providerId)) {
+          return this.authRequestHandler.createOAuthIdpConfig(config).then((response) => {
+            return new auth_config_1.OIDCConfig(response);
+          });
+        } else if (auth_config_1.SAMLConfig.isProviderId(config.providerId)) {
+          return this.authRequestHandler.createInboundSamlConfig(config).then((response) => {
+            return new auth_config_1.SAMLConfig(response);
+          });
+        }
+        return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_PROVIDER_ID));
+      }
+      /** @alpha */
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      _verifyAuthBlockingToken(token, audience) {
+        const isEmulator = (0, auth_api_request_1.useEmulator)();
+        return this.authBlockingTokenVerifier._verifyAuthBlockingToken(token, isEmulator, audience).then((decodedAuthBlockingToken) => {
+          return decodedAuthBlockingToken;
+        });
+      }
+      /**
+       * Verifies the decoded Firebase issued JWT is not revoked or disabled. Returns a promise that
+       * resolves with the decoded claims on success. Rejects the promise with revocation error if revoked
+       * or user disabled.
+       *
+       * @param decodedIdToken - The JWT's decoded claims.
+       * @param revocationErrorInfo - The revocation error info to throw on revocation
+       *     detection.
+       * @returns A promise that will be fulfilled after a successful verification.
+       */
+      verifyDecodedJWTNotRevokedOrDisabled(decodedIdToken, revocationErrorInfo) {
+        return this.getUser(decodedIdToken.sub).then((user) => {
+          if (user.disabled) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.USER_DISABLED, "The user record is disabled.");
+          }
+          if (user.tokensValidAfterTime) {
+            const authTimeUtc = decodedIdToken.auth_time * 1e3;
+            const validSinceUtc = new Date(user.tokensValidAfterTime).getTime();
+            if (authTimeUtc < validSinceUtc) {
+              throw new error_1.FirebaseAuthError(revocationErrorInfo);
+            }
+          }
+          return decodedIdToken;
+        });
+      }
+    };
+    exports2.BaseAuth = BaseAuth2;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/tenant-manager.js
+var require_tenant_manager = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/tenant-manager.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.TenantManager = exports2.TenantAwareAuth = void 0;
+    var validator = require_validator();
+    var utils = require_utils3();
+    var error_1 = require_error();
+    var base_auth_1 = require_base_auth();
+    var tenant_1 = require_tenant();
+    var auth_api_request_1 = require_auth_api_request();
+    var TenantAwareAuth2 = class extends base_auth_1.BaseAuth {
+      /**
+       * The TenantAwareAuth class constructor.
+       *
+       * @param app - The app that created this tenant.
+       * @param tenantId - The corresponding tenant ID.
+       * @constructor
+       * @internal
+       */
+      constructor(app, tenantId) {
+        super(app, new auth_api_request_1.TenantAwareAuthRequestHandler(app, tenantId), (0, base_auth_1.createFirebaseTokenGenerator)(app, tenantId));
+        utils.addReadonlyGetter(this, "tenantId", tenantId);
+      }
+      /**
+       * {@inheritdoc BaseAuth.verifyIdToken}
+       */
+      verifyIdToken(idToken, checkRevoked = false) {
+        return super.verifyIdToken(idToken, checkRevoked).then((decodedClaims) => {
+          if (decodedClaims.firebase.tenant !== this.tenantId) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MISMATCHING_TENANT_ID);
+          }
+          return decodedClaims;
+        });
+      }
+      /**
+       * {@inheritdoc BaseAuth.createSessionCookie}
+       */
+      createSessionCookie(idToken, sessionCookieOptions) {
+        if (!validator.isNonEmptyString(idToken)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_ID_TOKEN));
+        }
+        if (!validator.isNonNullObject(sessionCookieOptions) || !validator.isNumber(sessionCookieOptions.expiresIn)) {
+          return Promise.reject(new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_SESSION_COOKIE_DURATION));
+        }
+        return this.verifyIdToken(idToken).then(() => {
+          return super.createSessionCookie(idToken, sessionCookieOptions);
+        });
+      }
+      /**
+       * {@inheritdoc BaseAuth.verifySessionCookie}
+       */
+      verifySessionCookie(sessionCookie, checkRevoked = false) {
+        return super.verifySessionCookie(sessionCookie, checkRevoked).then((decodedClaims) => {
+          if (decodedClaims.firebase.tenant !== this.tenantId) {
+            throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.MISMATCHING_TENANT_ID);
+          }
+          return decodedClaims;
+        });
+      }
+    };
+    exports2.TenantAwareAuth = TenantAwareAuth2;
+    var TenantManager2 = class {
+      /**
+       * Initializes a TenantManager instance for a specified FirebaseApp.
+       *
+       * @param app - The app for this TenantManager instance.
+       *
+       * @constructor
+       * @internal
+       */
+      constructor(app) {
+        this.app = app;
+        this.authRequestHandler = new auth_api_request_1.AuthRequestHandler(app);
+        this.tenantsMap = {};
+      }
+      /**
+       * Returns a `TenantAwareAuth` instance bound to the given tenant ID.
+       *
+       * @param tenantId - The tenant ID whose `TenantAwareAuth` instance is to be returned.
+       *
+       * @returns The `TenantAwareAuth` instance corresponding to this tenant identifier.
+       */
+      authForTenant(tenantId) {
+        if (!validator.isNonEmptyString(tenantId)) {
+          throw new error_1.FirebaseAuthError(error_1.AuthClientErrorCode.INVALID_TENANT_ID);
+        }
+        if (typeof this.tenantsMap[tenantId] === "undefined") {
+          this.tenantsMap[tenantId] = new TenantAwareAuth2(this.app, tenantId);
+        }
+        return this.tenantsMap[tenantId];
+      }
+      /**
+       * Gets the tenant configuration for the tenant corresponding to a given `tenantId`.
+       *
+       * @param tenantId - The tenant identifier corresponding to the tenant whose data to fetch.
+       *
+       * @returns A promise fulfilled with the tenant configuration to the provided `tenantId`.
+       */
+      getTenant(tenantId) {
+        return this.authRequestHandler.getTenant(tenantId).then((response) => {
+          return new tenant_1.Tenant(response);
+        });
+      }
+      /**
+       * Retrieves a list of tenants (single batch only) with a size of `maxResults`
+       * starting from the offset as specified by `pageToken`. This is used to
+       * retrieve all the tenants of a specified project in batches.
+       *
+       * @param maxResults - The page size, 1000 if undefined. This is also
+       *   the maximum allowed limit.
+       * @param pageToken - The next page token. If not specified, returns
+       *   tenants starting without any offset.
+       *
+       * @returns A promise that resolves with
+       *   a batch of downloaded tenants and the next page token.
+       */
+      listTenants(maxResults, pageToken) {
+        return this.authRequestHandler.listTenants(maxResults, pageToken).then((response) => {
+          const tenants = [];
+          response.tenants.forEach((tenantResponse) => {
+            tenants.push(new tenant_1.Tenant(tenantResponse));
+          });
+          const result = {
+            tenants,
+            pageToken: response.nextPageToken
+          };
+          if (typeof result.pageToken === "undefined") {
+            delete result.pageToken;
+          }
+          return result;
+        });
+      }
+      /**
+       * Deletes an existing tenant.
+       *
+       * @param tenantId - The `tenantId` corresponding to the tenant to delete.
+       *
+       * @returns An empty promise fulfilled once the tenant has been deleted.
+       */
+      deleteTenant(tenantId) {
+        return this.authRequestHandler.deleteTenant(tenantId);
+      }
+      /**
+       * Creates a new tenant.
+       * When creating new tenants, tenants that use separate billing and quota will require their
+       * own project and must be defined as `full_service`.
+       *
+       * @param tenantOptions - The properties to set on the new tenant configuration to be created.
+       *
+       * @returns A promise fulfilled with the tenant configuration corresponding to the newly
+       *   created tenant.
+       */
+      createTenant(tenantOptions) {
+        return this.authRequestHandler.createTenant(tenantOptions).then((response) => {
+          return new tenant_1.Tenant(response);
+        });
+      }
+      /**
+       * Updates an existing tenant configuration.
+       *
+       * @param tenantId - The `tenantId` corresponding to the tenant to delete.
+       * @param tenantOptions - The properties to update on the provided tenant.
+       *
+       * @returns A promise fulfilled with the update tenant data.
+       */
+      updateTenant(tenantId, tenantOptions) {
+        return this.authRequestHandler.updateTenant(tenantId, tenantOptions).then((response) => {
+          return new tenant_1.Tenant(response);
+        });
+      }
+    };
+    exports2.TenantManager = TenantManager2;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/project-config-manager.js
+var require_project_config_manager = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/project-config-manager.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ProjectConfigManager = void 0;
+    var project_config_1 = require_project_config();
+    var auth_api_request_1 = require_auth_api_request();
+    var ProjectConfigManager2 = class {
+      /**
+       * Initializes a ProjectConfigManager instance for a specified FirebaseApp.
+       *
+       * @param app - The app for this ProjectConfigManager instance.
+       *
+       * @constructor
+       * @internal
+       */
+      constructor(app) {
+        this.authRequestHandler = new auth_api_request_1.AuthRequestHandler(app);
+      }
+      /**
+       * Get the project configuration.
+       *
+       * @returns A promise fulfilled with the project configuration.
+       */
+      getProjectConfig() {
+        return this.authRequestHandler.getProjectConfig().then((response) => {
+          return new project_config_1.ProjectConfig(response);
+        });
+      }
+      /**
+       * Updates an existing project configuration.
+       *
+       * @param projectConfigOptions - The properties to update on the project.
+       *
+       * @returns A promise fulfilled with the updated project config.
+       */
+      updateProjectConfig(projectConfigOptions) {
+        return this.authRequestHandler.updateProjectConfig(projectConfigOptions).then((response) => {
+          return new project_config_1.ProjectConfig(response);
+        });
+      }
+    };
+    exports2.ProjectConfigManager = ProjectConfigManager2;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/auth.js
+var require_auth = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/auth.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Auth = void 0;
+    var auth_api_request_1 = require_auth_api_request();
+    var tenant_manager_1 = require_tenant_manager();
+    var base_auth_1 = require_base_auth();
+    var project_config_manager_1 = require_project_config_manager();
+    var Auth2 = class extends base_auth_1.BaseAuth {
+      /**
+       * @param app - The app for this Auth service.
+       * @constructor
+       * @internal
+       */
+      constructor(app) {
+        super(app, new auth_api_request_1.AuthRequestHandler(app));
+        this.app_ = app;
+        this.tenantManager_ = new tenant_manager_1.TenantManager(app);
+        this.projectConfigManager_ = new project_config_manager_1.ProjectConfigManager(app);
+      }
+      /**
+       * Returns the app associated with this Auth instance.
+       *
+       * @returns The app associated with this Auth instance.
+       */
+      get app() {
+        return this.app_;
+      }
+      /**
+       * Returns the tenant manager instance associated with the current project.
+       *
+       * @returns The tenant manager instance associated with the current project.
+       */
+      tenantManager() {
+        return this.tenantManager_;
+      }
+      /**
+       * Returns the project config manager instance associated with the current project.
+       *
+       * @returns The project config manager instance associated with the current project.
+       */
+      projectConfigManager() {
+        return this.projectConfigManager_;
+      }
+    };
+    exports2.Auth = Auth2;
+  }
+});
+
+// ../../node_modules/firebase-admin/lib/auth/index.js
+var require_auth2 = __commonJS({
+  "../../node_modules/firebase-admin/lib/auth/index.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.UserRecord = exports2.UserMetadata = exports2.UserInfo = exports2.PhoneMultiFactorInfo = exports2.MultiFactorSettings = exports2.MultiFactorInfo = exports2.ProjectConfigManager = exports2.ProjectConfig = exports2.TenantManager = exports2.TenantAwareAuth = exports2.Tenant = exports2.BaseAuth = exports2.Auth = exports2.getAuth = void 0;
+    var index_1 = require_app();
+    var auth_1 = require_auth();
+    function getAuth2(app) {
+      if (typeof app === "undefined") {
+        app = (0, index_1.getApp)();
+      }
+      const firebaseApp = app;
+      return firebaseApp.getOrInitService("auth", (app2) => new auth_1.Auth(app2));
+    }
+    exports2.getAuth = getAuth2;
+    var auth_2 = require_auth();
+    Object.defineProperty(exports2, "Auth", { enumerable: true, get: function() {
+      return auth_2.Auth;
+    } });
+    var base_auth_1 = require_base_auth();
+    Object.defineProperty(exports2, "BaseAuth", { enumerable: true, get: function() {
+      return base_auth_1.BaseAuth;
+    } });
+    var tenant_1 = require_tenant();
+    Object.defineProperty(exports2, "Tenant", { enumerable: true, get: function() {
+      return tenant_1.Tenant;
+    } });
+    var tenant_manager_1 = require_tenant_manager();
+    Object.defineProperty(exports2, "TenantAwareAuth", { enumerable: true, get: function() {
+      return tenant_manager_1.TenantAwareAuth;
+    } });
+    Object.defineProperty(exports2, "TenantManager", { enumerable: true, get: function() {
+      return tenant_manager_1.TenantManager;
+    } });
+    var project_config_1 = require_project_config();
+    Object.defineProperty(exports2, "ProjectConfig", { enumerable: true, get: function() {
+      return project_config_1.ProjectConfig;
+    } });
+    var project_config_manager_1 = require_project_config_manager();
+    Object.defineProperty(exports2, "ProjectConfigManager", { enumerable: true, get: function() {
+      return project_config_manager_1.ProjectConfigManager;
+    } });
+    var user_record_1 = require_user_record();
+    Object.defineProperty(exports2, "MultiFactorInfo", { enumerable: true, get: function() {
+      return user_record_1.MultiFactorInfo;
+    } });
+    Object.defineProperty(exports2, "MultiFactorSettings", { enumerable: true, get: function() {
+      return user_record_1.MultiFactorSettings;
+    } });
+    Object.defineProperty(exports2, "PhoneMultiFactorInfo", { enumerable: true, get: function() {
+      return user_record_1.PhoneMultiFactorInfo;
+    } });
+    Object.defineProperty(exports2, "UserInfo", { enumerable: true, get: function() {
+      return user_record_1.UserInfo;
+    } });
+    Object.defineProperty(exports2, "UserMetadata", { enumerable: true, get: function() {
+      return user_record_1.UserMetadata;
+    } });
+    Object.defineProperty(exports2, "UserRecord", { enumerable: true, get: function() {
+      return user_record_1.UserRecord;
+    } });
+  }
+});
+
 // ../../packages/export/dist/index.js
 var dist_exports = {};
 __export(dist_exports, {
@@ -113257,12 +125996,12 @@ __export(dist_exports, {
 function createExportService(firestore) {
   return new ExportService(firestore);
 }
-var fs2, path2, ExportService;
+var fs3, path2, ExportService;
 var init_dist2 = __esm({
   "../../packages/export/dist/index.js"() {
     "use strict";
     init_dist();
-    fs2 = __toESM(require("fs"), 1);
+    fs3 = __toESM(require("fs"), 1);
     path2 = __toESM(require("path"), 1);
     ExportService = class {
       firestore;
@@ -113283,10 +126022,10 @@ var init_dist2 = __esm({
         let failed = 0;
         const filePath = options.outputPath;
         const dir = path2.dirname(filePath);
-        if (!fs2.existsSync(dir)) {
-          fs2.mkdirSync(dir, { recursive: true });
+        if (!fs3.existsSync(dir)) {
+          fs3.mkdirSync(dir, { recursive: true });
         }
-        const writeStream = fs2.createWriteStream(filePath, { encoding: "utf8" });
+        const writeStream = fs3.createWriteStream(filePath, { encoding: "utf8" });
         const isJson = options.format === "json";
         if (isJson) {
           writeStream.write("[\n");
@@ -113442,12 +126181,12 @@ __export(dist_exports2, {
 function createImportService(firestore) {
   return new ImportService(firestore);
 }
-var fs3, path3, ImportService;
+var fs4, path3, ImportService;
 var init_dist3 = __esm({
   "../../packages/import/dist/index.js"() {
     "use strict";
     init_dist();
-    fs3 = __toESM(require("fs"), 1);
+    fs4 = __toESM(require("fs"), 1);
     path3 = __toESM(require("path"), 1);
     ImportService = class {
       firestore;
@@ -113550,7 +126289,7 @@ var init_dist3 = __esm({
         this.abortController?.abort();
       }
       async readDocuments(options) {
-        const content = fs3.readFileSync(options.inputPath, "utf8");
+        const content = fs4.readFileSync(options.inputPath, "utf8");
         const ext = path3.extname(options.inputPath).toLowerCase();
         if (ext === ".json") {
           return this.parseJson(content, options.idField);
@@ -113789,6 +126528,23 @@ var initializeFirestore = import_firestore.default.initializeFirestore;
 var setLogFunction = import_firestore.default.setLogFunction;
 var v12 = import_firestore.default.v1;
 
+// ../../node_modules/firebase-admin/lib/esm/auth/index.js
+var import_auth = __toESM(require_auth2(), 1);
+var Auth = import_auth.default.Auth;
+var BaseAuth = import_auth.default.BaseAuth;
+var MultiFactorInfo = import_auth.default.MultiFactorInfo;
+var MultiFactorSettings = import_auth.default.MultiFactorSettings;
+var PhoneMultiFactorInfo = import_auth.default.PhoneMultiFactorInfo;
+var ProjectConfig = import_auth.default.ProjectConfig;
+var ProjectConfigManager = import_auth.default.ProjectConfigManager;
+var Tenant = import_auth.default.Tenant;
+var TenantAwareAuth = import_auth.default.TenantAwareAuth;
+var TenantManager = import_auth.default.TenantManager;
+var UserInfo = import_auth.default.UserInfo;
+var UserMetadata = import_auth.default.UserMetadata;
+var UserRecord = import_auth.default.UserRecord;
+var getAuth = import_auth.default.getAuth;
+
 // ../../packages/auth/dist/index.js
 var ServiceAccountProvider = class {
   credentialService;
@@ -113974,15 +126730,104 @@ function createAuthProviders(credentialService2) {
   return {
     serviceAccount: new ServiceAccountProvider(credentialService2),
     emulator: new EmulatorProvider(),
-    oauth: new GoogleOAuthProvider(credentialService2)
+    oauth: new GoogleOAuthProvider(credentialService2),
+    firebaseAuth: new FirebaseAuthProvider(credentialService2)
   };
 }
+var FirebaseAuthProvider = class {
+  credentialService;
+  app = null;
+  firestore = null;
+  auth = null;
+  projectId = null;
+  userId = null;
+  refreshToken = null;
+  constructor(credentialService2) {
+    this.credentialService = credentialService2;
+  }
+  async connect(config) {
+    const firebaseConfig = config;
+    if (!firebaseConfig) {
+      throw new VistiqError("Firebase Auth config required", ERROR_CODES.INVALID_CREDENTIALS);
+    }
+    try {
+      const { idToken, refreshToken: refreshToken2, projectId, userId, email: configEmail } = firebaseConfig;
+      const adminAuth = getAuth();
+      const decodedToken = await adminAuth.verifyIdToken(idToken);
+      const { uid, email: tokenEmail, firebase } = decodedToken;
+      this.userId = uid;
+      this.projectId = projectId;
+      this.refreshToken = refreshToken2;
+      const customToken = await adminAuth.createCustomToken(uid);
+      const appName = `vistiq-firebase-${projectId}`;
+      const existingApp = getApps().find((a) => a.name === appName);
+      const userCredential = cert({ projectId, clientEmail: "firebase-auth", privateKey: customToken });
+      this.app = existingApp || initializeApp({ credential: userCredential }, appName);
+      this.firestore = getFirestore(this.app);
+      this.auth = getAuth(this.app);
+      await this.credentialService.storeFirebaseAuth(projectId, {
+        refreshToken: refreshToken2,
+        projectId,
+        userId: uid,
+        email: tokenEmail || configEmail || "",
+        expiresAt: Date.now() + 36e5
+        // 1 hour
+      });
+      const connection = {
+        projectId,
+        displayName: tokenEmail || configEmail || projectId,
+        environment: "custom",
+        authMethod: "firebase-auth",
+        connectedAt: (/* @__PURE__ */ new Date()).toISOString(),
+        lastUsedAt: (/* @__PURE__ */ new Date()).toISOString()
+      };
+      logger.info("Firebase Auth connected", { projectId, email: tokenEmail || configEmail });
+      return connection;
+    } catch (error) {
+      logger.error("Firebase Auth connection failed", { error: error.message });
+      throw new VistiqError(`Failed to connect: ${error.message}`, ERROR_CODES.AUTH_FAILED, { originalError: error });
+    }
+  }
+  async disconnect() {
+    if (this.app) {
+      await this.app.delete();
+      this.app = null;
+      this.firestore = null;
+      this.auth = null;
+    }
+    this.projectId = null;
+    this.userId = null;
+    this.refreshToken = null;
+    logger.info("Firebase Auth disconnected");
+  }
+  async getStatus() {
+    if (!this.app || !this.projectId) {
+      return { connected: false };
+    }
+    try {
+      await this.firestore.collection("_vistiq_test").limit(1).get();
+      return { connected: true, projectId: this.projectId };
+    } catch {
+      return { connected: false, projectId: this.projectId, error: "Connection test failed" };
+    }
+  }
+  getFirestore() {
+    return this.firestore;
+  }
+  getProjectId() {
+    return this.projectId;
+  }
+  setProjectId(projectId) {
+    this.projectId = projectId;
+  }
+};
 
 // ../../packages/credentials/dist/index.js
 init_dist();
 var SECRET_KEYS = {
   SERVICE_ACCOUNT: "serviceAccount",
   OAUTH_TOKEN: "oauthToken",
+  FIREBASE_AUTH: "firebaseAuth",
   EMULATOR_CONFIG: "emulatorConfig",
   CONNECTIONS: "connections",
   ACTIVE_CONNECTION: "activeConnection"
@@ -114036,6 +126881,40 @@ var CredentialService = class {
     const key = this.getKey(SECRET_KEYS.OAUTH_TOKEN, projectId);
     await this.secretStorage.delete(key);
     logger.info("OAuth token deleted", { projectId });
+  }
+  async storeFirebaseAuth(projectId, auth) {
+    const key = this.getKey(SECRET_KEYS.FIREBASE_AUTH, projectId);
+    await this.secretStorage.store(key, JSON.stringify(auth));
+    logger.info("Firebase auth stored", { projectId });
+  }
+  async getFirebaseAuth(projectId) {
+    const key = this.getKey(SECRET_KEYS.FIREBASE_AUTH, projectId);
+    const value = await this.secretStorage.get(key);
+    if (!value)
+      return null;
+    try {
+      return JSON.parse(value);
+    } catch {
+      logger.error("Failed to parse Firebase auth", { projectId });
+      return null;
+    }
+  }
+  async deleteFirebaseAuth(projectId) {
+    const key = this.getKey(SECRET_KEYS.FIREBASE_AUTH, projectId);
+    await this.secretStorage.delete(key);
+    logger.info("Firebase auth deleted", { projectId });
+  }
+  async getAllFirebaseAuths() {
+    const connections = await this.getConnections();
+    const auths = [];
+    for (const conn of connections) {
+      if (conn.authMethod === "firebase-auth") {
+        const auth = await this.getFirebaseAuth(conn.projectId);
+        if (auth)
+          auths.push(auth);
+      }
+    }
+    return auths;
   }
   async storeEmulatorConfig(projectId, config) {
     const key = this.getKey(SECRET_KEYS.EMULATOR_CONFIG, projectId);
@@ -114091,6 +126970,7 @@ var CredentialService = class {
     await this.secretStorage.store(SECRET_KEYS.CONNECTIONS, JSON.stringify(filtered));
     await this.deleteServiceAccount(projectId);
     await this.deleteOAuthToken(projectId);
+    await this.deleteFirebaseAuth(projectId);
     await this.deleteEmulatorConfig(projectId);
     logger.info("Connection deleted", { projectId });
   }
@@ -114253,8 +127133,10 @@ var FirestoreService = class {
     try {
       const collectionRef = this.firestore.collection(collectionId);
       const placeholderRef = collectionRef.doc("_placeholder");
-      await placeholderRef.set({ createdAt: (/* @__PURE__ */ new Date()).toISOString() });
-      await placeholderRef.delete();
+      await placeholderRef.set({
+        createdAt: (/* @__PURE__ */ new Date()).toISOString(),
+        _system: true
+      });
       logger.info("Collection created", { collectionId, projectId: this.projectId });
     } catch (error) {
       logger.error("Failed to create collection", { collectionId, error: error.message });
@@ -114284,7 +127166,7 @@ var FirestoreService = class {
         query = query.startAt(doc);
       }
       const snapshot = await query.get();
-      const documents = snapshot.docs.map((doc) => this.convertDocument(doc));
+      const documents = snapshot.docs.filter((doc) => doc.id !== "_placeholder").map((doc) => this.convertDocument(doc));
       let nextPageToken;
       const docCount = snapshot.docs.length;
       if (docCount > 0 && options?.limit && docCount === options.limit) {
@@ -114304,7 +127186,7 @@ var FirestoreService = class {
   async getDocument(documentPath) {
     try {
       const doc = await this.firestore.doc(documentPath).get();
-      if (!doc.exists)
+      if (!doc.exists || doc.id === "_placeholder")
         return null;
       return this.convertDocument(doc);
     } catch (error) {
@@ -114363,7 +127245,7 @@ var FirestoreService = class {
         q = q.offset(query.offset);
       }
       const snapshot = await q.get();
-      const documents = snapshot.docs.map((doc) => this.convertDocument(doc));
+      const documents = snapshot.docs.filter((doc) => doc.id !== "_placeholder").map((doc) => this.convertDocument(doc));
       let nextPageToken;
       const docCount = snapshot.docs.length;
       if (docCount > 0 && query.limit && docCount === query.limit) {
@@ -114393,7 +127275,7 @@ var FirestoreService = class {
         q = q.limit(query.limit);
       }
       const snapshot = await q.get();
-      const documents = snapshot.docs.map((doc) => this.convertDocument(doc));
+      const documents = snapshot.docs.filter((doc) => doc.id !== "_placeholder").map((doc) => this.convertDocument(doc));
       let nextPageToken;
       const docCount = snapshot.docs.length;
       if (docCount > 0 && query.limit && docCount === query.limit) {
@@ -114532,6 +127414,7 @@ function createFirestoreService(firestore, projectId) {
 
 // src/connectionManager.ts
 init_dist();
+var fs2 = __toESM(require("fs"));
 var vscode = __toESM(require("vscode"));
 var connLogger = createChildLogger("connectionManager");
 var ConnectionManager = class {
@@ -114576,6 +127459,23 @@ var ConnectionManager = class {
           this.authProviders.emulator.getFirestore(),
           "demo-project"
         );
+      } else if (stored.authMethod === "firebase-auth") {
+        const firebaseAuth = await this.credentialService.getFirebaseAuth(stored.projectId);
+        if (firebaseAuth) {
+          this.authProviders.firebaseAuth.setProjectId(stored.projectId);
+          await this.authProviders.firebaseAuth.connect({
+            idToken: "",
+            // Will be refreshed from refresh token
+            refreshToken: firebaseAuth.refreshToken,
+            projectId: stored.projectId,
+            userId: firebaseAuth.userId,
+            email: firebaseAuth.email
+          });
+          firestore = createFirestoreService(
+            this.authProviders.firebaseAuth.getFirestore(),
+            stored.projectId
+          );
+        }
       }
       if (firestore) {
         await firestore.connect();
@@ -114671,6 +127571,9 @@ var ConnectionManager = class {
       await this.credentialService.deleteServiceAccount(projectId);
     } else if (connection.authMethod === "emulator") {
       await this.authProviders.emulator.disconnect();
+    } else if (connection.authMethod === "firebase-auth") {
+      await this.authProviders.firebaseAuth.disconnect();
+      await this.credentialService.deleteFirebaseAuth(projectId);
     }
     if (connection.firestore) {
       await connection.firestore.disconnect();
@@ -114724,6 +127627,11 @@ var ConnectionManager = class {
           description: "Connect using Google Cloud Service Account JSON"
         },
         {
+          label: "Firebase Auth",
+          value: "firebase-auth",
+          description: "Sign in with Google via Firebase Authentication"
+        },
+        {
           label: "Firebase Emulator",
           value: "emulator",
           description: "Connect to local Firebase Emulator"
@@ -114734,8 +127642,10 @@ var ConnectionManager = class {
     if (!authMethod) return;
     if (authMethod.value === "service-account") {
       await this.showServiceAccountDialog();
-    } else {
+    } else if (authMethod.value === "emulator") {
       await this.showEmulatorDialog();
+    } else if (authMethod.value === "firebase-auth") {
+      await this.showFirebaseAuthDialog();
     }
   }
   async showServiceAccountDialog() {
@@ -114771,25 +127681,74 @@ var ConnectionManager = class {
       );
       if (confirm !== "Yes, I understand") return;
     }
-    const json = await vscode.window.showInputBox({
-      prompt: "Paste Service Account JSON",
-      placeHolder: '{ "type": "service_account", ... }',
-      validateInput: (v) => {
-        try {
-          JSON.parse(v);
-          return null;
-        } catch {
-          return "Invalid JSON";
-        }
-      },
-      password: true
+    const jsonUri = await vscode.window.showOpenDialog({
+      canSelectFiles: true,
+      canSelectFolders: false,
+      canSelectMany: false,
+      filters: { "JSON Files": ["json"] },
+      openLabel: "Select Service Account JSON",
+      title: "Select Service Account Key File"
     });
-    if (!json) return;
     let serviceAccount;
-    try {
-      serviceAccount = JSON.parse(json);
-    } catch {
-      vscode.window.showErrorMessage("Invalid Service Account JSON");
+    let finalProjectId = projectId;
+    let finalDisplayName = displayName;
+    if (jsonUri && jsonUri.length > 0) {
+      try {
+        const jsonContent = fs2.readFileSync(jsonUri[0].fsPath, "utf8");
+        serviceAccount = JSON.parse(jsonContent);
+        if (!serviceAccount.type || serviceAccount.type !== "service_account") {
+          throw new Error("Not a valid service account JSON (missing type=service_account)");
+        }
+      } catch {
+        vscode.window.showErrorMessage("Invalid Service Account JSON file");
+        return;
+      }
+      if (!finalProjectId && serviceAccount.project_id) {
+        finalProjectId = serviceAccount.project_id;
+      }
+      if (!finalDisplayName && serviceAccount.client_email) {
+        finalDisplayName = serviceAccount.client_email;
+      }
+    } else {
+      const pasteAction = await vscode.window.showInformationMessage(
+        "No file selected. Paste Service Account JSON instead?",
+        "Paste JSON",
+        "Cancel"
+      );
+      if (pasteAction !== "Paste JSON") return;
+      const json = await vscode.window.showInputBox({
+        prompt: "Paste Service Account JSON",
+        placeHolder: '{ "type": "service_account", ... }',
+        validateInput: (v) => {
+          try {
+            JSON.parse(v);
+            return null;
+          } catch {
+            return "Invalid JSON";
+          }
+        },
+        password: true
+      });
+      if (!json) return;
+      try {
+        serviceAccount = JSON.parse(json);
+      } catch {
+        vscode.window.showErrorMessage("Invalid Service Account JSON");
+        return;
+      }
+      if (!finalProjectId && serviceAccount.project_id) {
+        finalProjectId = serviceAccount.project_id;
+      }
+      if (!finalDisplayName && serviceAccount.client_email) {
+        finalDisplayName = serviceAccount.client_email;
+      }
+    }
+    if (!finalProjectId) {
+      vscode.window.showErrorMessage("Project ID is required");
+      return;
+    }
+    if (!finalDisplayName) {
+      vscode.window.showErrorMessage("Display name is required");
       return;
     }
     try {
@@ -114797,14 +127756,14 @@ var ConnectionManager = class {
         { location: vscode.ProgressLocation.Notification, title: "Connecting to Firestore..." },
         async () => {
           await this.connectServiceAccount(
-            projectId,
-            displayName,
+            finalProjectId,
+            finalDisplayName,
             environment.value,
             serviceAccount
           );
         }
       );
-      vscode.window.showInformationMessage(`Connected to ${displayName}`);
+      vscode.window.showInformationMessage(`Connected to ${finalDisplayName}`);
     } catch (error) {
       vscode.window.showErrorMessage(`Failed to connect: ${error.message}`);
     }
@@ -114853,6 +127812,71 @@ var ConnectionManager = class {
   }
   detectProjectFiles() {
     return this.emulatorService.detectProjectFiles();
+  }
+  async showFirebaseAuthDialog() {
+    if (!this.activeProjectId) {
+      await vscode.commands.executeCommand("vistiq.openFirestore");
+    }
+    vscode.window.showInformationMessage(
+      "Please complete the Firebase Authentication in the Firestore view.",
+      "Open Firestore"
+    ).then((selection) => {
+      if (selection === "Open Firestore") {
+        vscode.commands.executeCommand("vistiq.openFirestore");
+      }
+    });
+  }
+  async connectFirebaseAuth(idToken, refreshToken2, projectId, userId, email) {
+    await this.authProviders.firebaseAuth.connect({
+      idToken,
+      refreshToken: refreshToken2,
+      projectId,
+      userId,
+      email
+    });
+    const firestoreInstance = this.authProviders.firebaseAuth.getFirestore();
+    const firestore = createFirestoreService(firestoreInstance, projectId);
+    const connection = {
+      projectId,
+      displayName: email,
+      environment: "custom",
+      authMethod: "firebase-auth",
+      connectedAt: (/* @__PURE__ */ new Date()).toISOString(),
+      lastUsedAt: (/* @__PURE__ */ new Date()).toISOString(),
+      firestore,
+      firebaseAuth: { refreshToken: refreshToken2, userId, email }
+    };
+    await firestore.connect();
+    this.connections.set(projectId, connection);
+    await this.credentialService.storeConnection({
+      projectId,
+      displayName: email,
+      environment: "custom",
+      authMethod: "firebase-auth",
+      connectedAt: connection.connectedAt,
+      lastUsedAt: connection.lastUsedAt
+    });
+    await this.setActiveConnection(projectId);
+    this.auditService.record({
+      operation: "connect",
+      projectId,
+      result: "success"
+    });
+    return connection;
+  }
+  async switchFirebaseProject(projectId) {
+    const firebaseAuth = await this.credentialService.getFirebaseAuth(this.activeProjectId);
+    if (!firebaseAuth) {
+      throw new VistiqError("No Firebase Auth found", ERROR_CODES.INVALID_CREDENTIALS);
+    }
+    await this.disconnect(this.activeProjectId);
+    return this.connectFirebaseAuth(
+      "",
+      firebaseAuth.refreshToken,
+      projectId,
+      firebaseAuth.userId,
+      firebaseAuth.email
+    );
   }
 };
 
@@ -115070,8 +128094,8 @@ var ProjectTreeItem = class extends vscode2.TreeItem {
 
 // src/webviewManager.ts
 init_dist();
+var fs5 = __toESM(require("fs"));
 var vscode3 = __toESM(require("vscode"));
-var fs4 = __toESM(require("fs"));
 var webviewLogger = createChildLogger("webviewManager");
 var WebviewManager = class {
   constructor(context, connectionManager2, auditService2) {
@@ -115132,10 +128156,7 @@ var WebviewManager = class {
       void vscode3.window.showErrorMessage("No active connection");
       return;
     }
-    const panel = this.createOrShowPanel("firestore", "Firestore", vscode3.ViewColumn.One, {
-      enableScripts: true,
-      retainContextWhenHidden: true
-    });
+    const panel = this.createOrShowPanel("firestore", "Firestore", vscode3.ViewColumn.One, {});
     webviewLogger.debug("openDocument: Sending openDocument message when ready", { documentPath });
     this.sendWhenReady(panel, { type: "openDocument", payload: { documentPath } });
   }
@@ -115167,17 +128188,26 @@ var WebviewManager = class {
     return panel;
   }
   sendWhenReady(panel, message) {
-    webviewLogger.debug("sendWhenReady called", { messageType: message.type, panelVisible: panel.visible });
+    webviewLogger.debug("sendWhenReady called", {
+      messageType: message.type,
+      panelVisible: panel.visible
+    });
     if (panel.visible) {
-      webviewLogger.debug("sendWhenReady: Panel visible, sending immediately", { messageType: message.type });
+      webviewLogger.debug("sendWhenReady: Panel visible, sending immediately", {
+        messageType: message.type
+      });
       void panel.webview.postMessage(message);
       return;
     }
-    webviewLogger.debug("sendWhenReady: Panel not visible, waiting for visibility change", { messageType: message.type });
+    webviewLogger.debug("sendWhenReady: Panel not visible, waiting for visibility change", {
+      messageType: message.type
+    });
     const disposable = panel.onDidChangeViewState(
       (e) => {
         if (e.webviewPanel.visible) {
-          webviewLogger.debug("sendWhenReady: Panel became visible, sending message", { messageType: message.type });
+          webviewLogger.debug("sendWhenReady: Panel became visible, sending message", {
+            messageType: message.type
+          });
           disposable.dispose();
           setTimeout(() => {
             void panel.webview.postMessage(message);
@@ -115188,7 +128218,9 @@ var WebviewManager = class {
       this.context.subscriptions
     );
     setTimeout(() => {
-      webviewLogger.debug("sendWhenReady: Fallback timeout, sending message anyway", { messageType: message.type });
+      webviewLogger.debug("sendWhenReady: Fallback timeout, sending message anyway", {
+        messageType: message.type
+      });
       disposable.dispose();
       void panel.webview.postMessage(message);
     }, 1e3);
@@ -115217,7 +128249,10 @@ var WebviewManager = class {
     }
     if (message.requestId) {
       this.requestPanelMap.set(message.requestId, panelViewType);
-      webviewLogger.debug("handleMessage: Mapped requestId to panel", { requestId: message.requestId, panelViewType });
+      webviewLogger.debug("handleMessage: Mapped requestId to panel", {
+        requestId: message.requestId,
+        panelViewType
+      });
     }
     try {
       let result;
@@ -115252,6 +128287,30 @@ var WebviewManager = class {
         case "createCollection":
           result = await this.handleCreateCollection(message.payload);
           break;
+        case "firebaseAuthSignIn":
+          result = await this.handleFirebaseAuthSignIn(message.payload);
+          break;
+        case "firebaseAuthResult":
+          result = await this.handleFirebaseAuthResult(message.payload);
+          break;
+        case "listFirebaseProjects":
+          result = await this.handleListFirebaseProjects(message.payload);
+          break;
+        case "selectFirebaseProject":
+          result = await this.handleSelectFirebaseProject(message.payload);
+          break;
+        case "firebaseSignOut":
+          result = await this.handleFirebaseSignOut(message.payload);
+          break;
+        case "connectServiceAccount":
+          result = await this.handleConnectServiceAccount(message.payload);
+          break;
+        case "connectEmulator":
+          result = await this.handleConnectEmulator(message.payload);
+          break;
+        case "connectFirebaseAuth":
+          result = await this.handleConnectFirebaseAuth(message.payload);
+          break;
         case "getConnections":
           result = this.connectionManager.getConnections().map((c) => ({
             projectId: c.projectId,
@@ -115279,7 +128338,12 @@ var WebviewManager = class {
     }
   }
   sendResponse(requestId, success, data, error) {
-    webviewLogger.debug("sendResponse", { requestId, success, hasError: !!error, errorMessage: error });
+    webviewLogger.debug("sendResponse", {
+      requestId,
+      success,
+      hasError: !!error,
+      errorMessage: error
+    });
     const panelViewType = this.requestPanelMap.get(requestId);
     const panel = panelViewType ? this.panels.get(panelViewType) : Array.from(this.panels.values())[0];
     if (panel) {
@@ -115350,7 +128414,11 @@ var WebviewManager = class {
   async handleCreateDocument(payload) {
     const { collectionPath, data } = payload;
     const documentId = data.id || void 0;
-    webviewLogger.debug("handleCreateDocument called", { collectionPath, docId: data.id, dataKeys: Object.keys(data.data) });
+    webviewLogger.debug("handleCreateDocument called", {
+      collectionPath,
+      docId: data.id,
+      dataKeys: Object.keys(data.data)
+    });
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error("No active Firestore connection");
     const id = await active.firestore.createDocument(collectionPath, data, documentId);
@@ -115456,66 +128524,82 @@ var WebviewManager = class {
     });
     return { success: true };
   }
-  handleGetAuditHistory(payload) {
+  async handleGetAuditHistory(payload) {
     const options = payload;
     return this.auditService.getEntries(options);
   }
-  getWebviewHtml(viewType, webview) {
-    const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
-    const nonce = this.generateNonce();
-    const htmlDiskPath = vscode3.Uri.joinPath(
-      this.context.extensionUri,
-      "dist",
-      "webview",
-      baseType,
-      "index.html"
-    );
-    let html;
+  async handleFirebaseAuthSignIn(payload) {
+    return { success: true, message: "Firebase Auth modal opened" };
+  }
+  async handleListFirebaseProjects(payload) {
+    const active = this.connectionManager.getActiveConnection();
+    if (!active?.firestore) throw new Error("No active Firestore connection");
     try {
-      html = fs4.readFileSync(htmlDiskPath.fsPath, "utf8");
-    } catch (err) {
-      webviewLogger.error("Failed to read webview index.html", {
-        viewType,
-        path: htmlDiskPath.fsPath,
-        error: err.message
-      });
-      return `<!DOCTYPE html><html><body>Failed to load webview: ${baseType}/index.html not found</body></html>`;
+      return { projects: [] };
+    } catch (error) {
+      return { projects: [], error: error.message };
     }
-    const baseDiskDir = vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", baseType);
-    html = html.replace(/(src|href)="([^"]+)"/g, (match, attr, relPath) => {
-      if (/^https?:\/\//.test(relPath) || relPath.startsWith("data:")) {
-        return match;
-      }
-      let onDisk;
-      if (relPath.startsWith("/assets/")) {
-        const cleanRelPath = relPath.replace(/^\/assets\//, "");
-        onDisk = vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", "assets", cleanRelPath);
-      } else {
-        const cleanRelPath = relPath.replace(/^\.?\//, "");
-        onDisk = vscode3.Uri.joinPath(baseDiskDir, cleanRelPath);
-      }
-      const webviewUri = webview.asWebviewUri(onDisk);
-      return `${attr}="${webviewUri}"`;
-    });
-    html = html.replace(/<script /g, `<script nonce="${nonce}" `);
-    const csp = `default-src 'none'; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline'; img-src ${webview.cspSource} https: data:; font-src ${webview.cspSource} https: data:; connect-src https:;`;
-    if (html.includes("<head>")) {
-      html = html.replace(
-        "<head>",
-        `<head>
-  <meta http-equiv="Content-Security-Policy" content="${csp}">`
-      );
+  }
+  async handleSelectFirebaseProject(payload) {
+    const { projectId } = payload;
+    const connection = this.connectionManager.getActiveConnection();
+    if (!connection || connection.authMethod !== "firebase-auth") {
+      throw new Error("No active Firebase Auth connection");
     }
-    return html;
+    await this.connectionManager.switchFirebaseProject(projectId);
+    return { success: true };
+  }
+  async handleFirebaseSignOut(payload) {
+    const active = this.connectionManager.getActiveConnection();
+    if (active && active.authMethod === "firebase-auth") {
+      await this.connectionManager.disconnect(active.projectId);
+    }
+    return { success: true };
+  }
+  async handleFirebaseAuthResult(payload) {
+    const { idToken, refreshToken: refreshToken2, user } = payload;
+    if (!idToken || !user?.uid) {
+      throw new Error("Invalid Firebase auth result");
+    }
+    const connection = await this.connectionManager.connectFirebaseAuth(
+      idToken,
+      refreshToken2 || "",
+      user.uid,
+      user.uid,
+      user.email
+    );
+    return { success: true, connection };
+  }
+  async handleConnectServiceAccount(_payload) {
+    await this.connectionManager.showServiceAccountDialog();
+    return { success: true };
+  }
+  async handleConnectEmulator(_payload) {
+    await this.connectionManager.showEmulatorDialog();
+    return { success: true };
+  }
+  async handleConnectFirebaseAuth(_payload) {
+    await this.connectionManager.showFirebaseAuthDialog();
+    return { success: true };
   }
   getScriptUri(viewType, webview) {
     const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
-    const onDiskPath = vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${baseType}.js`);
+    const onDiskPath = vscode3.Uri.joinPath(
+      this.context.extensionUri,
+      "dist",
+      "webview",
+      `${baseType}.js`
+    );
     return webview.asWebviewUri(onDiskPath);
   }
   getStyleUri(viewType, webview) {
     const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
-    const onDiskPath = vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", `${baseType}.css`);
+    const onDiskPath = vscode3.Uri.joinPath(
+      this.context.extensionUri,
+      "dist",
+      "webview",
+      `${baseType}.css`
+    );
     return webview.asWebviewUri(onDiskPath);
   }
   generateNonce() {
@@ -115525,6 +128609,35 @@ var WebviewManager = class {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
+  }
+  getWebviewHtml(viewType, webview) {
+    const baseType = viewType.startsWith("document-") ? "firestore" : viewType;
+    const htmlPath = vscode3.Uri.joinPath(
+      this.context.extensionUri,
+      "dist",
+      "webview",
+      baseType,
+      "index.html"
+    );
+    let html = fs5.readFileSync(htmlPath.fsPath, "utf8");
+    const nonce = this.generateNonce();
+    const cspSource = webview.cspSource;
+    html = html.replace(/src="\/assets\/([^"]+)"/g, (_match, filename) => {
+      const scriptUri = webview.asWebviewUri(
+        vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", "assets", filename)
+      );
+      return `src="${scriptUri}" nonce="${nonce}"`;
+    });
+    html = html.replace(/href="\/assets\/([^"]+)"/g, (_match, filename) => {
+      const styleUri = webview.asWebviewUri(
+        vscode3.Uri.joinPath(this.context.extensionUri, "dist", "webview", "assets", filename)
+      );
+      return `href="${styleUri}"`;
+    });
+    const cspMeta = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}' 'unsafe-eval' https://apis.google.com https://www.gstatic.com; style-src ${cspSource} 'unsafe-inline'; img-src ${cspSource} data:; font-src ${cspSource} data:; frame-src https://accounts.google.com https://apis.google.com; connect-src https://www.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com;">`;
+    html = html.replace("<head>", `<head>
+  ${cspMeta}`);
+    return html;
   }
 };
 
@@ -116482,6 +129595,302 @@ firebase-admin/lib/firestore/firestore-internal.js:
    *)
 
 firebase-admin/lib/firestore/index.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2020 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/user-import-builder.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2018 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/action-code-settings-builder.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2018 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/auth-config.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2018 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/tenant.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2019 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/identifier.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2020 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/project-config.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2022 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/auth-api-request.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * @license
+   * Copyright 2017 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/utils/crypto-signer.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * @license
+   * Copyright 2021 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/token-generator.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * @license
+   * Copyright 2017 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/utils/jwt.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2021 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/token-verifier.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2018 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/user-record.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * @license
+   * Copyright 2017 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/base-auth.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2021 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/tenant-manager.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * Copyright 2019 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/project-config-manager.js:
+  (*! firebase-admin v11.11.1 *)
+
+firebase-admin/lib/auth/auth.js:
+  (*! firebase-admin v11.11.1 *)
+  (*!
+   * @license
+   * Copyright 2017 Google Inc.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *   http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *)
+
+firebase-admin/lib/auth/index.js:
   (*! firebase-admin v11.11.1 *)
   (*!
    * Copyright 2020 Google Inc.

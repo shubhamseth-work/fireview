@@ -1,6 +1,6 @@
 {
   "name": "vistiq-viewer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Vistiq - Explore. Query. Manage. Firebase Firestore developer workspace for VS Code.",
   "private": true,
   "workspaces": [

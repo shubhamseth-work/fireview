@@ -2,6 +2,7 @@ import { logger } from '@vistiq/shared';
 const SECRET_KEYS = {
     SERVICE_ACCOUNT: 'serviceAccount',
     OAUTH_TOKEN: 'oauthToken',
+    FIREBASE_AUTH: 'firebaseAuth',
     EMULATOR_CONFIG: 'emulatorConfig',
     CONNECTIONS: 'connections',
     ACTIVE_CONNECTION: 'activeConnection',
@@ -57,6 +58,41 @@ export class CredentialService {
         const key = this.getKey(SECRET_KEYS.OAUTH_TOKEN, projectId);
         await this.secretStorage.delete(key);
         logger.info('OAuth token deleted', { projectId });
+    }
+    async storeFirebaseAuth(projectId, auth) {
+        const key = this.getKey(SECRET_KEYS.FIREBASE_AUTH, projectId);
+        await this.secretStorage.store(key, JSON.stringify(auth));
+        logger.info('Firebase auth stored', { projectId });
+    }
+    async getFirebaseAuth(projectId) {
+        const key = this.getKey(SECRET_KEYS.FIREBASE_AUTH, projectId);
+        const value = await this.secretStorage.get(key);
+        if (!value)
+            return null;
+        try {
+            return JSON.parse(value);
+        }
+        catch {
+            logger.error('Failed to parse Firebase auth', { projectId });
+            return null;
+        }
+    }
+    async deleteFirebaseAuth(projectId) {
+        const key = this.getKey(SECRET_KEYS.FIREBASE_AUTH, projectId);
+        await this.secretStorage.delete(key);
+        logger.info('Firebase auth deleted', { projectId });
+    }
+    async getAllFirebaseAuths() {
+        const connections = await this.getConnections();
+        const auths = [];
+        for (const conn of connections) {
+            if (conn.authMethod === 'firebase-auth') {
+                const auth = await this.getFirebaseAuth(conn.projectId);
+                if (auth)
+                    auths.push(auth);
+            }
+        }
+        return auths;
     }
     async storeEmulatorConfig(projectId, config) {
         const key = this.getKey(SECRET_KEYS.EMULATOR_CONFIG, projectId);
@@ -115,6 +151,7 @@ export class CredentialService {
         await this.secretStorage.store(SECRET_KEYS.CONNECTIONS, JSON.stringify(filtered));
         await this.deleteServiceAccount(projectId);
         await this.deleteOAuthToken(projectId);
+        await this.deleteFirebaseAuth(projectId);
         await this.deleteEmulatorConfig(projectId);
         logger.info('Connection deleted', { projectId });
     }
