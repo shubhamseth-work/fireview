@@ -8,7 +8,7 @@ import { useNotify } from '../context/NotificationContext';
 interface CollectionTreeProps {
   collections: any[];
   selectedCollection: string;
-  onSelect: (collectionPath: string) => void;
+  onSelect: (collectionPath: string, projectId?: string) => void;
   loading: boolean;
   readOnlyCollections: Set<string>;
   onToggleReadOnly: (collectionPath: string) => void;
@@ -141,11 +141,13 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
     <div className="tree-view" style={{ flex: 1, overflow: 'auto' }}>
       {collections.map(col => {
         const isReadOnly = readOnlyCollections.has(col.path);
+        // Determine projectId for this collection (from activeProjectId or infer from connections)
+        const projectId = activeProjectId ?? undefined;
         return (
           <div
             key={col.id}
             className={`tree-item ${selectedCollection === col.path ? 'selected' : ''} ${isReadOnly ? 'read-only' : ''}`}
-            onClick={() => !isReadOnly && onSelect(col.path)}
+            onClick={() => !isReadOnly && onSelect(col.path, projectId)}
             onContextMenu={e => handleContextMenu(e, col)}
             style={{ 
               padding: '8px 12px', 

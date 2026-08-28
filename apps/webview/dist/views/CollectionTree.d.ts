@@ -2,7 +2,7 @@ import React from 'react';
 interface CollectionTreeProps {
     collections: any[];
     selectedCollection: string;
-    onSelect: (collectionPath: string) => void;
+    onSelect: (collectionPath: string, projectId?: string) => void;
     loading: boolean;
     readOnlyCollections: Set<string>;
     onToggleReadOnly: (collectionPath: string) => void;

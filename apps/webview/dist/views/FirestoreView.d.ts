@@ -22,7 +22,7 @@ interface FirestoreViewProps {
         nextToken: string;
         pageSize: number;
     };
-    onLoadDocuments: (collectionPath: string, pageSize?: number) => void;
+    onLoadDocuments: (collectionPath: string, pageSize?: number, projectId?: string) => void;
     onOpenDocument: (doc: FirestoreDocument) => void;
     onCloseDocument: () => void;
     onRunQuery: (query: FirestoreQuery) => void;

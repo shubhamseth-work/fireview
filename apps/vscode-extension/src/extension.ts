@@ -41,20 +41,34 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   webviewManager = new WebviewManager(context, connectionManager, auditService);
   projectTreeProvider = new ProjectTreeProvider(connectionManager, webviewManager);
 
+  // Register callback to refresh tree after successful connection
+  connectionManager.onDidConnect((projectId) => {
+    projectTreeProvider.refresh();
+  });
+
   context.subscriptions.push(
     vscode.window.registerTreeDataProvider('vistiq.projects', projectTreeProvider),
     vscode.commands.registerCommand('vistiq.connectProject', () =>
       connectionManager.showConnectDialog()
     ),
-    vscode.commands.registerCommand('vistiq.connectOAuth', () =>
-      connectionManager.showFirebaseAuthDialog()
-    ),
-    vscode.commands.registerCommand('vistiq.disconnectProject', () =>
-      connectionManager.disconnectActive()
-    ),
+    vscode.commands.registerCommand('vistiq.disconnectProject', async () => {
+      await connectionManager.disconnectAll();
+      projectTreeProvider.refresh();
+    }),
+    vscode.commands.registerCommand('vistiq.disconnectAllProjects', async () => {
+      await connectionManager.disconnectAll();
+      projectTreeProvider.refresh();
+    }),
+    vscode.commands.registerCommand('vistiq.disconnectSpecificProject', async (projectId: string) => {
+      await connectionManager.disconnect(projectId);
+      projectTreeProvider.refresh();
+    }),
     vscode.commands.registerCommand('vistiq.refresh', () => projectTreeProvider.refresh()),
+    vscode.commands.registerCommand('vistiq.refreshProject', (projectId: string) => {
+      // Refresh specific project by triggering tree refresh
+      projectTreeProvider.refresh();
+    }),
     vscode.commands.registerCommand('vistiq.openFirestore', (requireActiveConnection = true) => webviewManager.openFirestore(requireActiveConnection)),
-    vscode.commands.registerCommand('vistiq.showFirebaseAuthModal', () => webviewManager.showFirebaseAuthModal()),
     vscode.commands.registerCommand('vistiq.newDocument', () => webviewManager.newDocument()),
     vscode.commands.registerCommand('vistiq.runQuery', () => webviewManager.runQuery()),
     vscode.commands.registerCommand('vistiq.saveQuery', () => webviewManager.saveQuery()),

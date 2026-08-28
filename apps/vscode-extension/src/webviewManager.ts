@@ -275,6 +275,9 @@ export class WebviewManager {
         case 'getActiveConnection':
           result = this.connectionManager.getActiveConnection();
           break;
+        case 'setActiveProject':
+          result = await this.handleSetActiveProject(message.payload);
+          break;
         case 'getAuditHistory':
           result = await this.handleGetAuditHistory(message.payload);
           break;
@@ -524,6 +527,13 @@ export class WebviewManager {
       result: 'success',
     });
 
+    return { success: true };
+  }
+
+  private async handleSetActiveProject(payload: unknown): Promise<unknown> {
+    const { projectId } = payload as { projectId: string };
+    webviewLogger.info('handleSetActiveProject called', { projectId });
+    await this.connectionManager.setActiveConnection(projectId);
     return { success: true };
   }
 

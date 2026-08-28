@@ -8,6 +8,7 @@ import { ExportModal } from './ExportModal';
 import { ImportModal } from './ImportModal';
 import { NewDocumentModal } from './NewDocumentModal';
 import { NewCollectionModal } from './NewCollectionModal';
+const vscode = acquireVsCodeApi();
 export const FirestoreView = ({ connection, collections, documents, selectedDocument, loading, error, pagination, onLoadDocuments, onOpenDocument, onCloseDocument, onRunQuery, onCreateDocument, onCreateCollection, onUpdateDocument, onDeleteDocument, onExportCollection, onImportCollection, onLoadMore, onPageSizeChange, onCopyDocument, onCopyDocumentTo, onDuplicateDocument, onRenameDocument, onMoveDocument, onShowGeopoints, onImportDocument, onExportDocument, onRevealInConsole, connections, activeProjectId, readOnlyCollections, setReadOnlyCollections, firebaseConfig, onConfigImport, initialView = 'firestore', }) => {
     // Destructure authMethod from connection
     const authMethod = connection.authMethod;
@@ -19,10 +20,10 @@ export const FirestoreView = ({ connection, collections, documents, selectedDocu
     const [showNewCollectionModal, setShowNewCollectionModal] = useState(false);
     const [sidebarWidth, setSidebarWidth] = useState(280);
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-    const handleCollectionClick = (collectionPath) => {
+    const handleCollectionClick = (collectionPath, projectId) => {
         setSelectedCollection(collectionPath);
         setShowQueryBuilder(false);
-        onLoadDocuments(collectionPath);
+        onLoadDocuments(collectionPath, undefined, projectId);
     };
     const handleNewDocument = () => {
         if (!selectedCollection)
@@ -50,9 +51,6 @@ export const FirestoreView = ({ connection, collections, documents, selectedDocu
     };
     const handleNewDocumentCancel = () => {
         setShowNewDocumentModal(false);
-    };
-    const handleNewCollection = () => {
-        setShowNewCollectionModal(true);
     };
     const handleNewCollectionConfirm = (collectionId) => {
         onCreateCollection(collectionId);
@@ -102,7 +100,7 @@ export const FirestoreView = ({ connection, collections, documents, selectedDocu
                     flexDirection: 'column',
                     backgroundColor: 'var(--vscode-sidebar-bg)',
                     flexShrink: 0,
-                }, children: [_jsxs("div", { className: "toolbar", children: [_jsx("button", { onClick: handleNewCollection, title: "Add Collection (Ctrl+Shift+N)", children: "+ Collection" }), _jsx("button", { onClick: () => setShowQueryBuilder(!showQueryBuilder), title: "Query Builder", children: "\uD83D\uDD0D Query" }), _jsx("button", { onClick: () => setIsSidebarCollapsed(true), title: "Collapse sidebar", style: { marginLeft: 'auto', padding: '4px 8px' }, children: "\u25C0" })] }), showQueryBuilder ? (_jsx(QueryBuilder, { collections: collections, onRunQuery: handleRunQuery, onClose: () => setShowQueryBuilder(false) })) : (_jsx(CollectionTree, { collections: collections, selectedCollection: selectedCollection, onSelect: handleCollectionClick, loading: loading, readOnlyCollections: readOnlyCollections, onToggleReadOnly: handleToggleReadOnly, onExportCollection: handleCollectionExport, onImportCollection: handleCollectionImport, onAddDocument: handleAddDocumentFromTree, connections: connections, activeProjectId: activeProjectId }))] })), isSidebarCollapsed && (_jsx("button", { onClick: () => setIsSidebarCollapsed(false), style: {
+                }, children: [_jsxs("div", { className: "toolbar", children: [_jsx("button", { onClick: () => setShowQueryBuilder(!showQueryBuilder), title: "Query Builder", children: "\uD83D\uDD0D Query" }), _jsx("button", { onClick: () => setIsSidebarCollapsed(true), title: "Collapse sidebar", style: { marginLeft: 'auto', padding: '4px 8px' }, children: "\u25C0" })] }), showQueryBuilder ? (_jsx(QueryBuilder, { collections: collections, onRunQuery: handleRunQuery, onClose: () => setShowQueryBuilder(false) })) : (_jsx(CollectionTree, { collections: collections, selectedCollection: selectedCollection, onSelect: handleCollectionClick, loading: loading, readOnlyCollections: readOnlyCollections, onToggleReadOnly: handleToggleReadOnly, onExportCollection: handleCollectionExport, onImportCollection: handleCollectionImport, onAddDocument: handleAddDocumentFromTree, connections: connections, activeProjectId: activeProjectId }))] })), isSidebarCollapsed && (_jsx("button", { onClick: () => setIsSidebarCollapsed(false), style: {
                     width: 32,
                     height: '100%',
                     borderRight: '1px solid var(--vscode-border)',

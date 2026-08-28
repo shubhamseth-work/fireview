@@ -240,6 +240,13 @@ export class ConnectionManager {
     }
   }
 
+  async disconnectAll(): Promise<void> {
+    const projectIds = Array.from(this.connections.keys());
+    for (const projectId of projectIds) {
+      await this.disconnect(projectId);
+    }
+  }
+
   getConnection(projectId: string): ActiveConnection | undefined {
     return this.connections.get(projectId);
   }
@@ -298,20 +305,6 @@ export class ConnectionManager {
   }
 
   async showServiceAccountDialog(): Promise<void> {
-    const projectId = await vscode.window.showInputBox({
-      prompt: 'Enter Firebase Project ID',
-      placeHolder: 'my-project-123',
-      validateInput: v => (v ? null : 'Project ID is required'),
-    });
-    if (!projectId) return;
-
-    const displayName = await vscode.window.showInputBox({
-      prompt: 'Enter display name',
-      placeHolder: projectId,
-      value: projectId,
-    });
-    if (!displayName) return;
-
     const environment = await vscode.window.showQuickPick<
       vscode.QuickPickItem & { value: EnvironmentLabel }
     >(
@@ -347,8 +340,8 @@ export class ConnectionManager {
     });
 
     let serviceAccount: StoredServiceAccount;
-    let finalProjectId = projectId;
-    let finalDisplayName = displayName;
+    let finalProjectId: string;
+    let finalDisplayName: string;
 
     if (jsonUri && jsonUri.length > 0) {
       // File selected - read and parse
@@ -364,15 +357,13 @@ export class ConnectionManager {
         return;
       }
 
-      // Auto-fill project ID from JSON if not provided
-      if (!finalProjectId && serviceAccount.project_id) {
-        finalProjectId = serviceAccount.project_id;
+      // Use project_id from JSON for both Project ID and Display Name
+      if (!serviceAccount.project_id) {
+        vscode.window.showErrorMessage('Service Account JSON missing project_id');
+        return;
       }
-
-      // Auto-fill display name from client_email if not provided
-      if (!finalDisplayName && serviceAccount.client_email) {
-        finalDisplayName = serviceAccount.client_email;
-      }
+      finalProjectId = serviceAccount.project_id;
+      finalDisplayName = serviceAccount.project_id;
     } else {
       // Step 2: Fallback - paste JSON (user cancelled file picker)
       const pasteAction = await vscode.window.showInformationMessage(
@@ -400,25 +391,13 @@ export class ConnectionManager {
         return;
       }
 
-      // Auto-fill project ID from JSON if not provided
-      if (!finalProjectId && serviceAccount.project_id) {
-        finalProjectId = serviceAccount.project_id;
+      // Use project_id from JSON for both Project ID and Display Name
+      if (!serviceAccount.project_id) {
+        vscode.window.showErrorMessage('Service Account JSON missing project_id');
+        return;
       }
-
-      // Auto-fill display name from client_email if not provided
-      if (!finalDisplayName && serviceAccount.client_email) {
-        finalDisplayName = serviceAccount.client_email;
-      }
-    }
-
-    // Validate required fields
-    if (!finalProjectId) {
-      vscode.window.showErrorMessage('Project ID is required');
-      return;
-    }
-    if (!finalDisplayName) {
-      vscode.window.showErrorMessage('Display name is required');
-      return;
+      finalProjectId = serviceAccount.project_id;
+      finalDisplayName = serviceAccount.project_id;
     }
 
     try {
@@ -434,9 +413,17 @@ export class ConnectionManager {
         }
       );
       vscode.window.showInformationMessage(`Connected to ${finalDisplayName}`);
+      // Emit event to trigger tree refresh
+      this._onDidConnect?.(finalProjectId);
     } catch (error) {
       vscode.window.showErrorMessage(`Failed to connect: ${(error as Error).message}`);
     }
+  }
+
+  private _onDidConnect?: (projectId: string) => void;
+
+  onDidConnect(callback: (projectId: string) => void): void {
+    this._onDidConnect = callback;
   }
 
   async showEmulatorDialog(): Promise<void> {

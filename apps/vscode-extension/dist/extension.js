@@ -127595,6 +127595,12 @@ var ConnectionManager = class {
       await this.disconnect(this.activeProjectId);
     }
   }
+  async disconnectAll() {
+    const projectIds = Array.from(this.connections.keys());
+    for (const projectId of projectIds) {
+      await this.disconnect(projectId);
+    }
+  }
   getConnection(projectId) {
     return this.connections.get(projectId);
   }
@@ -127642,18 +127648,6 @@ var ConnectionManager = class {
     }
   }
   async showServiceAccountDialog() {
-    const projectId = await vscode.window.showInputBox({
-      prompt: "Enter Firebase Project ID",
-      placeHolder: "my-project-123",
-      validateInput: (v) => v ? null : "Project ID is required"
-    });
-    if (!projectId) return;
-    const displayName = await vscode.window.showInputBox({
-      prompt: "Enter display name",
-      placeHolder: projectId,
-      value: projectId
-    });
-    if (!displayName) return;
     const environment = await vscode.window.showQuickPick(
       [
         { label: "Development", value: "development" },
@@ -127683,8 +127677,8 @@ var ConnectionManager = class {
       title: "Select Service Account Key File"
     });
     let serviceAccount;
-    let finalProjectId = projectId;
-    let finalDisplayName = displayName;
+    let finalProjectId;
+    let finalDisplayName;
     if (jsonUri && jsonUri.length > 0) {
       try {
         const jsonContent = fs2.readFileSync(jsonUri[0].fsPath, "utf8");
@@ -127696,12 +127690,12 @@ var ConnectionManager = class {
         vscode.window.showErrorMessage("Invalid Service Account JSON file");
         return;
       }
-      if (!finalProjectId && serviceAccount.project_id) {
-        finalProjectId = serviceAccount.project_id;
+      if (!serviceAccount.project_id) {
+        vscode.window.showErrorMessage("Service Account JSON missing project_id");
+        return;
       }
-      if (!finalDisplayName && serviceAccount.client_email) {
-        finalDisplayName = serviceAccount.client_email;
-      }
+      finalProjectId = serviceAccount.project_id;
+      finalDisplayName = serviceAccount.project_id;
     } else {
       const pasteAction = await vscode.window.showInformationMessage(
         "No file selected. Paste Service Account JSON instead?",
@@ -127729,20 +127723,12 @@ var ConnectionManager = class {
         vscode.window.showErrorMessage("Invalid Service Account JSON");
         return;
       }
-      if (!finalProjectId && serviceAccount.project_id) {
-        finalProjectId = serviceAccount.project_id;
+      if (!serviceAccount.project_id) {
+        vscode.window.showErrorMessage("Service Account JSON missing project_id");
+        return;
       }
-      if (!finalDisplayName && serviceAccount.client_email) {
-        finalDisplayName = serviceAccount.client_email;
-      }
-    }
-    if (!finalProjectId) {
-      vscode.window.showErrorMessage("Project ID is required");
-      return;
-    }
-    if (!finalDisplayName) {
-      vscode.window.showErrorMessage("Display name is required");
-      return;
+      finalProjectId = serviceAccount.project_id;
+      finalDisplayName = serviceAccount.project_id;
     }
     try {
       await vscode.window.withProgress(
@@ -127757,9 +127743,14 @@ var ConnectionManager = class {
         }
       );
       vscode.window.showInformationMessage(`Connected to ${finalDisplayName}`);
+      this._onDidConnect?.(finalProjectId);
     } catch (error) {
       vscode.window.showErrorMessage(`Failed to connect: ${error.message}`);
     }
+  }
+  _onDidConnect;
+  onDidConnect(callback) {
+    this._onDidConnect = callback;
   }
   async showEmulatorDialog() {
     const config = this.emulatorService.detectEmulatorConfig();
@@ -127949,9 +127940,9 @@ ${conn.environment}`;
         )
       ]);
     }
-    return this.loadProjectChildren(connection);
+    return this.loadProjectChildren(connection, projectId);
   }
-  async loadProjectChildren(connection) {
+  async loadProjectChildren(connection, projectId) {
     try {
       if (!connection.firestore) {
         return [
@@ -127963,14 +127954,14 @@ ${conn.environment}`;
           )
         ];
       }
-      const collections = await connection.firestore.listCollections();
       const items = [];
+      const collections = await connection.firestore.listCollections();
       items.push(
         new ProjectTreeItem(
           "Firestore",
           "firestore",
           vscode2.TreeItemCollapsibleState.Collapsed,
-          { projectId: connection.projectId },
+          { projectId },
           `${collections.length} collections`
         )
       );
@@ -128292,6 +128283,9 @@ var WebviewManager = class {
         case "getActiveConnection":
           result = this.connectionManager.getActiveConnection();
           break;
+        case "setActiveProject":
+          result = await this.handleSetActiveProject(message.payload);
+          break;
         case "getAuditHistory":
           result = await this.handleGetAuditHistory(message.payload);
           break;
@@ -128494,6 +128488,12 @@ var WebviewManager = class {
     });
     return { success: true };
   }
+  async handleSetActiveProject(payload) {
+    const { projectId } = payload;
+    webviewLogger.info("handleSetActiveProject called", { projectId });
+    await this.connectionManager.setActiveConnection(projectId);
+    return { success: true };
+  }
   async handleGetAuditHistory(payload) {
     const options = payload;
     return this.auditService.getEntries(options);
@@ -128591,23 +128591,32 @@ async function activate(context) {
   );
   webviewManager = new WebviewManager(context, connectionManager, auditService);
   projectTreeProvider = new ProjectTreeProvider(connectionManager, webviewManager);
+  connectionManager.onDidConnect((projectId) => {
+    projectTreeProvider.refresh();
+  });
   context.subscriptions.push(
     vscode4.window.registerTreeDataProvider("vistiq.projects", projectTreeProvider),
     vscode4.commands.registerCommand(
       "vistiq.connectProject",
       () => connectionManager.showConnectDialog()
     ),
-    vscode4.commands.registerCommand(
-      "vistiq.connectOAuth",
-      () => connectionManager.showFirebaseAuthDialog()
-    ),
-    vscode4.commands.registerCommand(
-      "vistiq.disconnectProject",
-      () => connectionManager.disconnectActive()
-    ),
+    vscode4.commands.registerCommand("vistiq.disconnectProject", async () => {
+      await connectionManager.disconnectAll();
+      projectTreeProvider.refresh();
+    }),
+    vscode4.commands.registerCommand("vistiq.disconnectAllProjects", async () => {
+      await connectionManager.disconnectAll();
+      projectTreeProvider.refresh();
+    }),
+    vscode4.commands.registerCommand("vistiq.disconnectSpecificProject", async (projectId) => {
+      await connectionManager.disconnect(projectId);
+      projectTreeProvider.refresh();
+    }),
     vscode4.commands.registerCommand("vistiq.refresh", () => projectTreeProvider.refresh()),
+    vscode4.commands.registerCommand("vistiq.refreshProject", (projectId) => {
+      projectTreeProvider.refresh();
+    }),
     vscode4.commands.registerCommand("vistiq.openFirestore", (requireActiveConnection = true) => webviewManager.openFirestore(requireActiveConnection)),
-    vscode4.commands.registerCommand("vistiq.showFirebaseAuthModal", () => webviewManager.showFirebaseAuthModal()),
     vscode4.commands.registerCommand("vistiq.newDocument", () => webviewManager.newDocument()),
     vscode4.commands.registerCommand("vistiq.runQuery", () => webviewManager.runQuery()),
     vscode4.commands.registerCommand("vistiq.saveQuery", () => webviewManager.saveQuery()),

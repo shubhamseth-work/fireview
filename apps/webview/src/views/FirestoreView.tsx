@@ -10,6 +10,9 @@ import { NewCollectionModal } from './NewCollectionModal';
 import { FirestoreDocument, FirestoreQuery, FirestoreValue, QueryFilter, QueryOperator, OrderByClause } from '@vistiq/core';
 import { Connection } from '@vistiq/core';
 
+declare const acquireVsCodeApi: () => { postMessage: (msg: unknown) => void; getState: () => unknown; setState: (state: unknown) => void };
+const vscode = acquireVsCodeApi();
+
 interface FirebaseConfig {
   apiKey: string;
   authDomain: string;
@@ -27,7 +30,7 @@ interface FirestoreViewProps {
   loading: boolean;
   error: string | null;
   pagination: { page: number; hasMore: boolean; nextToken: string; pageSize: number };
-  onLoadDocuments: (collectionPath: string, pageSize?: number) => void;
+  onLoadDocuments: (collectionPath: string, pageSize?: number, projectId?: string) => void;
   onOpenDocument: (doc: FirestoreDocument) => void;
   onCloseDocument: () => void;
   onRunQuery: (query: FirestoreQuery) => void;
@@ -105,10 +108,10 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
   const [sidebarWidth, setSidebarWidth] = useState(280);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
-  const handleCollectionClick = (collectionPath: string) => {
+  const handleCollectionClick = (collectionPath: string, projectId?: string) => {
     setSelectedCollection(collectionPath);
     setShowQueryBuilder(false);
-    onLoadDocuments(collectionPath);
+    onLoadDocuments(collectionPath, undefined, projectId);
   };
 
   const handleNewDocument = () => {
@@ -139,10 +142,6 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
 
   const handleNewDocumentCancel = () => {
     setShowNewDocumentModal(false);
-  };
-
-  const handleNewCollection = () => {
-    setShowNewCollectionModal(true);
   };
 
   const handleNewCollectionConfirm = (collectionId: string) => {
@@ -205,7 +204,6 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
           }}
         >
           <div className="toolbar">
-            <button onClick={handleNewCollection} title="Add Collection (Ctrl+Shift+N)">+ Collection</button>
             <button onClick={() => setShowQueryBuilder(!showQueryBuilder)} title="Query Builder">🔍 Query</button>
             <button onClick={() => setIsSidebarCollapsed(true)} title="Collapse sidebar" style={{ marginLeft: 'auto', padding: '4px 8px' }}>◀</button>
           </div>

@@ -72,8 +72,23 @@
         "icon": "$(plug)"
       },
       {
+        "command": "vistiq.disconnectAllProjects",
+        "title": "Vistiq: Disconnect All Projects",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "vistiq.disconnectSpecificProject",
+        "title": "Vistiq: Disconnect Specific Project",
+        "icon": "$(plug)"
+      },
+      {
         "command": "vistiq.refresh",
         "title": "Vistiq: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "vistiq.refreshProject",
+        "title": "Vistiq: Refresh Project",
         "icon": "$(refresh)"
       },
       {
@@ -198,6 +213,16 @@
         {
           "command": "vistiq.connectProject",
           "when": "view == vistiq.projects && viewItem == empty",
+          "group": "inline"
+        },
+        {
+          "command": "vistiq.disconnectSpecificProject",
+          "when": "view == vistiq.projects && (viewItem == project || viewItem == emulatorProject || viewItem == productionProject)",
+          "group": "inline"
+        },
+        {
+          "command": "vistiq.refreshProject",
+          "when": "view == vistiq.projects && (viewItem == project || viewItem == emulatorProject || viewItem == productionProject)",
           "group": "inline"
         }
       ]

@@ -78,6 +78,7 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
           ? 'productionProject'
           : 'project';
       item.tooltip = `${conn.displayName}\n${conn.projectId}\n${conn.environment}`;
+
       items.push(item);
     }
 
@@ -115,10 +116,10 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
       ]);
     }
 
-    return this.loadProjectChildren(connection);
+    return this.loadProjectChildren(connection, projectId);
   }
 
-  private async loadProjectChildren(connection: ActiveConnection): Promise<ProjectTreeItem[]> {
+  private async loadProjectChildren(connection: ActiveConnection, projectId: string): Promise<ProjectTreeItem[]> {
     try {
       if (!connection.firestore) {
         return [
@@ -130,15 +131,16 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
           ),
         ];
       }
-      const collections = await connection.firestore.listCollections();
       const items: ProjectTreeItem[] = [];
 
+      // Add Firestore node only (actions are handled via context menu in package.json)
+      const collections = await connection.firestore.listCollections();
       items.push(
         new ProjectTreeItem(
           'Firestore',
           'firestore',
           vscode.TreeItemCollapsibleState.Collapsed,
-          { projectId: connection.projectId },
+          { projectId },
           `${collections.length} collections`
         )
       );

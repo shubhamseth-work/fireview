@@ -91,7 +91,9 @@ export const CollectionTree = ({ collections, selectedCollection, onSelect, load
     }
     return (_jsxs("div", { className: "tree-view", style: { flex: 1, overflow: 'auto' }, children: [collections.map(col => {
                 const isReadOnly = readOnlyCollections.has(col.path);
-                return (_jsxs("div", { className: `tree-item ${selectedCollection === col.path ? 'selected' : ''} ${isReadOnly ? 'read-only' : ''}`, onClick: () => !isReadOnly && onSelect(col.path), onContextMenu: e => handleContextMenu(e, col), style: {
+                // Determine projectId for this collection (from activeProjectId or infer from connections)
+                const projectId = activeProjectId ?? undefined;
+                return (_jsxs("div", { className: `tree-item ${selectedCollection === col.path ? 'selected' : ''} ${isReadOnly ? 'read-only' : ''}`, onClick: () => !isReadOnly && onSelect(col.path, projectId), onContextMenu: e => handleContextMenu(e, col), style: {
                         padding: '8px 12px',
                         display: 'flex',
                         alignItems: 'center',

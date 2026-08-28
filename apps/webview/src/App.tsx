@@ -138,7 +138,7 @@ const AppInner: React.FC = () => {
     };
   }, []);
 
-  const handleMessage = (event: MessageEvent) => {
+  const handleMessage = async (event: MessageEvent) => {
     const msg = event.data as Message;
     log.debug('handleMessage: Received message', { type: msg.type, hasPayload: !!msg.payload, requestId: msg.requestId });
     if (msg.type === 'init') {
@@ -149,6 +149,18 @@ const AppInner: React.FC = () => {
       const { documentPath } = msg.payload as { documentPath: string };
       log.info('handleMessage: Received openDocument', { documentPath });
       loadDocument(documentPath);
+    } else if (msg.type === 'setActiveProject') {
+      const { projectId } = msg.payload as { projectId: string };
+      log.info('handleMessage: Received setActiveProject', { projectId });
+      // Request the extension to switch active project
+      await sendMessage('setActiveProject', { projectId });
+      // After switching, refresh the connection state
+      const conn = await sendMessage('getActiveConnection');
+      if (conn) {
+        log.info('handleMessage: Got new active connection', { projectId: (conn as Connection).projectId });
+        setConnection(conn as Connection);
+        loadCollections();
+      }
     }
   };
 
@@ -187,9 +199,22 @@ const AppInner: React.FC = () => {
     }
   };
 
-  const loadDocuments = async (collectionPath: string, pageSize?: number) => {
+  const loadDocuments = async (collectionPath: string, pageSize?: number, projectId?: string) => {
     const limit = pageSize || pagination.pageSize;
-    log.info('loadDocuments called', { collectionPath, limit });
+    log.info('loadDocuments called', { collectionPath, limit, projectId });
+    
+    // If projectId is provided and different from current active project, switch project first
+    if (projectId && projectId !== connection?.projectId) {
+      log.info('loadDocuments: Switching active project', { from: connection?.projectId, to: projectId });
+      await sendMessage('setActiveProject', { projectId });
+      // Refresh connection state after switching
+      const conn = await sendMessage('getActiveConnection');
+      if (conn) {
+        log.info('loadDocuments: Got new active connection', { projectId: (conn as Connection).projectId });
+        setConnection(conn as Connection);
+      }
+    }
+    
     try {
       setLoading(true);
       setSelectedCollection(collectionPath);
