@@ -22,6 +22,7 @@ interface DocumentViewerProps {
   onUpdate: (documentPath: string, data: Partial<FirestoreDocument>) => void;
   onCreateDocument: (collectionPath: string, data: FirestoreDocument) => void;
   onDelete: (documentPath: string) => void;
+  onOpenDocument?: (documentPath: string) => void;
 }
 
 export const DocumentViewer: React.FC<DocumentViewerProps> = ({
@@ -31,6 +32,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   onUpdate,
   onCreateDocument,
   onDelete,
+  onOpenDocument,
 }) => {
   const notify = useNotify();
   const [deleteConfirm, setDeleteConfirm] = useState<{
@@ -51,9 +53,23 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   const [editData, setEditData] = useState<string>('');
   const [isProduction, setIsProduction] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [docIdInput, setDocIdInput] = useState<string>(document.id || '');
 
   const isProd = connection.environment === 'production';
   const isNewDoc = !document.id;
+
+  const handleFetchDocById = () => {
+    if (!docIdInput.trim() || !onOpenDocument) return;
+    // Extract collection path from current document path
+    const collectionPath = document.path.split('/').slice(0, -1).join('/');
+    const newDocPath = collectionPath ? `${collectionPath}/${docIdInput.trim()}` : docIdInput.trim();
+    onOpenDocument(newDocPath);
+  };
+
+  // Sync input with current document ID when document changes
+  React.useEffect(() => {
+    setDocIdInput(document.id || '');
+  }, [document.id]);
 
   React.useEffect(() => {
     log.debug('DocumentViewer: Effect triggered', { docId: document.id, editing });
@@ -348,7 +364,48 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           <button onClick={onClose} className="secondary">
             ← Back
           </button>
-          <span style={{ fontWeight: 500 }}>{document.id || '(new document)'}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <input
+              type="text"
+              value={docIdInput}
+              onChange={e => setDocIdInput(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleFetchDocById()}
+              style={{
+                fontWeight: 500,
+                fontFamily: 'monospace',
+                fontSize: 13,
+                padding: '4px 8px',
+                backgroundColor: 'var(--vscode-input-bg)',
+                color: 'var(--vscode-input-foreground)',
+                border: '1px solid var(--vscode-input-border)',
+                borderRadius: 4,
+                minWidth: 180,
+                maxWidth: 300,
+              }}
+              placeholder="Document ID"
+              title="Enter a Document ID and press Enter or click Play to fetch"
+            />
+            <button
+              onClick={handleFetchDocById}
+              disabled={!docIdInput.trim() || !onOpenDocument}
+              style={{
+                padding: '4px 8px',
+                backgroundColor: docIdInput.trim() && onOpenDocument ? 'var(--vscode-button-background)' : 'transparent',
+                color: docIdInput.trim() && onOpenDocument ? 'var(--vscode-button-foreground)' : 'var(--vscode-descriptionForeground)',
+                border: '1px solid var(--vscode-button-border)',
+                borderRadius: 4,
+                cursor: docIdInput.trim() && onOpenDocument ? 'pointer' : 'not-allowed',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minWidth: 32,
+                height: 28,
+              }}
+              title="Fetch document by ID"
+            >
+              ▶
+            </button>
+          </div>
           {isProduction && <span className="badge production">Production</span>}
         </div>
         <div style={{ display: 'flex', gap: 8 }}>

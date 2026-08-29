@@ -799,6 +799,7 @@ const AppInner: React.FC = () => {
             pagination={pagination}
             onLoadDocuments={loadDocuments}
             onOpenDocument={handleOpenDocument}
+            onOpenDocumentByPath={loadDocument}
             onCloseDocument={handleCloseDocument}
             onRunQuery={handleRunQuery}
             onCreateDocument={handleCreateDocument}
@@ -848,6 +849,158 @@ const AppInner: React.FC = () => {
   return (
     <NotificationProvider>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+        {/* Sticky Top Navigation - Always visible */}
+        <div
+          className="toolbar"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '8px 12px',
+            borderBottom: '1px solid var(--vscode-border)',
+            backgroundColor: 'var(--vscode-editor-background)',
+            flexShrink: 0,
+            zIndex: 100,
+          }}
+        >
+          <div className="toolbar-group" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <button
+              onClick={() => setView('firestore')}
+              className={view === 'firestore' ? 'active' : ''}
+              style={{
+                padding: '6px 12px',
+                fontSize: 12,
+                backgroundColor: view === 'firestore' ? 'var(--vscode-button-background)' : 'transparent',
+                color: view === 'firestore' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                textAlign: 'center',
+                minWidth: 80,
+              }}
+              title="Firestore"
+            >
+              Firestore
+            </button>
+            <button
+              onClick={() => setView('collection')}
+              className={view === 'collection' ? 'active' : ''}
+              style={{
+                padding: '6px 12px',
+                fontSize: 12,
+                backgroundColor: view === 'collection' ? 'var(--vscode-button-background)' : 'transparent',
+                color: view === 'collection' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                textAlign: 'center',
+                minWidth: 80,
+              }}
+              title="Collections"
+            >
+              + Add
+            </button>
+            <button
+              onClick={() => setView('query')}
+              className={view === 'query' ? 'active' : ''}
+              style={{
+                padding: '6px 12px',
+                fontSize: 12,
+                backgroundColor: view === 'query' ? 'var(--vscode-button-background)' : 'transparent',
+                color: view === 'query' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                textAlign: 'center',
+                minWidth: 80,
+              }}
+              title="Query"
+            >
+              Query
+            </button>
+            <button
+              onClick={() => setView('compare')}
+              className={view === 'compare' ? 'active' : ''}
+              style={{
+                padding: '6px 12px',
+                fontSize: 12,
+                backgroundColor: view === 'compare' ? 'var(--vscode-button-background)' : 'transparent',
+                color: view === 'compare' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                textAlign: 'center',
+                minWidth: 80,
+              }}
+              title="Compare"
+            >
+              Compare
+            </button>
+            <button
+              onClick={() => setView('project-compare')}
+              className={view === 'project-compare' ? 'active' : ''}
+              style={{
+                padding: '6px 12px',
+                fontSize: 12,
+                backgroundColor: view === 'project-compare' ? 'var(--vscode-button-background)' : 'transparent',
+                color: view === 'project-compare' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                textAlign: 'center',
+                minWidth: 80,
+              }}
+              title="Projects"
+            >
+              Projects
+            </button>
+            <button
+              onClick={() => setView('migration')}
+              className={view === 'migration' ? 'active' : ''}
+              style={{
+                padding: '6px 12px',
+                fontSize: 12,
+                backgroundColor: view === 'migration' ? 'var(--vscode-button-background)' : 'transparent',
+                color: view === 'migration' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                textAlign: 'center',
+                minWidth: 80,
+              }}
+              title="Migration"
+            >
+              Migration
+            </button>
+            <button
+              onClick={() => setView('audit')}
+              className={view === 'audit' ? 'active' : ''}
+              style={{
+                padding: '6px 12px',
+                fontSize: 12,
+                backgroundColor: view === 'audit' ? 'var(--vscode-button-background)' : 'transparent',
+                color: view === 'audit' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                textAlign: 'center',
+                minWidth: 80,
+              }}
+              title="Audit"
+            >
+              Audit
+            </button>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span className={`badge ${connection.environment}`}>{connection.environment}</span>
+            {connection.authMethod === 'emulator' && (
+              <span className="badge emulator">Emulator</span>
+            )}
+            {connection.environment === 'production' && (
+              <span className="badge production">Production</span>
+            )}
+          </div>
+        </div>
         <div style={{ flex: 1, overflow: 'hidden' }}>{renderView()}</div>
         <div className="status-bar">
           <span>

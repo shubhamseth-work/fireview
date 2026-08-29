@@ -16,8 +16,8 @@ import { DocumentTable } from './DocumentTable';
 import { DocumentViewer } from './DocumentViewer';
 import { ExportModal } from './ExportModal';
 import { ImportModal } from './ImportModal';
-import { NewCollectionModal } from './NewCollectionModal';
 import { NewDocumentModal } from './NewDocumentModal';
+import { AddCollectionModal } from './AddCollectionModal';
 import { QueryBuilder } from './QueryBuilder';
 
 type ViewType =
@@ -48,6 +48,7 @@ interface FirestoreViewProps {
   pagination: { page: number; hasMore: boolean; nextToken: string; pageSize: number };
   onLoadDocuments: (collectionPath: string, pageSize?: number, projectId?: string) => void;
   onOpenDocument: (doc: FirestoreDocument) => void;
+  onOpenDocumentByPath?: (documentPath: string) => void;
   onCloseDocument: () => void;
   onRunQuery: (query: FirestoreQuery) => void;
   onCreateDocument: (collectionPath: string, data: FirestoreDocument) => void;
@@ -105,6 +106,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
   pagination,
   onLoadDocuments,
   onOpenDocument,
+  onOpenDocumentByPath,
   onCloseDocument,
   onRunQuery,
   onCreateDocument,
@@ -142,10 +144,13 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
   const [showExportModal, setShowExportModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
   const [showNewDocumentModal, setShowNewDocumentModal] = useState(false);
-  const [showNewCollectionModal, setShowNewCollectionModal] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(280);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [renderError, setRenderError] = useState<Error | null>(null);
+  const [showNewCollectionModal, setShowNewCollectionModal] = useState<{
+    isOpen: boolean;
+    selectedProjectId: string;
+  } | null>(null);
 
   // Log props on render for debugging
   log.info('FirestoreView render', {
@@ -166,6 +171,12 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
     setSelectedCollection(collectionPath);
     setShowQueryBuilder(false);
     onLoadDocuments(collectionPath);
+  };
+
+  const handleOpenDocumentByPath = (documentPath: string) => {
+    if (onOpenDocumentByPath) {
+      onOpenDocumentByPath(documentPath);
+    }
   };
 
   const handleProjectChange = (projectId: string) => {
@@ -212,13 +223,30 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
     setShowNewDocumentModal(false);
   };
 
-  const handleNewCollectionConfirm = (collectionId: string) => {
-    onCreateCollection(collectionId);
-    setShowNewCollectionModal(false);
+  const handleAddCollection = () => {
+    // Open modal with current active project pre-selected
+    setShowNewCollectionModal({
+      isOpen: true,
+      selectedProjectId: activeProjectId || connections[0]?.projectId || '',
+    });
+  };
+
+  const handleNewCollectionConfirm = (collectionId: string, projectId: string) => {
+    // If project is different from active, switch first
+    if (projectId !== activeProjectId) {
+      vscode.postMessage({ type: 'setActiveProject', payload: { projectId } });
+      // Wait for project switch then create collection
+      setTimeout(() => {
+        onCreateCollection(collectionId);
+      }, 500);
+    } else {
+      onCreateCollection(collectionId);
+    }
+    setShowNewCollectionModal(null);
   };
 
   const handleNewCollectionCancel = () => {
-    setShowNewCollectionModal(false);
+    setShowNewCollectionModal(null);
   };
 
   const handleRunQuery = (query: FirestoreQuery) => {
@@ -340,140 +368,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
             flexShrink: 0,
           }}
         >
-          {/* SECTION 1: Top Navigation - Sticky */}
-          <div
-            className="toolbar"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px',
-              padding: '8px',
-              borderBottom: '1px solid var(--vscode-border)',
-              flexShrink: 0,
-            }}
-          >
-            <button
-              onClick={() => onViewChange?.('firestore')}
-              className={view === 'firestore' ? 'active' : ''}
-              style={{
-                padding: '6px 12px',
-                fontSize: 12,
-                backgroundColor: view === 'firestore' ? 'var(--vscode-button-background)' : 'transparent',
-                color: view === 'firestore' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
-                border: 'none',
-                borderRadius: 4,
-                cursor: 'pointer',
-                flex: 1,
-                textAlign: 'center',
-              }}
-            >
-              Firestore
-            </button>
-            <button
-              onClick={() => onViewChange?.('collection')}
-              className={view === 'collection' ? 'active' : ''}
-              style={{
-                padding: '6px 12px',
-                fontSize: 12,
-                backgroundColor: view === 'collection' ? 'var(--vscode-button-background)' : 'transparent',
-                color: view === 'collection' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
-                border: 'none',
-                borderRadius: 4,
-                cursor: 'pointer',
-                flex: 1,
-                textAlign: 'center',
-              }}
-            >
-              Collection
-            </button>
-            <button
-              onClick={() => onViewChange?.('query')}
-              className={view === 'query' ? 'active' : ''}
-              style={{
-                padding: '6px 12px',
-                fontSize: 12,
-                backgroundColor: view === 'query' ? 'var(--vscode-button-background)' : 'transparent',
-                color: view === 'query' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
-                border: 'none',
-                borderRadius: 4,
-                cursor: 'pointer',
-                flex: 1,
-                textAlign: 'center',
-              }}
-            >
-              Query
-            </button>
-            <button
-              onClick={() => onViewChange?.('compare')}
-              className={view === 'compare' ? 'active' : ''}
-              style={{
-                padding: '6px 12px',
-                fontSize: 12,
-                backgroundColor: view === 'compare' ? 'var(--vscode-button-background)' : 'transparent',
-                color: view === 'compare' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
-                border: 'none',
-                borderRadius: 4,
-                cursor: 'pointer',
-                flex: 1,
-                textAlign: 'center',
-              }}
-            >
-              Compare
-            </button>
-            <button
-              onClick={() => onViewChange?.('project-compare')}
-              className={view === 'project-compare' ? 'active' : ''}
-              style={{
-                padding: '6px 12px',
-                fontSize: 12,
-                backgroundColor: view === 'project-compare' ? 'var(--vscode-button-background)' : 'transparent',
-                color: view === 'project-compare' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
-                border: 'none',
-                borderRadius: 4,
-                cursor: 'pointer',
-                flex: 1,
-                textAlign: 'center',
-              }}
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => onViewChange?.('migration')}
-              className={view === 'migration' ? 'active' : ''}
-              style={{
-                padding: '6px 12px',
-                fontSize: 12,
-                backgroundColor: view === 'migration' ? 'var(--vscode-button-background)' : 'transparent',
-                color: view === 'migration' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
-                border: 'none',
-                borderRadius: 4,
-                cursor: 'pointer',
-                flex: 1,
-                textAlign: 'center',
-              }}
-            >
-              Migration
-            </button>
-            <button
-              onClick={() => onViewChange?.('audit')}
-              className={view === 'audit' ? 'active' : ''}
-              style={{
-                padding: '6px 12px',
-                fontSize: 12,
-                backgroundColor: view === 'audit' ? 'var(--vscode-button-background)' : 'transparent',
-                color: view === 'audit' ? 'var(--vscode-button-foreground)' : 'var(--vscode-foreground)',
-                border: 'none',
-                borderRadius: 4,
-                cursor: 'pointer',
-                flex: 1,
-                textAlign: 'center',
-              }}
-            >
-              Audit
-            </button>
-          </div>
-
-          {/* SECTION 2: Project/Query Toolbar */}
+          {/* SECTION 1: Project/Query Toolbar */}
           <div
             className="toolbar"
             style={{
@@ -598,6 +493,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
               onUpdate={onUpdateDocument}
               onCreateDocument={onCreateDocument}
               onDelete={onDeleteDocument}
+              onOpenDocument={handleOpenDocumentByPath}
             />
           ) : (
             <DocumentTable
@@ -655,8 +551,10 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
       )}
 
       {showNewCollectionModal && (
-        <NewCollectionModal
-          isOpen={true}
+        <AddCollectionModal
+          isOpen={showNewCollectionModal.isOpen}
+          connections={connections}
+          activeProjectId={showNewCollectionModal.selectedProjectId}
           onConfirm={handleNewCollectionConfirm}
           onCancel={handleNewCollectionCancel}
         />
