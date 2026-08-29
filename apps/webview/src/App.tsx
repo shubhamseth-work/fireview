@@ -6,8 +6,7 @@ import { MigrationView } from './views/MigrationView';
 import { AuditView } from './views/AuditView';
 import { Connection, FirestoreDocument, FirestoreQuery } from '@fireview/core';
 import { NotificationProvider, useNotify } from './context/NotificationContext';
-
-declare const acquireVsCodeApi: () => { postMessage: (msg: unknown) => void; getState: () => unknown; setState: (state: unknown) => void };
+import { VSCodeProvider, useVSCode } from './context/VSCodeContext';
 
 interface Message {
   type: string;
@@ -33,7 +32,6 @@ interface FirebaseConfig {
 }
 
 type ViewType = 'firestore' | 'collection' | 'query' | 'compare' | 'project-compare' | 'migration' | 'audit';
-const vscode = acquireVsCodeApi();
 
 // Logger for webview
 const log = {
@@ -44,6 +42,7 @@ const log = {
 };
 
 const AppInner: React.FC = () => {
+  const vscode = useVSCode();
   const notify = useNotify();
   const [view, setView] = useState<ViewType>('firestore');
   const [connection, setConnection] = useState<Connection | null>(null);
@@ -83,8 +82,6 @@ const AppInner: React.FC = () => {
       log.error('Failed to save Firebase config', { error: (err as Error).message });
     }
   }, []);
-
-  // const vscode = acquireVsCodeApi();
 
   const sendMessage = useCallback((type: string, payload?: unknown): Promise<unknown> => {
     log.debug('sendMessage called', { type, payload });
@@ -717,7 +714,9 @@ if (!connection) {
 };
 
 export const App: React.FC = () => (
-  <NotificationProvider>
-    <AppInner />
-  </NotificationProvider>
+  <VSCodeProvider>
+    <NotificationProvider>
+      <AppInner />
+    </NotificationProvider>
+  </VSCodeProvider>
 );

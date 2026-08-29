@@ -9,9 +9,7 @@ import { NewDocumentModal } from './NewDocumentModal';
 import { NewCollectionModal } from './NewCollectionModal';
 import { FirestoreDocument, FirestoreQuery, FirestoreValue, QueryFilter, QueryOperator, OrderByClause } from '@fireview/core';
 import { Connection } from '@fireview/core';
-
-declare const acquireVsCodeApi: () => { postMessage: (msg: unknown) => void; getState: () => unknown; setState: (state: unknown) => void };
-const vscode = acquireVsCodeApi();
+import { useVSCode } from '../context/VSCodeContext';
 
 interface FirebaseConfig {
   apiKey: string;
