@@ -91,7 +91,7 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
         'Click to connect'
       );
       item.command = {
-        command: 'vistiq.connectProject',
+        command: 'fireview.connectProject',
         title: 'Connect Project',
       };
       items.push(item);
@@ -222,7 +222,7 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
         item.iconPath = new vscode.ThemeIcon('file');
         item.contextValue = 'document';
         item.command = {
-          command: 'vistiq.openDocument',
+          command: 'fireview.openDocument',
           title: 'Open Document',
           arguments: [doc.path],
         };
