@@ -694,6 +694,98 @@ const AppInner: React.FC = () => {
     }
   };
 
+  // Flatten object for CSV export with dot-notation
+  function flattenObject(obj: Record<string, any>, prefix = ''): Record<string, any> {
+    const result: Record<string, any> = {};
+    for (const [key, value] of Object.entries(obj)) {
+      const newKey = prefix ? `${prefix}.${key}` : key;
+      if (value === null || typeof value !== 'object') {
+        result[newKey] = value;
+      } else if (Array.isArray(value)) {
+        result[newKey] = JSON.stringify(value);
+      } else if (value && typeof value === 'object' && value.__type__) {
+        // Firestore special types
+        if (value.__type__ === 'timestamp' || value.__type__ === 'reference' || value.__type__ === 'bytes') {
+          result[newKey] = value.value;
+        } else if (value.__type__ === 'geopoint') {
+          result[`${newKey}.latitude`] = value.value?.latitude ?? 0;
+          result[`${newKey}.longitude`] = value.value?.longitude ?? 0;
+        } else if (value.__type__ === 'array') {
+          result[newKey] = JSON.stringify(value.value);
+        } else if (value.__type__ === 'map') {
+          Object.assign(result, flattenObject(value.value, newKey));
+        }
+      } else if (typeof value === 'object' && value !== null) {
+        Object.assign(result, flattenObject(value, newKey));
+      } else {
+        result[newKey] = value;
+      }
+    }
+    return result;
+  }
+
+  function generateCsv(documents: FirestoreDocument[]): string {
+    if (documents.length === 0) return '';
+    
+    // Flatten all documents
+    const flatDocs: Record<string, any>[] = documents.map(doc => ({
+      id: doc.id,
+      path: doc.path,
+      ...flattenObject(doc.data ?? {})
+    }));
+    
+    // Get all unique headers
+    const headers = new Set<string>();
+    flatDocs.forEach(doc => Object.keys(doc).forEach(k => headers.add(k)));
+    const headerArray = Array.from(headers).sort();
+    
+    // Generate CSV rows
+    const rows = [headerArray.join(',')];
+    flatDocs.forEach(doc => {
+      const row = headerArray.map(header => {
+        const value = doc[header];
+        if (value === undefined || value === null) return '';
+        const str = String(value);
+        // Escape CSV special characters
+        if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+          return `"${str.replace(/"/g, '""')}"`;
+        }
+        return str;
+      });
+      rows.push(row.join(','));
+    });
+    
+    return rows.join('\n');
+  }
+
+  const handleExportSelectedDocuments = async (
+    documents: FirestoreDocument[],
+    format: 'json' | 'csv'
+  ) => {
+    if (format === 'json') {
+      const blob = new Blob([JSON.stringify(documents, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
+      const collectionName = documents[0]?.path.split('/')[0] || 'export';
+      a.download = `${collectionName}_export_${timestamp}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } else {
+      const csv = generateCsv(documents);
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
+      const collectionName = documents[0]?.path.split('/')[0] || 'export';
+      a.download = `${collectionName}_export_${timestamp}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  };
+
   if (!connection) {
     return (
       <div
@@ -819,6 +911,7 @@ const AppInner: React.FC = () => {
             onImportDocument={handleImportDocument}
             onExportDocument={handleExportDocument}
             onRevealInConsole={handleRevealInConsole}
+            onExportSelectedDocuments={handleExportSelectedDocuments}
             connections={connections}
             activeProjectId={connection.projectId || null}
             readOnlyCollections={readOnlyCollections}

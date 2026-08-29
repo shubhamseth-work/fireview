@@ -73,6 +73,7 @@ interface FirestoreViewProps {
   onImportDocument: (doc: FirestoreDocument) => void;
   onExportDocument: (doc: FirestoreDocument) => void;
   onRevealInConsole: (doc: FirestoreDocument) => void;
+  onExportSelectedDocuments: (documents: FirestoreDocument[], format: 'json' | 'csv') => void;
   connections: Array<{ projectId: string; displayName: string }>;
   activeProjectId: string | null;
   readOnlyCollections: Set<string>;
@@ -294,6 +295,12 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
 
   const handleCollectionImport = (collectionPath: string) => {
     onImportCollection(collectionPath, 'json', 'upsert', '');
+  };
+
+  const handleExportSelectedDocuments = (documents: FirestoreDocument[], format: 'json' | 'csv') => {
+    // Delegate to the App-level handler which has access to the sendMessage function
+    // This will be passed down from App.tsx
+    (window as any).__FIRESTORE_EXPORT_SELECTED_DOCS__?.(documents, format);
   };
 
   // Safe render wrapper
@@ -528,6 +535,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
               onImportDocument={onImportDocument}
               onExportDocument={onExportDocument}
               onRevealInConsole={onRevealInConsole}
+              onExportSelectedDocuments={handleExportSelectedDocuments}
               connections={connections}
               activeProjectId={activeProjectId}
               collections={collections.map(c => c.id)}

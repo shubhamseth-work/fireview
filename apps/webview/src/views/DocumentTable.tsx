@@ -26,6 +26,7 @@ interface DocumentTableProps {
   onImportDocument: (doc: FirestoreDocument) => void;
   onExportDocument: (doc: FirestoreDocument) => void;
   onRevealInConsole: (doc: FirestoreDocument) => void;
+  onExportSelectedDocuments: (documents: FirestoreDocument[], format: 'json' | 'csv') => void;
   connections: Array<{ projectId: string; displayName: string }>;
   activeProjectId: string | null;
   collections: string[];
@@ -103,6 +104,162 @@ function cleanValue(value: any): any {
   return objResult;
 }
 
+// Flatten object for CSV export with dot-notation
+function flattenObject(obj: Record<string, any>, prefix = ''): Record<string, any> {
+  const result: Record<string, any> = {};
+  for (const [key, value] of Object.entries(obj)) {
+    const newKey = prefix ? `${prefix}.${key}` : key;
+    if (value === null || typeof value !== 'object') {
+      result[newKey] = value;
+    } else if (Array.isArray(value)) {
+      result[newKey] = JSON.stringify(value);
+    } else if (typeof value === 'object' && value !== null) {
+      const obj = value as { __type__?: string; value?: unknown };
+      if ('__type__' in obj) {
+        const type = obj.__type__ as string;
+        const val = obj.value;
+        if (type === 'timestamp' || type === 'reference' || type === 'bytes') {
+          result[newKey] = val;
+        } else if (type === 'geopoint') {
+          const gp = val as { latitude: number; longitude: number } | null;
+          if (!gp) return result;
+          result[`${newKey}.latitude`] = gp.latitude;
+          result[`${newKey}.longitude`] = gp.longitude;
+        } else if (type === 'array') {
+          result[newKey] = JSON.stringify(val);
+        } else if (type === 'map') {
+          Object.assign(result, flattenObject(val as Record<string, any>, newKey));
+        }
+      } else {
+        Object.assign(result, flattenObject(value as Record<string, any>, newKey));
+      }
+    }
+  }
+  return result;
+}
+
+function generateCsv(documents: FirestoreDocument[]): string {
+  if (documents.length === 0) return '';
+
+  // Flatten all documents
+  const flatDocs = documents.map(doc => ({
+    id: doc.id,
+    path: doc.path,
+    ...flattenObject(doc.data ?? {})
+  })) as Record<string, any>[];
+
+  // Get all unique headers
+  const headers = new Set<string>();
+  flatDocs.forEach(doc => Object.keys(doc).forEach(k => headers.add(k)));
+  const headerArray = Array.from(headers).sort();
+
+  // Generate CSV rows
+  const rows = [headerArray.join(',')];
+  flatDocs.forEach(doc => {
+    const row = headerArray.map(header => {
+      const value = doc[header];
+      if (value === undefined || value === null) return '';
+      const str = String(value);
+      // Escape CSV special characters
+      if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+        return `"${str.replace(/"/g, '""')}"`;
+      }
+      return str;
+    });
+    rows.push(row.join(','));
+  });
+
+  return rows.join('\n');
+}
+
+interface ExportSelectedModalProps {
+  isOpen: boolean;
+  format: 'json' | 'csv';
+  onClose: () => void;
+  onExport: (docs: FirestoreDocument[], format: 'json' | 'csv') => void;
+  documents: FirestoreDocument[];
+  selectedIds: Set<string>;
+  selectedCollection: string;
+}
+
+const ExportSelectedModal: React.FC<ExportSelectedModalProps> = ({
+  isOpen,
+  format: initialFormat,
+  onClose,
+  onExport,
+  documents,
+  selectedIds,
+  selectedCollection
+}) => {
+  const [format, setFormat] = useState<'json' | 'csv'>(initialFormat);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const selectedDocs = documents.filter(d => selectedIds.has(d.id));
+
+  const handleExport = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      await onExport(selectedDocs, format);
+      onClose();
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal" onClick={e => e.stopPropagation()} style={{ maxWidth: 500 }}>
+        <div className="modal-header">
+          <h3 className="modal-title">Export {selectedDocs.length} Documents</h3>
+          <button className="modal-close" onClick={onClose}>×</button>
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <strong>{selectedDocs.length} documents selected</strong>
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+            <input
+              type="radio"
+              name="format"
+              value="json"
+              checked={format === 'json'}
+              onChange={() => setFormat('json')}
+            />
+            <span>JSON</span>
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <input
+              type="radio"
+              name="format"
+              value="csv"
+              checked={format === 'csv'}
+              onChange={() => setFormat('csv')}
+            />
+            <span>CSV</span>
+          </label>
+        </div>
+        {error && (
+          <div style={{ color: 'var(--vscode-error)', marginBottom: 16, padding: 8, backgroundColor: 'rgba(244, 71, 71, 0.1)', borderRadius: 4 }}>
+            {error}
+          </div>
+        )}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+          <button className="secondary" onClick={onClose} disabled={loading}>Cancel</button>
+          <button onClick={handleExport} disabled={loading || selectedDocs.length === 0}>
+            {loading ? 'Exporting...' : `Export ${format.toUpperCase()}`}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const DocumentTable: React.FC<DocumentTableProps> = ({
   documents,
   loading,
@@ -149,6 +306,79 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
     currentName: string;
   } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const selectAllCheckboxRef = useRef<HTMLInputElement>(null);
+
+  // Selection state for bulk operations
+  const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
+  const [showExportModal, setShowExportModal] = useState<{
+    isOpen: boolean;
+    format: 'json' | 'csv';
+  } | null>(null);
+
+  // Clear selection when documents change (page change)
+  React.useEffect(() => {
+    setSelectedRows(new Set());
+  }, [documents]);
+
+  const selectedCount = selectedRows.size;
+  const isAllSelected = documents.length > 0 && selectedRows.size === documents.length;
+  const isIndeterminate = selectedRows.size > 0 && selectedRows.size < documents.length;
+
+  // Update indeterminate state
+  React.useEffect(() => {
+    if (selectAllCheckboxRef.current) {
+      selectAllCheckboxRef.current.indeterminate = isIndeterminate;
+    }
+  }, [isIndeterminate]);
+
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      setSelectedRows(new Set(documents.map(d => d.id)));
+    } else {
+      setSelectedRows(new Set());
+    }
+  };
+
+  const handleRowSelect = (docId: string, checked: boolean) => {
+    const newSelection = new Set(selectedRows);
+    if (checked) newSelection.add(docId);
+    else newSelection.delete(docId);
+    setSelectedRows(newSelection);
+  };
+
+  const handleOpenExportModal = (format: 'json' | 'csv') => {
+    setShowExportModal({ isOpen: true, format });
+  };
+
+  const handleCloseExportModal = () => {
+    setShowExportModal(null);
+  };
+
+  const handleExportSelected = async (docs: FirestoreDocument[], format: 'json' | 'csv') => {
+    if (format === 'json') {
+      const blob = new Blob([JSON.stringify(docs, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
+      const collectionName = selectedCollection || 'export';
+      a.download = `${collectionName}_export_${timestamp}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } else {
+      const csv = generateCsv(docs);
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
+      const collectionName = selectedCollection || 'export';
+      a.download = `${collectionName}_export_${timestamp}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+    setShowExportModal(null);
+  };
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -382,6 +612,16 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
         <table>
           <thead>
             <tr>
+              <th style={{ minWidth: 40, textAlign: 'center' }}>
+                <input
+                  type="checkbox"
+                  ref={selectAllCheckboxRef}
+                  checked={isAllSelected}
+                  onChange={e => handleSelectAll(e.target.checked)}
+                  aria-label="Select all documents"
+                  style={{ cursor: 'pointer' }}
+                />
+              </th>
               <th style={{ minWidth: 40, textAlign: 'center' }}>Actions</th>
               {columns.map(col => (
                 <th key={col} style={{ minWidth: 120 }}>
@@ -393,6 +633,16 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
           <tbody>
             {documents.map(doc => (
               <tr key={doc.id} onClick={() => onRowClick(doc)} style={{ cursor: 'pointer' }}>
+                <td style={{ textAlign: 'center' }}>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.has(doc.id)}
+                    onChange={e => handleRowSelect(doc.id, e.target.checked)}
+                    onClick={e => e.stopPropagation()}
+                    aria-label={`Select document ${doc.id}`}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </td>
                 <td style={{ textAlign: 'center', whiteSpace: 'nowrap', position: 'relative' }}>
                   <button
                     onClick={e => openMenu(doc, e)}
@@ -502,7 +752,23 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: 12, color: 'var(--vscode-descriptionForeground)' }}>
+{selectedCount > 0 && (
+              <button
+                onClick={() => handleOpenExportModal('json')}
+                style={{
+                  padding: '6px 12px',
+                  fontSize: 12,
+                  backgroundColor: 'var(--vscode-button-background)',
+                  color: 'var(--vscode-button-foreground)',
+                  border: 'none',
+                  borderRadius: 2,
+                  cursor: 'pointer',
+                }}
+              >
+                📤 Export ({selectedCount})
+              </button>
+            )}
+            <span style={{ fontSize: 12, color: 'var(--vscode-descriptionForeground)' }}>
             Page {pagination.page} • {documents.length} documents
           </span>
           <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: 12 }}>
@@ -588,6 +854,18 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
           currentName={renameModal.currentName}
           onConfirm={handleRenameConfirm}
           onCancel={handleRenameCancel}
+        />
+      )}
+
+      {showExportModal && (
+        <ExportSelectedModal
+          isOpen={showExportModal.isOpen}
+          format={showExportModal.format}
+          onClose={handleCloseExportModal}
+          onExport={handleExportSelected}
+          documents={documents}
+          selectedIds={selectedRows}
+          selectedCollection={selectedCollection}
         />
       )}
     </div>
