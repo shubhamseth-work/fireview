@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Connection } from '@vistiq/core';
+import { Connection } from '@fireview/core';
 import { ConfirmationModal } from './ConfirmationModal';
 import { CopyMoveModal } from './CopyMoveModal';
 import { NewDocumentModal } from './NewDocumentModal';

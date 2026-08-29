@@ -54,10 +54,10 @@ async function build() {
     target: 'node18',
     outdir: outDir,
     external: ['vscode'],
-    sourcemap: true,
+    sourcemap: false,
     sourcesContent: false,
     treeShaking: true,
-    minify: false,
+    minify: true,
   });
 
   if (isWatch) {

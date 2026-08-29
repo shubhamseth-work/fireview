@@ -13,6 +13,7 @@ export default defineConfig({
   build: {
     outDir,
     emptyOutDir: true,
+    cssCodeSplit: true,
     rollupOptions: {
       input: {
         firestore: 'src/firestore/index.html',
@@ -23,6 +24,8 @@ export default defineConfig({
       },
       output: {
         manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-firebase': ['firebase/app', 'firebase/auth', 'firebase/firestore'],
           'firebase-auth': ['firebase/auth'],
         },
       },

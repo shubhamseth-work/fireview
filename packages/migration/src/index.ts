@@ -8,11 +8,11 @@ import {
   MigrationError,
   FirestoreQuery,
   FirestoreDocument,
-} from '@vistiq/core';
-import { FirestoreConnection } from '@vistiq/firestore';
-import { BatchService, createBatchService } from '@vistiq/batch';
-import { ProjectCompareService, createProjectCompareService } from '@vistiq/project-compare';
-import { logger, VistiqError, ERROR_CODES } from '@vistiq/shared';
+} from '@fireview/core';
+import { FirestoreConnection } from '@fireview/firestore';
+import { BatchService, createBatchService } from '@fireview/batch';
+import { ProjectCompareService, createProjectCompareService } from '@fireview/project-compare';
+import { logger, VistiqError, ERROR_CODES } from '@fireview/shared';
 
 const MIGRATION_STEPS: MigrationStep[] = [
   'select-source',

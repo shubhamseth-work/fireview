@@ -1,5 +1,5 @@
-import { AuditEntry, AuditOperation } from '@vistiq/core';
-import { logger } from '@vistiq/shared';
+import { AuditEntry, AuditOperation } from '@fireview/core';
+import { logger } from '@fireview/shared';
 
 const MAX_ENTRIES = 10000;
 

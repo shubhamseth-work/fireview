@@ -1,5 +1,5 @@
 import { SecretStorage } from 'vscode';
-import { AuthMethod, EmulatorConfig } from '@vistiq/core';
+import { AuthMethod, EmulatorConfig } from '@fireview/core';
 export interface StoredServiceAccount {
     type: string;
     project_id: string;

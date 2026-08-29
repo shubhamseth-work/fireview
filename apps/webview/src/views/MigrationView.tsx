@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Connection } from '@vistiq/core';
+import { Connection } from '@fireview/core';
 
 interface MigrationViewProps {
   connection: Connection;

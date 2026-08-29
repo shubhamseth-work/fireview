@@ -1,4 +1,4 @@
-import { DocumentDiff, DiffChange, FirestoreDocument, FirestoreValue } from '@vistiq/core';
+import { DocumentDiff, DiffChange, FirestoreDocument, FirestoreValue } from '@fireview/core';
 
 export class DiffService {
   diff(left: FirestoreDocument | null, right: FirestoreDocument | null): DocumentDiff {

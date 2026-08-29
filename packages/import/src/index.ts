@@ -6,9 +6,9 @@ import {
   FirestoreDocument,
   FirestoreValue,
   ConflictDetail,
-} from '@vistiq/core';
-import { FirestoreConnection } from '@vistiq/firestore';
-import { logger, VistiqError, ERROR_CODES } from '@vistiq/shared';
+} from '@fireview/core';
+import { FirestoreConnection } from '@fireview/firestore';
+import { logger, VistiqError, ERROR_CODES } from '@fireview/shared';
 import * as fs from 'fs';
 import * as path from 'path';
 

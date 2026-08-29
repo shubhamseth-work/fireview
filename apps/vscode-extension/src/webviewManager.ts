@@ -1,6 +1,6 @@
-import type { AuditService } from '@vistiq/audit';
-import type { FirestoreDocument, FirestoreQuery } from '@vistiq/core';
-import { createChildLogger } from '@vistiq/shared';
+import type { AuditService } from '@fireview/audit';
+import type { FirestoreDocument, FirestoreQuery } from '@fireview/core';
+import { createChildLogger } from '@fireview/shared';
 import * as fs from 'fs';
 import * as vscode from 'vscode';
 import type { ConnectionManager } from './connectionManager.js';
@@ -462,7 +462,7 @@ export class WebviewManager {
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error('No active Firestore connection');
 
-    const { ExportService, createExportService } = await import('@vistiq/export');
+    const { ExportService, createExportService } = await import('@fireview/export');
     const exportService = createExportService(active.firestore);
 
     await exportService.export({
@@ -493,7 +493,7 @@ export class WebviewManager {
     const active = this.connectionManager.getActiveConnection();
     if (!active?.firestore) throw new Error('No active Firestore connection');
 
-    const { ImportService, createImportService } = await import('@vistiq/import');
+    const { ImportService, createImportService } = await import('@fireview/import');
     const importService = createImportService(active.firestore);
 
     const result = await importService.import({

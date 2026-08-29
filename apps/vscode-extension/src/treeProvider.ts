@@ -1,5 +1,5 @@
-import { Connection } from '@vistiq/core';
-import { createChildLogger } from '@vistiq/shared';
+import { Connection } from '@fireview/core';
+import { createChildLogger } from '@fireview/shared';
 import * as vscode from 'vscode';
 import type { ConnectionManager, ActiveConnection } from './connectionManager.js';
 import type { WebviewManager } from './webviewManager.js';

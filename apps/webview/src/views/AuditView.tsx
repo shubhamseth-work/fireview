@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Connection, AuditEntry, AuditOperation } from '@vistiq/core';
+import { Connection, AuditEntry, AuditOperation } from '@fireview/core';
 
 interface AuditViewProps {
   connection: Connection;

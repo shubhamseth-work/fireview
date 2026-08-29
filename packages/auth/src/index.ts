@@ -1,6 +1,6 @@
-import { AuthProvider, Connection, AuthStatus, EmulatorConfig } from '@vistiq/core';
-import { logger, VistiqError, ERROR_CODES } from '@vistiq/shared';
-import { CredentialService } from '@vistiq/credentials';
+import { AuthProvider, Connection, AuthStatus, EmulatorConfig } from '@fireview/core';
+import { logger, VistiqError, ERROR_CODES } from '@fireview/shared';
+import { CredentialService } from '@fireview/credentials';
 import { OAuth2Client } from 'google-auth-library';
 import { initializeApp, cert, getApps, App } from 'firebase-admin/app';
 import { getFirestore, Firestore } from 'firebase-admin/firestore';

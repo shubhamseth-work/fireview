@@ -1,5 +1,5 @@
-import { EmulatorConfig, ProjectFileDetectionResult } from '@vistiq/core';
-import { logger } from '@vistiq/shared';
+import { EmulatorConfig, ProjectFileDetectionResult } from '@fireview/core';
+import { logger } from '@fireview/shared';
 import * as fs from 'fs';
 import * as path from 'path';
 

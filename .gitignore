@@ -45,6 +45,10 @@ coverage/
 # Turbo
 .turbo/
 
+# Generated build configs
+apps/webview/vite.config.js
+apps/webview/vite.config.js.map
+
 # Temporary
 tmp/
 temp/

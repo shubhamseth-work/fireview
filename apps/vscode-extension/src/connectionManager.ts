@@ -1,5 +1,5 @@
-import type { AuditService } from '@vistiq/audit';
-import type { AuthProviders } from '@vistiq/auth';
+import type { AuditService } from '@fireview/audit';
+import type { AuthProviders } from '@fireview/auth';
 import type {
   AuthMethod,
   Connection,
@@ -7,11 +7,11 @@ import type {
   EnvironmentLabel,
   StoredConnection,
   StoredServiceAccount,
-} from '@vistiq/core';
-import type { CredentialService } from '@vistiq/credentials';
-import type { EmulatorService } from '@vistiq/emulator';
-import { createFirestoreService, type FirestoreService } from '@vistiq/firestore';
-import { createChildLogger, ERROR_CODES, VistiqError } from '@vistiq/shared';
+} from '@fireview/core';
+import type { CredentialService } from '@fireview/credentials';
+import type { EmulatorService } from '@fireview/emulator';
+import { createFirestoreService, type FirestoreService } from '@fireview/firestore';
+import { createChildLogger, ERROR_CODES, VistiqError } from '@fireview/shared';
 import * as fs from 'fs';
 import * as vscode from 'vscode';
 

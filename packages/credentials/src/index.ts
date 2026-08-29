@@ -1,6 +1,6 @@
 import { SecretStorage, Disposable } from 'vscode';
-import { logger } from '@vistiq/shared';
-import { EmulatorConfig, AuthMethod, StoredConnection, StoredServiceAccount } from '@vistiq/core';
+import { logger } from '@fireview/shared';
+import { EmulatorConfig, AuthMethod, StoredConnection, StoredServiceAccount } from '@fireview/core';
 
 const SECRET_KEYS = {
   SERVICE_ACCOUNT: 'serviceAccount',

@@ -4,7 +4,7 @@ import { CompareView } from './views/CompareView';
 import { ProjectCompareView } from './views/ProjectCompareView';
 import { MigrationView } from './views/MigrationView';
 import { AuditView } from './views/AuditView';
-import { Connection, FirestoreDocument, FirestoreQuery } from '@vistiq/core';
+import { Connection, FirestoreDocument, FirestoreQuery } from '@fireview/core';
 import { NotificationProvider, useNotify } from './context/NotificationContext';
 
 declare const acquireVsCodeApi: () => { postMessage: (msg: unknown) => void; getState: () => unknown; setState: (state: unknown) => void };

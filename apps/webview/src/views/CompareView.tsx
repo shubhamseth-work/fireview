@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Connection, FirestoreDocument } from '@vistiq/core';
+import { Connection, FirestoreDocument } from '@fireview/core';
 
 interface CompareViewProps {
   connection: Connection;

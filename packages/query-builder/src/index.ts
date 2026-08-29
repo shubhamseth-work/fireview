@@ -4,8 +4,8 @@ import {
   QueryOperator,
   OrderByClause,
   FirestoreValue,
-} from '@vistiq/core';
-import { QueryEngine, ValidationResult, createQueryEngine } from '@vistiq/query-engine';
+} from '@fireview/core';
+import { QueryEngine, ValidationResult, createQueryEngine } from '@fireview/query-engine';
 
 export interface QueryBuilderState {
   collectionPath: string;

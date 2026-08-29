@@ -13,19 +13,31 @@
 **/node_modules/**
 **/.git/**
 **/*.log
-**/dist/**/*.map
 **/coverage/**
 **/.vscode/**
 **/.idea/**
 **/*.vsix
 
-# Keep only extension source
-!src/**
+# Ignore build configs (not needed at runtime)
+esbuild.config.mjs
+tsconfig.json
+tsconfig.tsbuildinfo
+
+# Ignore source files (not needed at runtime)
+src/**
+
+# Ignore source maps (not needed in production)
+*.map
+dist/**/*.map
+dist/*.map
+
+# Keep only extension runtime files
 !resources/**
-!dist/**
+!dist/extension.js
+!dist/package.json
+!dist/resources/**
+!dist/webview/**
 !package.json
-!esbuild.config.mjs
-!tsconfig.json
 !README.md
 !LICENSE*
 !CHANGELOG*

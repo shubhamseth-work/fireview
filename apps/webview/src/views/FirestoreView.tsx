@@ -7,8 +7,8 @@ import { ExportModal } from './ExportModal';
 import { ImportModal } from './ImportModal';
 import { NewDocumentModal } from './NewDocumentModal';
 import { NewCollectionModal } from './NewCollectionModal';
-import { FirestoreDocument, FirestoreQuery, FirestoreValue, QueryFilter, QueryOperator, OrderByClause } from '@vistiq/core';
-import { Connection } from '@vistiq/core';
+import { FirestoreDocument, FirestoreQuery, FirestoreValue, QueryFilter, QueryOperator, OrderByClause } from '@fireview/core';
+import { Connection } from '@fireview/core';
 
 declare const acquireVsCodeApi: () => { postMessage: (msg: unknown) => void; getState: () => unknown; setState: (state: unknown) => void };
 const vscode = acquireVsCodeApi();

@@ -10,8 +10,8 @@ import {
   QueryFilter,
   QueryOperator,
   OrderByClause,
-} from '@vistiq/core';
-import { logger, VistiqError, ERROR_CODES } from '@vistiq/shared';
+} from '@fireview/core';
+import { logger, VistiqError, ERROR_CODES } from '@fireview/shared';
 import { Firestore, Query, DocumentSnapshot as AdminDocumentSnapshot, CollectionReference, FieldValue } from 'firebase-admin/firestore';
 
 export class FirestoreService implements FirestoreConnection {
@@ -385,4 +385,4 @@ export function createFirestoreService(firestore: Firestore, projectId: string):
   return new FirestoreService(firestore, projectId);
 }
 
-export type { FirestoreConnection } from '@vistiq/core';
+export type { FirestoreConnection } from '@fireview/core';

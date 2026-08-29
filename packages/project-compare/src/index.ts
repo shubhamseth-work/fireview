@@ -4,9 +4,9 @@ import {
   ComparisonSummary,
   CollectionInfo,
   FieldInfo,
-} from '@vistiq/core';
-import { FirestoreConnection } from '@vistiq/firestore';
-import { logger } from '@vistiq/shared';
+} from '@fireview/core';
+import { FirestoreConnection } from '@fireview/firestore';
+import { logger } from '@fireview/shared';
 
 export class ProjectCompareService {
   private sourceFirestore: FirestoreConnection;

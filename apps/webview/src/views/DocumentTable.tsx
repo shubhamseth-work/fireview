@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FirestoreDocument, FirestoreQuery, QueryFilter, QueryOperator, OrderByClause } from '@vistiq/core';
-import { Connection } from '@vistiq/core';
+import { FirestoreDocument, FirestoreQuery, QueryFilter, QueryOperator, OrderByClause } from '@fireview/core';
+import { Connection } from '@fireview/core';
 import { ConfirmationModal } from './ConfirmationModal';
 import { CopyMoveModal } from './CopyMoveModal';
 import { RenameModal } from './RenameModal';

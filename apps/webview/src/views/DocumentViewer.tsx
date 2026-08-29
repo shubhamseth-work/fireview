@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FirestoreDocument, FirestoreValue } from '@vistiq/core';
-import { Connection } from '@vistiq/core';
+import { FirestoreDocument, FirestoreValue } from '@fireview/core';
+import { Connection } from '@fireview/core';
 import { useNotify } from '../context/NotificationContext';
 import { ConfirmationModal } from './ConfirmationModal';
 

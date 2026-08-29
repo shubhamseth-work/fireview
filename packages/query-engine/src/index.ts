@@ -3,8 +3,8 @@ import {
   QueryFilter,
   QueryOperator,
   OrderByClause,
-} from '@vistiq/core';
-import { logger, VistiqError, ERROR_CODES } from '@vistiq/shared';
+} from '@fireview/core';
+import { logger, VistiqError, ERROR_CODES } from '@fireview/shared';
 
 const INCOMPATIBLE_OPERATORS: Record<QueryOperator, QueryOperator[]> = {
   '==': ['!=', 'in', 'not-in', 'array-contains', 'array-contains-any'],

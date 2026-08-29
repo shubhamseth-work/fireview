@@ -1,6 +1,6 @@
-import { ExportOptions, ExportProgress, FirestoreQuery, FirestoreDocument, FirestoreValue } from '@vistiq/core';
-import { FirestoreConnection } from '@vistiq/firestore';
-import { logger, VistiqError, ERROR_CODES } from '@vistiq/shared';
+import { ExportOptions, ExportProgress, FirestoreQuery, FirestoreDocument, FirestoreValue } from '@fireview/core';
+import { FirestoreConnection } from '@fireview/firestore';
+import { logger, VistiqError, ERROR_CODES } from '@fireview/shared';
 import * as fs from 'fs';
 import * as path from 'path';
 

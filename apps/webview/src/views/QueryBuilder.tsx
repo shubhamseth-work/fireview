@@ -1,5 +1,5 @@
 import React from 'react';
-import { FirestoreDocument, QueryFilter, QueryOperator, OrderByClause, FirestoreValue } from '@vistiq/core';
+import { FirestoreDocument, QueryFilter, QueryOperator, OrderByClause, FirestoreValue } from '@fireview/core';
 
 interface QueryBuilderProps {
   collections: any[];
