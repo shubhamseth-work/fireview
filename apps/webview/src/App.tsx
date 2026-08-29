@@ -8,6 +8,7 @@ import { FirestoreView } from './views/FirestoreView';
 import { MigrationView } from './views/MigrationView';
 import { ProjectCompareView } from './views/ProjectCompareView';
 import { ErrorBoundary } from './views/ErrorBoundary';
+import { cleanDataForExport, cleanDocumentsForExport } from './utils/cleanDataForExport';
 
 interface Message {
   type: string;
@@ -702,7 +703,9 @@ const AppInner: React.FC = () => {
       if (value === null || typeof value !== 'object') {
         result[newKey] = value;
       } else if (Array.isArray(value)) {
-        result[newKey] = JSON.stringify(value);
+        // Clean each array element to remove Firestore type wrappers
+        const cleanedArray = value.map(v => cleanDataForExport(v));
+        result[newKey] = JSON.stringify(cleanedArray);
       } else if (value && typeof value === 'object' && value.__type__) {
         // Firestore special types
         if (value.__type__ === 'timestamp' || value.__type__ === 'reference' || value.__type__ === 'bytes') {
@@ -711,9 +714,13 @@ const AppInner: React.FC = () => {
           result[`${newKey}.latitude`] = value.value?.latitude ?? 0;
           result[`${newKey}.longitude`] = value.value?.longitude ?? 0;
         } else if (value.__type__ === 'array') {
-          result[newKey] = JSON.stringify(value.value);
+          // Clean each element in the array
+          const cleanedArray = (value.value as unknown[] | null)?.map(cleanDataForExport) ?? [];
+          result[newKey] = JSON.stringify(cleanedArray);
         } else if (value.__type__ === 'map') {
-          Object.assign(result, flattenObject(value.value, newKey));
+          // Clean the map value first, then flatten
+          const cleanedMap = cleanDataForExport(value.value);
+          Object.assign(result, flattenObject(cleanedMap as Record<string, any>, newKey));
         }
       } else if (typeof value === 'object' && value !== null) {
         Object.assign(result, flattenObject(value, newKey));
@@ -762,12 +769,21 @@ const AppInner: React.FC = () => {
     documents: FirestoreDocument[],
     format: 'json' | 'csv'
   ) => {
+    // Clean documents for export to remove Firestore type wrappers
+    const cleanedDocuments = cleanDocumentsForExport(documents);
+    
+    // Generate hybrid timestamp: date + epoch milliseconds (e.g., 2025-08-30_1756567200123)
+    const now = new Date();
+    const datePart = now.toISOString().split('T')[0];
+    const epochMs = Date.now();
+    const timestamp = `${datePart}_${Date.now()}`;
+    const collectionName = documents[0]?.path.split('/')[0] || 'export';
+    
     if (format === 'json') {
-      const blob = new Blob([JSON.stringify(documents, null, 2)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(cleanDocumentsForExport(documents), null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
       const collectionName = documents[0]?.path.split('/')[0] || 'export';
       a.download = `${collectionName}_export_${timestamp}.json`;
       a.click();
@@ -778,7 +794,6 @@ const AppInner: React.FC = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
       const collectionName = documents[0]?.path.split('/')[0] || 'export';
       a.download = `${collectionName}_export_${timestamp}.csv`;
       a.click();

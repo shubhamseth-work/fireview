@@ -5,6 +5,7 @@ import { useNotify } from '../context/NotificationContext';
 import { ConfirmationModal } from './ConfirmationModal';
 import { CopyMoveModal } from './CopyMoveModal';
 import { RenameModal } from './RenameModal';
+import { cleanDataForExport } from '../utils/cleanDataForExport';
 
 interface DocumentTableProps {
   documents: FirestoreDocument[];
@@ -112,7 +113,9 @@ function flattenObject(obj: Record<string, any>, prefix = ''): Record<string, an
     if (value === null || typeof value !== 'object') {
       result[newKey] = value;
     } else if (Array.isArray(value)) {
-      result[newKey] = JSON.stringify(value);
+      // Clean each array element to remove Firestore type wrappers
+      const cleanedArray = value.map(v => cleanDataForExport(v));
+      result[newKey] = JSON.stringify(cleanedArray);
     } else if (typeof value === 'object' && value !== null) {
       const obj = value as { __type__?: string; value?: unknown };
       if ('__type__' in obj) {
@@ -126,9 +129,13 @@ function flattenObject(obj: Record<string, any>, prefix = ''): Record<string, an
           result[`${newKey}.latitude`] = gp.latitude;
           result[`${newKey}.longitude`] = gp.longitude;
         } else if (type === 'array') {
-          result[newKey] = JSON.stringify(val);
+          // Clean each element in the array
+          const cleanedArray = (val as unknown[] | null)?.map(cleanDataForExport) ?? [];
+          result[newKey] = JSON.stringify(cleanedArray);
         } else if (type === 'map') {
-          Object.assign(result, flattenObject(val as Record<string, any>, newKey));
+          // Clean the map value first, then flatten
+          const cleanedMap = cleanDataForExport(val);
+          Object.assign(result, flattenObject(cleanedMap as Record<string, any>, newKey));
         }
       } else {
         Object.assign(result, flattenObject(value as Record<string, any>, newKey));
@@ -217,6 +224,9 @@ const ExportSelectedModal: React.FC<ExportSelectedModalProps> = ({
       <div className="modal" onClick={e => e.stopPropagation()} style={{ maxWidth: 500 }}>
         <div className="modal-header">
           <h3 className="modal-title">Export {selectedDocs.length} Documents</h3>
+          <div style={{ fontSize: 11, color: 'var(--vscode-descriptionForeground)', marginTop: 4 }}>
+            Filename will include epoch timestamp: <code>{`${new Date().toISOString().split('T')[0]}_${Date.now()}`}</code>
+          </div>
           <button className="modal-close" onClick={onClose}>×</button>
         </div>
         <div style={{ marginBottom: 16 }}>
@@ -354,14 +364,18 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
     setShowExportModal(null);
   };
 
-  const handleExportSelected = async (docs: FirestoreDocument[], format: 'json' | 'csv') => {
+const handleExportSelected = async (docs: FirestoreDocument[], format: 'json' | 'csv') => {
+    // Generate hybrid timestamp: date + epoch milliseconds (e.g., 2025-08-30_1756567200123)
+    const now = new Date();
+    const datePart = now.toISOString().split('T')[0];
+    const timestamp = `${datePart}_${Date.now()}`;
+    const collectionName = selectedCollection || 'export';
+    
     if (format === 'json') {
       const blob = new Blob([JSON.stringify(docs, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
-      const collectionName = selectedCollection || 'export';
       a.download = `${collectionName}_export_${timestamp}.json`;
       a.click();
       URL.revokeObjectURL(url);
@@ -371,13 +385,11 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
-      const collectionName = selectedCollection || 'export';
       a.download = `${collectionName}_export_${timestamp}.csv`;
       a.click();
       URL.revokeObjectURL(url);
     }
-    setShowExportModal(null);
+    handleCloseExportModal();
   };
 
   useEffect(() => {
