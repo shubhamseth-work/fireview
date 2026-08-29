@@ -2,6 +2,7 @@ import type { Connection, FirestoreDocument, FirestoreValue } from '@fireview/co
 import React, { useState } from 'react';
 import { useNotify } from '../context/NotificationContext';
 import { ConfirmationModal } from './ConfirmationModal';
+import { JsonTreeView } from './JsonTreeView';
 
 // Logger for DocumentViewer
 const log = {
@@ -324,19 +325,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   );
 
   const renderJsonView = () => (
-    <div
-      className="json-viewer"
-      style={{
-        flex: 1,
-        overflow: 'auto',
-        padding: 16,
-        fontFamily: 'monospace',
-        fontSize: 12,
-        lineHeight: 1.5,
-      }}
-    >
-      {formatValue({ __type__: 'map', value: safeData } as any)}
-    </div>
+    <JsonTreeView data={safeData} />
   );
 
   const renderRawView = () => (
@@ -489,7 +478,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
           />
         </div>
       ) : (
-        <div style={{ flex: 1, overflow: 'hidden' }}>
+        <div style={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
           {viewMode === 'table' && renderTableView()}
           {viewMode === 'json' && renderJsonView()}
           {viewMode === 'raw' && renderRawView()}
