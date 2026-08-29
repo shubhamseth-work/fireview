@@ -12,8 +12,8 @@
 **Do not open public issues for security vulnerabilities.**
 
 Report security issues privately via:
-- Email: security@vistiq.dev (or GitHub Security Advisories)
-- GitHub: [Report a vulnerability](https://github.com/vistiq/vistiq-viewer/security/advisories/new)
+- Email: security@fireview.dev (or GitHub Security Advisories)
+- GitHub: [Report a vulnerability](https://github.com/shubhamseth-work/fireview/security/advisories/new)
 
 Include:
 - Description of the vulnerability
@@ -26,7 +26,7 @@ We aim to respond within 48 hours and provide a fix timeline.
 ## Security Architecture
 
 ### Threat Model
-Vistiq defends against:
+FireView defends against:
 - Malicious extensions/compromised workspace
 - Compromised Webview (XSS, prototype pollution)
 - Credential theft / token leakage
@@ -48,7 +48,7 @@ Vistiq defends against:
 
 ### Network Security
 - **Direct connections only**: Extension Host → Firebase/Google APIs
-- **No Vistiq backend**: No proxy, no middleware, no data collection
+- **No FireView backend**: No proxy, no middleware, no data collection
 - **TLS enforced**: All Firebase Admin SDK traffic over HTTPS
 
 ### Logging & Audit
@@ -101,6 +101,6 @@ npm run test:security
 
 ## Contact
 
-Security team: security@vistiq.dev
+Security team: security@fireview.dev
 
-For non-security issues, use [GitHub Issues](https://github.com/vistiq/vistiq-viewer/issues).
+For non-security issues, use [GitHub Issues](https://github.com/shubhamseth-work/fireview/issues).

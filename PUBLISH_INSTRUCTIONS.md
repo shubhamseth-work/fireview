@@ -1,6 +1,6 @@
-# Vistiq VS Code Extension - Publish Instructions
+# FireView VS Code Extension - Publish Instructions
 
-Complete step-by-step guide to build, package, and publish the Vistiq VS Code Extension to the Visual Studio Code Marketplace.
+Complete step-by-step guide to build, package, and publish the FireView VS Code Extension to the Visual Studio Code Marketplace.
 
 ---
 
@@ -16,7 +16,7 @@ npm install -g @vscode/vsce
 # npx vsce <command>
 
 # Login to publisher account (run once)
-vsce login vistiq
+vsce login shubhamseth-work
 # Enter Personal Access Token when prompted
 ```
 
@@ -25,25 +25,25 @@ vsce login vistiq
 1. Go to [Azure DevOps](https://dev.azure.com/) → User Settings → Personal Access Tokens
 2. Click **New Token**
 3. Configure:
-   - **Name**: `vistiq-vscode-marketplace`
+   - **Name**: `fireview-vscode-marketplace`
    - **Organization**: `All accessible organizations`
    - **Expiration**: Set appropriate date
    - **Scopes**: `Marketplace` → `Manage` (check this box)
 4. Copy the token immediately (shown only once)
-5. Use with `vsce login vistiq` or `vsce publish -p <token>`
+5. Use with `vsce login shubhamseth-work` or `vsce publish -p <token>`
 
 ---
 
 ## Directory Structure
 
 ```
-vistiq-viewer/
+fireview/
 ├── apps/vscode-extension/          # Extension source
 │   ├── package.json                # Extension manifest
 │   ├── src/                        # TypeScript source
 │   ├── esbuild.config.mjs          # Build config
 │   └── resources/icon.png          # Extension icon
-├── packages/                       # Internal packages (@vistiq/*)
+├── packages/                       # Internal packages (@fireview/*)
 └── package.json                    # Root workspace config
 ```
 
@@ -55,7 +55,7 @@ vistiq-viewer/
 
 ```bash
 # From root directory
-cd /Users/username/Projects/node-apps/vistiq-viewer
+cd /Users/username/Projects/node-apps/fireview
 npm install
 ```
 
@@ -67,8 +67,8 @@ npm run build
 ```
 
 **What this does:**
-- Builds all `@vistiq/*` packages in `packages/` via `tsc`
-- Builds webview (`vistiq-webview`) via `tsc && vite build`
+- Builds all `@fireview/*` packages in `packages/` via `tsc`
+- Builds webview (`fireview-webview`) via `tsc && vite build`
 - Bundles extension via `esbuild` → `apps/vscode-extension/dist/extension.js`
 
 ### 3. Run Quality Checks (Optional but Recommended)
@@ -109,7 +109,7 @@ npm run package
 npx vsce package
 ```
 
-**Output:** `vistiq-viewer-<version>.vsix` (e.g., `vistiq-viewer-0.1.0.vsix`)
+**Output:** `fire-view-<version>.vsix` (e.g., `fire-view-0.1.0.vsix`)
 
 **Verify package contents:**
 ```bash
@@ -121,7 +121,7 @@ npx vsce ls
 
 ```bash
 # Install in VS Code for testing
-code --install-extension vistiq-viewer-0.1.0.vsix
+code --install-extension fire-view-0.1.0.vsix
 
 # Or drag .vsix into VS Code Extensions view → "Install from VSIX"
 ```
@@ -152,7 +152,7 @@ npx vsce publish 1.2.3
 ```bash
 # From extension directory
 cd apps/vscode-extension
-npx vsce publish vistiq-viewer-0.1.0.vsix
+npx vsce publish fire-view-0.1.0.vsix
 ```
 
 #### Option C: With PAT (CI/CD)
@@ -196,7 +196,7 @@ npx vsce publish major   # 0.1.0 → 1.0.0
 
 ```bash
 # 1. Navigate to project
-cd /Users/usersname/Projects/node-apps/vistiq-viewer
+cd /Users/usersname/Projects/node-apps/fireview
 
 # 2. Pull latest changes
 git pull
@@ -215,7 +215,7 @@ npm run typecheck && npm run lint && npm run test
 npm run package
 
 # 7. Test locally (optional)
-code --install-extension vistiq-viewer-0.1.0.vsix
+code --install-extension fire-view-0.1.0.vsix
 
 # 8. Publish
 npx vsce publish patch
@@ -252,7 +252,7 @@ npx vsce publish patch
 | `vsce: command not found` | `npm install -g @vscode/vsce` or use `npx vsce` |
 | `EACCES: permission denied` | Run with `sudo` or fix npm permissions |
 | `Missing LICENSE.md` | Add LICENSE file or ignore warning |
-| `Publisher not found` | Run `vsce login vistiq` first |
+| `Publisher not found` | Run `vsce login shubhamseth-work` first |
 | `Version already exists` | Bump version: `vsce publish patch` |
 | `Token expired` | Create new PAT in Azure DevOps |
 
@@ -260,10 +260,10 @@ npx vsce publish patch
 
 ```bash
 # Check published version
-npx vsce show vistiq.vistiq-viewer
+npx vsce show shubhamseth-work.fire-view
 
 # Or visit marketplace:
-# https://marketplace.visualstudio.com/items?itemName=vistiq.vistiq-viewer
+# https://marketplace.visualstudio.com/items?itemName=shubhamseth-work.fire-view
 ```
 
 ---
@@ -275,7 +275,7 @@ npx vsce show vistiq.vistiq-viewer
 code --extensionDevelopmentPath=apps/vscode-extension
 
 # Uninstall extension
-code --uninstall-extension vistiq.vistiq-viewer
+code --uninstall-extension shubhamseth-work.fire-view
 
 # List installed extensions
 code --list-extensions
@@ -306,12 +306,12 @@ code --list-extensions
 | `npx vsce publish patch` | Publish patch version bump |
 | `npx vsce publish minor` | Publish minor version bump |
 | `npx vsce publish major` | Publish major version bump |
-| `npx vsce login vistiq` | Login to publisher |
-| `npx vsce show vistiq.vistiq-viewer` | Show published extension info |
+| `npx vsce login shubhamseth-work` | Login to publisher |
+| `npx vsce show shubhamseth-work.fire-view` | Show published extension info |
 | `code --install-extension *.vsix` | Install local .vsix for testing |
 
 ---
 
-*Last updated: 2026-08-27*
-*Project: vistiq-viewer*
-*Publisher: vistiq*
+*Last updated: 2026-08-29*
+*Project: fireview*
+*Publisher: shubhamseth-work*

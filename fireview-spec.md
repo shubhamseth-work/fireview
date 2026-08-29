@@ -1,10 +1,10 @@
-# VISTIQ-Viewer
+# FireView
 
 **Tagline:** *"Explore. Query. Manage."*
 
 ## Product Description
 
-Vistiq is an open-source, privacy-first developer workspace for exploring, querying, editing, comparing, exporting, importing, and managing Firebase Firestore data directly inside VS Code-compatible IDEs.
+FireView is an open-source, privacy-first developer workspace for exploring, querying, editing, comparing, exporting, importing, and managing Firebase Firestore data directly inside VS Code-compatible IDEs.
 
 **Primary targets:**
 
@@ -15,10 +15,10 @@ Vistiq is an open-source, privacy-first developer workspace for exploring, query
 >   
 > **IMPORTANT**  
 > 
-
-> - Vistiq is **NOT** a database engine.  
-> - Vistiq is a developer/admin workspace for Firebase/Google Cloud data.  
-> - Vistiq is **NOT affiliated with Google or Firebase**.  
+> 
+> - FireView is **NOT** a database engine.  
+> - FireView is a developer/admin workspace for Firebase/Google Cloud data.  
+> - FireView is **NOT affiliated with Google or Firebase**.  
 > - Do not use Google/Firebase branding in a way that implies official affiliation.
 
 ---

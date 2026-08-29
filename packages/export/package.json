@@ -1,7 +1,7 @@
 {
   "type": "module",
-  "name": "@vistiq/export",
-  "version": "0.1.0",
+  "name": "@fireview/export",
+  "version": "0.1.5",
   "description": "Export service for Firestore collections",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,8 +23,8 @@
     "format": "prettier --write src",
     "format:check": "prettier --check src"
   },
-  "keywords": ["vistiq", "export", "firestore"],
-  "author": "Vistiq Contributors",
+  "keywords": ["fireview", "export", "firestore"],
+  "author": "FireView Contributors",
   "license": "Apache-2.0",
   "devDependencies": {
     "typescript": "^5.3.0",
@@ -34,9 +34,9 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@vistiq/core": "*",
-    "@vistiq/shared": "*",
-    "@vistiq/firestore": "*"
+    "@fireview/core": "*",
+    "@fireview/shared": "*",
+    "@fireview/firestore": "*"
   },
   "publishConfig": {
     "access": "public",

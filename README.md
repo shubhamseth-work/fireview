@@ -1,10 +1,10 @@
-# Vistiq — Explore. Query. Manage.
+# FireView — Explore. Query. Manage.
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Build Status](https://github.com/vistiq/vistiq-viewer/workflows/CI/badge.svg)](https://github.com/vistiq/vistiq-viewer/actions)
-[![Security](https://github.com/vistiq/vistiq-viewer/workflows/Security/badge.svg)](https://github.com/vistiq/vistiq-viewer/actions)
+[![Build Status](https://github.com/shubhamseth-work/fireview/workflows/CI/badge.svg)](https://github.com/shubhamseth-work/fireview/actions)
+[![Security](https://github.com/shubhamseth-work/fireview/workflows/Security/badge.svg)](https://github.com/shubhamseth-work/fireview/actions)
 
-> **Vistiq** is an open-source, privacy-first developer workspace for exploring, querying, editing, comparing, exporting, importing, and managing Firebase Firestore data directly inside VS Code-compatible IDEs.
+> **FireView** is an open-source, privacy-first developer workspace for exploring, querying, editing, comparing, exporting, importing, and managing Firebase Firestore data directly inside VS Code-compatible IDEs.
 
 ## Features
 
@@ -29,8 +29,8 @@
 ### Manual Installation (Development)
 ```bash
 # Clone the repository
-git clone https://github.com/vistiq/vistiq-viewer.git
-cd vistiq-viewer
+git clone https://github.com/shubhamseth-work/fireview.git
+cd fireview
 
 # Install dependencies
 npm install
@@ -44,7 +44,7 @@ npm run package
 
 ## Quick Start
 
-1. **Open Vistiq** — Click the Vistiq icon in the Activity Bar
+1. **Open FireView** — Click the FireView icon in the Activity Bar
 2. **Add Connection** — Click "Connect Project" and provide Service Account JSON
 3. **Select Project** — Choose your project from the sidebar
 4. **Explore** — Expand Firestore → collections → documents
@@ -58,13 +58,13 @@ npm run package
 2. Navigate to IAM & Admin → Service Accounts
 3. Create or select a service account with Firestore permissions
 4. Generate and download JSON key
-5. In Vistiq: Connect Project → Service Account → Paste JSON
+5. In FireView: Connect Project → Service Account → Paste JSON
 
 > **Security**: Credentials are stored in VS Code SecretStorage (OS keychain). Never exposed to Webview or logs.
 
 ### Firebase Emulator
 1. Run `firebase emulators:start` in your project
-2. Vistiq auto-detects `firebase.json` and emulator ports
+2. FireView auto-detects `firebase.json` and emulator ports
 3. Connect via "Firebase Emulator" in connection manager
 
 ## Development
@@ -96,7 +96,7 @@ npm run build:extension
 
 ### Project Structure
 ```
-vistiq-viewer/
+fireview/
 ├── packages/           # Core business logic (VS Code agnostic)
 │   ├── core/           # Interfaces & types
 │   ├── shared/         # Logger, constants, config
@@ -160,15 +160,15 @@ See [SECURITY.md](SECURITY.md) for details.
 
 ## Privacy
 
-Vistiq operates as a **local-first application**. No Vistiq backend exists. Firestore data goes directly between your environment and Google/Firebase services.
+FireView operates as a **local-first application**. No FireView backend exists. Firestore data goes directly between your environment and Google/Firebase services.
 
 ```
-User → Vistiq Extension → Google/Firebase APIs
+User → FireView Extension → Google/Firebase APIs
 ```
 
 NOT:
 ```
-User → Vistiq Server → Google/Firebase
+User → FireView Server → Google/Firebase
 ```
 
 ## Contributing
@@ -181,4 +181,4 @@ Apache-2.0 — See [LICENSE](LICENSE) for details.
 
 ---
 
-**Disclaimer**: Vistiq is an independent open-source project and is **not affiliated with Google, Firebase, Microsoft, or VS Code**.
+**Disclaimer**: FireView is an independent open-source project and is **not affiliated with Google, Firebase, Microsoft, or VS Code**.

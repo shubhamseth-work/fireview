@@ -1,11 +1,11 @@
-import type { AuditService } from '@vistiq/audit';
-import { createAuditService } from '@vistiq/audit';
-import type { AuthProviders } from '@vistiq/auth';
-import { createAuthProviders } from '@vistiq/auth';
-import type { CredentialService } from '@vistiq/credentials';
-import { createCredentialService } from '@vistiq/credentials';
-import { EmulatorService, createEmulatorService } from '@vistiq/emulator';
-import { createChildLogger, setLogLevel } from '@vistiq/shared';
+import type { AuditService } from '@fireview/audit';
+import { createAuditService } from '@fireview/audit';
+import type { AuthProviders } from '@fireview/auth';
+import { createAuthProviders } from '@fireview/auth';
+import type { CredentialService } from '@fireview/credentials';
+import { createCredentialService } from '@fireview/credentials';
+import { EmulatorService, createEmulatorService } from '@fireview/emulator';
+import { createChildLogger, setLogLevel } from '@fireview/shared';
 import * as vscode from 'vscode';
 import { ConnectionManager } from './connectionManager.js';
 import { ProjectTreeProvider } from './treeProvider.js';
@@ -20,12 +20,12 @@ let auditService: AuditService;
 let emulatorService: ReturnType<typeof createEmulatorService>;
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-  const config = vscode.workspace.getConfiguration('vistiq');
+  const config = vscode.workspace.getConfiguration('fireview');
   const debugLogging = config.get<boolean>('enableDebugLogging') || false;
   if (debugLogging) setLogLevel('debug');
 
   const extLogger = createChildLogger('extension');
-  extLogger.info('Activating Vistiq extension');
+  extLogger.info('Activating FireView extension');
 
   credentialService = createCredentialService(context.secrets);
   auditService = createAuditService(context.globalStorageUri.fsPath + '/audit.json');
@@ -47,62 +47,62 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   });
 
   context.subscriptions.push(
-    vscode.window.registerTreeDataProvider('vistiq.projects', projectTreeProvider),
-    vscode.commands.registerCommand('vistiq.connectProject', () =>
+    vscode.window.registerTreeDataProvider('fireview.projects', projectTreeProvider),
+    vscode.commands.registerCommand('fireview.connectProject', () =>
       connectionManager.showConnectDialog()
     ),
-    vscode.commands.registerCommand('vistiq.disconnectProject', async () => {
+    vscode.commands.registerCommand('fireview.disconnectProject', async () => {
       await connectionManager.disconnectAll();
       projectTreeProvider.refresh();
     }),
-    vscode.commands.registerCommand('vistiq.disconnectAllProjects', async () => {
+    vscode.commands.registerCommand('fireview.disconnectAllProjects', async () => {
       await connectionManager.disconnectAll();
       projectTreeProvider.refresh();
     }),
-    vscode.commands.registerCommand('vistiq.disconnectSpecificProject', async (projectId: string) => {
+    vscode.commands.registerCommand('fireview.disconnectSpecificProject', async (projectId: string) => {
       await connectionManager.disconnect(projectId);
       projectTreeProvider.refresh();
     }),
-    vscode.commands.registerCommand('vistiq.refresh', () => projectTreeProvider.refresh()),
-    vscode.commands.registerCommand('vistiq.refreshProject', (projectId: string) => {
+    vscode.commands.registerCommand('fireview.refresh', () => projectTreeProvider.refresh()),
+    vscode.commands.registerCommand('fireview.refreshProject', (projectId: string) => {
       // Refresh specific project by triggering tree refresh
       projectTreeProvider.refresh();
     }),
-    vscode.commands.registerCommand('vistiq.openFirestore', (requireActiveConnection = true) => webviewManager.openFirestore(requireActiveConnection)),
-    vscode.commands.registerCommand('vistiq.newDocument', () => webviewManager.newDocument()),
-    vscode.commands.registerCommand('vistiq.runQuery', () => webviewManager.runQuery()),
-    vscode.commands.registerCommand('vistiq.saveQuery', () => webviewManager.saveQuery()),
-    vscode.commands.registerCommand('vistiq.exportCollection', () =>
+    vscode.commands.registerCommand('fireview.openFirestore', (requireActiveConnection = true) => webviewManager.openFirestore(requireActiveConnection)),
+    vscode.commands.registerCommand('fireview.newDocument', () => webviewManager.newDocument()),
+    vscode.commands.registerCommand('fireview.runQuery', () => webviewManager.runQuery()),
+    vscode.commands.registerCommand('fireview.saveQuery', () => webviewManager.saveQuery()),
+    vscode.commands.registerCommand('fireview.exportCollection', () =>
       webviewManager.exportCollection()
     ),
-    vscode.commands.registerCommand('vistiq.importCollection', () =>
+    vscode.commands.registerCommand('fireview.importCollection', () =>
       webviewManager.importCollection()
     ),
-    vscode.commands.registerCommand('vistiq.compareDocuments', () =>
+    vscode.commands.registerCommand('fireview.compareDocuments', () =>
       webviewManager.compareDocuments()
     ),
-    vscode.commands.registerCommand('vistiq.compareProjects', () =>
+    vscode.commands.registerCommand('fireview.compareProjects', () =>
       webviewManager.compareProjects()
     ),
-    vscode.commands.registerCommand('vistiq.copyToProject', () => webviewManager.copyToProject()),
-    vscode.commands.registerCommand('vistiq.openAuditHistory', () =>
+    vscode.commands.registerCommand('fireview.copyToProject', () => webviewManager.copyToProject()),
+    vscode.commands.registerCommand('fireview.openAuditHistory', () =>
       webviewManager.openAuditHistory()
     ),
-    vscode.commands.registerCommand('vistiq.openDocument', (documentPath: string) =>
+    vscode.commands.registerCommand('fireview.openDocument', (documentPath: string) =>
       webviewManager.openDocument(documentPath)
     ),
-    vscode.commands.registerCommand('vistiq.settings', () =>
-      vscode.commands.executeCommand('workbench.action.openSettings', 'vistiq')
+    vscode.commands.registerCommand('fireview.settings', () =>
+      vscode.commands.executeCommand('workbench.action.openSettings', 'fireview')
     ),
     vscode.workspace.onDidChangeConfiguration(e => {
-      if (e.affectsConfiguration('vistiq.enableDebugLogging')) {
+      if (e.affectsConfiguration('fireview.enableDebugLogging')) {
         setLogLevel(config.get<boolean>('enableDebugLogging') ? 'debug' : 'info');
       }
     })
   );
 
   await connectionManager.initialize();
-  extLogger.info('Vistiq extension activated');
+  extLogger.info('FireView extension activated');
 }
 
 export function deactivate(): void {

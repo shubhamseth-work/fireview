@@ -1,7 +1,7 @@
 {
-  "name": "vistiq-viewer",
-  "version": "0.1.1",
-  "description": "Vistiq - Explore. Query. Manage. Firebase Firestore developer workspace for VS Code.",
+  "name": "fire-view",
+  "version": "0.1.5",
+  "description": "FireView - Explore. Query. Manage. Firebase Firestore developer workspace for VS Code.",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -40,14 +40,14 @@
     "node": ">=18.0.0"
   },
   "packageManager": "npm@11.16.0",
-  "author": "Vistiq Contributors",
+  "author": "FireView Contributors",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vistiq/vistiq-viewer.git"
+    "url": "https://github.com/shubhamseth-work/fireview.git"
   },
   "bugs": {
-    "url": "https://github.com/vistiq/vistiq-viewer/issues"
+    "url": "https://github.com/shubhamseth-work/fireview/issues"
   },
-  "homepage": "https://github.com/vistiq/vistiq-viewer#readme"
+  "homepage": "https://github.com/shubhamseth-work/fireview#readme"
 }

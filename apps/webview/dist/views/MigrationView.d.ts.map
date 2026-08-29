@@ -1,1 +1,0 @@
-{"version":3,"file":"MigrationView.d.ts","sourceRoot":"","sources":["../../src/views/MigrationView.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAmB,MAAM,OAAO,CAAC;AACxC,OAAO,EAAE,UAAU,EAAE,MAAM,cAAc,CAAC;AAE1C,UAAU,kBAAkB;IAC1B,UAAU,EAAE,UAAU,CAAC;CACxB;AAED,eAAO,MAAM,aAAa,EAAE,KAAK,CAAC,EAAE,CAAC,kBAAkB,CAwNtD,CAAC"}

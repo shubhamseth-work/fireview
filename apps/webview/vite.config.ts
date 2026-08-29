@@ -30,8 +30,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@vistiq/core': path.resolve(__dirname, '../../packages/core/src'),
-      '@vistiq/shared': path.resolve(__dirname, '../../packages/shared/src'),
+      '@fireview/core': path.resolve(__dirname, '../../packages/core/src'),
+      '@fireview/shared': path.resolve(__dirname, '../../packages/shared/src'),
     },
   },
   server: {

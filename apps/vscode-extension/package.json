@@ -1,8 +1,9 @@
 {
-  "name": "vistiq-viewer",
-  "publisher": "vistiq",
-  "version": "0.1.2",
-  "description": "Vistiq VS Code Extension",
+  "name": "fire-view",
+  "displayName": "FireView",
+  "publisher": "fireview",
+  "version": "0.1.5",
+  "description": "FireView - Explore. Query. Manage. Firebase Firestore developer workspace for VS Code.",
   "main": "dist/extension.js",
   "scripts": {
     "build": "node esbuild.config.mjs",
@@ -18,12 +19,12 @@
     "watch": "node esbuild.config.mjs --watch"
   },
   "keywords": [
-    "vistiq",
+    "fireview",
     "vscode",
     "extension",
     "firestore"
   ],
-  "author": "Vistiq Contributors",
+  "author": "FireView Contributors",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/node": "^20.10.0",
@@ -39,21 +40,21 @@
     "vscode": "^1.85.0"
   },
   "dependencies": {
-    "@vistiq/audit": "*",
-    "@vistiq/auth": "*",
-    "@vistiq/batch": "*",
-    "@vistiq/core": "*",
-    "@vistiq/credentials": "*",
-    "@vistiq/diff": "*",
-    "@vistiq/emulator": "*",
-    "@vistiq/export": "*",
-    "@vistiq/firestore": "*",
-    "@vistiq/import": "*",
-    "@vistiq/migration": "*",
-    "@vistiq/project-compare": "*",
-    "@vistiq/query-builder": "*",
-    "@vistiq/query-engine": "*",
-    "@vistiq/shared": "*",
+    "@fireview/audit": "*",
+    "@fireview/auth": "*",
+    "@fireview/batch": "*",
+    "@fireview/core": "*",
+    "@fireview/credentials": "*",
+    "@fireview/diff": "*",
+    "@fireview/emulator": "*",
+    "@fireview/export": "*",
+    "@fireview/firestore": "*",
+    "@fireview/import": "*",
+    "@fireview/migration": "*",
+    "@fireview/project-compare": "*",
+    "@fireview/query-builder": "*",
+    "@fireview/query-engine": "*",
+    "@fireview/shared": "*",
     "firebase-admin": "^11.11.0"
   },
   "activationEvents": [
@@ -62,105 +63,105 @@
   "contributes": {
     "commands": [
       {
-        "command": "vistiq.connectProject",
-        "title": "Vistiq: Connect Project",
+        "command": "fireview.connectProject",
+        "title": "FireView: Connect Project",
         "icon": "$(cloud)"
       },
       {
-        "command": "vistiq.disconnectProject",
-        "title": "Vistiq: Disconnect Project",
+        "command": "fireview.disconnectProject",
+        "title": "FireView: Disconnect Project",
         "icon": "$(plug)"
       },
       {
-        "command": "vistiq.disconnectAllProjects",
-        "title": "Vistiq: Disconnect All Projects",
+        "command": "fireview.disconnectAllProjects",
+        "title": "FireView: Disconnect All Projects",
         "icon": "$(plug)"
       },
       {
-        "command": "vistiq.disconnectSpecificProject",
-        "title": "Vistiq: Disconnect Specific Project",
+        "command": "fireview.disconnectSpecificProject",
+        "title": "FireView: Disconnect Specific Project",
         "icon": "$(plug)"
       },
       {
-        "command": "vistiq.refresh",
-        "title": "Vistiq: Refresh",
+        "command": "fireview.refresh",
+        "title": "FireView: Refresh",
         "icon": "$(refresh)"
       },
       {
-        "command": "vistiq.refreshProject",
-        "title": "Vistiq: Refresh Project",
+        "command": "fireview.refreshProject",
+        "title": "FireView: Refresh Project",
         "icon": "$(refresh)"
       },
       {
-        "command": "vistiq.openFirestore",
-        "title": "Vistiq: Open Firestore"
+        "command": "fireview.openFirestore",
+        "title": "FireView: Open Firestore"
       },
       {
-        "command": "vistiq.newDocument",
-        "title": "Vistiq: New Document"
+        "command": "fireview.newDocument",
+        "title": "FireView: New Document"
       },
       {
-        "command": "vistiq.runQuery",
-        "title": "Vistiq: Run Query"
+        "command": "fireview.runQuery",
+        "title": "FireView: Run Query"
       },
       {
-        "command": "vistiq.saveQuery",
-        "title": "Vistiq: Save Query"
+        "command": "fireview.saveQuery",
+        "title": "FireView: Save Query"
       },
       {
-        "command": "vistiq.exportCollection",
-        "title": "Vistiq: Export Collection"
+        "command": "fireview.exportCollection",
+        "title": "FireView: Export Collection"
       },
       {
-        "command": "vistiq.importCollection",
-        "title": "Vistiq: Import Collection"
+        "command": "fireview.importCollection",
+        "title": "FireView: Import Collection"
       },
       {
-        "command": "vistiq.compareDocuments",
-        "title": "Vistiq: Compare Documents"
+        "command": "fireview.compareDocuments",
+        "title": "FireView: Compare Documents"
       },
       {
-        "command": "vistiq.compareProjects",
-        "title": "Vistiq: Compare Projects"
+        "command": "fireview.compareProjects",
+        "title": "FireView: Compare Projects"
       },
       {
-        "command": "vistiq.copyToProject",
-        "title": "Vistiq: Copy to Project"
+        "command": "fireview.copyToProject",
+        "title": "FireView: Copy to Project"
       },
       {
-        "command": "vistiq.openAuditHistory",
-        "title": "Vistiq: Open Audit History"
+        "command": "fireview.openAuditHistory",
+        "title": "FireView: Open Audit History"
       },
       {
-        "command": "vistiq.openDocument",
-        "title": "Vistiq: Open Document"
+        "command": "fireview.openDocument",
+        "title": "FireView: Open Document"
       },
       {
-        "command": "vistiq.settings",
-        "title": "Vistiq: Settings"
+        "command": "fireview.settings",
+        "title": "FireView: Settings"
       }
     ],
     "keybindings": [
       {
-        "command": "vistiq.refresh",
+        "command": "fireview.refresh",
         "key": "ctrl+r",
         "mac": "cmd+r",
-        "when": "viewContainer == vistiq"
+        "when": "viewContainer == fireview"
       },
       {
-        "command": "vistiq.newDocument",
+        "command": "fireview.newDocument",
         "key": "ctrl+n",
         "mac": "cmd+n",
-        "when": "viewContainer == vistiq"
+        "when": "viewContainer == fireview"
       },
       {
-        "command": "vistiq.runQuery",
+        "command": "fireview.runQuery",
         "key": "ctrl+enter",
         "mac": "cmd+enter",
-        "when": "viewContainer == vistiq"
+        "when": "viewContainer == fireview"
       },
       {
-        "command": "vistiq.openFirestore",
+        "command": "fireview.openFirestore",
         "key": "ctrl+k ctrl+f",
         "mac": "cmd+k cmd+f"
       }
@@ -168,25 +169,25 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "vistiq",
-          "title": "Vistiq",
+          "id": "fireview",
+          "title": "FireView",
           "icon": "resources/icon.png"
         }
       ]
     },
     "views": {
-      "vistiq": [
+      "fireview": [
         {
-          "id": "vistiq.projects",
+          "id": "fireview.projects",
           "name": "Projects",
           "contextualTitle": "Projects"
         },
         {
-          "id": "vistiq.tools",
+          "id": "fireview.tools",
           "name": "Tools"
         },
         {
-          "id": "vistiq.settings",
+          "id": "fireview.settings",
           "name": "Settings"
         }
       ]
@@ -194,53 +195,53 @@
     "menus": {
       "view/title": [
         {
-          "command": "vistiq.connectProject",
-          "when": "view == vistiq.projects",
+          "command": "fireview.connectProject",
+          "when": "view == fireview.projects",
           "group": "navigation"
         },
         {
-          "command": "vistiq.disconnectProject",
-          "when": "view == vistiq.projects",
+          "command": "fireview.disconnectProject",
+          "when": "view == fireview.projects",
           "group": "navigation"
         },
         {
-          "command": "vistiq.refresh",
-          "when": "view == vistiq.projects",
+          "command": "fireview.refresh",
+          "when": "view == fireview.projects",
           "group": "navigation"
         }
       ],
       "view/item/context": [
         {
-          "command": "vistiq.connectProject",
-          "when": "view == vistiq.projects && viewItem == empty",
+          "command": "fireview.connectProject",
+          "when": "view == fireview.projects && viewItem == empty",
           "group": "inline"
         },
         {
-          "command": "vistiq.disconnectSpecificProject",
-          "when": "view == vistiq.projects && (viewItem == project || viewItem == emulatorProject || viewItem == productionProject)",
+          "command": "fireview.disconnectSpecificProject",
+          "when": "view == fireview.projects && (viewItem == project || viewItem == emulatorProject || viewItem == productionProject)",
           "group": "inline"
         },
         {
-          "command": "vistiq.refreshProject",
-          "when": "view == vistiq.projects && (viewItem == project || viewItem == emulatorProject || viewItem == productionProject)",
+          "command": "fireview.refreshProject",
+          "when": "view == fireview.projects && (viewItem == project || viewItem == emulatorProject || viewItem == productionProject)",
           "group": "inline"
         }
       ]
     },
     "configuration": {
-      "title": "Vistiq",
+      "title": "FireView",
       "properties": {
-        "vistiq.defaultPageSize": {
+        "fireview.defaultPageSize": {
           "type": "number",
           "default": 50,
           "description": "Default number of documents per page"
         },
-        "vistiq.productionSafetyMode": {
+        "fireview.productionSafetyMode": {
           "type": "boolean",
           "default": true,
           "description": "Enable production safety confirmations"
         },
-        "vistiq.enableDebugLogging": {
+        "fireview.enableDebugLogging": {
           "type": "boolean",
           "default": false,
           "description": "Enable debug logging"
@@ -251,10 +252,10 @@
   "icon": "resources/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vistiq/vistiq-viewer.git"
+    "url": "https://github.com/shubhamseth-work/fireview.git"
   },
   "bugs": {
-    "url": "https://github.com/vistiq/vistiq-viewer/issues"
+    "url": "https://github.com/shubhamseth-work/fireview/issues"
   },
-  "homepage": "https://github.com/vistiq/vistiq-viewer#readme"
+  "homepage": "https://github.com/shubhamseth-work/fireview#readme"
 }

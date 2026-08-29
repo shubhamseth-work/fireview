@@ -1,7 +1,7 @@
 {
   "type": "module",
-  "name": "@vistiq/diff",
-  "version": "0.1.0",
+  "name": "@fireview/diff",
+  "version": "0.1.5",
   "description": "Document diff service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,8 +23,8 @@
     "format": "prettier --write src",
     "format:check": "prettier --check src"
   },
-  "keywords": ["vistiq", "diff", "firestore"],
-  "author": "Vistiq Contributors",
+  "keywords": ["fireview", "diff", "firestore"],
+  "author": "FireView Contributors",
   "license": "Apache-2.0",
   "devDependencies": {
     "typescript": "^5.3.0",
@@ -34,8 +34,8 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@vistiq/core": "*",
-    "@vistiq/shared": "*"
+    "@fireview/core": "*",
+    "@fireview/shared": "*"
   },
   "publishConfig": {
     "access": "public",

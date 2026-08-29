@@ -1,8 +1,8 @@
 {
   "type": "module",
-  "name": "@vistiq/auth",
-  "version": "0.1.0",
-  "description": "Authentication providers for Vistiq",
+  "name": "@fireview/auth",
+  "version": "0.1.5",
+  "description": "Authentication providers for FireView",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -23,8 +23,8 @@
     "format": "prettier --write src",
     "format:check": "prettier --check src"
   },
-  "keywords": ["vistiq", "auth", "firebase", "oauth"],
-  "author": "Vistiq Contributors",
+  "keywords": ["fireview", "auth", "firebase", "oauth"],
+  "author": "FireView Contributors",
   "license": "Apache-2.0",
   "devDependencies": {
     "typescript": "^5.3.0",
@@ -34,9 +34,9 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@vistiq/core": "*",
-    "@vistiq/shared": "*",
-    "@vistiq/credentials": "*",
+    "@fireview/core": "*",
+    "@fireview/shared": "*",
+    "@fireview/credentials": "*",
     "firebase-admin": "^11.11.0",
     "google-auth-library": "^9.4.0"
   },

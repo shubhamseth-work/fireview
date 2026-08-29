@@ -1,6 +1,6 @@
-# Contributing to Vistiq
+# Contributing to FireView
 
-Thank you for your interest in contributing to Vistiq! This document outlines the process and guidelines for contributing.
+Thank you for your interest in contributing to FireView! This document outlines the process and guidelines for contributing.
 
 ## Code of Conduct
 
@@ -15,8 +15,8 @@ Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ### Development Setup
 ```bash
-git clone https://github.com/vistiq/vistiq-viewer.git
-cd vistiq-viewer
+git clone https://github.com/shubhamseth-work/fireview.git
+cd fireview
 npm install
 npm run build
 ```
@@ -140,10 +140,10 @@ Maintainers handle releases:
 
 ## Questions?
 
-- Open a [Discussion](https://github.com/vistiq/vistiq-viewer/discussions)
-- Check existing [Issues](https://github.com/vistiq/vistiq-viewer/issues)
+- Open a [Discussion](https://github.com/shubhamseth-work/fireview/discussions)
+- Check existing [Issues](https://github.com/shubhamseth-work/fireview/issues)
 - Review [Architecture Decision Records](docs/adr/)
 
 ---
 
-**Remember**: Vistiq is security-first, privacy-first, and developer-first. When in doubt, choose the more secure option.
+**Remember**: FireView is security-first, privacy-first, and developer-first. When in doubt, choose the more secure option.
