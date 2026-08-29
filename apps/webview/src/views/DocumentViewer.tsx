@@ -37,11 +37,13 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     isOpen: boolean;
     isProduction: boolean;
   } | null>(null);
+
+  const safeData = document.data ?? {}; // eslint-disable-line @typescript-eslint/no-unnecessary-condition
   log.info('DocumentViewer rendered', {
     docId: document.id,
     docPath: document.path,
     hasData: !!document.data,
-    dataKeys: document.data ? Object.keys(document.data) : [],
+    dataKeys: Object.keys(safeData),
   });
 
   const [viewMode, setViewMode] = useState<'table' | 'json' | 'raw'>('table');
@@ -57,9 +59,9 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     log.debug('DocumentViewer: Effect triggered', { docId: document.id, editing });
     setIsProduction(isProd);
     if (editing) {
-      setEditData(JSON.stringify(document.data, null, 2));
+      setEditData(JSON.stringify(safeData, null, 2));
     }
-  }, [document, editing]);
+  }, [document, editing, safeData]);
 
   const handleSave = async () => {
     try {
@@ -96,7 +98,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
       const newDoc: FirestoreDocument = {
         id: '',
         path: '',
-        data: document.data,
+        data: safeData,
       };
       await onCreateDocument(collectionPath, newDoc);
       notify('success', 'Document duplicated successfully');
@@ -104,6 +106,89 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     } catch (err) {
       notify('error', `Failed to duplicate: ${(err as Error).message}`);
     }
+  };
+
+  const formatTypedValue = (
+    type: string,
+    val: unknown,
+    indent: number,
+    spaces: string
+  ): React.ReactNode | null => {
+    if (type === 'timestamp') {
+      return (
+        <span className="json-string">
+          {spaces}"{String(val)}"
+        </span>
+      );
+    }
+    if (type === 'reference') {
+      return (
+        <span className="json-string">
+          {spaces}"{String(val)}"
+        </span>
+      );
+    }
+    if (type === 'geopoint') {
+      const gp = val as { latitude: number; longitude: number } | null;
+      if (!gp) return <span className="json-null">{spaces}geopoint(null)</span>;
+      return (
+        <span>
+          {spaces}geopoint(latitude: {gp.latitude}, longitude: {gp.longitude})
+        </span>
+      );
+    }
+    if (type === 'bytes') {
+      return (
+        <span className="json-string">
+          {spaces}"base64:{String(val)}"
+        </span>
+      );
+    }
+    if (type === 'array') {
+      if (!val || !Array.isArray(val)) {
+        return <span className="json-null">{spaces}[]</span>;
+      }
+      return (
+        <div>
+          {spaces}[
+          {(val as FirestoreValue[]).map((v, i) => (
+            <div key={i}>
+              {formatValue(v, indent + 1)}
+              {i < (val as FirestoreValue[]).length - 1 ? ',' : ''}
+            </div>
+          ))}
+          {spaces}]
+        </div>
+      );
+    }
+    if (type === 'map') {
+      if (!val || typeof val !== 'object') {
+        return (
+          <span className="json-null">
+            {spaces}{'{}'}
+          </span>
+        );
+      }
+      const entries = Object.entries(val as Record<string, FirestoreValue>);
+      return (
+        <div>
+          {spaces}
+          {'{'}{' '}
+          {entries.map(([k, v], i) => (
+            <div key={k}>
+              <span className="json-key">
+                {spaces} "{k}":
+              </span>
+              {formatValue(v, indent + 1)}
+              {i < entries.length - 1 ? ',' : ''}
+            </div>
+          ))}
+          {spaces}
+          {'}'}{' '}
+        </div>
+      );
+    }
+    return null;
   };
 
   const formatValue = (value: FirestoreValue, indent = 0): React.ReactNode => {
@@ -153,67 +238,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
       if ('__type__' in obj) {
         const type = obj.__type__ as string;
         const val = obj.value;
-        switch (type) {
-          case 'timestamp':
-            return (
-              <span className="json-string">
-                {spaces}"{String(val)}"
-              </span>
-            );
-          case 'reference':
-            return (
-              <span className="json-string">
-                {spaces}"{String(val)}"
-              </span>
-            );
-          case 'geopoint': {
-            const gp = val as { latitude: number; longitude: number };
-            return (
-              <span>
-                {spaces}geopoint(latitude: {gp.latitude}, longitude: {gp.longitude})
-              </span>
-            );
-          }
-          case 'bytes':
-            return (
-              <span className="json-string">
-                {spaces}"base64:{String(val)}"
-              </span>
-            );
-          case 'array':
-            return (
-              <div>
-                {spaces}[
-                {(val as FirestoreValue[]).map((v, i) => (
-                  <div key={i}>
-                    {formatValue(v, indent + 1)}
-                    {i < (val as FirestoreValue[]).length - 1 ? ',' : ''}
-                  </div>
-                ))}
-                {spaces}]
-              </div>
-            );
-          case 'map': {
-            const entries = Object.entries(val as Record<string, FirestoreValue>);
-            return (
-              <div>
-                {spaces}
-                {'{'}{' '}
-                {entries.map(([k, v], i) => (
-                  <div key={k}>
-                    <span className="json-key">
-                      {spaces} "{k}":
-                    </span>
-                    {formatValue(v, indent + 1)}
-                    {i < entries.length - 1 ? ',' : ''}
-                  </div>
-                ))}
-                {spaces}
-                {'}'}{' '}
-              </div>
-            );
-          }
-        }
+        const typedValue = formatTypedValue(type, val, indent, spaces);
+        if (typedValue) return typedValue;
       }
       const entries = Object.entries(obj);
       return (
@@ -263,7 +289,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
             <td style={{ fontFamily: 'monospace' }}>{document.path}</td>
             <td>string</td>
           </tr>
-          {Object.entries(document.data).map(([key, value]) => (
+          {Object.entries(safeData).map(([key, value]) => (
             <tr key={key}>
               <td style={{ fontWeight: 600 }}>{key}</td>
               <td>{formatValue(value) as React.ReactNode}</td>
@@ -293,7 +319,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         lineHeight: 1.5,
       }}
     >
-      {formatValue({ __type__: 'map', value: document.data } as any)}
+      {formatValue({ __type__: 'map', value: safeData } as any)}
     </div>
   );
 
@@ -308,7 +334,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         whiteSpace: 'pre-wrap',
       }}
     >
-      {JSON.stringify(document.data, null, 2)}
+      {JSON.stringify(safeData, null, 2)}
     </pre>
   );
 

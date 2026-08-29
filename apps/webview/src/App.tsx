@@ -7,6 +7,7 @@ import { CompareView } from './views/CompareView';
 import { FirestoreView } from './views/FirestoreView';
 import { MigrationView } from './views/MigrationView';
 import { ProjectCompareView } from './views/ProjectCompareView';
+import { ErrorBoundary } from './views/ErrorBoundary';
 
 interface Message {
   type: string;
@@ -20,6 +21,12 @@ interface Response {
   success: boolean;
   data?: unknown;
   error?: string;
+}
+
+interface ProjectSwitchedAck {
+  type: 'projectSwitchedAck';
+  requestId: string;
+  success: boolean;
 }
 
 interface FirebaseConfig {
@@ -68,6 +75,7 @@ const AppInner: React.FC = () => {
     []
   );
   const [firebaseConfig, setFirebaseConfig] = useState<FirebaseConfig | null>(null);
+  const [webviewReady, setWebviewReady] = useState(false);
 
   // Load Firebase config from localStorage on init
   useEffect(() => {
@@ -134,7 +142,7 @@ const AppInner: React.FC = () => {
         if (conn) {
           log.info('App: Got active connection', { projectId: (conn as Connection).projectId });
           setConnection(conn as Connection);
-          loadCollections();
+          await loadCollections();
         } else {
           log.warn('App: No active connection found');
         }
@@ -149,6 +157,11 @@ const AppInner: React.FC = () => {
       } catch (err) {
         log.error('App: Error getting active connection', { error: (err as Error).message });
         setError((err as Error).message);
+      } finally {
+        // Signal that webview is ready to receive messages
+        log.info('App: Webview ready, sending ready signal');
+        setWebviewReady(true);
+        vscode.postMessage({ type: 'webviewReady' });
       }
     })();
     return () => {
@@ -187,26 +200,38 @@ const AppInner: React.FC = () => {
         loadCollections();
       }
     } else if (msg.type === 'projectSwitched') {
-      const { projectId } = msg.payload as { projectId: string | null };
-      log.info('handleMessage: Received projectSwitched', { projectId });
+      const { projectId, requestId } = msg.payload as { projectId: string | null; requestId?: string };
+      log.info('handleMessage: Received projectSwitched', { projectId, requestId });
       // Reset state when project switches
       setSelectedCollection('');
       setDocuments([]);
       setSelectedDocument(null);
       setPagination(prev => ({ ...prev, page: 1, hasMore: false, nextToken: '' }));
-      if (projectId) {
-        // Fetch new connection and collections
-        const conn = await sendMessage('getActiveConnection');
-        if (conn) {
-          log.info('handleMessage: Got new active connection after switch', {
-            projectId: (conn as Connection).projectId,
-          });
-          setConnection(conn as Connection);
-          loadCollections();
+      try {
+        if (projectId) {
+          // Fetch new connection and collections
+          const conn = await sendMessage('getActiveConnection');
+          if (conn) {
+            log.info('handleMessage: Got new active connection after switch', {
+              projectId: (conn as Connection).projectId,
+            });
+            setConnection(conn as Connection);
+            await loadCollections();
+          }
+        } else {
+          setConnection(null);
+          setCollections([]);
         }
-      } else {
-        setConnection(null);
-        setCollections([]);
+        // Send acknowledgment that project switch is complete
+        if (requestId) {
+          log.info('handleMessage: Sending projectSwitchedAck', { requestId });
+          vscode.postMessage({ type: 'projectSwitchedAck', requestId, success: true } as ProjectSwitchedAck);
+        }
+      } catch (err) {
+        log.error('handleMessage: projectSwitched failed', { error: (err as Error).message });
+        if (requestId) {
+          vscode.postMessage({ type: 'projectSwitchedAck', requestId, success: false } as ProjectSwitchedAck);
+        }
       }
     }
   };
@@ -729,46 +754,81 @@ const AppInner: React.FC = () => {
       case 'collection':
       case 'query':
         return (
-          <FirestoreView
-            key={connection.projectId || 'no-connection'}
-            connection={connection}
-            collections={collections}
-            documents={documents}
-            selectedDocument={selectedDocument}
-            loading={loading}
-            error={error}
-            pagination={pagination}
-            onLoadDocuments={loadDocuments}
-            onOpenDocument={handleOpenDocument}
-            onCloseDocument={handleCloseDocument}
-            onRunQuery={handleRunQuery}
-            onCreateDocument={handleCreateDocument}
-            onCreateCollection={handleCreateCollection}
-            onUpdateDocument={handleUpdateDocument}
-            onDeleteDocument={handleDeleteDocument}
-            onExportCollection={handleExportCollection}
-            onImportCollection={handleImportCollection}
-            onLoadMore={loadMore}
-            onPageSizeChange={handlePageSizeChange}
-            onCopyDocument={() => {}}
-            onCopyDocumentTo={handleCopyDocument}
-            onDuplicateDocument={handleDuplicateDocument}
-            onRenameDocument={handleRenameDocument}
-            onMoveDocument={handleMoveDocument}
-            onShowGeopoints={handleShowGeopoints}
-            onImportDocument={handleImportDocument}
-            onExportDocument={handleExportDocument}
-            onRevealInConsole={handleRevealInConsole}
-            connections={connections}
-            activeProjectId={connection.projectId || null}
-            readOnlyCollections={readOnlyCollections}
-            setReadOnlyCollections={setReadOnlyCollections}
-            firebaseConfig={firebaseConfig || undefined}
-            onConfigImport={handleConfigImport}
-            initialView={
-              view === 'query' ? 'query' : view === 'collection' ? 'collection' : 'firestore'
+          <ErrorBoundary
+            fallback={
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '100%',
+                  padding: 24,
+                  gap: 16,
+                }}
+              >
+                <div style={{ fontSize: 48 }}>⚠️</div>
+                <h2 style={{ margin: 0 }}>Document View Error</h2>
+                <p style={{ textAlign: 'center', color: 'var(--vscode-descriptionForeground)' }}>
+                  Failed to render document view. Please try selecting the document again.
+                </p>
+                <button
+                  onClick={() => handleCloseDocument()}
+                  style={{
+                    padding: '8px 16px',
+                    backgroundColor: 'var(--vscode-button-background)',
+                    color: 'var(--vscode-button-foreground)',
+                    border: 'none',
+                    borderRadius: 4,
+                    cursor: 'pointer',
+                  }}
+                >
+                  Back to Collection
+                </button>
+              </div>
             }
-          />
+          >
+            <FirestoreView
+              key={connection.projectId || 'no-connection'}
+              connection={connection}
+              collections={collections}
+              documents={documents}
+              selectedDocument={selectedDocument}
+              loading={loading}
+              error={error}
+              pagination={pagination}
+              onLoadDocuments={loadDocuments}
+              onOpenDocument={handleOpenDocument}
+              onCloseDocument={handleCloseDocument}
+              onRunQuery={handleRunQuery}
+              onCreateDocument={handleCreateDocument}
+              onCreateCollection={handleCreateCollection}
+              onUpdateDocument={handleUpdateDocument}
+              onDeleteDocument={handleDeleteDocument}
+              onExportCollection={handleExportCollection}
+              onImportCollection={handleImportCollection}
+              onLoadMore={loadMore}
+              onPageSizeChange={handlePageSizeChange}
+              onCopyDocument={() => {}}
+              onCopyDocumentTo={handleCopyDocument}
+              onDuplicateDocument={handleDuplicateDocument}
+              onRenameDocument={handleRenameDocument}
+              onMoveDocument={handleMoveDocument}
+              onShowGeopoints={handleShowGeopoints}
+              onImportDocument={handleImportDocument}
+              onExportDocument={handleExportDocument}
+              onRevealInConsole={handleRevealInConsole}
+              connections={connections}
+              activeProjectId={connection.projectId || null}
+              readOnlyCollections={readOnlyCollections}
+              setReadOnlyCollections={setReadOnlyCollections}
+              firebaseConfig={firebaseConfig || undefined}
+              onConfigImport={handleConfigImport}
+              initialView={
+                view === 'query' ? 'query' : view === 'collection' ? 'collection' : 'firestore'
+              }
+            />
+          </ErrorBoundary>
         );
       case 'compare':
         return <CompareView connection={connection} onRunQuery={handleRunQuery} />;

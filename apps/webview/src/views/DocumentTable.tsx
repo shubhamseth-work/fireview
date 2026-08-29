@@ -63,8 +63,9 @@ const menuItems: { action: MenuAction; label: string; icon: string; divider?: bo
 ];
 
 function cleanData(data: Record<string, any>): Record<string, any> {
+  const safeData = data ?? {};
   const result: Record<string, any> = {};
-  for (const [key, value] of Object.entries(data)) {
+  for (const [key, value] of Object.entries(safeData)) {
     result[key] = cleanValue(value);
   }
   return result;
@@ -80,14 +81,15 @@ function cleanValue(value: any): any {
       case 'reference':
         return value.value;
       case 'geopoint':
-        return { latitude: value.value.latitude, longitude: value.value.longitude };
+        return { latitude: value.value?.latitude ?? 0, longitude: value.value?.longitude ?? 0 };
       case 'bytes':
-        return `base64:${value.value}`;
+        return `base64:${value.value ?? ''}`;
       case 'array':
-        return value.value.map(cleanValue);
+        return value.value?.map(cleanValue) ?? [];
       case 'map': {
         const mapResult: Record<string, any> = {};
-        for (const [k, v] of Object.entries(value.value)) {
+        const mapValue = value.value ?? {};
+        for (const [k, v] of Object.entries(mapValue)) {
           mapResult[k] = cleanValue(v);
         }
         return mapResult;
@@ -95,7 +97,7 @@ function cleanValue(value: any): any {
     }
   }
   const objResult: Record<string, any> = {};
-  for (const [k, v] of Object.entries(value)) {
+  for (const [k, v] of Object.entries(value ?? {})) {
     objResult[k] = cleanValue(v);
   }
   return objResult;
@@ -335,7 +337,8 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
     if (documents.length === 0) return ['id'];
     const fields = new Set<string>();
     documents.forEach(doc => {
-      Object.keys(doc.data).forEach(key => fields.add(key));
+      const data = doc.data ?? {};
+      Object.keys(data).forEach(key => fields.add(key));
     });
     return ['id', ...Array.from(fields).sort()];
   };
@@ -348,21 +351,21 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
       if (value.__type__) {
         switch (value.__type__) {
           case 'timestamp':
-            return `🕐 ${value.value}`;
+            return `🕐 ${value.value ?? ''}`;
           case 'reference':
-            return `🔗 ${value.value}`;
+            return `🔗 ${value.value ?? ''}`;
           case 'geopoint':
-            return `📍 ${value.value.latitude}, ${value.value.longitude}`;
+            return `📍 ${value.value?.latitude ?? 0}, ${value.value?.longitude ?? 0}`;
           case 'bytes':
-            return `📦 base64:${value.value.substring(0, 20)}...`;
+            return `📦 base64:${(value.value ?? '').substring(0, 20)}...`;
           case 'array':
-            return `[${value.value.length} items]`;
+            return `[${value.value?.length ?? 0} items]`;
           case 'map':
-            return `{${Object.keys(value.value).length} fields}`;
+            return `{${value.value ? Object.keys(value.value).length : 0} fields}`;
         }
       }
       if (Array.isArray(value)) return `[${value.length} items]`;
-      return `{${Object.keys(value).length} fields}`;
+      return `{${value ? Object.keys(value).length : 0} fields}`;
     }
     return String(value);
   };
@@ -477,7 +480,7 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
                 </td>
                 {columns.slice(1).map(col => (
                   <td key={col}>
-                    {doc.data[col] !== undefined ? formatValue(doc.data[col]) : '-'}
+                    {doc.data?.[col] !== undefined ? formatValue(doc.data[col]) : '-'}
                   </td>
                 ))}
               </tr>

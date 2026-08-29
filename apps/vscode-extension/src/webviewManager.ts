@@ -21,11 +21,23 @@ interface WebviewResponse {
   error?: string;
 }
 
+interface ProjectSwitchedAck {
+  type: 'projectSwitchedAck';
+  requestId: string;
+  success: boolean;
+}
+
+interface WebviewReadyMessage {
+  type: 'webviewReady';
+}
+
 export class WebviewManager {
   private panels: Map<string, vscode.WebviewPanel> = new Map();
   private pendingRequests: Map<string, (response: WebviewResponse) => void> = new Map();
   private requestPanelMap: Map<string, string> = new Map(); // requestId -> panel viewType
   private requestIdCounter = 0;
+  private webviewReady: Map<string, boolean> = new Map(); // viewType -> ready state
+  private projectSwitchAck: Map<string, Promise<boolean>> = new Map(); // requestId -> promise
 
   constructor(
     private context: vscode.ExtensionContext,
@@ -34,7 +46,13 @@ export class WebviewManager {
   ) {
     // Listen for active project changes and notify webview
     this.connectionManager.onDidChangeActiveProject(projectId => {
-      this.sendToPanel('firestore', { type: 'projectSwitched', payload: { projectId } });
+      const panel = this.panels.get('firestore');
+      if (panel) {
+        // Use the new acknowledgment mechanism for external project switches too
+        this.sendProjectSwitchedAndWait(panel, projectId).catch(err => {
+          webviewLogger.error('onDidChangeActiveProject: Failed to send projectSwitched', { error: (err as Error).message });
+        });
+      }
     });
   }
 
@@ -47,15 +65,23 @@ export class WebviewManager {
       }
     }
 
-    void this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
+    const panel = this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
+    // Wait for webview to be ready
+    this.waitForWebviewReady('firestore', panel).catch(err => {
+      webviewLogger.error('openFirestore: Error waiting for webview ready', { error: (err as Error).message });
+    });
   }
 
   showFirebaseAuthModal(): void {
     // Open the Firestore view without requiring an active connection
     const panel = this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
 
-    // Send message to show Firebase Auth modal when panel is ready
-    this.sendWhenReady(panel, { type: 'showFirebaseAuthModal', payload: {} });
+    // Wait for webview to be ready, then send the message
+    this.waitForWebviewReady('firestore', panel).then(() => {
+      this.sendWhenReady(panel, { type: 'showFirebaseAuthModal', payload: {} });
+    }).catch(err => {
+      webviewLogger.error('showFirebaseAuthModal: Error waiting for webview ready', { error: (err as Error).message });
+    });
   }
 
   newDocument(): void {
@@ -125,12 +151,19 @@ export class WebviewManager {
     // Create/get panel FIRST (ensures panel exists for projectSwitched message)
     const panel = this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
 
-    // If we switched projects, send projectSwitched to the panel NOW (panel exists)
+    // Wait for webview to be ready before sending any messages
+    await this.waitForWebviewReady('firestore', panel);
+
+    // If we switched projects, send projectSwitched to the panel and wait for acknowledgment
     if (switchedProject) {
       webviewLogger.info('openDocument: Sending projectSwitched to panel', { projectId });
-      this.sendWhenReady(panel, { type: 'projectSwitched', payload: { projectId } });
-      // Give webview time to process project switch, reload connection, and load collections
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const ackReceived = await this.sendProjectSwitchedAndWait(panel, projectId!);
+      if (!ackReceived) {
+        webviewLogger.error('openDocument: Project switch acknowledgment failed or timed out');
+        void vscode.window.showErrorMessage('Failed to switch project. Please try again.');
+        return;
+      }
+      webviewLogger.info('openDocument: Project switch acknowledged by webview', { projectId });
     }
 
     // Re-check active connection
@@ -144,6 +177,68 @@ export class WebviewManager {
     // Send openDocument message
     webviewLogger.debug('openDocument: Sending openDocument message when ready', { documentPath });
     this.sendWhenReady(panel, { type: 'openDocument', payload: { documentPath } });
+  }
+
+  private async waitForWebviewReady(viewType: string, panel: vscode.WebviewPanel, timeoutMs = 10000): Promise<void> {
+    // If already ready, return immediately
+    if (this.webviewReady.get(viewType)) {
+      webviewLogger.debug('waitForWebviewReady: Already ready', { viewType });
+      return;
+    }
+
+    webviewLogger.debug('waitForWebviewReady: Waiting for webview ready signal', { viewType });
+    
+    return new Promise((resolve, reject) => {
+      const checkInterval = setInterval(() => {
+        if (this.webviewReady.get(viewType)) {
+          clearInterval(checkInterval);
+          clearTimeout(timeoutHandle);
+          webviewLogger.debug('waitForWebviewReady: Webview is ready', { viewType });
+          resolve();
+        }
+      }, 100);
+
+      const timeoutHandle = setTimeout(() => {
+        clearInterval(checkInterval);
+        webviewLogger.warn('waitForWebviewReady: Timeout waiting for webview ready', { viewType });
+        // Don't reject, just proceed - the webview might still work
+        resolve();
+      }, timeoutMs);
+    });
+  }
+
+  private async sendProjectSwitchedAndWait(panel: vscode.WebviewPanel, projectId: string, timeoutMs = 30000): Promise<boolean> {
+    const requestId = `project-switch-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    
+    webviewLogger.debug('sendProjectSwitchedAndWait: Sending projectSwitched with requestId', { requestId, projectId });
+    
+    // Create a promise that will be resolved when acknowledgment is received
+    let ackResolve: (value: boolean) => void;
+    const ackPromise = new Promise<boolean>((resolve) => {
+      ackResolve = resolve;
+    });
+    (ackPromise as any)._resolve = ackResolve;
+    
+    this.projectSwitchAck.set(requestId, ackPromise);
+    
+    // Send the projectSwitched message with requestId
+    this.sendWhenReady(panel, { type: 'projectSwitched', payload: { projectId, requestId } });
+    
+    // Wait for acknowledgment with timeout
+    try {
+      const result = await Promise.race([
+        ackPromise,
+        new Promise<boolean>((_, reject) => 
+          setTimeout(() => reject(new Error('Project switch acknowledgment timeout')), timeoutMs)
+        )
+      ]);
+      return result;
+    } catch (err) {
+      webviewLogger.error('sendProjectSwitchedAndWait: Error or timeout', { error: (err as Error).message });
+      return false;
+    } finally {
+      this.projectSwitchAck.delete(requestId);
+    }
   }
 
   private createOrShowPanel(
@@ -174,6 +269,7 @@ export class WebviewManager {
     panel.onDidDispose(
       () => {
         this.panels.delete(viewType);
+        this.webviewReady.delete(viewType);
       },
       null,
       this.context.subscriptions
@@ -247,6 +343,29 @@ export class WebviewManager {
         callback(message as WebviewResponse);
         this.pendingRequests.delete((message as WebviewResponse).requestId);
       }
+      return;
+    }
+
+    // Handle webview ready signal
+    if (message.type === 'webviewReady') {
+      webviewLogger.info('handleMessage: Webview ready signal received', { panelViewType });
+      this.webviewReady.set(panelViewType, true);
+      return;
+    }
+
+    // Handle project switch acknowledgment
+    if (message.type === 'projectSwitchedAck') {
+      const ack = message as ProjectSwitchedAck;
+      webviewLogger.info('handleMessage: Project switch acknowledgment received', {
+        requestId: ack.requestId,
+        success: ack.success,
+      });
+      const ackPromise = this.projectSwitchAck.get(ack.requestId);
+      if (ackPromise) {
+        // Resolve the promise by setting a property we can check
+        (ackPromise as any)._resolve?.(ack.success);
+      }
+      this.projectSwitchAck.delete(ack.requestId);
       return;
     }
 
