@@ -1,5 +1,5 @@
+import type { AuditEntry, AuditOperation, Connection } from '@fireview/core';
 import React, { useState, useEffect } from 'react';
-import { Connection, AuditEntry, AuditOperation } from '@fireview/core';
 
 interface AuditViewProps {
   connection: Connection;
@@ -27,9 +27,32 @@ export const AuditView: React.FC<AuditViewProps> = ({ connection }) => {
     try {
       // In real implementation, call backend
       setEntries([
-        { id: '1', timestamp: new Date().toISOString(), operation: 'create-document', projectId: connection.projectId, collectionPath: 'users', documentPath: 'users/123', result: 'success' },
-        { id: '2', timestamp: new Date().toISOString(), operation: 'update-document', projectId: connection.projectId, collectionPath: 'users', documentPath: 'users/123', result: 'success' },
-        { id: '3', timestamp: new Date().toISOString(), operation: 'export-collection', projectId: connection.projectId, collectionPath: 'users', result: 'success' },
+        {
+          id: '1',
+          timestamp: new Date().toISOString(),
+          operation: 'create-document',
+          projectId: connection.projectId,
+          collectionPath: 'users',
+          documentPath: 'users/123',
+          result: 'success',
+        },
+        {
+          id: '2',
+          timestamp: new Date().toISOString(),
+          operation: 'update-document',
+          projectId: connection.projectId,
+          collectionPath: 'users',
+          documentPath: 'users/123',
+          result: 'success',
+        },
+        {
+          id: '3',
+          timestamp: new Date().toISOString(),
+          operation: 'export-collection',
+          projectId: connection.projectId,
+          collectionPath: 'users',
+          result: 'success',
+        },
       ]);
       setTotalPages(1);
     } finally {
@@ -69,11 +92,22 @@ export const AuditView: React.FC<AuditViewProps> = ({ connection }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: 16 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 16,
+        }}
+      >
         <h2>Audit History</h2>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={handleExport} className="secondary">Export</button>
-          <button onClick={handleClear} className="danger">Clear</button>
+          <button onClick={handleExport} className="secondary">
+            Export
+          </button>
+          <button onClick={handleClear} className="danger">
+            Clear
+          </button>
         </div>
       </div>
 
@@ -90,18 +124,34 @@ export const AuditView: React.FC<AuditViewProps> = ({ connection }) => {
         </div>
         <div style={{ minWidth: 150 }}>
           <label style={{ display: 'block', marginBottom: 4 }}>Operation</label>
-          <select value={filter.operation} onChange={e => setFilter({ ...filter, operation: e.target.value })} style={{ width: '100%' }}>
+          <select
+            value={filter.operation}
+            onChange={e => setFilter({ ...filter, operation: e.target.value })}
+            style={{ width: '100%' }}
+          >
             <option value="">All Operations</option>
             {[
-              'connect', 'disconnect',
-              'create-document', 'update-document', 'delete-document',
-              'batch-delete', 'batch-update', 'batch-create',
-              'export-collection', 'import-collection',
-              'run-query', 'copy-documents', 'migrate',
-              'compare-projects', 'diff-documents',
-              'emulator-connect', 'emulator-disconnect'
+              'connect',
+              'disconnect',
+              'create-document',
+              'update-document',
+              'delete-document',
+              'batch-delete',
+              'batch-update',
+              'batch-create',
+              'export-collection',
+              'import-collection',
+              'run-query',
+              'copy-documents',
+              'migrate',
+              'compare-projects',
+              'diff-documents',
+              'emulator-connect',
+              'emulator-disconnect',
             ].map(op => (
-              <option key={op} value={op}>{op}</option>
+              <option key={op} value={op}>
+                {op}
+              </option>
             ))}
           </select>
         </div>
@@ -123,7 +173,9 @@ export const AuditView: React.FC<AuditViewProps> = ({ connection }) => {
             style={{ width: '100%' }}
           />
         </div>
-        <button onClick={handleSearch} style={{ alignSelf: 'flex-end' }}>Search</button>
+        <button onClick={handleSearch} style={{ alignSelf: 'flex-end' }}>
+          Search
+        </button>
       </div>
 
       {loading ? (
@@ -165,14 +217,26 @@ export const AuditView: React.FC<AuditViewProps> = ({ connection }) => {
                     {entry.documentPath && ` / ${entry.documentPath}`}
                   </td>
                   <td>
-                    <span style={{
-                      padding: '2px 8px',
-                      borderRadius: 10,
-                      fontSize: 10,
-                      fontWeight: 600,
-                      backgroundColor: entry.result === 'success' ? 'rgba(78, 201, 176, 0.2)' : entry.result === 'failure' ? 'rgba(244, 71, 71, 0.2)' : 'rgba(220, 220, 170, 0.2)',
-                      color: entry.result === 'success' ? 'var(--vscode-success)' : entry.result === 'failure' ? 'var(--vscode-error)' : 'var(--vscode-warning)',
-                    }}>
+                    <span
+                      style={{
+                        padding: '2px 8px',
+                        borderRadius: 10,
+                        fontSize: 10,
+                        fontWeight: 600,
+                        backgroundColor:
+                          entry.result === 'success'
+                            ? 'rgba(78, 201, 176, 0.2)'
+                            : entry.result === 'failure'
+                              ? 'rgba(244, 71, 71, 0.2)'
+                              : 'rgba(220, 220, 170, 0.2)',
+                        color:
+                          entry.result === 'success'
+                            ? 'var(--vscode-success)'
+                            : entry.result === 'failure'
+                              ? 'var(--vscode-error)'
+                              : 'var(--vscode-warning)',
+                      }}
+                    >
                       {entry.result}
                     </span>
                   </td>
@@ -184,9 +248,18 @@ export const AuditView: React.FC<AuditViewProps> = ({ connection }) => {
       )}
 
       <div className="pagination">
-        <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>Previous</button>
-        <span>Page {page} of {totalPages}</span>
-        <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages}>Next</button>
+        <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>
+          Previous
+        </button>
+        <span>
+          Page {page} of {totalPages}
+        </span>
+        <button
+          onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+          disabled={page >= totalPages}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

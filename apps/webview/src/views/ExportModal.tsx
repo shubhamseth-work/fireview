@@ -36,7 +36,9 @@ export const ExportModal: React.FC<ExportModalProps> = ({ collectionPath, onClos
       <div className="modal" onClick={e => e.stopPropagation()} style={{ maxWidth: 500 }}>
         <div className="modal-header">
           <h3 className="modal-title">Export Collection</h3>
-          <button className="modal-close" onClick={onClose}>×</button>
+          <button className="modal-close" onClick={onClose}>
+            ×
+          </button>
         </div>
 
         <div style={{ marginBottom: 16 }}>
@@ -45,22 +47,42 @@ export const ExportModal: React.FC<ExportModalProps> = ({ collectionPath, onClos
 
         <div style={{ marginBottom: 16 }}>
           <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-            <input type="radio" name="format" value="json" checked={format === 'json'} onChange={() => setFormat('json')} />
+            <input
+              type="radio"
+              name="format"
+              value="json"
+              checked={format === 'json'}
+              onChange={() => setFormat('json')}
+            />
             <span>JSON</span>
           </label>
           <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <input type="radio" name="format" value="csv" checked={format === 'csv'} onChange={() => setFormat('csv')} />
+            <input
+              type="radio"
+              name="format"
+              value="csv"
+              checked={format === 'csv'}
+              onChange={() => setFormat('csv')}
+            />
             <span>CSV</span>
           </label>
         </div>
 
         <div style={{ marginBottom: 16 }}>
           <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-            <input type="checkbox" checked={includeId} onChange={e => setIncludeId(e.target.checked)} />
+            <input
+              type="checkbox"
+              checked={includeId}
+              onChange={e => setIncludeId(e.target.checked)}
+            />
             <span>Include Document ID</span>
           </label>
           <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <input type="checkbox" checked={includeNested} onChange={e => setIncludeNested(e.target.checked)} />
+            <input
+              type="checkbox"
+              checked={includeNested}
+              onChange={e => setIncludeNested(e.target.checked)}
+            />
             <span>Include Nested Fields</span>
           </label>
         </div>
@@ -77,13 +99,23 @@ export const ExportModal: React.FC<ExportModalProps> = ({ collectionPath, onClos
         </div>
 
         {error && (
-          <div style={{ color: 'var(--vscode-error)', marginBottom: 16, padding: 8, backgroundColor: 'rgba(244, 71, 71, 0.1)', borderRadius: 4 }}>
+          <div
+            style={{
+              color: 'var(--vscode-error)',
+              marginBottom: 16,
+              padding: 8,
+              backgroundColor: 'rgba(244, 71, 71, 0.1)',
+              borderRadius: 4,
+            }}
+          >
             {error}
           </div>
         )}
 
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-          <button className="secondary" onClick={onClose} disabled={loading}>Cancel</button>
+          <button className="secondary" onClick={onClose} disabled={loading}>
+            Cancel
+          </button>
           <button onClick={handleExport} disabled={loading || !outputPath}>
             {loading ? 'Exporting...' : 'Export'}
           </button>

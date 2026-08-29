@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { FirestoreView } from './views/FirestoreView';
-import { CompareView } from './views/CompareView';
-import { ProjectCompareView } from './views/ProjectCompareView';
-import { MigrationView } from './views/MigrationView';
-import { AuditView } from './views/AuditView';
-import { Connection, FirestoreDocument, FirestoreQuery } from '@fireview/core';
+import type { Connection, FirestoreDocument, FirestoreQuery } from '@fireview/core';
+import React, { useCallback, useEffect, useState } from 'react';
 import { NotificationProvider, useNotify } from './context/NotificationContext';
 import { VSCodeProvider, useVSCode } from './context/VSCodeContext';
+import { AuditView } from './views/AuditView';
+import { CompareView } from './views/CompareView';
+import { FirestoreView } from './views/FirestoreView';
+import { MigrationView } from './views/MigrationView';
+import { ProjectCompareView } from './views/ProjectCompareView';
 
 interface Message {
   type: string;
@@ -31,14 +31,19 @@ interface FirebaseConfig {
   appId: string;
 }
 
-type ViewType = 'firestore' | 'collection' | 'query' | 'compare' | 'project-compare' | 'migration' | 'audit';
+type ViewType =
+  'firestore' | 'collection' | 'query' | 'compare' | 'project-compare' | 'migration' | 'audit';
 
 // Logger for webview
 const log = {
-  debug: (msg: string, meta?: Record<string, unknown>) => console.debug(`[Webview] ${msg}`, meta || ''),
-  info: (msg: string, meta?: Record<string, unknown>) => console.info(`[Webview] ${msg}`, meta || ''),
-  warn: (msg: string, meta?: Record<string, unknown>) => console.warn(`[Webview] ${msg}`, meta || ''),
-  error: (msg: string, meta?: Record<string, unknown>) => console.error(`[Webview] ${msg}`, meta || ''),
+  debug: (msg: string, meta?: Record<string, unknown>) =>
+    console.debug(`[Webview] ${msg}`, meta || ''),
+  info: (msg: string, meta?: Record<string, unknown>) =>
+    console.info(`[Webview] ${msg}`, meta || ''),
+  warn: (msg: string, meta?: Record<string, unknown>) =>
+    console.warn(`[Webview] ${msg}`, meta || ''),
+  error: (msg: string, meta?: Record<string, unknown>) =>
+    console.error(`[Webview] ${msg}`, meta || ''),
 };
 
 const AppInner: React.FC = () => {
@@ -51,10 +56,17 @@ const AppInner: React.FC = () => {
   const [selectedDocument, setSelectedDocument] = useState<FirestoreDocument | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [pagination, setPagination] = useState({ page: 1, hasMore: false, nextToken: '', pageSize: 50 });
+  const [pagination, setPagination] = useState({
+    page: 1,
+    hasMore: false,
+    nextToken: '',
+    pageSize: 50,
+  });
   const [selectedCollection, setSelectedCollection] = useState<string>('');
   const [readOnlyCollections, setReadOnlyCollections] = useState<Set<string>>(new Set());
-  const [connections, setConnections] = useState<Array<{ projectId: string; displayName: string }>>([]);
+  const [connections, setConnections] = useState<Array<{ projectId: string; displayName: string }>>(
+    []
+  );
   const [firebaseConfig, setFirebaseConfig] = useState<FirebaseConfig | null>(null);
 
   // Load Firebase config from localStorage on init
@@ -69,7 +81,9 @@ const AppInner: React.FC = () => {
         }
       }
     } catch (err) {
-      log.warn('Failed to load Firebase config from localStorage', { error: (err as Error).message });
+      log.warn('Failed to load Firebase config from localStorage', {
+        error: (err as Error).message,
+      });
     }
   }, []);
 
@@ -83,24 +97,32 @@ const AppInner: React.FC = () => {
     }
   }, []);
 
-  const sendMessage = useCallback((type: string, payload?: unknown): Promise<unknown> => {
-    log.debug('sendMessage called', { type, payload });
-    return new Promise((resolve, reject) => {
-      const requestId = Math.random().toString(36).substring(7);
-      const handler = (event: MessageEvent) => {
-        const msg = event.data as Response;
-        if (msg.type === 'response' && msg.requestId === requestId) {
-          log.debug('sendMessage: Received response', { requestId, success: msg.success, hasError: !!msg.error, error: msg.error });
-          window.removeEventListener('message', handler);
-          if (msg.success) resolve(msg.data);
-          else reject(new Error(msg.error || 'Unknown error'));
-        }
-      };
-      window.addEventListener('message', handler);
-      log.debug('sendMessage: Posting message', { type, requestId });
-      vscode.postMessage({ type, payload, requestId });
-    });
-  }, [vscode]);
+  const sendMessage = useCallback(
+    (type: string, payload?: unknown): Promise<unknown> => {
+      log.debug('sendMessage called', { type, payload });
+      return new Promise((resolve, reject) => {
+        const requestId = Math.random().toString(36).substring(7);
+        const handler = (event: MessageEvent) => {
+          const msg = event.data as Response;
+          if (msg.type === 'response' && msg.requestId === requestId) {
+            log.debug('sendMessage: Received response', {
+              requestId,
+              success: msg.success,
+              hasError: !!msg.error,
+              error: msg.error,
+            });
+            window.removeEventListener('message', handler);
+            if (msg.success) resolve(msg.data);
+            else reject(new Error(msg.error || 'Unknown error'));
+          }
+        };
+        window.addEventListener('message', handler);
+        log.debug('sendMessage: Posting message', { type, requestId });
+        vscode.postMessage({ type, payload, requestId });
+      });
+    },
+    [vscode]
+  );
 
   useEffect(() => {
     log.info('App: Initializing, adding message listener');
@@ -116,7 +138,7 @@ const AppInner: React.FC = () => {
         } else {
           log.warn('App: No active connection found');
         }
-        
+
         // Fetch all connections for Copy/Move modal
         try {
           const conns = await sendMessage('getConnections');
@@ -137,7 +159,11 @@ const AppInner: React.FC = () => {
 
   const handleMessage = async (event: MessageEvent) => {
     const msg = event.data as Message;
-    log.debug('handleMessage: Received message', { type: msg.type, hasPayload: !!msg.payload, requestId: msg.requestId });
+    log.debug('handleMessage: Received message', {
+      type: msg.type,
+      hasPayload: !!msg.payload,
+      requestId: msg.requestId,
+    });
     if (msg.type === 'init') {
       log.info('handleMessage: Received init, setting connection');
       setConnection(msg.payload as Connection);
@@ -154,9 +180,33 @@ const AppInner: React.FC = () => {
       // After switching, refresh the connection state
       const conn = await sendMessage('getActiveConnection');
       if (conn) {
-        log.info('handleMessage: Got new active connection', { projectId: (conn as Connection).projectId });
+        log.info('handleMessage: Got new active connection', {
+          projectId: (conn as Connection).projectId,
+        });
         setConnection(conn as Connection);
         loadCollections();
+      }
+    } else if (msg.type === 'projectSwitched') {
+      const { projectId } = msg.payload as { projectId: string | null };
+      log.info('handleMessage: Received projectSwitched', { projectId });
+      // Reset state when project switches
+      setSelectedCollection('');
+      setDocuments([]);
+      setSelectedDocument(null);
+      setPagination(prev => ({ ...prev, page: 1, hasMore: false, nextToken: '' }));
+      if (projectId) {
+        // Fetch new connection and collections
+        const conn = await sendMessage('getActiveConnection');
+        if (conn) {
+          log.info('handleMessage: Got new active connection after switch', {
+            projectId: (conn as Connection).projectId,
+          });
+          setConnection(conn as Connection);
+          loadCollections();
+        }
+      } else {
+        setConnection(null);
+        setCollections([]);
       }
     }
   };
@@ -166,11 +216,13 @@ const AppInner: React.FC = () => {
     try {
       setLoading(true);
       const doc = await sendMessage('getDocument', { documentPath });
-      log.info('loadDocument: Success', { 
-        documentPath, 
+      log.info('loadDocument: Success', {
+        documentPath,
         docFound: doc !== null,
-        docId: (doc as FirestoreDocument)?.id,
-        dataKeys: (doc as FirestoreDocument)?.data ? Object.keys((doc as FirestoreDocument).data) : []
+        docId: (doc as FirestoreDocument).id,
+        dataKeys: (doc as FirestoreDocument).data
+          ? Object.keys((doc as FirestoreDocument).data)
+          : [],
       });
       setSelectedDocument(doc as FirestoreDocument);
     } catch (err) {
@@ -199,31 +251,40 @@ const AppInner: React.FC = () => {
   const loadDocuments = async (collectionPath: string, pageSize?: number, projectId?: string) => {
     const limit = pageSize || pagination.pageSize;
     log.info('loadDocuments called', { collectionPath, limit, projectId });
-    
+
     // If projectId is provided and different from current active project, switch project first
     if (projectId && projectId !== connection?.projectId) {
-      log.info('loadDocuments: Switching active project', { from: connection?.projectId, to: projectId });
+      log.info('loadDocuments: Switching active project', {
+        from: connection?.projectId,
+        to: projectId,
+      });
       await sendMessage('setActiveProject', { projectId });
       // Refresh connection state after switching
       const conn = await sendMessage('getActiveConnection');
       if (conn) {
-        log.info('loadDocuments: Got new active connection', { projectId: (conn as Connection).projectId });
+        log.info('loadDocuments: Got new active connection', {
+          projectId: (conn as Connection).projectId,
+        });
         setConnection(conn as Connection);
       }
     }
-    
+
     try {
       setLoading(true);
       setSelectedCollection(collectionPath);
       const result = await sendMessage('listDocuments', { collectionPath, options: { limit } });
       const docs = (result as any).documents || [];
-      log.info('loadDocuments: Success', { collectionPath, count: docs.length, hasMore: (result as any).hasMore });
+      log.info('loadDocuments: Success', {
+        collectionPath,
+        count: docs.length,
+        hasMore: (result as any).hasMore,
+      });
       setDocuments(docs);
-      setPagination(prev => ({ 
-        page: 1, 
-        hasMore: (result as any).hasMore, 
+      setPagination(prev => ({
+        page: 1,
+        hasMore: (result as any).hasMore,
         nextToken: (result as any).nextPageToken || '',
-        pageSize: limit
+        pageSize: limit,
       }));
     } catch (err) {
       log.error('loadDocuments: Error', { collectionPath, error: (err as Error).message });
@@ -235,24 +296,27 @@ const AppInner: React.FC = () => {
 
   const loadMore = async () => {
     if (!selectedCollection || !pagination.hasMore || !pagination.nextToken) return;
-    log.info('loadMore called', { collectionPath: selectedCollection, nextToken: pagination.nextToken });
+    log.info('loadMore called', {
+      collectionPath: selectedCollection,
+      nextToken: pagination.nextToken,
+    });
     try {
       setLoading(true);
-      const result = await sendMessage('listDocuments', { 
-        collectionPath: selectedCollection, 
-        options: { 
+      const result = await sendMessage('listDocuments', {
+        collectionPath: selectedCollection,
+        options: {
           limit: pagination.pageSize,
-          startAfter: { documentPath: pagination.nextToken }
-        } 
+          startAfter: { documentPath: pagination.nextToken },
+        },
       });
       const docs = (result as any).documents || [];
       log.info('loadMore: Success', { count: docs.length, hasMore: (result as any).hasMore });
       setDocuments(prev => [...prev, ...docs]);
-      setPagination(prev => ({ 
-        ...prev, 
+      setPagination(prev => ({
+        ...prev,
         page: prev.page + 1,
-        hasMore: (result as any).hasMore, 
-        nextToken: (result as any).nextPageToken || prev.nextToken
+        hasMore: (result as any).hasMore,
+        nextToken: (result as any).nextPageToken || prev.nextToken,
       }));
     } catch (err) {
       log.error('loadMore: Error', { error: (err as Error).message });
@@ -288,11 +352,11 @@ const AppInner: React.FC = () => {
       const docs = (result as any).documents || [];
       log.info('handleRunQuery: Success', { count: docs.length });
       setDocuments(docs);
-      setPagination(prev => ({ 
-        page: 1, 
-        hasMore: (result as any).hasMore, 
+      setPagination(prev => ({
+        page: 1,
+        hasMore: (result as any).hasMore,
         nextToken: (result as any).nextPageToken || '',
-        pageSize: prev.pageSize
+        pageSize: prev.pageSize,
       }));
     } catch (err) {
       log.error('handleRunQuery: Error', { error: (err as Error).message });
@@ -303,7 +367,11 @@ const AppInner: React.FC = () => {
   };
 
   const handleCreateDocument = async (collectionPath: string, data: FirestoreDocument) => {
-    console.log('[App] handleCreateDocument called', { collectionPath, docId: data.id, dataKeys: Object.keys(data.data) });
+    console.log('[App] handleCreateDocument called', {
+      collectionPath,
+      docId: data.id,
+      dataKeys: Object.keys(data.data),
+    });
     log.info('handleCreateDocument called', { collectionPath });
     try {
       await sendMessage('createDocument', { collectionPath, data });
@@ -445,17 +513,19 @@ const AppInner: React.FC = () => {
     }
   };
 
-  const extractGeopoints = (data: Record<string, any>): Array<{ label: string; lat: number; lng: number }> => {
+  const extractGeopoints = (
+    data: Record<string, any>
+  ): Array<{ label: string; lat: number; lng: number }> => {
     const geopoints: Array<{ label: string; lat: number; lng: number }> = [];
-    
+
     const traverse = (obj: any, path: string = '') => {
       if (!obj || typeof obj !== 'object') return;
-      
+
       if (obj.__type__ === 'geopoint' && obj.value) {
         geopoints.push({
           label: path || 'location',
           lat: obj.value.latitude,
-          lng: obj.value.longitude
+          lng: obj.value.longitude,
         });
       } else if (obj.__type__ === 'map' && obj.value) {
         for (const [key, value] of Object.entries(obj.value)) {
@@ -475,7 +545,7 @@ const AppInner: React.FC = () => {
         }
       }
     };
-    
+
     traverse(data);
     return geopoints;
   };
@@ -483,12 +553,12 @@ const AppInner: React.FC = () => {
   const handleShowGeopoints = (doc: FirestoreDocument) => {
     log.info('handleShowGeopoints called', { docId: doc.id });
     const geopoints = extractGeopoints(doc.data);
-    
+
     if (geopoints.length === 0) {
       notify('info', 'No geopoints found in this document');
       return;
     }
-    
+
     if (geopoints.length === 1) {
       const gp = geopoints[0];
       if (!gp) return;
@@ -504,44 +574,46 @@ const AppInner: React.FC = () => {
 
   const handleImportDocument = async (doc: FirestoreDocument | null, targetCollection?: string) => {
     log.info('handleImportDocument called', { docId: doc?.id, targetCollection });
-    
-    return new Promise<void>((resolve) => {
+
+    return new Promise<void>(resolve => {
       const input = document.createElement('input');
       input.type = 'file';
       input.accept = '.json';
-      input.onchange = async (e) => {
+      input.onchange = async e => {
         const file = (e.target as HTMLInputElement).files?.[0];
         if (!file) {
           resolve();
           return;
         }
-        
+
         try {
           const text = await file.text();
           const importData = JSON.parse(text);
-          
-          const collectionPath = targetCollection || (doc ? doc.path.split('/').slice(0, -1).join('/') : selectedCollection);
+
+          const collectionPath =
+            targetCollection ||
+            (doc ? doc.path.split('/').slice(0, -1).join('/') : selectedCollection);
           if (!collectionPath) {
             notify('error', 'No collection selected. Please select a collection first.');
             resolve();
             return;
           }
-          
+
           // If doc is provided, update it; otherwise create new
           if (doc) {
-            await sendMessage('updateDocument', { 
-              documentPath: doc.path, 
-              data: { data: importData } 
+            await sendMessage('updateDocument', {
+              documentPath: doc.path,
+              data: { data: importData },
             });
             notify('success', 'Document updated successfully');
           } else {
-            await sendMessage('createDocument', { 
-              collectionPath, 
-              data: { id: '', path: '', data: importData } 
+            await sendMessage('createDocument', {
+              collectionPath,
+              data: { id: '', path: '', data: importData },
             });
             notify('success', 'Document created successfully');
           }
-          
+
           if (selectedCollection) await loadDocuments(selectedCollection);
           resolve();
         } catch (err) {
@@ -555,7 +627,11 @@ const AppInner: React.FC = () => {
     });
   };
 
-  const handleExportCollection = async (collectionPath: string, format: 'json' | 'csv', outputPath: string) => {
+  const handleExportCollection = async (
+    collectionPath: string,
+    format: 'json' | 'csv',
+    outputPath: string
+  ) => {
     try {
       setLoading(true);
       await sendMessage('exportCollection', { collectionPath, format, outputPath });
@@ -569,10 +645,20 @@ const AppInner: React.FC = () => {
     }
   };
 
-  const handleImportCollection = async (collectionPath: string, format: 'json' | 'csv', mode: 'create' | 'update' | 'upsert', inputPath: string) => {
+  const handleImportCollection = async (
+    collectionPath: string,
+    format: 'json' | 'csv',
+    mode: 'create' | 'update' | 'upsert',
+    inputPath: string
+  ) => {
     try {
       setLoading(true);
-      const result = await sendMessage('importCollection', { collectionPath, format, mode, inputPath });
+      const result = await sendMessage('importCollection', {
+        collectionPath,
+        format,
+        mode,
+        inputPath,
+      });
       await loadDocuments(collectionPath);
       return result;
     } catch (err) {
@@ -583,12 +669,24 @@ const AppInner: React.FC = () => {
     }
   };
 
-if (!connection) {
+  if (!connection) {
     return (
-      <div className="empty-state" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
+      <div
+        className="empty-state"
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 16,
+        }}
+      >
         <div className="icon">🔌</div>
         <h3>No Connection</h3>
-        <p style={{ textAlign: 'center', maxWidth: 400 }}>Connect to a Firebase project to get started.</p>
+        <p style={{ textAlign: 'center', maxWidth: 400 }}>
+          Connect to a Firebase project to get started.
+        </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
           <button
             onClick={() => vscode.postMessage({ type: 'connectServiceAccount' })}
@@ -632,6 +730,7 @@ if (!connection) {
       case 'query':
         return (
           <FirestoreView
+            key={connection.projectId || 'no-connection'}
             connection={connection}
             collections={collections}
             documents={documents}
@@ -661,12 +760,14 @@ if (!connection) {
             onExportDocument={handleExportDocument}
             onRevealInConsole={handleRevealInConsole}
             connections={connections}
-            activeProjectId={connection?.projectId || null}
+            activeProjectId={connection.projectId || null}
             readOnlyCollections={readOnlyCollections}
             setReadOnlyCollections={setReadOnlyCollections}
             firebaseConfig={firebaseConfig || undefined}
             onConfigImport={handleConfigImport}
-            initialView={view === 'query' ? 'query' : view === 'collection' ? 'collection' : 'firestore'}
+            initialView={
+              view === 'query' ? 'query' : view === 'collection' ? 'collection' : 'firestore'
+            }
           />
         );
       case 'compare':
@@ -687,25 +788,58 @@ if (!connection) {
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         <div className="toolbar">
           <div className="toolbar-group">
-            <button onClick={() => setView('firestore')} className={view === 'firestore' ? 'active' : ''}>Firestore</button>
-            <button onClick={() => setView('collection')} className={view === 'collection' ? 'active' : ''}>Collection</button>
-            <button onClick={() => setView('query')} className={view === 'query' ? 'active' : ''}>Query</button>
-            <button onClick={() => setView('compare')} className={view === 'compare' ? 'active' : ''}>Compare</button>
-            <button onClick={() => setView('project-compare')} className={view === 'project-compare' ? 'active' : ''}>Projects</button>
-            <button onClick={() => setView('migration')} className={view === 'migration' ? 'active' : ''}>Migration</button>
-            <button onClick={() => setView('audit')} className={view === 'audit' ? 'active' : ''}>Audit</button>
+            <button
+              onClick={() => setView('firestore')}
+              className={view === 'firestore' ? 'active' : ''}
+            >
+              Firestore
+            </button>
+            <button
+              onClick={() => setView('collection')}
+              className={view === 'collection' ? 'active' : ''}
+            >
+              Collection
+            </button>
+            <button onClick={() => setView('query')} className={view === 'query' ? 'active' : ''}>
+              Query
+            </button>
+            <button
+              onClick={() => setView('compare')}
+              className={view === 'compare' ? 'active' : ''}
+            >
+              Compare
+            </button>
+            <button
+              onClick={() => setView('project-compare')}
+              className={view === 'project-compare' ? 'active' : ''}
+            >
+              Projects
+            </button>
+            <button
+              onClick={() => setView('migration')}
+              className={view === 'migration' ? 'active' : ''}
+            >
+              Migration
+            </button>
+            <button onClick={() => setView('audit')} className={view === 'audit' ? 'active' : ''}>
+              Audit
+            </button>
           </div>
           <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }}>
             <span className={`badge ${connection.environment}`}>{connection.environment}</span>
-            {connection.authMethod === 'emulator' && <span className="badge emulator">Emulator</span>}
-            {connection.environment === 'production' && <span className="badge production">Production</span>}
+            {connection.authMethod === 'emulator' && (
+              <span className="badge emulator">Emulator</span>
+            )}
+            {connection.environment === 'production' && (
+              <span className="badge production">Production</span>
+            )}
           </div>
         </div>
-        <div style={{ flex: 1, overflow: 'hidden' }}>
-          {renderView()}
-        </div>
+        <div style={{ flex: 1, overflow: 'hidden' }}>{renderView()}</div>
         <div className="status-bar">
-          <span>{connection.displayName} ({connection.projectId})</span>
+          <span>
+            {connection.displayName} ({connection.projectId})
+          </span>
           <span>{documents.length} documents</span>
         </div>
       </div>

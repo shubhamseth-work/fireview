@@ -2,7 +2,7 @@
   "name": "fire-view",
   "displayName": "FireView",
   "publisher": "fireview",
-  "version": "0.1.5",
+  "version": "0.1.9",
   "description": "FireView - Explore. Query. Manage. Firebase Firestore developer workspace for VS Code.",
   "main": "dist/extension.js",
   "scripts": {
@@ -91,6 +91,11 @@
         "command": "fireview.refreshProject",
         "title": "FireView: Refresh Project",
         "icon": "$(refresh)"
+      },
+      {
+        "command": "fireview.setActiveProject",
+        "title": "Set Active Project",
+        "icon": "$(arrow-right)"
       },
       {
         "command": "fireview.openFirestore",
@@ -196,6 +201,11 @@
       "view/title": [
         {
           "command": "fireview.connectProject",
+          "when": "view == fireview.projects",
+          "group": "navigation"
+        },
+        {
+          "command": "fireview.setActiveProject",
           "when": "view == fireview.projects",
           "group": "navigation"
         },

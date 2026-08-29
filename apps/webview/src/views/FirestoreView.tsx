@@ -1,15 +1,24 @@
+import type {
+  Connection,
+  FirestoreDocument,
+  FirestoreQuery,
+} from '@fireview/core';
+import {
+  FirestoreValue,
+  OrderByClause,
+  QueryFilter,
+  QueryOperator,
+} from '@fireview/core';
 import React, { useState } from 'react';
+import { useVSCode } from '../context/VSCodeContext';
+import { CollectionTree } from './CollectionTree';
 import { DocumentTable } from './DocumentTable';
 import { DocumentViewer } from './DocumentViewer';
-import { QueryBuilder } from './QueryBuilder';
-import { CollectionTree } from './CollectionTree';
 import { ExportModal } from './ExportModal';
 import { ImportModal } from './ImportModal';
-import { NewDocumentModal } from './NewDocumentModal';
 import { NewCollectionModal } from './NewCollectionModal';
-import { FirestoreDocument, FirestoreQuery, FirestoreValue, QueryFilter, QueryOperator, OrderByClause } from '@fireview/core';
-import { Connection } from '@fireview/core';
-import { useVSCode } from '../context/VSCodeContext';
+import { NewDocumentModal } from './NewDocumentModal';
+import { QueryBuilder } from './QueryBuilder';
 
 interface FirebaseConfig {
   apiKey: string;
@@ -37,7 +46,12 @@ interface FirestoreViewProps {
   onUpdateDocument: (documentPath: string, data: Partial<FirestoreDocument>) => void;
   onDeleteDocument: (documentPath: string) => void;
   onExportCollection: (collectionPath: string, format: 'json' | 'csv', outputPath: string) => void;
-  onImportCollection: (collectionPath: string, format: 'json' | 'csv', mode: 'create' | 'update' | 'upsert', inputPath: string) => void;
+  onImportCollection: (
+    collectionPath: string,
+    format: 'json' | 'csv',
+    mode: 'create' | 'update' | 'upsert',
+    inputPath: string
+  ) => void;
   onLoadMore: () => void;
   onPageSizeChange: (pageSize: number) => void;
   onCopyDocument: (doc: FirestoreDocument) => void;
@@ -97,6 +111,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
 }) => {
   // Destructure authMethod from connection
   const authMethod = connection.authMethod;
+  const vscode = useVSCode();
   const [selectedCollection, setSelectedCollection] = useState<string>('');
   const [showQueryBuilder, setShowQueryBuilder] = useState(initialView === 'query');
   const [showExportModal, setShowExportModal] = useState(false);
@@ -106,10 +121,16 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
   const [sidebarWidth, setSidebarWidth] = useState(280);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
-  const handleCollectionClick = (collectionPath: string, projectId?: string) => {
+  const handleCollectionClick = (collectionPath: string) => {
     setSelectedCollection(collectionPath);
     setShowQueryBuilder(false);
-    onLoadDocuments(collectionPath, undefined, projectId);
+    onLoadDocuments(collectionPath);
+  };
+
+  const handleProjectChange = (projectId: string) => {
+    if (projectId !== activeProjectId) {
+      vscode.postMessage({ type: 'setActiveProject', payload: { projectId } });
+    }
   };
 
   const handleNewDocument = () => {
@@ -127,8 +148,16 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
     setShowNewDocumentModal(false);
   };
 
-  const handleAddDocumentFromTree = (collectionPath: string, docId: string, data: Record<string, any>) => {
-    console.log('[FirestoreView] handleAddDocumentFromTree called', { collectionPath, docId, dataKeys: Object.keys(data) });
+  const handleAddDocumentFromTree = (
+    collectionPath: string,
+    docId: string,
+    data: Record<string, any>
+  ) => {
+    console.log('[FirestoreView] handleAddDocumentFromTree called', {
+      collectionPath,
+      docId,
+      dataKeys: Object.keys(data),
+    });
     const newDoc: FirestoreDocument = {
       id: docId,
       path: '',
@@ -201,9 +230,43 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
             flexShrink: 0,
           }}
         >
-          <div className="toolbar">
-            <button onClick={() => setShowQueryBuilder(!showQueryBuilder)} title="Query Builder">🔍 Query</button>
-            <button onClick={() => setIsSidebarCollapsed(true)} title="Collapse sidebar" style={{ marginLeft: 'auto', padding: '4px 8px' }}>◀</button>
+          <div
+            className="toolbar"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px' }}
+          >
+            <select
+              value={activeProjectId || ''}
+              onChange={e => handleProjectChange(e.target.value)}
+              style={{
+                flex: 1,
+                padding: '4px 8px',
+                fontSize: 12,
+                backgroundColor: 'var(--vscode-dropdown-background)',
+                color: 'var(--vscode-dropdown-foreground)',
+                border: '1px solid var(--vscode-dropdown-border)',
+                borderRadius: 2,
+              }}
+            >
+              {connections.map(conn => (
+                <option key={conn.projectId} value={conn.projectId}>
+                  {conn.displayName} ({conn.projectId})
+                </option>
+              ))}
+            </select>
+            <button
+              onClick={() => setShowQueryBuilder(!showQueryBuilder)}
+              title="Query Builder"
+              style={{ padding: '4px 8px' }}
+            >
+              🔍 Query
+            </button>
+            <button
+              onClick={() => setIsSidebarCollapsed(true)}
+              title="Collapse sidebar"
+              style={{ marginLeft: 'auto', padding: '4px 8px' }}
+            >
+              ◀
+            </button>
           </div>
           {showQueryBuilder ? (
             <QueryBuilder
@@ -221,9 +284,7 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
               onToggleReadOnly={handleToggleReadOnly}
               onExportCollection={handleCollectionExport}
               onImportCollection={handleCollectionImport}
-onAddDocument={handleAddDocumentFromTree}
-              connections={connections}
-              activeProjectId={activeProjectId}
+              onAddDocument={handleAddDocumentFromTree}
             />
           )}
         </div>
@@ -255,17 +316,17 @@ onAddDocument={handleAddDocumentFromTree}
             cursor: 'col-resize',
             backgroundColor: 'transparent',
           }}
-          onMouseDown={(e) => {
-          const startX = e.clientX;
-          const startWidth = sidebarWidth;
-          const onMouseMove = (e: MouseEvent) => {
-            setSidebarWidth(Math.max(200, Math.min(500, startWidth + e.clientX - startX)));
-          };
-          const onMouseUp = () => {
-            window.removeEventListener('mousemove', onMouseMove);
-            window.removeEventListener('mouseup', onMouseUp);
-          };
-window.addEventListener('mousemove', onMouseMove);
+          onMouseDown={e => {
+            const startX = e.clientX;
+            const startWidth = sidebarWidth;
+            const onMouseMove = (e: MouseEvent) => {
+              setSidebarWidth(Math.max(200, Math.min(500, startWidth + e.clientX - startX)));
+            };
+            const onMouseUp = () => {
+              window.removeEventListener('mousemove', onMouseMove);
+              window.removeEventListener('mouseup', onMouseUp);
+            };
+            window.addEventListener('mousemove', onMouseMove);
             window.addEventListener('mouseup', onMouseUp);
           }}
         />

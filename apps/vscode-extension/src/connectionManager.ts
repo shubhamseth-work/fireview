@@ -24,6 +24,8 @@ export interface ActiveConnection extends Connection {
   firebaseAuth?: { refreshToken: string; userId: string; email: string };
 }
 
+type ActiveProjectChangeCallback = (projectId: string | null) => void;
+
 export class ConnectionManager {
   private connections: Map<string, ActiveConnection> = new Map();
   private activeProjectId: string | null = null;
@@ -31,6 +33,7 @@ export class ConnectionManager {
   private authProviders: AuthProviders;
   private auditService: AuditService;
   private emulatorService: EmulatorService;
+  private _onDidChangeActiveProjectCallbacks: ActiveProjectChangeCallback[] = [];
 
   constructor(
     credentialService: CredentialService,
@@ -42,6 +45,16 @@ export class ConnectionManager {
     this.authProviders = authProviders;
     this.auditService = auditService;
     this.emulatorService = emulatorService;
+  }
+
+  onDidChangeActiveProject(callback: ActiveProjectChangeCallback): void {
+    this._onDidChangeActiveProjectCallbacks.push(callback);
+  }
+
+  private _emitActiveProjectChange(projectId: string | null): void {
+    for (const callback of this._onDidChangeActiveProjectCallbacks) {
+      callback(projectId);
+    }
   }
 
   async initialize(): Promise<void> {
@@ -56,7 +69,7 @@ export class ConnectionManager {
     }
   }
 
-  private async restoreConnection(stored: StoredConnection): Promise<void> {
+  async restoreConnection(stored: StoredConnection): Promise<void> {
     try {
       let firestore: FirestoreService | undefined;
 
@@ -225,6 +238,7 @@ export class ConnectionManager {
     if (this.activeProjectId === projectId) {
       this.activeProjectId = null;
       await this.credentialService.setActiveConnection('');
+      this._emitActiveProjectChange(null);
     }
 
     this.auditService.record({
@@ -265,8 +279,20 @@ export class ConnectionManager {
 
   async setActiveConnection(projectId: string): Promise<void> {
     const connection = this.connections.get(projectId);
-    if (!connection) throw new VistiqError('Connection not found', ERROR_CODES.PROJECT_NOT_FOUND);
+    if (!connection) {
+      const availableProjects = Array.from(this.connections.keys()).join(', ');
+      connLogger.error('setActiveConnection: Connection not found', {
+        requestedProjectId: projectId,
+        availableProjects,
+        activeProjectId: this.activeProjectId,
+      });
+      throw new VistiqError(
+        `Connection not found for project: ${projectId}. Available: ${availableProjects || 'none'}`,
+        ERROR_CODES.PROJECT_NOT_FOUND
+      );
+    }
 
+    const previousProjectId = this.activeProjectId;
     this.activeProjectId = projectId;
     connection.lastUsedAt = new Date().toISOString();
     await this.credentialService.setActiveConnection(projectId);
@@ -274,6 +300,11 @@ export class ConnectionManager {
       ...connection,
       lastUsedAt: connection.lastUsedAt,
     });
+
+    // Emit event if project actually changed
+    if (previousProjectId !== projectId) {
+      this._emitActiveProjectChange(projectId);
+    }
   }
 
   async showConnectDialog(): Promise<void> {
@@ -378,7 +409,12 @@ export class ConnectionManager {
         prompt: 'Paste Service Account JSON',
         placeHolder: '{ "type": "service_account", ... }',
         validateInput: v => {
-          try { JSON.parse(v); return null; } catch { return 'Invalid JSON'; }
+          try {
+            JSON.parse(v);
+            return null;
+          } catch {
+            return 'Invalid JSON';
+          }
         },
         password: true,
       });

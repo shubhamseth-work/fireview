@@ -1,5 +1,5 @@
+import type { Connection, FirestoreDocument } from '@fireview/core';
 import React, { useState } from 'react';
-import { Connection, FirestoreDocument } from '@fireview/core';
 
 interface CompareViewProps {
   connection: Connection;
@@ -50,8 +50,17 @@ export const CompareView: React.FC<CompareViewProps> = ({ connection, onRunQuery
             </button>
           </div>
           {leftDoc && (
-            <div style={{ marginTop: 8, padding: 8, backgroundColor: 'var(--vscode-input-bg)', borderRadius: 4, fontSize: 12 }}>
-              <strong>{leftDoc.id}</strong><br />
+            <div
+              style={{
+                marginTop: 8,
+                padding: 8,
+                backgroundColor: 'var(--vscode-input-bg)',
+                borderRadius: 4,
+                fontSize: 12,
+              }}
+            >
+              <strong>{leftDoc.id}</strong>
+              <br />
               {leftDoc.path}
             </div>
           )}
@@ -67,20 +76,36 @@ export const CompareView: React.FC<CompareViewProps> = ({ connection, onRunQuery
               placeholder="projects/p/databases/(default)/documents/collection/doc"
               style={{ flex: 1 }}
             />
-            <button onClick={() => loadDocument(rightPath, 'right')} disabled={loading || !rightPath}>
+            <button
+              onClick={() => loadDocument(rightPath, 'right')}
+              disabled={loading || !rightPath}
+            >
               Load
             </button>
           </div>
           {rightDoc && (
-            <div style={{ marginTop: 8, padding: 8, backgroundColor: 'var(--vscode-input-bg)', borderRadius: 4, fontSize: 12 }}>
-              <strong>{rightDoc.id}</strong><br />
+            <div
+              style={{
+                marginTop: 8,
+                padding: 8,
+                backgroundColor: 'var(--vscode-input-bg)',
+                borderRadius: 4,
+                fontSize: 12,
+              }}
+            >
+              <strong>{rightDoc.id}</strong>
+              <br />
               {rightDoc.path}
             </div>
           )}
         </div>
       </div>
 
-      <button onClick={handleCompare} disabled={!leftDoc || !rightDoc || loading} style={{ width: 'fit-content' }}>
+      <button
+        onClick={handleCompare}
+        disabled={!leftDoc || !rightDoc || loading}
+        style={{ width: 'fit-content' }}
+      >
         Compare Documents
       </button>
 

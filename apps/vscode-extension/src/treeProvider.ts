@@ -1,7 +1,7 @@
 import { Connection } from '@fireview/core';
 import { createChildLogger } from '@fireview/shared';
 import * as vscode from 'vscode';
-import type { ConnectionManager, ActiveConnection } from './connectionManager.js';
+import type { ActiveConnection, ConnectionManager } from './connectionManager.js';
 import type { WebviewManager } from './webviewManager.js';
 
 const treeLogger = createChildLogger('treeProvider');
@@ -77,7 +77,22 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
         : isProduction
           ? 'productionProject'
           : 'project';
-      item.tooltip = `${conn.displayName}\n${conn.projectId}\n${conn.environment}`;
+
+      // Add visual indicator for active project
+      if (isActive) {
+        item.description = '✓ Active';
+      }
+
+      item.tooltip = `${conn.displayName}\n${conn.projectId}\n${conn.environment}${isActive ? '\n(Active)' : ''}`;
+
+      // Allow clicking on non-active projects to switch to them
+      if (!isActive) {
+        item.command = {
+          command: 'fireview.setActiveProject',
+          title: 'Set as Active Project',
+          arguments: [conn.projectId],
+        };
+      }
 
       items.push(item);
     }
@@ -119,7 +134,10 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
     return this.loadProjectChildren(connection, projectId);
   }
 
-  private async loadProjectChildren(connection: ActiveConnection, projectId: string): Promise<ProjectTreeItem[]> {
+  private async loadProjectChildren(
+    connection: ActiveConnection,
+    projectId: string
+  ): Promise<ProjectTreeItem[]> {
     try {
       if (!connection.firestore) {
         return [
@@ -224,7 +242,7 @@ export class ProjectTreeProvider implements vscode.TreeDataProvider<ProjectTreeI
         item.command = {
           command: 'fireview.openDocument',
           title: 'Open Document',
-          arguments: [doc.path],
+          arguments: [doc.path, projectId],
         };
         return item;
       });

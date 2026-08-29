@@ -1,22 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Connection } from '@fireview/core';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNotify } from '../context/NotificationContext';
 import { ConfirmationModal } from './ConfirmationModal';
 import { CopyMoveModal } from './CopyMoveModal';
 import { NewDocumentModal } from './NewDocumentModal';
-import { useNotify } from '../context/NotificationContext';
 
 interface CollectionTreeProps {
   collections: any[];
   selectedCollection: string;
-  onSelect: (collectionPath: string, projectId?: string) => void;
+  onSelect: (collectionPath: string) => void;
   loading: boolean;
   readOnlyCollections: Set<string>;
   onToggleReadOnly: (collectionPath: string) => void;
   onExportCollection: (collectionPath: string) => void;
   onImportCollection: (collectionPath: string) => void;
   onAddDocument: (collectionPath: string, docId: string, data: Record<string, any>) => void;
-  connections: Array<{ projectId: string; displayName: string }>;
-  activeProjectId: string | null;
 }
 
 export const CollectionTree: React.FC<CollectionTreeProps> = ({
@@ -29,14 +26,25 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
   onExportCollection,
   onImportCollection,
   onAddDocument,
-  connections,
-  activeProjectId,
 }) => {
   const notify = useNotify();
-  const [contextMenu, setContextMenu] = useState<{ collection: any; x: number; y: number } | null>(null);
-  const [confirmModal, setConfirmModal] = useState<{ title: string; message: string; onConfirm: () => void; variant?: 'danger' | 'primary' } | null>(null);
-  const [copyMoveModal, setCopyMoveModal] = useState<{ mode: 'copy' | 'move'; collection: any } | null>(null);
-  const [newDocModal, setNewDocModal] = useState<{ isOpen: boolean; collectionPath: string } | null>(null);
+  const [contextMenu, setContextMenu] = useState<{ collection: any; x: number; y: number } | null>(
+    null
+  );
+  const [confirmModal, setConfirmModal] = useState<{
+    title: string;
+    message: string;
+    onConfirm: () => void;
+    variant?: 'danger' | 'primary';
+  } | null>(null);
+  const [copyMoveModal, setCopyMoveModal] = useState<{
+    mode: 'copy' | 'move';
+    collection: any;
+  } | null>(null);
+  const [newDocModal, setNewDocModal] = useState<{
+    isOpen: boolean;
+    collectionPath: string;
+  } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -121,7 +129,9 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
 
   if (loading) {
     return (
-      <div style={{ padding: 16, textAlign: 'center', color: 'var(--vscode-descriptionForeground)' }}>
+      <div
+        style={{ padding: 16, textAlign: 'center', color: 'var(--vscode-descriptionForeground)' }}
+      >
         Loading collections...
       </div>
     );
@@ -141,36 +151,47 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
     <div className="tree-view" style={{ flex: 1, overflow: 'auto' }}>
       {collections.map(col => {
         const isReadOnly = readOnlyCollections.has(col.path);
-        // Determine projectId for this collection (from activeProjectId or infer from connections)
-        const projectId = activeProjectId ?? undefined;
         return (
           <div
             key={col.id}
             className={`tree-item ${selectedCollection === col.path ? 'selected' : ''} ${isReadOnly ? 'read-only' : ''}`}
-            onClick={() => !isReadOnly && onSelect(col.path, projectId)}
+            onClick={() => !isReadOnly && onSelect(col.path)}
             onContextMenu={e => handleContextMenu(e, col)}
-            style={{ 
-              padding: '8px 12px', 
-              display: 'flex', 
+            style={{
+              padding: '8px 12px',
+              display: 'flex',
               alignItems: 'center',
               opacity: isReadOnly ? 0.6 : 1,
               cursor: isReadOnly ? 'not-allowed' : 'pointer',
             }}
           >
             <span className="icon">📁</span>
-            <span style={{ flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <span
+              style={{
+                flex: 1,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
               {col.id}
               {isReadOnly && <span style={{ marginLeft: 8, fontSize: 12 }}>🔒</span>}
             </span>
             {col.documentCount !== undefined && (
-              <span style={{ fontSize: 11, color: 'var(--vscode-descriptionForeground)', marginLeft: 8 }}>
+              <span
+                style={{
+                  fontSize: 11,
+                  color: 'var(--vscode-descriptionForeground)',
+                  marginLeft: 8,
+                }}
+              >
                 {col.documentCount}
               </span>
             )}
           </div>
         );
       })}
-      
+
       {contextMenu && (
         <div
           ref={menuRef}
@@ -187,7 +208,16 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
             padding: '4px 0',
           }}
         >
-          <div style={{ padding: '4px 12px', fontSize: 11, color: 'var(--vscode-descriptionForeground)', textTransform: 'uppercase', letterSpacing: 0.5, borderBottom: '1px solid var(--vscode-dropdown-border)' }}>
+          <div
+            style={{
+              padding: '4px 12px',
+              fontSize: 11,
+              color: 'var(--vscode-descriptionForeground)',
+              textTransform: 'uppercase',
+              letterSpacing: 0.5,
+              borderBottom: '1px solid var(--vscode-dropdown-border)',
+            }}
+          >
             {contextMenu.collection.id}
           </div>
           <button
@@ -205,11 +235,17 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
               textAlign: 'left',
               cursor: 'pointer',
             }}
-            onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)'}
-            onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+            onMouseOver={e =>
+              (e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)')
+            }
+            onMouseOut={e => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
             <span>{readOnlyCollections.has(contextMenu.collection.path) ? '🔓' : '🔒'}</span>
-            <span>{readOnlyCollections.has(contextMenu.collection.path) ? 'Make Writable' : 'Make Read-Only'}</span>
+            <span>
+              {readOnlyCollections.has(contextMenu.collection.path)
+                ? 'Make Writable'
+                : 'Make Read-Only'}
+            </span>
           </button>
           <div style={{ borderTop: '1px solid var(--vscode-dropdown-border)', margin: '4px 0' }} />
           <button
@@ -227,8 +263,10 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
               textAlign: 'left',
               cursor: 'pointer',
             }}
-            onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)'}
-            onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+            onMouseOver={e =>
+              (e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)')
+            }
+            onMouseOut={e => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
             <span>📤</span>
             <span>Export Collection...</span>
@@ -248,8 +286,10 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
               textAlign: 'left',
               cursor: 'pointer',
             }}
-            onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)'}
-            onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+            onMouseOver={e =>
+              (e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)')
+            }
+            onMouseOut={e => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
             <span>📥</span>
             <span>Import Collection...</span>
@@ -269,8 +309,10 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
               textAlign: 'left',
               cursor: 'pointer',
             }}
-            onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)'}
-            onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+            onMouseOver={e =>
+              (e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)')
+            }
+            onMouseOut={e => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
             <span>➕</span>
             <span>Add Document...</span>
@@ -291,8 +333,10 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
               textAlign: 'left',
               cursor: 'pointer',
             }}
-            onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)'}
-            onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+            onMouseOver={e =>
+              (e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)')
+            }
+            onMouseOut={e => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
             <span>✏️</span>
             <span>Rename Collection...</span>
@@ -312,8 +356,10 @@ export const CollectionTree: React.FC<CollectionTreeProps> = ({
               textAlign: 'left',
               cursor: 'pointer',
             }}
-            onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)'}
-            onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+            onMouseOver={e =>
+              (e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)')
+            }
+            onMouseOut={e => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
             <span>🗑️</span>
             <span>Delete Collection</span>

@@ -1,5 +1,5 @@
+import type { Connection } from '@fireview/core';
 import React, { useState } from 'react';
-import { Connection } from '@fireview/core';
 
 interface MigrationViewProps {
   connection: Connection;
@@ -55,7 +55,12 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
             style={{
               padding: '4px 12px',
               borderRadius: 12,
-              backgroundColor: i + 1 < step ? 'var(--vscode-accent)' : i + 1 === step ? 'var(--vscode-button-background)' : 'var(--vscode-input-bg)',
+              backgroundColor:
+                i + 1 < step
+                  ? 'var(--vscode-accent)'
+                  : i + 1 === step
+                    ? 'var(--vscode-button-background)'
+                    : 'var(--vscode-input-bg)',
               color: i + 1 <= step ? 'white' : 'var(--vscode-descriptionForeground)',
               fontSize: 12,
               fontWeight: i + 1 === step ? 600 : 400,
@@ -70,27 +75,49 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
         {step === 1 && (
           <div>
             <h3>Select Source Project</h3>
-            <select value={sourceProject} onChange={e => setSourceProject(e.target.value)} style={{ width: '100%', maxWidth: 300, marginBottom: 16 }}>
+            <select
+              value={sourceProject}
+              onChange={e => setSourceProject(e.target.value)}
+              style={{ width: '100%', maxWidth: 300, marginBottom: 16 }}
+            >
               <option value="">Select source...</option>
               <option value={connection.projectId}>{connection.displayName} (current)</option>
             </select>
-            <button onClick={handleNext} disabled={!sourceProject}>Next</button>
+            <button onClick={handleNext} disabled={!sourceProject}>
+              Next
+            </button>
           </div>
         )}
 
         {step === 2 && (
           <div>
             <h3>Select Destination Project</h3>
-            <div style={{ color: 'var(--vscode-warning)', marginBottom: 16, padding: 12, backgroundColor: 'rgba(220, 220, 170, 0.1)', borderRadius: 4 }}>
+            <div
+              style={{
+                color: 'var(--vscode-warning)',
+                marginBottom: 16,
+                padding: 12,
+                backgroundColor: 'rgba(220, 220, 170, 0.1)',
+                borderRadius: 4,
+              }}
+            >
               ⚠️ Select destination carefully. This is where data will be written.
             </div>
-            <select value={destProject} onChange={e => setDestProject(e.target.value)} style={{ width: '100%', maxWidth: 300, marginBottom: 16 }}>
+            <select
+              value={destProject}
+              onChange={e => setDestProject(e.target.value)}
+              style={{ width: '100%', maxWidth: 300, marginBottom: 16 }}
+            >
               <option value="">Select destination...</option>
               <option value={connection.projectId}>{connection.displayName} (current)</option>
             </select>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={handlePrev} className="secondary">Back</button>
-              <button onClick={handleNext} disabled={!destProject}>Next</button>
+              <button onClick={handlePrev} className="secondary">
+                Back
+              </button>
+              <button onClick={handleNext} disabled={!destProject}>
+                Next
+              </button>
             </div>
           </div>
         )}
@@ -100,27 +127,55 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
             <h3>Select Data to Migrate</h3>
             <div style={{ marginBottom: 16 }}>
               <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                <input type="radio" name="dataType" value="collection" checked={dataType === 'collection'} onChange={() => setDataType('collection')} />
+                <input
+                  type="radio"
+                  name="dataType"
+                  value="collection"
+                  checked={dataType === 'collection'}
+                  onChange={() => setDataType('collection')}
+                />
                 <span>Entire Collection</span>
               </label>
               <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                <input type="radio" name="dataType" value="query" checked={dataType === 'query'} onChange={() => setDataType('query')} />
+                <input
+                  type="radio"
+                  name="dataType"
+                  value="query"
+                  checked={dataType === 'query'}
+                  onChange={() => setDataType('query')}
+                />
                 <span>Query Results</span>
               </label>
               <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <input type="radio" name="dataType" value="documents" checked={dataType === 'documents'} onChange={() => setDataType('documents')} />
+                <input
+                  type="radio"
+                  name="dataType"
+                  value="documents"
+                  checked={dataType === 'documents'}
+                  onChange={() => setDataType('documents')}
+                />
                 <span>Selected Documents</span>
               </label>
             </div>
             {dataType === 'collection' && (
               <div style={{ marginBottom: 16 }}>
                 <label style={{ display: 'block', marginBottom: 4 }}>Collection Path</label>
-                <input type="text" value={collectionPath} onChange={e => setCollectionPath(e.target.value)} placeholder="users" style={{ width: '100%', maxWidth: 300 }} />
+                <input
+                  type="text"
+                  value={collectionPath}
+                  onChange={e => setCollectionPath(e.target.value)}
+                  placeholder="users"
+                  style={{ width: '100%', maxWidth: 300 }}
+                />
               </div>
             )}
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={handlePrev} className="secondary">Back</button>
-              <button onClick={handleNext} disabled={!collectionPath && dataType === 'collection'}>Next</button>
+              <button onClick={handlePrev} className="secondary">
+                Back
+              </button>
+              <button onClick={handleNext} disabled={!collectionPath && dataType === 'collection'}>
+                Next
+              </button>
             </div>
           </div>
         )}
@@ -128,13 +183,24 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
         {step === 4 && (
           <div>
             <h3>Preview Migration</h3>
-            <div style={{ marginBottom: 16, padding: 12, backgroundColor: 'var(--vscode-input-bg)', borderRadius: 4 }}>
-              <strong>Source:</strong> {sourceProject}<br />
-              <strong>Destination:</strong> {destProject}<br />
+            <div
+              style={{
+                marginBottom: 16,
+                padding: 12,
+                backgroundColor: 'var(--vscode-input-bg)',
+                borderRadius: 4,
+              }}
+            >
+              <strong>Source:</strong> {sourceProject}
+              <br />
+              <strong>Destination:</strong> {destProject}
+              <br />
               <strong>Data:</strong> {dataType} - {collectionPath || 'query'}
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={handlePrev} className="secondary">Back</button>
+              <button onClick={handlePrev} className="secondary">
+                Back
+              </button>
               <button onClick={handleNext}>Next</button>
             </div>
           </div>
@@ -143,7 +209,14 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
         {step === 5 && (
           <div>
             <h3>Review Changes</h3>
-            <div style={{ marginBottom: 16, padding: 12, backgroundColor: 'var(--vscode-input-bg)', borderRadius: 4 }}>
+            <div
+              style={{
+                marginBottom: 16,
+                padding: 12,
+                backgroundColor: 'var(--vscode-input-bg)',
+                borderRadius: 4,
+              }}
+            >
               <strong>Changes will be applied to:</strong> {destProject}
               <ul style={{ marginTop: 8 }}>
                 <li>Collection: {collectionPath}</li>
@@ -152,7 +225,9 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
               </ul>
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={handlePrev} className="secondary">Back</button>
+              <button onClick={handlePrev} className="secondary">
+                Back
+              </button>
               <button onClick={handleNext}>Next</button>
             </div>
           </div>
@@ -161,13 +236,29 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
         {step === 6 && (
           <div>
             <h3>Confirm Migration</h3>
-            <div style={{ marginBottom: 16, padding: 12, backgroundColor: 'rgba(244, 71, 71, 0.1)', border: '1px solid var(--vscode-error)', borderRadius: 4 }}>
-              <strong style={{ color: 'var(--vscode-error)' }}>⚠️ This will write data to {destProject}</strong>
-              <p style={{ marginTop: 8 }}>This operation cannot be easily undone. Please verify all settings above.</p>
+            <div
+              style={{
+                marginBottom: 16,
+                padding: 12,
+                backgroundColor: 'rgba(244, 71, 71, 0.1)',
+                border: '1px solid var(--vscode-error)',
+                borderRadius: 4,
+              }}
+            >
+              <strong style={{ color: 'var(--vscode-error)' }}>
+                ⚠️ This will write data to {destProject}
+              </strong>
+              <p style={{ marginTop: 8 }}>
+                This operation cannot be easily undone. Please verify all settings above.
+              </p>
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={handlePrev} className="secondary">Back</button>
-              <button onClick={handleNext} className="danger">Confirm & Execute</button>
+              <button onClick={handlePrev} className="secondary">
+                Back
+              </button>
+              <button onClick={handleNext} className="danger">
+                Confirm & Execute
+              </button>
             </div>
           </div>
         )}
@@ -183,7 +274,14 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
             </div>
             {loading && <div>Processing...</div>}
             {!loading && result && (
-              <div style={{ marginTop: 16, padding: 12, backgroundColor: 'var(--vscode-input-bg)', borderRadius: 4 }}>
+              <div
+                style={{
+                  marginTop: 16,
+                  padding: 12,
+                  backgroundColor: 'var(--vscode-input-bg)',
+                  borderRadius: 4,
+                }}
+              >
                 <strong>Complete!</strong>
                 <ul style={{ marginTop: 8 }}>
                   <li>Processed: {result.processed}</li>
@@ -193,9 +291,19 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
               </div>
             )}
             <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
-              <button onClick={handlePrev} className="secondary" disabled={loading}>Back</button>
-              {!loading && !result && <button onClick={handleExecute} disabled={loading} className="danger">Execute</button>}
-              {result && <button onClick={handleNext} disabled={loading}>View Results</button>}
+              <button onClick={handlePrev} className="secondary" disabled={loading}>
+                Back
+              </button>
+              {!loading && !result && (
+                <button onClick={handleExecute} disabled={loading} className="danger">
+                  Execute
+                </button>
+              )}
+              {result && (
+                <button onClick={handleNext} disabled={loading}>
+                  View Results
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -204,7 +312,9 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
           <div>
             <h3>Migration Results</h3>
             {result && (
-              <div style={{ padding: 12, backgroundColor: 'var(--vscode-input-bg)', borderRadius: 4 }}>
+              <div
+                style={{ padding: 12, backgroundColor: 'var(--vscode-input-bg)', borderRadius: 4 }}
+              >
                 <strong>Migration {result.success ? 'Succeeded' : 'Completed with Errors'}</strong>
                 <ul style={{ marginTop: 8 }}>
                   <li>Total Processed: {result.processed}</li>
@@ -214,7 +324,9 @@ export const MigrationView: React.FC<MigrationViewProps> = ({ connection }) => {
               </div>
             )}
             <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
-              <button onClick={() => setStep(1)} className="secondary">New Migration</button>
+              <button onClick={() => setStep(1)} className="secondary">
+                New Migration
+              </button>
             </div>
           </div>
         )}

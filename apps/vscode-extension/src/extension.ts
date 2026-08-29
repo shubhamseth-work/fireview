@@ -4,6 +4,7 @@ import type { AuthProviders } from '@fireview/auth';
 import { createAuthProviders } from '@fireview/auth';
 import type { CredentialService } from '@fireview/credentials';
 import { createCredentialService } from '@fireview/credentials';
+import type { StoredConnection } from '@fireview/core';
 import { EmulatorService, createEmulatorService } from '@fireview/emulator';
 import { createChildLogger, setLogLevel } from '@fireview/shared';
 import * as vscode from 'vscode';
@@ -42,7 +43,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   projectTreeProvider = new ProjectTreeProvider(connectionManager, webviewManager);
 
   // Register callback to refresh tree after successful connection
-  connectionManager.onDidConnect((projectId) => {
+  connectionManager.onDidConnect(projectId => {
     projectTreeProvider.refresh();
   });
 
@@ -59,16 +60,38 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       await connectionManager.disconnectAll();
       projectTreeProvider.refresh();
     }),
-    vscode.commands.registerCommand('fireview.disconnectSpecificProject', async (projectId: string) => {
-      await connectionManager.disconnect(projectId);
-      projectTreeProvider.refresh();
-    }),
+    vscode.commands.registerCommand(
+      'fireview.disconnectSpecificProject',
+      async (projectId: string) => {
+        await connectionManager.disconnect(projectId);
+        projectTreeProvider.refresh();
+      }
+    ),
     vscode.commands.registerCommand('fireview.refresh', () => projectTreeProvider.refresh()),
     vscode.commands.registerCommand('fireview.refreshProject', (projectId: string) => {
       // Refresh specific project by triggering tree refresh
       projectTreeProvider.refresh();
     }),
-    vscode.commands.registerCommand('fireview.openFirestore', (requireActiveConnection = true) => webviewManager.openFirestore(requireActiveConnection)),
+    vscode.commands.registerCommand('fireview.setActiveProject', async (projectId: string) => {
+      try {
+        await connectionManager.setActiveConnection(projectId);
+      } catch (error) {
+        // Connection not found in memory - try to restore from stored credentials
+        extLogger.warn('setActiveProject: Connection not in memory, attempting restore', { projectId, error: (error as Error).message });
+        const stored = await credentialService.getConnection(projectId);
+        if (stored) {
+          await connectionManager.restoreConnection(stored);
+          await connectionManager.setActiveConnection(projectId);
+        } else {
+          throw error;
+        }
+      }
+      projectTreeProvider.refresh();
+      // WebviewManager listens for active project changes and notifies webview automatically
+    }),
+    vscode.commands.registerCommand('fireview.openFirestore', (requireActiveConnection = true) =>
+      webviewManager.openFirestore(requireActiveConnection)
+    ),
     vscode.commands.registerCommand('fireview.newDocument', () => webviewManager.newDocument()),
     vscode.commands.registerCommand('fireview.runQuery', () => webviewManager.runQuery()),
     vscode.commands.registerCommand('fireview.saveQuery', () => webviewManager.saveQuery()),
@@ -88,8 +111,10 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     vscode.commands.registerCommand('fireview.openAuditHistory', () =>
       webviewManager.openAuditHistory()
     ),
-    vscode.commands.registerCommand('fireview.openDocument', (documentPath: string) =>
-      webviewManager.openDocument(documentPath)
+    vscode.commands.registerCommand(
+      'fireview.openDocument',
+      async (documentPath: string, projectId?: string) =>
+        void (await webviewManager.openDocument(documentPath, projectId))
     ),
     vscode.commands.registerCommand('fireview.settings', () =>
       vscode.commands.executeCommand('workbench.action.openSettings', 'fireview')

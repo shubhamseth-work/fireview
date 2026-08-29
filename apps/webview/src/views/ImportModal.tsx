@@ -3,7 +3,12 @@ import React, { useState } from 'react';
 interface ImportModalProps {
   collectionPath: string;
   onClose: () => void;
-  onImport: (collectionPath: string, format: 'json' | 'csv', mode: 'create' | 'update' | 'upsert', inputPath: string) => void;
+  onImport: (
+    collectionPath: string,
+    format: 'json' | 'csv',
+    mode: 'create' | 'update' | 'upsert',
+    inputPath: string
+  ) => void;
 }
 
 export const ImportModal: React.FC<ImportModalProps> = ({ collectionPath, onClose, onImport }) => {
@@ -46,7 +51,9 @@ export const ImportModal: React.FC<ImportModalProps> = ({ collectionPath, onClos
       <div className="modal" onClick={e => e.stopPropagation()} style={{ maxWidth: 500 }}>
         <div className="modal-header">
           <h3 className="modal-title">Import Collection</h3>
-          <button className="modal-close" onClick={onClose}>×</button>
+          <button className="modal-close" onClick={onClose}>
+            ×
+          </button>
         </div>
 
         <div style={{ marginBottom: 16 }}>
@@ -55,18 +62,34 @@ export const ImportModal: React.FC<ImportModalProps> = ({ collectionPath, onClos
 
         <div style={{ marginBottom: 16 }}>
           <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-            <input type="radio" name="format" value="json" checked={format === 'json'} onChange={() => setFormat('json')} />
+            <input
+              type="radio"
+              name="format"
+              value="json"
+              checked={format === 'json'}
+              onChange={() => setFormat('json')}
+            />
             <span>JSON</span>
           </label>
           <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <input type="radio" name="format" value="csv" checked={format === 'csv'} onChange={() => setFormat('csv')} />
+            <input
+              type="radio"
+              name="format"
+              value="csv"
+              checked={format === 'csv'}
+              onChange={() => setFormat('csv')}
+            />
             <span>CSV</span>
           </label>
         </div>
 
         <div style={{ marginBottom: 16 }}>
           <label style={{ display: 'block', marginBottom: 4 }}>Import Mode</label>
-          <select value={mode} onChange={e => setMode(e.target.value as any)} style={{ width: '100%' }}>
+          <select
+            value={mode}
+            onChange={e => setMode(e.target.value as any)}
+            style={{ width: '100%' }}
+          >
             <option value="create">Create Only (fail if exists)</option>
             <option value="update">Update Existing (fail if new)</option>
             <option value="upsert">Upsert (create or update)</option>
@@ -95,30 +118,67 @@ export const ImportModal: React.FC<ImportModalProps> = ({ collectionPath, onClos
           />
         </div>
 
-        <button className="secondary" onClick={handlePreview} disabled={loading || !inputPath} style={{ marginBottom: 16, width: '100%' }}>
+        <button
+          className="secondary"
+          onClick={handlePreview}
+          disabled={loading || !inputPath}
+          style={{ marginBottom: 16, width: '100%' }}
+        >
           Preview Import
         </button>
 
         {preview && (
-          <div style={{ marginBottom: 16, padding: 12, backgroundColor: 'var(--vscode-input-bg)', borderRadius: 4 }}>
+          <div
+            style={{
+              marginBottom: 16,
+              padding: 12,
+              backgroundColor: 'var(--vscode-input-bg)',
+              borderRadius: 4,
+            }}
+          >
             <strong>Import Preview:</strong>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8, marginTop: 8 }}>
-              <div><strong>Total:</strong> {preview.total}</div>
-              <div><strong>New:</strong> {preview.newDocuments}</div>
-              <div><strong>Existing:</strong> {preview.existingDocuments}</div>
-              <div><strong>Conflicts:</strong> {preview.conflicts}</div>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gap: 8,
+                marginTop: 8,
+              }}
+            >
+              <div>
+                <strong>Total:</strong> {preview.total}
+              </div>
+              <div>
+                <strong>New:</strong> {preview.newDocuments}
+              </div>
+              <div>
+                <strong>Existing:</strong> {preview.existingDocuments}
+              </div>
+              <div>
+                <strong>Conflicts:</strong> {preview.conflicts}
+              </div>
             </div>
           </div>
         )}
 
         {error && (
-          <div style={{ color: 'var(--vscode-error)', marginBottom: 16, padding: 8, backgroundColor: 'rgba(244, 71, 71, 0.1)', borderRadius: 4 }}>
+          <div
+            style={{
+              color: 'var(--vscode-error)',
+              marginBottom: 16,
+              padding: 8,
+              backgroundColor: 'rgba(244, 71, 71, 0.1)',
+              borderRadius: 4,
+            }}
+          >
             {error}
           </div>
         )}
 
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-          <button className="secondary" onClick={onClose} disabled={loading}>Cancel</button>
+          <button className="secondary" onClick={onClose} disabled={loading}>
+            Cancel
+          </button>
           <button onClick={handleImport} disabled={loading || !inputPath}>
             {loading ? 'Importing...' : 'Import'}
           </button>

@@ -31,7 +31,12 @@ export class WebviewManager {
     private context: vscode.ExtensionContext,
     private connectionManager: ConnectionManager,
     private auditService: AuditService
-  ) {}
+  ) {
+    // Listen for active project changes and notify webview
+    this.connectionManager.onDidChangeActiveProject(projectId => {
+      this.sendToPanel('firestore', { type: 'projectSwitched', payload: { projectId } });
+    });
+  }
 
   openFirestore(requireActiveConnection = true): void {
     if (requireActiveConnection) {
@@ -95,18 +100,48 @@ export class WebviewManager {
     void this.createOrShowPanel('audit', 'Audit History', vscode.ViewColumn.One, {});
   }
 
-  openDocument(documentPath: string): void {
-    webviewLogger.info('openDocument called', { documentPath });
-    const active = this.connectionManager.getActiveConnection();
-    if (!active) {
-      webviewLogger.error('openDocument: No active connection');
+  async openDocument(documentPath: string, projectId?: string): Promise<void> {
+    webviewLogger.info('openDocument called', { documentPath, projectId });
+    
+    // If projectId is provided and different from active, switch project first
+    let switchedProject = false;
+    if (projectId) {
+      const active = this.connectionManager.getActiveConnection();
+      if (projectId !== active?.projectId) {
+        const targetConnection = this.connectionManager.getConnection(projectId);
+        if (!targetConnection) {
+          webviewLogger.error('openDocument: Target project not found', { projectId });
+          void vscode.window.showErrorMessage(`Project ${projectId} not found`);
+          return;
+        }
+
+        // Switch active project
+        await this.connectionManager.setActiveConnection(projectId);
+        switchedProject = true;
+        webviewLogger.info('openDocument: Project switched', { projectId });
+      }
+    }
+
+    // Create/get panel FIRST (ensures panel exists for projectSwitched message)
+    const panel = this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
+
+    // If we switched projects, send projectSwitched to the panel NOW (panel exists)
+    if (switchedProject) {
+      webviewLogger.info('openDocument: Sending projectSwitched to panel', { projectId });
+      this.sendWhenReady(panel, { type: 'projectSwitched', payload: { projectId } });
+      // Give webview time to process project switch, reload connection, and load collections
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
+
+    // Re-check active connection
+    const currentActive = this.connectionManager.getActiveConnection();
+    if (!currentActive) {
+      webviewLogger.error('openDocument: No active connection after switch');
       void vscode.window.showErrorMessage('No active connection');
       return;
     }
 
-    const panel = this.createOrShowPanel('firestore', 'Firestore', vscode.ViewColumn.One, {});
-
-    // Wait for panel to be ready, then send openDocument message
+    // Send openDocument message
     webviewLogger.debug('openDocument: Sending openDocument message when ready', { documentPath });
     this.sendWhenReady(panel, { type: 'openDocument', payload: { documentPath } });
   }

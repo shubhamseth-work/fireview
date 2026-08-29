@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FirestoreDocument, FirestoreQuery, QueryFilter, QueryOperator, OrderByClause } from '@fireview/core';
-import { Connection } from '@fireview/core';
+import type { FirestoreDocument, FirestoreQuery } from '@fireview/core';
+import { Connection, OrderByClause, QueryFilter, QueryOperator } from '@fireview/core';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNotify } from '../context/NotificationContext';
 import { ConfirmationModal } from './ConfirmationModal';
 import { CopyMoveModal } from './CopyMoveModal';
 import { RenameModal } from './RenameModal';
-import { useNotify } from '../context/NotificationContext';
 
 interface DocumentTableProps {
   documents: FirestoreDocument[];
@@ -33,7 +33,7 @@ interface DocumentTableProps {
   readOnlyCollections: Set<string>;
 }
 
-type MenuAction = 
+type MenuAction =
   | 'editJson'
   | 'openNewTab'
   | 'rename'
@@ -129,10 +129,23 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
 }) => {
   const notify = useNotify();
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [menuAnchor, setMenuAnchor] = useState<{ doc: FirestoreDocument; rect: DOMRect } | null>(null);
-  const [confirmModal, setConfirmModal] = useState<{ title: string; message: string; onConfirm: () => void; variant?: 'danger' | 'primary' } | null>(null);
-  const [copyMoveModal, setCopyMoveModal] = useState<{ mode: 'copy' | 'move'; doc: FirestoreDocument } | null>(null);
-  const [renameModal, setRenameModal] = useState<{ doc: FirestoreDocument; currentName: string } | null>(null);
+  const [menuAnchor, setMenuAnchor] = useState<{ doc: FirestoreDocument; rect: DOMRect } | null>(
+    null
+  );
+  const [confirmModal, setConfirmModal] = useState<{
+    title: string;
+    message: string;
+    onConfirm: () => void;
+    variant?: 'danger' | 'primary';
+  } | null>(null);
+  const [copyMoveModal, setCopyMoveModal] = useState<{
+    mode: 'copy' | 'move';
+    doc: FirestoreDocument;
+  } | null>(null);
+  const [renameModal, setRenameModal] = useState<{
+    doc: FirestoreDocument;
+    currentName: string;
+  } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -148,15 +161,25 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
   const handleMenuAction = (action: MenuAction) => {
     if (!menuAnchor) return;
     const { doc } = menuAnchor;
-    
+
     // Check if document's collection is read-only
     const isReadOnly = readOnlyCollections.has(selectedCollection);
-    
+
     // Actions that modify data
-    const modifyingActions: MenuAction[] = ['rename', 'move', 'duplicate', 'copyTo', 'delete', 'import'];
-    
+    const modifyingActions: MenuAction[] = [
+      'rename',
+      'move',
+      'duplicate',
+      'copyTo',
+      'delete',
+      'import',
+    ];
+
     if (isReadOnly && modifyingActions.includes(action)) {
-      notify('warning', 'This collection is read-only. Please disable read-only mode first to perform this action.');
+      notify(
+        'warning',
+        'This collection is read-only. Please disable read-only mode first to perform this action.'
+      );
       setMenuAnchor(null);
       return;
     }
@@ -213,9 +236,13 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
     setMenuAnchor(null);
   };
 
-  const handleCopyMoveConfirm = (targetProjectId: string, targetCollection: string, targetDocId?: string) => {
+  const handleCopyMoveConfirm = (
+    targetProjectId: string,
+    targetCollection: string,
+    targetDocId?: string
+  ) => {
     if (!copyMoveModal) return;
-    
+
     // For now, we only support same-project operations via the existing callbacks
     // The callbacks expect targetCollection path, but we need to handle cross-project differently
     // For same project, just call the existing callback
@@ -229,7 +256,10 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
       }
     } else {
       // Cross-project: would need new API endpoints
-      notify('error', `Cross-project ${copyMoveModal.mode} not yet implemented. Please use same project.`);
+      notify(
+        'error',
+        `Cross-project ${copyMoveModal.mode} not yet implemented. Please use same project.`
+      );
     }
     setCopyMoveModal(null);
   };
@@ -261,7 +291,9 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+      <div
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}
+      >
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 24, marginBottom: 8 }}>⏳</div>
           <div>Loading documents...</div>
@@ -272,7 +304,15 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
 
   if (error) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: 24 }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+          padding: 24,
+        }}
+      >
         <div style={{ textAlign: 'center', color: 'var(--vscode-error)' }}>
           <div style={{ fontSize: 24, marginBottom: 8 }}>⚠️</div>
           <div>Error: {error}</div>
@@ -307,12 +347,18 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
     if (typeof value === 'object') {
       if (value.__type__) {
         switch (value.__type__) {
-          case 'timestamp': return `🕐 ${value.value}`;
-          case 'reference': return `🔗 ${value.value}`;
-          case 'geopoint': return `📍 ${value.value.latitude}, ${value.value.longitude}`;
-          case 'bytes': return `📦 base64:${value.value.substring(0, 20)}...`;
-          case 'array': return `[${value.value.length} items]`;
-          case 'map': return `{${Object.keys(value.value).length} fields}`;
+          case 'timestamp':
+            return `🕐 ${value.value}`;
+          case 'reference':
+            return `🔗 ${value.value}`;
+          case 'geopoint':
+            return `📍 ${value.value.latitude}, ${value.value.longitude}`;
+          case 'bytes':
+            return `📦 base64:${value.value.substring(0, 20)}...`;
+          case 'array':
+            return `[${value.value.length} items]`;
+          case 'map':
+            return `{${Object.keys(value.value).length} fields}`;
         }
       }
       if (Array.isArray(value)) return `[${value.length} items]`;
@@ -335,7 +381,9 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
             <tr>
               <th style={{ minWidth: 40, textAlign: 'center' }}>Actions</th>
               {columns.map(col => (
-                <th key={col} style={{ minWidth: 120 }}>{col}</th>
+                <th key={col} style={{ minWidth: 120 }}>
+                  {col}
+                </th>
               ))}
             </tr>
           </thead>
@@ -376,7 +424,14 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
                     >
                       {menuItems.map((item, i) => (
                         <div key={item.action}>
-                          {item.divider && <div style={{ borderTop: '1px solid var(--vscode-dropdown-border)', margin: '4px 0' }} />}
+                          {item.divider && (
+                            <div
+                              style={{
+                                borderTop: '1px solid var(--vscode-dropdown-border)',
+                                margin: '4px 0',
+                              }}
+                            />
+                          )}
                           <button
                             onClick={() => handleMenuAction(item.action)}
                             style={{
@@ -387,13 +442,21 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
                               padding: '6px 12px',
                               background: 'none',
                               border: 'none',
-                              color: item.action === 'delete' ? 'var(--vscode-errorForeground)' : 'var(--vscode-dropdown-foreground)',
+                              color:
+                                item.action === 'delete'
+                                  ? 'var(--vscode-errorForeground)'
+                                  : 'var(--vscode-dropdown-foreground)',
                               fontSize: 12,
                               textAlign: 'left',
                               cursor: 'pointer',
                             }}
-                            onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--vscode-list-hoverBackground)'}
-                            onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+                            onMouseOver={e =>
+                              (e.currentTarget.style.backgroundColor =
+                                'var(--vscode-list-hoverBackground)')
+                            }
+                            onMouseOut={e =>
+                              (e.currentTarget.style.backgroundColor = 'transparent')
+                            }
                           >
                             <span>{item.icon}</span>
                             <span>{item.label}</span>
@@ -403,7 +466,13 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
                     </div>
                   )}
                 </td>
-                <td style={{ fontFamily: 'monospace', fontSize: 11, color: 'var(--vscode-descriptionForeground)' }}>
+                <td
+                  style={{
+                    fontFamily: 'monospace',
+                    fontSize: 11,
+                    color: 'var(--vscode-descriptionForeground)',
+                  }}
+                >
                   {doc.id}
                 </td>
                 {columns.slice(1).map(col => (
@@ -417,15 +486,18 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({
         </table>
       </div>
 
-      <div className="pagination" style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'space-between', 
-        padding: '12px', 
-        borderTop: '1px solid var(--vscode-border)',
-        flexWrap: 'wrap',
-        gap: '8px',
-      }}>
+      <div
+        className="pagination"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '12px',
+          borderTop: '1px solid var(--vscode-border)',
+          flexWrap: 'wrap',
+          gap: '8px',
+        }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span style={{ fontSize: 12, color: 'var(--vscode-descriptionForeground)' }}>
             Page {pagination.page} • {documents.length} documents

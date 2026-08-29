@@ -1,5 +1,5 @@
+import type { Connection } from '@fireview/core';
 import React, { useState } from 'react';
-import { Connection } from '@fireview/core';
 
 interface ProjectCompareViewProps {
   connection: Connection;
@@ -18,7 +18,13 @@ export const ProjectCompareView: React.FC<ProjectCompareViewProps> = ({ connecti
       // In real implementation, call backend
       setComparison({
         collections: [],
-        summary: { totalCollections: 0, matchingCollections: 0, missingInSource: 0, missingInDestination: 0, structureDifferences: 0 }
+        summary: {
+          totalCollections: 0,
+          matchingCollections: 0,
+          missingInSource: 0,
+          missingInDestination: 0,
+          structureDifferences: 0,
+        },
       });
     } finally {
       setLoading(false);
@@ -32,21 +38,33 @@ export const ProjectCompareView: React.FC<ProjectCompareViewProps> = ({ connecti
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
         <div>
           <label style={{ display: 'block', marginBottom: 8 }}>Source Project</label>
-          <select value={sourceProject} onChange={e => setSourceProject(e.target.value)} style={{ width: '100%' }}>
+          <select
+            value={sourceProject}
+            onChange={e => setSourceProject(e.target.value)}
+            style={{ width: '100%' }}
+          >
             <option value="">Select source...</option>
             <option value={connection.projectId}>{connection.displayName} (current)</option>
           </select>
         </div>
         <div>
           <label style={{ display: 'block', marginBottom: 8 }}>Destination Project</label>
-          <select value={destProject} onChange={e => setDestProject(e.target.value)} style={{ width: '100%' }}>
+          <select
+            value={destProject}
+            onChange={e => setDestProject(e.target.value)}
+            style={{ width: '100%' }}
+          >
             <option value="">Select destination...</option>
             <option value={connection.projectId}>{connection.displayName} (current)</option>
           </select>
         </div>
       </div>
 
-      <button onClick={handleCompare} disabled={!sourceProject || !destProject || loading} style={{ width: 'fit-content' }}>
+      <button
+        onClick={handleCompare}
+        disabled={!sourceProject || !destProject || loading}
+        style={{ width: 'fit-content' }}
+      >
         {loading ? 'Comparing...' : 'Compare Projects'}
       </button>
 
