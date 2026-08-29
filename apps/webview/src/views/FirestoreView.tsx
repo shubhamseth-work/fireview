@@ -231,16 +231,28 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
     });
   };
 
-  const handleNewCollectionConfirm = (collectionId: string, projectId: string) => {
+  const handleNewCollectionConfirm = (collectionId: string, projectId: string, docId: string, data: Record<string, any>) => {
     // If project is different from active, switch first
+    const createCollectionAndDoc = () => {
+      onCreateCollection(collectionId);
+      // Create the initial document if data is provided and not just empty object
+      if (data && Object.keys(data).length > 0) {
+        onCreateDocument(collectionId, {
+          id: docId,
+          path: '',
+          data,
+        });
+      }
+    };
+
     if (projectId !== activeProjectId) {
       vscode.postMessage({ type: 'setActiveProject', payload: { projectId } });
-      // Wait for project switch then create collection
+      // Wait for project switch then create collection and document
       setTimeout(() => {
-        onCreateCollection(collectionId);
+        createCollectionAndDoc();
       }, 500);
     } else {
-      onCreateCollection(collectionId);
+      createCollectionAndDoc();
     }
     setShowNewCollectionModal(null);
   };
