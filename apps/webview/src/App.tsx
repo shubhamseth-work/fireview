@@ -788,46 +788,48 @@ const AppInner: React.FC = () => {
               </div>
             }
           >
-            <FirestoreView
-              key={connection.projectId || 'no-connection'}
-              connection={connection}
-              collections={collections}
-              documents={documents}
-              selectedDocument={selectedDocument}
-              loading={loading}
-              error={error}
-              pagination={pagination}
-              onLoadDocuments={loadDocuments}
-              onOpenDocument={handleOpenDocument}
-              onCloseDocument={handleCloseDocument}
-              onRunQuery={handleRunQuery}
-              onCreateDocument={handleCreateDocument}
-              onCreateCollection={handleCreateCollection}
-              onUpdateDocument={handleUpdateDocument}
-              onDeleteDocument={handleDeleteDocument}
-              onExportCollection={handleExportCollection}
-              onImportCollection={handleImportCollection}
-              onLoadMore={loadMore}
-              onPageSizeChange={handlePageSizeChange}
-              onCopyDocument={() => {}}
-              onCopyDocumentTo={handleCopyDocument}
-              onDuplicateDocument={handleDuplicateDocument}
-              onRenameDocument={handleRenameDocument}
-              onMoveDocument={handleMoveDocument}
-              onShowGeopoints={handleShowGeopoints}
-              onImportDocument={handleImportDocument}
-              onExportDocument={handleExportDocument}
-              onRevealInConsole={handleRevealInConsole}
-              connections={connections}
-              activeProjectId={connection.projectId || null}
-              readOnlyCollections={readOnlyCollections}
-              setReadOnlyCollections={setReadOnlyCollections}
-              firebaseConfig={firebaseConfig || undefined}
-              onConfigImport={handleConfigImport}
-              initialView={
-                view === 'query' ? 'query' : view === 'collection' ? 'collection' : 'firestore'
-              }
-            />
+<FirestoreView
+            key={connection.projectId || 'no-connection'}
+            connection={connection}
+            collections={collections}
+            documents={documents}
+            selectedDocument={selectedDocument}
+            loading={loading}
+            error={error}
+            pagination={pagination}
+            onLoadDocuments={loadDocuments}
+            onOpenDocument={handleOpenDocument}
+            onCloseDocument={handleCloseDocument}
+            onRunQuery={handleRunQuery}
+            onCreateDocument={handleCreateDocument}
+            onCreateCollection={handleCreateCollection}
+            onUpdateDocument={handleUpdateDocument}
+            onDeleteDocument={handleDeleteDocument}
+            onExportCollection={handleExportCollection}
+            onImportCollection={handleImportCollection}
+            onLoadMore={loadMore}
+            onPageSizeChange={handlePageSizeChange}
+            onCopyDocument={() => {}}
+            onCopyDocumentTo={handleCopyDocument}
+            onDuplicateDocument={handleDuplicateDocument}
+            onRenameDocument={handleRenameDocument}
+            onMoveDocument={handleMoveDocument}
+            onShowGeopoints={handleShowGeopoints}
+            onImportDocument={handleImportDocument}
+            onExportDocument={handleExportDocument}
+            onRevealInConsole={handleRevealInConsole}
+            connections={connections}
+            activeProjectId={connection.projectId || null}
+            readOnlyCollections={readOnlyCollections}
+            setReadOnlyCollections={setReadOnlyCollections}
+            firebaseConfig={firebaseConfig || undefined}
+            onConfigImport={handleConfigImport}
+            initialView={
+              view === 'query' ? 'query' : view === 'collection' ? 'collection' : 'firestore'
+            }
+            view={view}
+            onViewChange={setView}
+          />
           </ErrorBoundary>
         );
       case 'compare':
@@ -846,55 +848,6 @@ const AppInner: React.FC = () => {
   return (
     <NotificationProvider>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-        <div className="toolbar">
-          <div className="toolbar-group">
-            <button
-              onClick={() => setView('firestore')}
-              className={view === 'firestore' ? 'active' : ''}
-            >
-              Firestore
-            </button>
-            <button
-              onClick={() => setView('collection')}
-              className={view === 'collection' ? 'active' : ''}
-            >
-              Collection
-            </button>
-            <button onClick={() => setView('query')} className={view === 'query' ? 'active' : ''}>
-              Query
-            </button>
-            <button
-              onClick={() => setView('compare')}
-              className={view === 'compare' ? 'active' : ''}
-            >
-              Compare
-            </button>
-            <button
-              onClick={() => setView('project-compare')}
-              className={view === 'project-compare' ? 'active' : ''}
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => setView('migration')}
-              className={view === 'migration' ? 'active' : ''}
-            >
-              Migration
-            </button>
-            <button onClick={() => setView('audit')} className={view === 'audit' ? 'active' : ''}>
-              Audit
-            </button>
-          </div>
-          <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }}>
-            <span className={`badge ${connection.environment}`}>{connection.environment}</span>
-            {connection.authMethod === 'emulator' && (
-              <span className="badge emulator">Emulator</span>
-            )}
-            {connection.environment === 'production' && (
-              <span className="badge production">Production</span>
-            )}
-          </div>
-        </div>
         <div style={{ flex: 1, overflow: 'hidden' }}>{renderView()}</div>
         <div className="status-bar">
           <span>
