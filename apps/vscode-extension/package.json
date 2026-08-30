@@ -2,7 +2,7 @@
   "name": "fire-view",
   "displayName": "FireView - Firestore Workspace",
   "publisher": "fireview",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "FireView - Explore. Query. Manage. Firebase Firestore developer workspace for VS Code.",
   "main": "dist/extension.js",
   "scripts": {
