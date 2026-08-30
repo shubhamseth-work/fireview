@@ -1,10 +1,10 @@
 import type { Connection, FirestoreDocument, FirestoreQuery } from '@fireview/core';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { NotificationProvider, useNotify } from './context/NotificationContext';
 import { VSCodeProvider, useVSCode } from './context/VSCodeContext';
 import { AuditView } from './views/AuditView';
 import { CompareView } from './views/CompareView';
-import { FirestoreView } from './views/FirestoreView';
+import { FirestoreView, FirestoreViewRef } from './views/FirestoreView';
 import { MigrationView } from './views/MigrationView';
 import { ProjectCompareView } from './views/ProjectCompareView';
 import { ErrorBoundary } from './views/ErrorBoundary';
@@ -77,6 +77,7 @@ const AppInner: React.FC = () => {
   );
   const [firebaseConfig, setFirebaseConfig] = useState<FirebaseConfig | null>(null);
   const [webviewReady, setWebviewReady] = useState(false);
+  const firestoreViewRef = useRef<FirestoreViewRef>(null);
 
   // Load Firebase config from localStorage on init
   useEffect(() => {
@@ -896,6 +897,7 @@ const AppInner: React.FC = () => {
             }
           >
 <FirestoreView
+            ref={firestoreViewRef}
             key={connection.projectId || 'no-connection'}
             connection={connection}
             collections={collections}
@@ -991,7 +993,10 @@ const AppInner: React.FC = () => {
               Firestore
             </button>
             <button
-              onClick={() => setView('collection')}
+              onClick={() => {
+                setView('collection');
+                firestoreViewRef.current?.handleAddCollection?.();
+              }}
               className={view === 'collection' ? 'active' : ''}
               style={{
                 padding: '6px 12px',

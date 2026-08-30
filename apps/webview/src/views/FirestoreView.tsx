@@ -9,7 +9,7 @@ import {
   QueryFilter,
   QueryOperator,
 } from '@fireview/core';
-import React, { useState } from 'react';
+import React, { useState, useImperativeHandle, forwardRef } from 'react';
 import { useVSCode } from '../context/VSCodeContext';
 import { CollectionTree } from './CollectionTree';
 import { DocumentTable } from './DocumentTable';
@@ -85,6 +85,10 @@ interface FirestoreViewProps {
   onViewChange: (view: ViewType) => void;
 }
 
+interface FirestoreViewRef {
+  handleAddCollection: () => void;
+}
+
 // Logger for FirestoreView
 const log = {
   debug: (msg: string, meta?: Record<string, unknown>) =>
@@ -97,47 +101,50 @@ const log = {
     console.error(`[FirestoreView] ${msg}`, meta || ''),
 };
 
-export const FirestoreView: React.FC<FirestoreViewProps> = ({
-  connection,
-  collections = [],
-  documents = [],
-  selectedDocument,
-  loading,
-  error,
-  pagination,
-  onLoadDocuments,
-  onOpenDocument,
-  onOpenDocumentByPath,
-  onCloseDocument,
-  onRunQuery,
-  onCreateDocument,
-  onCreateCollection,
-  onUpdateDocument,
-  onDeleteDocument,
-  onExportCollection,
-  onImportCollection,
-  onLoadMore,
-  onPageSizeChange,
-  onCopyDocument,
-  onCopyDocumentTo,
-  onDuplicateDocument,
-  onRenameDocument,
-  onMoveDocument,
-  onShowGeopoints,
-  onImportDocument,
-  onExportDocument,
-  onRevealInConsole,
-  connections = [],
-  activeProjectId,
-  readOnlyCollections = new Set(),
-  setReadOnlyCollections,
-  firebaseConfig,
-  onConfigImport,
-  initialView = 'firestore',
-  view,
-  onViewChange,
-}) => {
-  // Destructure authMethod from connection
+export const FirestoreView = forwardRef<FirestoreViewRef, FirestoreViewProps>(
+  (props, ref) => {
+  const {
+    connection,
+    collections = [],
+    documents = [],
+    selectedDocument,
+    loading,
+    error,
+    pagination,
+    onLoadDocuments,
+    onOpenDocument,
+    onOpenDocumentByPath,
+    onCloseDocument,
+    onRunQuery,
+    onCreateDocument,
+    onCreateCollection,
+    onUpdateDocument,
+    onDeleteDocument,
+    onExportCollection,
+    onImportCollection,
+    onLoadMore,
+    onPageSizeChange,
+    onCopyDocument,
+    onCopyDocumentTo,
+    onDuplicateDocument,
+    onRenameDocument,
+    onMoveDocument,
+    onShowGeopoints,
+    onImportDocument,
+    onExportDocument,
+    onRevealInConsole,
+    connections = [],
+    activeProjectId,
+    readOnlyCollections = new Set(),
+    setReadOnlyCollections,
+    firebaseConfig,
+    onConfigImport,
+    initialView = 'firestore',
+    view,
+    onViewChange,
+  } = props;
+
+// Destructure authMethod from connection
   const authMethod = connection?.authMethod;
   const vscode = useVSCode();
   const [selectedCollection, setSelectedCollection] = useState<string>('');
@@ -152,6 +159,10 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
     isOpen: boolean;
     selectedProjectId: string;
   } | null>(null);
+
+  useImperativeHandle(ref, () => ({
+    handleAddCollection,
+  }));
 
   // Log props on render for debugging
   log.info('FirestoreView render', {
@@ -581,4 +592,6 @@ export const FirestoreView: React.FC<FirestoreViewProps> = ({
       )}
     </div>
   );
-};
+});
+
+export type { FirestoreViewRef };
