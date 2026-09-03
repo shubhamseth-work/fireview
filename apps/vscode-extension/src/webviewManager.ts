@@ -78,7 +78,7 @@ export class WebviewManager {
 
     // Wait for webview to be ready, then send the message
     this.waitForWebviewReady('firestore', panel).then(() => {
-      this.sendWhenReady(panel, { type: 'showFirebaseAuthModal', payload: {} });
+      this.sendWhenReady('firestore', panel, { type: 'showFirebaseAuthModal', payload: {} });
     }).catch(err => {
       webviewLogger.error('showFirebaseAuthModal: Error waiting for webview ready', { error: (err as Error).message });
     });
@@ -176,10 +176,10 @@ export class WebviewManager {
 
     // Send openDocument message
     webviewLogger.debug('openDocument: Sending openDocument message when ready', { documentPath });
-    this.sendWhenReady(panel, { type: 'openDocument', payload: { documentPath } });
+    this.sendWhenReady('firestore', panel, { type: 'openDocument', payload: { documentPath } });
   }
 
-  private async waitForWebviewReady(viewType: string, panel: vscode.WebviewPanel, timeoutMs = 10000): Promise<void> {
+  private async waitForWebviewReady(viewType: string, panel: vscode.WebviewPanel, timeoutMs = 30000): Promise<void> {
     // If already ready, return immediately
     if (this.webviewReady.get(viewType)) {
       webviewLogger.debug('waitForWebviewReady: Already ready', { viewType });
@@ -200,9 +200,9 @@ export class WebviewManager {
 
       const timeoutHandle = setTimeout(() => {
         clearInterval(checkInterval);
-        webviewLogger.warn('waitForWebviewReady: Timeout waiting for webview ready', { viewType });
-        // Don't reject, just proceed - the webview might still work
-        resolve();
+        webviewLogger.error('waitForWebviewReady: Timeout waiting for webview ready', { viewType, timeoutMs });
+        // Reject on timeout - the webview is not ready and we shouldn't proceed
+        reject(new Error(`Webview ready timeout after ${timeoutMs}ms for viewType: ${viewType}`));
       }, timeoutMs);
     });
   }
@@ -222,7 +222,7 @@ export class WebviewManager {
     this.projectSwitchAck.set(requestId, ackPromise);
     
     // Send the projectSwitched message with requestId
-    this.sendWhenReady(panel, { type: 'projectSwitched', payload: { projectId, requestId } });
+    this.sendWhenReady('firestore', panel, { type: 'projectSwitched', payload: { projectId, requestId } });
     
     // Wait for acknowledgment with timeout
     try {
@@ -279,46 +279,52 @@ export class WebviewManager {
     return panel;
   }
 
-  private sendWhenReady(panel: vscode.WebviewPanel, message: WebviewMessage): void {
+  private sendWhenReady(viewType: string, panel: vscode.WebviewPanel, message: WebviewMessage): void {
     webviewLogger.debug('sendWhenReady called', {
       messageType: message.type,
       panelVisible: panel.visible,
+      viewType,
+      webviewReady: this.webviewReady.get(viewType),
     });
-    if (panel.visible) {
-      webviewLogger.debug('sendWhenReady: Panel visible, sending immediately', {
+    
+    // Wait for both panel visibility AND webviewReady flag
+    const sendMessage = () => {
+      webviewLogger.debug('sendWhenReady: Sending message', { messageType: message.type, viewType });
+      void panel.webview.postMessage(message);
+    };
+    
+    if (panel.visible && this.webviewReady.get(viewType)) {
+      webviewLogger.debug('sendWhenReady: Panel visible and webview ready, sending immediately', {
         messageType: message.type,
       });
-      void panel.webview.postMessage(message);
+      sendMessage();
       return;
     }
 
-    webviewLogger.debug('sendWhenReady: Panel not visible, waiting for visibility change', {
+    webviewLogger.debug('sendWhenReady: Waiting for panel visibility and webview ready', {
       messageType: message.type,
     });
-    const disposable = panel.onDidChangeViewState(
-      e => {
-        if (e.webviewPanel.visible) {
-          webviewLogger.debug('sendWhenReady: Panel became visible, sending message', {
-            messageType: message.type,
-          });
-          disposable.dispose();
-          setTimeout(() => {
-            void panel.webview.postMessage(message);
-          }, 100);
-        }
-      },
-      null,
-      this.context.subscriptions
-    );
-
-    // Fallback timeout
-    setTimeout(() => {
-      webviewLogger.debug('sendWhenReady: Fallback timeout, sending message anyway', {
+    
+    const checkInterval = setInterval(() => {
+      if (panel.visible && this.webviewReady.get(viewType)) {
+        webviewLogger.debug('sendWhenReady: Panel visible and webview ready, sending', {
+          messageType: message.type,
+        });
+        clearInterval(checkInterval);
+        clearTimeout(timeoutHandle);
+        sendMessage();
+      }
+    }, 100);
+    
+    const timeoutHandle = setTimeout(() => {
+      clearInterval(checkInterval);
+      webviewLogger.warn('sendWhenReady: Timeout waiting for panel and webview ready, sending anyway', {
         messageType: message.type,
+        panelVisible: panel.visible,
+        webviewReady: this.webviewReady.get(viewType),
       });
-      disposable.dispose();
-      void panel.webview.postMessage(message);
-    }, 1000);
+      sendMessage();
+    }, 10000);
   }
 
   private sendToPanel(viewType: string, message: WebviewMessage): void {

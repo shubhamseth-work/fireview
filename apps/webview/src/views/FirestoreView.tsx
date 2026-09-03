@@ -384,7 +384,7 @@ export const FirestoreView = forwardRef<FirestoreViewRef, FirestoreViewProps>(
   }
 
   return (
-    <div style={{ display: 'flex', height: '100%', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', flex: 1, minHeight: 0, overflow: 'hidden' }}>
       {!isSidebarCollapsed && renderSection('Sidebar', (
         <div
           style={{
@@ -446,7 +446,7 @@ export const FirestoreView = forwardRef<FirestoreViewRef, FirestoreViewProps>(
           </div>
 
           {/* SECTION 3: Collections - Scrollable, fills remaining height */}
-          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ flex: 1, minHeight: 0, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
             {showQueryBuilder ? (
               <QueryBuilder
                 collections={collections}
@@ -514,7 +514,7 @@ export const FirestoreView = forwardRef<FirestoreViewRef, FirestoreViewProps>(
       )}
 
       {renderSection('MainContent', (
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
           {selectedDocument ? (
             <DocumentViewer
               document={selectedDocument}

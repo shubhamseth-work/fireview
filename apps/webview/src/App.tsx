@@ -108,10 +108,12 @@ const AppInner: React.FC = () => {
   }, []);
 
   const sendMessage = useCallback(
-    (type: string, payload?: unknown): Promise<unknown> => {
+    (type: string, payload?: unknown, timeoutMs = 30000): Promise<unknown> => {
       log.debug('sendMessage called', { type, payload });
       return new Promise((resolve, reject) => {
         const requestId = Math.random().toString(36).substring(7);
+        let timeoutHandle: ReturnType<typeof setTimeout>;
+        
         const handler = (event: MessageEvent) => {
           const msg = event.data as Response;
           if (msg.type === 'response' && msg.requestId === requestId) {
@@ -122,11 +124,21 @@ const AppInner: React.FC = () => {
               error: msg.error,
             });
             window.removeEventListener('message', handler);
+            clearTimeout(timeoutHandle);
             if (msg.success) resolve(msg.data);
             else reject(new Error(msg.error || 'Unknown error'));
           }
         };
+        
         window.addEventListener('message', handler);
+        
+        // Timeout fallback
+        timeoutHandle = setTimeout(() => {
+          window.removeEventListener('message', handler);
+          log.error('sendMessage: Timeout', { type, requestId, timeoutMs });
+          reject(new Error(`Request timeout after ${timeoutMs}ms: ${type}`));
+        }, timeoutMs);
+        
         log.debug('sendMessage: Posting message', { type, requestId });
         vscode.postMessage({ type, payload, requestId });
       });
@@ -957,8 +969,42 @@ const AppInner: React.FC = () => {
   };
 
   return (
-    <NotificationProvider>
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <ErrorBoundary
+      fallback={
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh',
+            padding: 24,
+            gap: 16,
+          }}
+        >
+          <div style={{ fontSize: 48 }}>⚠️</div>
+          <h2 style={{ margin: 0 }}>Application Error</h2>
+          <p style={{ textAlign: 'center', color: 'var(--vscode-descriptionForeground)' }}>
+            Failed to render FireView. Check the Developer Tools (Right-click → Open Developer Tools) for details.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            style={{
+              padding: '8px 16px',
+              backgroundColor: 'var(--vscode-button-background)',
+              color: 'var(--vscode-button-foreground)',
+              border: 'none',
+              borderRadius: 4,
+              cursor: 'pointer',
+            }}
+          >
+            Reload
+          </button>
+        </div>
+      }
+    >
+      <NotificationProvider>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         {/* Sticky Top Navigation - Always visible */}
         <div
           className="toolbar"
@@ -1105,11 +1151,11 @@ const AppInner: React.FC = () => {
             </button>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span className={`badge ${connection.environment}`}>{connection.environment}</span>
-            {connection.authMethod === 'emulator' && (
+            <span className={`badge ${connection?.environment || ''}`}>{connection?.environment || ''}</span>
+            {connection?.authMethod === 'emulator' && (
               <span className="badge emulator">Emulator</span>
             )}
-            {connection.environment === 'production' && (
+            {connection?.environment === 'production' && (
               <span className="badge production">Production</span>
             )}
           </div>
@@ -1117,12 +1163,13 @@ const AppInner: React.FC = () => {
         <div style={{ flex: 1, overflow: 'hidden' }}>{renderView()}</div>
         <div className="status-bar">
           <span>
-            {connection.displayName} ({connection.projectId})
+            {connection?.displayName || 'No Connection'} ({connection?.projectId || ''})
           </span>
           <span>{documents.length} documents</span>
         </div>
-      </div>
-    </NotificationProvider>
+</div>
+      </NotificationProvider>
+    </ErrorBoundary>
   );
 };
 

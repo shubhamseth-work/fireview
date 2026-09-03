@@ -214,14 +214,14 @@ Use a permissive license such as **Apache-2.0** unless there is a specific techn
 
 ---
 
-## 5\. Vistiq UI
+## 5\. FireView UI
 
 Create a professional developer-tool UI.
 
 The extension should provide:
 
-1. Vistiq Activity Bar icon  
-2. Vistiq sidebar  
+1. FireView Activity Bar icon  
+2. FireView sidebar  
 3. Project explorer  
 4. Collection explorer  
 5. Document browser  
@@ -236,7 +236,7 @@ The extension should provide:
 
 **Example layout:**
 
-VISTIQ
+FireView
 
 \------------------------------------------------
 
@@ -585,7 +585,7 @@ Users can save queries. Each saved query contains:
 
 **Support:** Save · Run · Rename · Edit · Duplicate · Delete · Export · Import
 
-Initially store saved queries locally. Do not require a Vistiq cloud backend.
+Initially store saved queries locally. Do not require a FireView cloud backend.
 
 ---
 
@@ -842,7 +842,7 @@ DELETE   staging      users/456
 
 **Allow:** Search · Filter · Clear · Export
 
-V1/V2 audit history is local. Do not require a Vistiq cloud backend.
+V1/V2 audit history is local. Do not require a FireView cloud backend.
 
 ---
 
@@ -857,7 +857,7 @@ Support platform-aware shortcuts.
 | `Cmd/Ctrl + K` | Command Palette |
 | `Cmd/Ctrl + P` | Quick Open |
 | `Cmd/Ctrl + R` | Refresh |
-| `Cmd/Ctrl + W` | Close Vistiq tab where applicable |
+| `Cmd/Ctrl + W` | Close FireView tab where applicable |
 
 **Documents**
 
@@ -888,20 +888,20 @@ Expose shortcuts through VS Code command registration. Allow customization where
 
 Register commands such as:
 
-- `Vistiq: Connect Project`  
-- `Vistiq: Disconnect Project`  
-- `Vistiq: Refresh`  
-- `Vistiq: Open Firestore`  
-- `Vistiq: New Document`  
-- `Vistiq: Run Query`  
-- `Vistiq: Save Query`  
-- `Vistiq: Export Collection`  
-- `Vistiq: Import Collection`  
-- `Vistiq: Compare Documents`  
-- `Vistiq: Compare Projects`  
-- `Vistiq: Copy to Project`  
-- `Vistiq: Open Audit History`  
-- `Vistiq: Settings`
+- `FireView: Connect Project`  
+- `FireView: Disconnect Project`  
+- `FireView: Refresh`  
+- `FireView: Open Firestore`  
+- `FireView: New Document`  
+- `FireView: Run Query`  
+- `FireView: Save Query`  
+- `FireView: Export Collection`  
+- `FireView: Import Collection`  
+- `FireView: Compare Documents`  
+- `FireView: Compare Projects`  
+- `FireView: Copy to Project`  
+- `FireView: Open Audit History`  
+- `FireView: Settings`
 
 Commands should integrate naturally with the VS Code Command Palette.
 
@@ -909,7 +909,7 @@ Commands should integrate naturally with the VS Code Command Palette.
 
 ## 30\. Multiple Tabs
 
-Support multiple Vistiq views, e.g. `users`, `users/123`, `orders`, `Query`, `Compare`.
+Support multiple FireView views, e.g. `users`, `users/123`, `orders`, `Query`, `Compare`.
 
 **Allow:** Open · Close · Pin · Refresh · Duplicate where useful
 
@@ -1049,7 +1049,7 @@ Allow users to enable debug logging. Redact secrets automatically.
 
 **Default: NO telemetry.**
 
-No analytics. No tracking. No document collection. No user data collection. No Firestore data sent to Vistiq servers.
+No analytics. No tracking. No document collection. No user data collection. No Firestore data sent to FireView servers.
 
 If telemetry is ever introduced: opt-in, documented, anonymous, disabled by default.
 
@@ -1057,7 +1057,7 @@ If telemetry is ever introduced: opt-in, documented, anonymous, disabled by defa
 
 ## 39\. Privacy
 
-Vistiq should operate as a local-first application.
+FireView should operate as a local-first application.
 
 **Architecture:**
 
@@ -1065,7 +1065,7 @@ User
 
  |
 
-Vistiq Extension
+FireView Extension
 
  |
 
@@ -1077,13 +1077,13 @@ User
 
  |
 
-Vistiq Server
+FireView Server
 
  |
 
 Google/Firebase
 
-The core product must not require a Vistiq backend. Firestore data should go directly between the user's environment and Google/Firebase services.
+The core product must not require a FireView backend. Firestore data should go directly between the user's environment and Google/Firebase services.
 
 ---
 
@@ -1154,7 +1154,7 @@ Run `npm audit` or equivalent. Use Dependabot/Renovate where appropriate.
 
 **Support:** keyboard navigation, screen readers, ARIA, focus management, high contrast, dark mode, light mode.
 
-Use VS Code theme variables rather than hard-coded colors wherever practical. Vistiq should feel native inside VS Code/Cursor.
+Use VS Code theme variables rather than hard-coded colors wherever practical. FireView should feel native inside VS Code/Cursor.
 
 ---
 
@@ -1208,7 +1208,7 @@ Document: VS Code Marketplace, Open VSX, Cursor installation. Do not duplicate m
 
 Do not build the desktop application in V1. Maintain a clean architecture so a future application can use:
 
-Vistiq Core
+FireView Core
 
     |
 
@@ -1271,7 +1271,7 @@ Do not implement all of these initially. Firestore is the primary service.
 - Query templates  
 - Enterprise policy controls
 
-Do not introduce a Vistiq cloud backend merely to implement these. Keep local-first architecture.
+Do not introduce a FireView cloud backend merely to implement these. Keep local-first architecture.
 
 ---
 
@@ -1281,7 +1281,7 @@ Do not introduce a Vistiq cloud backend merely to implement these. Keep local-fi
 
 1. VS Code extension  
 2. Cursor compatibility  
-3. Vistiq Activity Bar  
+3. FireView Activity Bar  
 4. Sidebar  
 5. Project connections  
 6. Google authentication  
@@ -1612,8 +1612,8 @@ V1 release should be considered stable only after: tests, security review, docum
 
 README must contain:
 
-- Vistiq logo placeholder  
-- **Vistiq** — *Explore. Query. Manage.*  
+- FireView logo placeholder  
+- **FireView** — *Explore. Query. Manage.*  
 - Features  
 - Screenshots placeholders  
 - Installation (VS Code, Cursor)  
@@ -1627,7 +1627,7 @@ README must contain:
 - Roadmap  
 - FAQ
 
-**Disclaimer:** Vistiq is an independent open-source project and is not affiliated with Google or Firebase.
+**Disclaimer:** FireView is an independent open-source project and is not affiliated with Google or Firebase.
 
 ---
 
@@ -1650,9 +1650,9 @@ Never include secrets in examples.
 
 ## 66\. Do NOT Build
 
-- A Vistiq cloud server  
+- A FireView cloud server  
 - Mandatory account registration  
-- Mandatory Vistiq login  
+- Mandatory FireView login  
 - Analytics by default  
 - Telemetry by default  
 - Remote database for storing user data  
@@ -1666,7 +1666,7 @@ Never include secrets in examples.
 
 ## 67\. Legal / Branding
 
-Use **Vistiq** only as the working product name.
+Use **FireView** only as the working product name.
 
 **Before public launch, verify:**
 
@@ -1686,14 +1686,14 @@ Do not claim affiliation with: Google, Firebase, Microsoft, VS Code, Cursor.
 
 ## 68\. Final Product Vision
 
-Vistiq should feel like **"Developer Tools for Firestore"** — not "Another database GUI."
+FireView should feel like **"Developer Tools for Firestore"** — not "Another database GUI."
 
 **Ideal user experience:**
 
 1. Developer opens VS Code.  
-2. Vistiq appears in the Activity Bar.  
+2. FireView appears in the Activity Bar.  
 3. Developer selects **Production**.  
-4. Vistiq connects securely.  
+4. FireView connects securely.  
 5. Developer opens **Firestore → users**.  
 6. They see documents immediately.  
 7. They can Inspect, Search, Query, Edit, Create, Delete, Export, Import, Compare, Copy, Migrate — without leaving the IDE.
@@ -1706,7 +1706,7 @@ The project is not considered complete merely because the extension launches. Th
 
 - [ ] VS Code extension  
 - [ ] Cursor compatibility  
-- [ ] Vistiq sidebar  
+- [ ] FireView sidebar  
 - [ ] Project manager  
 - [ ] Google OAuth  
 - [ ] Service Account  
@@ -1787,7 +1787,7 @@ You are not allowed to take shortcuts that compromise security or architecture.
 
 ## 71\. Implementation Order
 
-**Step 1** — Create monorepo **Step 2** — Create VS Code extension shell **Step 3** — Create Vistiq Activity Bar and sidebar **Step 4** — Create React Webview **Step 5** — Create core service architecture **Step 6** — Implement secure credential storage **Step 7** — Implement Firebase project connection **Step 8** — Implement Firestore connection **Step 9** — Implement collection explorer **Step 10** — Implement document viewer **Step 11** — Implement CRUD **Step 12** — Implement query builder **Step 13** — Implement export **Step 14** — Implement emulator **Step 15** — Implement security tests **Step 16** — Implement V2 advanced functionality
+**Step 1** — Create monorepo **Step 2** — Create VS Code extension shell **Step 3** — Create FireView Activity Bar and sidebar **Step 4** — Create React Webview **Step 5** — Create core service architecture **Step 6** — Implement secure credential storage **Step 7** — Implement Firebase project connection **Step 8** — Implement Firestore connection **Step 9** — Implement collection explorer **Step 10** — Implement document viewer **Step 11** — Implement CRUD **Step 12** — Implement query builder **Step 13** — Implement export **Step 14** — Implement emulator **Step 15** — Implement security tests **Step 16** — Implement V2 advanced functionality
 
 Do not jump directly to migration/project-copy features before the core Firestore functionality is stable.
 
@@ -1799,7 +1799,7 @@ Produce real production-quality code. Do not provide pseudo-code when implementa
 
 Use TypeScript types properly. Use clean architecture. Write tests. Document important architectural decisions.
 
-**Keep Vistiq:**
+**Keep FireView:**
 
 - Open source  
 - Local-first  

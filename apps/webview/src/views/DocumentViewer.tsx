@@ -92,7 +92,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   };
 
   const handleDelete = async () => {
-    const isProd = connection.environment === 'production';
+const isProd = connection?.environment === 'production';
     setDeleteConfirm({ isOpen: true, isProduction: isProd });
   };
 
@@ -344,7 +344,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   );
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
       <div
         className="toolbar"
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}

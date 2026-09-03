@@ -22,7 +22,7 @@ async function build() {
   pkgJson.main = 'extension.js';
   await import('fs').then((fs) => fs.promises.writeFile(join(outDir, 'package.json'), JSON.stringify(pkgJson, null, 2)));
 
-  // Build webview first
+  // Build webview first (vite outputs directly to dist/webview)
   console.log('Building webview...');
   try {
     execSync('npm run build', {
@@ -31,17 +31,6 @@ async function build() {
     });
   } catch (error) {
     console.error('Webview build failed:', error);
-    process.exit(1);
-  }
-
-  // Copy webview output to extension dist (vite outputs to wrong path due to root: 'src')
-  const webviewSrc = join(__dirname, '..', '..', 'apps', 'apps', 'vscode-extension', 'dist', 'webview');
-  const webviewDest = join(outDir, 'webview');
-  if (existsSync(webviewSrc)) {
-    cpSync(webviewSrc, webviewDest, { recursive: true });
-    console.log('Copied webview to dist/webview');
-  } else {
-    console.error('Webview source not found at:', webviewSrc);
     process.exit(1);
   }
 
